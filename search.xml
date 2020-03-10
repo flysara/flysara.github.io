@@ -6,6 +6,7 @@
     <content><![CDATA[<p><a href="https://www.cnblogs.com/poloyy/p/12215199.html" target="_blank" rel="noopener">参考这篇文章</a></p>
 <h3 id="gitee拉取GitHub"><a href="#gitee拉取GitHub" class="headerlink" title="gitee拉取GitHub"></a>gitee拉取GitHub</h3><p>直接在Gitee中创建一个项目，然后在最后一行的“导入已有仓库”一栏中复制已有的GitHub仓库就可以了。<br>需要注意的是，<b>复制的仓库地址是https链接而不是SSH格式</b></p>
 <p>这样的话就已经创建好了仓库</p>
+<a id="more"></a>
 <h3 id="本地配置推送方式"><a href="#本地配置推送方式" class="headerlink" title="本地配置推送方式"></a>本地配置推送方式</h3><ul>
 <li>方式一：定义不同的远程仓库名称，然后分别推送 多次推送，配了几个远程仓库就推送几次 </li>
 <li>方式二：在同一个远程仓库下添加另一个远程仓库的地址，然后推送 only一次推送 </li>
@@ -71,6 +72,7 @@
 <figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ERROR: </span>Repository not found. </span><br><span class="line">fatal: Could not read from remote repository</span><br></pre></td></tr></table></figure>
 
 <p>翻译过来就是不能找到远程仓库，我查看了其他的博文，都是重新配置生成公钥，可是我的公钥已经生成，并且也已经和远程仓库连接好了，所以就百思不得其解。最后终于找到了解决办法</p>
+<a id="more"></a>
 <h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>首先来讲一些原理和规则吧：<br>git的两种上传方式：</p>
 <ul>
 <li>HTTPS</li>
