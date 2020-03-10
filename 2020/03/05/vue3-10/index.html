@@ -1,0 +1,1038 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue,vue_shop项目构建笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今日目标1.完成商品添加2.完成订单列表3.完成数据统计展示">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue_shop项目构建笔记">
+<meta property="og:url" content="http://yoursite.com/2020/03/05/vue3-10/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="今日目标1.完成商品添加2.完成订单列表3.完成数据统计展示">
+<meta property="article:published_time" content="2020-03-05T02:22:48.000Z">
+<meta property="article:modified_time" content="2020-03-07T07:36:38.304Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="vue_shop项目构建笔记">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/05/vue3-10/"/>
+
+
+
+
+
+  <title>vue_shop项目构建笔记 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/05/vue3-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue_shop项目构建笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-05T10:22:48+08:00">
+                2020-03-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/vue-shop/" itemprop="url" rel="index">
+                    <span itemprop="name">vue_shop</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/vue-shop/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="今日目标"><a href="#今日目标" class="headerlink" title="今日目标"></a>今日目标</h3><p>1.完成商品添加<br>2.完成订单列表<br>3.完成数据统计展示</p>
+<a id="more"></a>
+
+<h3 id="1-添加商品"><a href="#1-添加商品" class="headerlink" title="1.添加商品"></a>1.添加商品</h3><h4 id="A-完成图片上传"><a href="#A-完成图片上传" class="headerlink" title="A.完成图片上传"></a>A.完成图片上传</h4><p>使用upload组件完成图片上传<br>在element.js中引入upload组件，并注册<br>因为upload组件进行图片上传的时候并不是使用axios发送请求<br>所以，我们需要手动为上传图片的请求添加token，即为upload组件添加headers属性</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在页面中添加upload组件，并设置对应的事件和属性</span></span><br><span class="line">&lt;el-tab-pane label=<span class="string">"商品图片"</span> name=<span class="string">"3"</span>&gt;</span><br><span class="line">  &lt;!-- 商品图片上传</span><br><span class="line">  action:指定图片上传api接口</span><br><span class="line">  :on-preview ： 当点击图片时会触发该事件进行预览操作,处理图片预览</span><br><span class="line">  :on-remove : 当用户点击图片右上角的X号时触发执行</span><br><span class="line">  :on-success：当用户点击上传图片并成功上传时触发</span><br><span class="line">  list-type ：设置预览图片的方式</span><br><span class="line">  :headers ：设置上传图片的请求头 --&gt;</span><br><span class="line">  &lt;el-upload :action=<span class="string">"uploadURL"</span> :on-preview=<span class="string">"handlePreview"</span> :on-remove=<span class="string">"handleRemove"</span> :on-success=<span class="string">"handleSuccess"</span> list-type=<span class="string">"picture"</span> :headers=<span class="string">"headerObj"</span>&gt;</span><br><span class="line">    &lt;el-button size=<span class="string">"small"</span> type=<span class="string">"primary"</span>&gt;点击上传&lt;/el-button&gt;</span><br><span class="line">  &lt;/el-upload&gt;</span><br><span class="line">&lt;/el-tab-pane&gt;</span><br><span class="line"><span class="comment">//在el-card卡片视图下面添加对话框用来预览图片</span></span><br><span class="line">&lt;!-- 预览图片对话框 --&gt;</span><br><span class="line">&lt;el-dialog title=<span class="string">"图片预览"</span> :visible.sync=<span class="string">"previewVisible"</span> width=<span class="string">"50%"</span>&gt;</span><br><span class="line">  &lt;img :src=<span class="string">"previewPath"</span> <span class="class"><span class="keyword">class</span>="<span class="title">previewImg</span>" /&gt;</span></span><br><span class="line">&lt;/el-dialog&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在data中添加数据</span></span><br><span class="line"><span class="keyword">data</span>()&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment">//添加商品的表单数据对象</span></span><br><span class="line">    addForm: &#123;</span><br><span class="line">      goods_name: <span class="string">''</span>,</span><br><span class="line">      goods_price: <span class="number">0</span>,</span><br><span class="line">      goods_weight: <span class="number">0</span>,</span><br><span class="line">      goods_number: <span class="number">0</span>,</span><br><span class="line">      goods_cat: [],</span><br><span class="line">      <span class="comment">//上传图片数组</span></span><br><span class="line">      pics: []</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">//上传图片的url地址</span></span><br><span class="line">    uploadURL: <span class="string">'http://127.0.0.1:8888/api/private/v1/upload'</span>,</span><br><span class="line">    <span class="comment">//图片上传组件的headers请求头对象</span></span><br><span class="line">    headerObj: &#123; Authorization: window.sessionStorage.getItem(<span class="string">'token'</span>) &#125;,</span><br><span class="line">    <span class="comment">//保存预览图片的url地址</span></span><br><span class="line">    previewPath: <span class="string">''</span>,</span><br><span class="line">    <span class="comment">//控制预览图片对话框的显示和隐藏</span></span><br><span class="line">    previewVisible:<span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">//在methods中添加事件处理函数</span></span><br><span class="line">methods:&#123;</span><br><span class="line">  .......</span><br><span class="line">  handlePreview(file) &#123;</span><br><span class="line">    <span class="comment">//当用户点击图片进行预览时执行，处理图片预览</span></span><br><span class="line">    <span class="comment">//形参file就是用户预览的那个文件</span></span><br><span class="line">    <span class="keyword">this</span>.previewPath = file.response.<span class="keyword">data</span>.url</span><br><span class="line">    <span class="comment">//显示预览图片对话框</span></span><br><span class="line">    <span class="keyword">this</span>.previewVisible = <span class="literal">true</span></span><br><span class="line">  &#125;,</span><br><span class="line">  handleRemove(file) &#123;</span><br><span class="line">    <span class="comment">//当用户点击X号删除时执行</span></span><br><span class="line">    <span class="comment">//形参file就是用户点击删除的文件</span></span><br><span class="line">    <span class="comment">//获取用户点击删除的那个图片的临时路径</span></span><br><span class="line">    <span class="keyword">const</span> filePath = file.response.<span class="keyword">data</span>.tmp_path</span><br><span class="line">    <span class="comment">//使用findIndex来查找符合条件的索引</span></span><br><span class="line">    <span class="keyword">const</span> index = <span class="keyword">this</span>.addForm.pics.findIndex(item =&gt; item.pic === filePath)</span><br><span class="line">    <span class="comment">//移除索引对应的图片</span></span><br><span class="line">    <span class="keyword">this</span>.addForm.pics.splice(index, <span class="number">1</span>)</span><br><span class="line">  &#125;,</span><br><span class="line">  handleSuccess(response) &#123;</span><br><span class="line">    <span class="comment">//当上传成功时触发执行</span></span><br><span class="line">    <span class="comment">//形参response就是上传成功之后服务器返回的结果</span></span><br><span class="line">    <span class="comment">//将服务器返回的临时路径保存到addForm表单的pics数组中</span></span><br><span class="line">    <span class="keyword">this</span>.addForm.pics.push(&#123; pic: response.<span class="keyword">data</span>.tmp_path &#125;)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="B-使用富文本插件"><a href="#B-使用富文本插件" class="headerlink" title="B.使用富文本插件"></a>B.使用富文本插件</h4><p>想要使用富文本插件vue-quill-editor，就必须先从依赖安装该插件<br>引入并注册vue-quill-editor，打开main.js，编写如下代码</p>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//导入vue-quill-editor（富文本编辑器）</span></span><br><span class="line"><span class="keyword">import</span> VueQuillEditor from <span class="string">'vue-quill-editor'</span></span><br><span class="line"><span class="comment">//导入vue-quill-editor的样式</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.core.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.snow.css'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'quill/dist/quill.bubble.css'</span></span><br><span class="line"><span class="params">...</span><span class="params">...</span></span><br><span class="line"><span class="comment">//全局注册组件</span></span><br><span class="line">Vue.component(<span class="string">'tree-table'</span>, TreeTable)</span><br><span class="line"><span class="comment">//全局注册富文本组件</span></span><br><span class="line">Vue.use(VueQuillEditor)</span><br></pre></td></tr></table></figure>
+
+<p>使用富文本插件vue-quill-editor</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 富文本编辑器组件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-tab-pane</span> <span class="attr">label</span>=<span class="string">"商品内容"</span> <span class="attr">name</span>=<span class="string">"4"</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 富文本编辑器组件 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">quill-editor</span> <span class="attr">v-model</span>=<span class="string">"addForm.goods_introduce"</span>&gt;</span><span class="tag">&lt;/<span class="name">quill-editor</span>&gt;</span></span><br><span class="line">  <span class="comment">&lt;!-- 添加商品按钮 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"primary"</span> <span class="attr">class</span>=<span class="string">"btnAdd"</span>&gt;</span>添加商品<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-tab-pane</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//在数据中添加goods_introduce</span><br><span class="line">//添加商品的表单数据对象</span><br><span class="line">addForm: &#123;</span><br><span class="line">  goods_name: '',</span><br><span class="line">  goods_price: 0,</span><br><span class="line">  goods_weight: 0,</span><br><span class="line">  goods_number: 0,</span><br><span class="line">  goods_cat: [],</span><br><span class="line">  //上传图片数组</span><br><span class="line">  pics: [],</span><br><span class="line">  //商品的详情介绍</span><br><span class="line">  goods_introduce:''</span><br><span class="line">&#125;</span><br><span class="line">//在global.css样式中添加富文本编辑器的最小高度</span><br><span class="line">.ql-editor&#123;</span><br><span class="line">    min-height: 300px;</span><br><span class="line">&#125;</span><br><span class="line">//给添加商品按钮添加间距</span><br><span class="line">.btnAdd&#123;</span><br><span class="line">  margin-top:15px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="C-添加商品"><a href="#C-添加商品" class="headerlink" title="C.添加商品"></a>C.添加商品</h4><p>完成添加商品的操作<br>在添加商品之前，为了避免goods_cat数组转换字符串之后导致级联选择器报错<br>我们需要打开vue控制条，点击依赖，安装lodash，把addForm进行深拷贝</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//打开Add.vue，导入lodash</span></span><br><span class="line">&lt;script&gt;</span><br><span class="line"><span class="comment">//官方推荐将lodash导入为_</span></span><br><span class="line">import _ from <span class="string">'lodash'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//给添加商品按钮绑定点击事件</span></span><br><span class="line">&lt;!-- 添加商品按钮 --&gt;</span><br><span class="line">&lt;el-<span class="selector-tag">button</span> type=<span class="string">"primary"</span> class=<span class="string">"btnAdd"</span> @click=<span class="string">"add"</span>&gt;添加商品&lt;/el-button&gt;</span><br><span class="line"><span class="comment">//编写点击事件完成商品添加</span></span><br><span class="line"><span class="function"><span class="title">add</span><span class="params">()</span></span>&#123;</span><br><span class="line">  this.<span class="variable">$refs</span><span class="selector-class">.addFormRef</span>.validate(async valid=&gt;&#123;</span><br><span class="line">    <span class="keyword">if</span>(!valid) return this.<span class="variable">$message</span>.error(<span class="string">"请填写必要的表单项!"</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//将addForm进行深拷贝，避免goods_cat数组转换字符串之后导致级联选择器报错</span></span><br><span class="line">    const <span class="selector-tag">form</span> = _.cloneDeep(this.addForm)</span><br><span class="line">    <span class="comment">//将goods_cat从数组转换为"1,2,3"字符串形式</span></span><br><span class="line">    <span class="selector-tag">form</span><span class="selector-class">.goods_cat</span> = <span class="selector-tag">form</span><span class="selector-class">.goods_cat</span>.join(<span class="string">","</span>)</span><br><span class="line">    <span class="comment">//处理attrs数组，数组中需要包含商品的动态参数和静态属性</span></span><br><span class="line">    <span class="comment">//将manyTableData（动态参数）处理添加到attrs</span></span><br><span class="line">    this<span class="selector-class">.manyTableData</span>.forEach(item=&gt;&#123;</span><br><span class="line">      <span class="selector-tag">form</span><span class="selector-class">.attrs</span>.push(&#123; attr_id:item<span class="selector-class">.attr_id</span>, attr_value:item<span class="selector-class">.attr_vals</span>.join(<span class="string">" "</span>) &#125;) </span><br><span class="line">    &#125;)</span><br><span class="line">    <span class="comment">//将onlyTableData（静态属性）处理添加到attrs</span></span><br><span class="line">    this<span class="selector-class">.onlyTableData</span>.forEach(item=&gt;&#123;</span><br><span class="line">      <span class="selector-tag">form</span><span class="selector-class">.attrs</span>.push(&#123; attr_id:item<span class="selector-class">.attr_id</span>, attr_value:item<span class="selector-class">.attr_vals</span> &#125;) </span><br><span class="line">    &#125;)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//发送请求完成商品的添加,商品名称必须是唯一的</span></span><br><span class="line">    const &#123;data:res&#125; = await this.<span class="variable">$http</span>.post(<span class="string">'goods'</span>,form)</span><br><span class="line">    <span class="keyword">if</span>(res<span class="selector-class">.meta</span><span class="selector-class">.status</span> !== <span class="number">201</span>)&#123;</span><br><span class="line">      return this.<span class="variable">$message</span>.error(<span class="string">'添加商品失败'</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    this.<span class="variable">$message</span>.success(<span class="string">'添加商品成功'</span>)</span><br><span class="line">    <span class="comment">//编程式导航跳转到商品列表</span></span><br><span class="line">    this.<span class="variable">$router</span>.push(<span class="string">'/goods'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="D-推送代码"><a href="#D-推送代码" class="headerlink" title="D.推送代码"></a>D.推送代码</h4><p>推送goods_list分支到码云<br>将代码添加到暂存区：  git add .<br>将代码提交到本地仓库： git commit -m “完成商品功能开发”<br>将代码推送到码云：  git push<br>切换到master主分支： git checkout master<br>将goods_list分支代码合并到master: git merge goods_list<br>将master推送到码云：  git push</p>
+<h3 id="2-订单列表"><a href="#2-订单列表" class="headerlink" title="2.订单列表"></a>2.订单列表</h3><h4 id="A-创建分支"><a href="#A-创建分支" class="headerlink" title="A.创建分支"></a>A.创建分支</h4><p>创建order子分支并推送到码云<br>创建order子分支: git checkout -b order<br>将order分支推送到码云： git push -u origin order</p>
+<h4 id="B-创建路由"><a href="#B-创建路由" class="headerlink" title="B.创建路由"></a>B.创建路由</h4><p>创建订单列表路由组件并添加路由规则</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line">//在components中新建<span class="keyword">order</span>文件夹，新建Order.vue组件，组件中添加代码如下</span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="xml"><span class="tag">&lt;<span class="name">h3</span>&gt;</span>订单列表<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!-- 面包屑导航 --&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="xml"><span class="tag">&lt;<span class="name">el-breadcrumb</span> <span class="attr">separator</span>=<span class="string">"/"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="xml"><span class="tag">&lt;<span class="name">el-breadcrumb-item</span> <span class="attr">:to</span>=<span class="string">"&#123; path: '/home' &#125;"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="xml"><span class="tag">&lt;<span class="name">el-breadcrumb-item</span>&gt;</span>订单管理<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="xml"><span class="tag">&lt;<span class="name">el-breadcrumb-item</span>&gt;</span>订单列表<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-breadcrumb</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!-- 卡片视图区域 --&gt;</span></span></span><br><span class="line"><span class="xml">        </span><span class="xml"><span class="tag">&lt;<span class="name">el-card</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="comment">&lt;!-- 搜索栏 --&gt;</span></span></span><br><span class="line"><span class="xml">            </span><span class="xml"><span class="tag">&lt;<span class="name">el-row</span> <span class="attr">:gutter</span>=<span class="string">"20"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                </span><span class="xml"><span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"8"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">placeholder</span>=<span class="string">"请输入内容"</span> <span class="attr">v-model</span>=<span class="string">"queryInfo.query"</span> <span class="attr">clearable</span>&gt;</span></span></span><br><span class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">slot</span>=<span class="string">"append"</span> <span class="attr">icon</span>=<span class="string">"el-icon-search"</span> &gt;</span><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">el-row</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-card</span>&gt;</span></span></span><br><span class="line">    &lt;/div&gt;</span><br><span class="line">&lt;/template&gt;</span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">export default </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">  data() &#123;</span></span><br><span class="line"><span class="xquery">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="xquery">        //查询条件</span></span><br><span class="line"><span class="xquery">        queryInfo:&#123;</span></span><br><span class="line"><span class="xquery">            query:<span class="string">''</span>,</span></span><br><span class="line"><span class="xquery">            pagenum:<span class="number">1</span>,</span></span><br><span class="line"><span class="xquery">            pagesize:<span class="number">10</span></span></span><br><span class="line"><span class="xquery">        &#125;</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  created() </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">      </span></span><br><span class="line"><span class="xquery">  &#125;</span><span class="xml">,</span></span><br><span class="line"><span class="xml">  methods: </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery">      </span></span><br><span class="line"><span class="xquery">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line">&lt;style<span class="built_in"> lang</span>=<span class="string">"less"</span> scoped&gt;</span><br><span class="line"></span><br><span class="line">&lt;/style&gt;</span><br><span class="line"></span><br><span class="line">//打开router.js导入Order.vue并添加规则</span><br><span class="line"><span class="keyword">import</span> Order from <span class="string">'./components/order/Order.vue'</span></span><br><span class="line"></span><br><span class="line">path: <span class="string">'/home'</span>, component: Home, redirect: <span class="string">'/welcome'</span>, children: [</span><br><span class="line">  &#123;<span class="built_in"> path</span>: <span class="string">"/welcome"</span>, component: Welcome &#125;,</span><br><span class="line">  &#123;<span class="built_in"> path</span>: <span class="string">"/users"</span>, component: Users &#125;,</span><br><span class="line">  &#123;<span class="built_in"> path</span>: <span class="string">"/rights"</span>, component: Rights &#125;,</span><br><span class="line">  &#123;<span class="built_in"> path</span>: <span class="string">"/roles"</span>, component: Roles  &#125;,</span><br><span class="line">  &#123;<span class="built_in"> path</span>: <span class="string">"/categories"</span>, component: Cate  &#125;,</span><br><span class="line">  &#123;<span class="built_in"> path</span>: <span class="string">"/params"</span>, component: Params  &#125;,</span><br><span class="line">  &#123;<span class="built_in"> path</span>: <span class="string">"/goods"</span>, component: GoodList  &#125;,</span><br><span class="line">  &#123;<span class="built_in"> path</span>: <span class="string">"/goods/add"</span>, component: GoodAdd  &#125;,</span><br><span class="line">  &#123;<span class="built_in"> path</span>: <span class="string">"/orders"</span>, component: Order  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h4 id="C-实现数据展示及分页"><a href="#C-实现数据展示及分页" class="headerlink" title="C.实现数据展示及分页"></a>C.实现数据展示及分页</h4><figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 卡片视图区域 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">el-card</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 搜索栏 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">el-row</span> <span class="attr">:gutter</span>=<span class="string">"20"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"8"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">placeholder</span>=<span class="string">"请输入内容"</span> <span class="attr">v-model</span>=<span class="string">"queryInfo.query"</span> <span class="attr">clearable</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">slot</span>=<span class="string">"append"</span> <span class="attr">icon</span>=<span class="string">"el-icon-search"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">el-row</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 订单表格 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">"orderList"</span> <span class="attr">border</span> <span class="attr">stripe</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">type</span>=<span class="string">"index"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"订单编号"</span> <span class="attr">prop</span>=<span class="string">"order_number"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"订单价格"</span> <span class="attr">prop</span>=<span class="string">"order_price"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"是否付款"</span> <span class="attr">prop</span>=<span class="string">"pay_status"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">"scope"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">type</span>=<span class="string">"success"</span> <span class="attr">v-if</span>=<span class="string">"scope.row.pay_status === '1'"</span>&gt;</span>已付款<span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">type</span>=<span class="string">"danger"</span> <span class="attr">v-else</span>&gt;</span>未付款<span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"是否发货"</span> <span class="attr">prop</span>=<span class="string">"is_send"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"下单时间"</span> <span class="attr">prop</span>=<span class="string">"create_time"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">"scope"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                </span><span class="template-variable">&#123;&#123;scope.row.create_time | dateFormat&#125;&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"操作"</span> <span class="attr">width</span>=<span class="string">"125px"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">"scope"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">size</span>=<span class="string">"mini"</span> <span class="attr">type</span>=<span class="string">"primary"</span> <span class="attr">icon</span>=<span class="string">"el-icon-edit"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">size</span>=<span class="string">"mini"</span> <span class="attr">type</span>=<span class="string">"success"</span> <span class="attr">icon</span>=<span class="string">"el-icon-location"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 分页 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">el-pagination</span> @<span class="attr">size-change</span>=<span class="string">"handleSizeChange"</span> @<span class="attr">current-change</span>=<span class="string">"handleCurrentChange"</span> <span class="attr">:current-page</span>=<span class="string">"queryInfo.pagenum"</span> <span class="attr">:page-sizes</span>=<span class="string">"[3, 5, 10, 15]"</span> <span class="attr">:page-size</span>=<span class="string">"queryInfo.pagesize"</span> <span class="attr">layout</span>=<span class="string">"total, sizes, prev, pager, next, jumper"</span> <span class="attr">:total</span>=<span class="string">"total"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">el-pagination</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">el-card</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">export default &#123;</span></span><br><span class="line"><span class="xml">  data() &#123;</span></span><br><span class="line"><span class="xml">    return &#123;</span></span><br><span class="line"><span class="xml">      //查询条件</span></span><br><span class="line"><span class="xml">      queryInfo: &#123;</span></span><br><span class="line"><span class="xml">        query: '',</span></span><br><span class="line"><span class="xml">        pagenum: 1,</span></span><br><span class="line"><span class="xml">        pagesize: 10</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      //订单列表数据</span></span><br><span class="line"><span class="xml">      orderList: [],</span></span><br><span class="line"><span class="xml">      //数据总条数</span></span><br><span class="line"><span class="xml">      total: 0</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  created() &#123;</span></span><br><span class="line"><span class="xml">    this.getOrderList()</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  methods: &#123;</span></span><br><span class="line"><span class="xml">    async getOrderList() &#123;</span></span><br><span class="line"><span class="xml">      const &#123; data: res &#125; = await this.$http.get('orders', &#123;</span></span><br><span class="line"><span class="xml">        params: this.queryInfo</span></span><br><span class="line"><span class="xml">      &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="xml">      if (res.meta.status !== 200) &#123;</span></span><br><span class="line"><span class="xml">        return this.$message.error('获取订单列表数据失败!')</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"></span><br><span class="line"><span class="xml">      this.total = res.data.total</span></span><br><span class="line"><span class="xml">      this.orderList = res.data.goods</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    handleSizeChange(newSize)&#123;</span></span><br><span class="line"><span class="xml">        this.queryInfo.pagesize = newSize</span></span><br><span class="line"><span class="xml">        this.getOrderList()</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    handleCurrentChange(newPage)&#123;</span></span><br><span class="line"><span class="xml">        this.queryInfo.pagenum = newPage</span></span><br><span class="line"><span class="xml">        this.getOrderList()</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="D-制作省市区县联动"><a href="#D-制作省市区县联动" class="headerlink" title="D.制作省市区县联动"></a>D.制作省市区县联动</h4><p>打开今天的资料，找到素材文件夹，复制citydata.js文件到components/order文件夹中<br>然后导入citydata.js文件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">  <span class="keyword">import</span> cityData <span class="keyword">from</span> <span class="string">"./citydata.js"</span></span></span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>具体代码如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">//给修改地址按钮添加点击事件</span><br><span class="line"><span class="tag">&lt;<span class="name">el-button</span> <span class="attr">size</span>=<span class="string">"mini"</span> <span class="attr">type</span>=<span class="string">"primary"</span> <span class="attr">icon</span>=<span class="string">"el-icon-edit"</span> @<span class="attr">click</span>=<span class="string">"showEditAddress"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">//添加修改地址对话框,在卡片视图下方添加</span><br><span class="line"><span class="comment">&lt;!-- 修改地址对话框 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-dialog</span> <span class="attr">title</span>=<span class="string">"修改收货地址"</span> <span class="attr">:visible.sync</span>=<span class="string">"addressVisible"</span> <span class="attr">width</span>=<span class="string">"50%"</span> @<span class="attr">close</span>=<span class="string">"addressDialogClosed"</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 添加表单 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-form</span> <span class="attr">:model</span>=<span class="string">"addressForm"</span> <span class="attr">:rules</span>=<span class="string">"addressFormRules"</span> <span class="attr">ref</span>=<span class="string">"addressFormRef"</span> <span class="attr">label-width</span>=<span class="string">"100px"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"省市区县"</span> <span class="attr">prop</span>=<span class="string">"address1"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-cascader</span> <span class="attr">:options</span>=<span class="string">"cityData"</span> <span class="attr">v-model</span>=<span class="string">"addressForm.address1"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-cascader</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"详细地址"</span> <span class="attr">prop</span>=<span class="string">"address2"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"addressForm.address2"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-form</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">slot</span>=<span class="string">"footer"</span> <span class="attr">class</span>=<span class="string">"dialog-footer"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">"addressVisible = false"</span>&gt;</span>取 消<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"primary"</span> @<span class="attr">click</span>=<span class="string">"addressVisible = false"</span>&gt;</span>确 定<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span><br><span class="line"></span><br><span class="line">//js部分的代码</span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> cityData <span class="keyword">from</span> <span class="string">"./citydata.js"</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  data() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line">      ......</span><br><span class="line"><span class="actionscript">      <span class="comment">//控制修改地址对话框的显示和隐藏</span></span></span><br><span class="line"><span class="actionscript">      addressVisible:<span class="literal">false</span>,</span></span><br><span class="line"><span class="actionscript">      <span class="comment">//修改收货地址的表单</span></span></span><br><span class="line">      addressForm:&#123;</span><br><span class="line">          address1:[],</span><br><span class="line"><span class="actionscript">          address2:<span class="string">''</span></span></span><br><span class="line">      &#125;,</span><br><span class="line">      addressFormRules:&#123;</span><br><span class="line"><span class="actionscript">          address1:[&#123; required: <span class="literal">true</span>, message: <span class="string">'请选择省市区县'</span>, trigger: <span class="string">'blur'</span> &#125;],</span></span><br><span class="line"><span class="actionscript">          address2:[&#123; required: <span class="literal">true</span>, message: <span class="string">'请输入详细地址'</span>, trigger: <span class="string">'blur'</span> &#125;],</span></span><br><span class="line">      &#125;,</span><br><span class="line"><span class="actionscript">      <span class="comment">//将导入的cityData数据保存起来</span></span></span><br><span class="line">      cityData:cityData</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,methods: &#123;</span><br><span class="line">    ......</span><br><span class="line">    showEditAddress() &#123;</span><br><span class="line"><span class="actionscript">      <span class="comment">//当用户点击修改收货地址按钮时触发</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.addressVisible = <span class="literal">true</span>;</span></span><br><span class="line">    &#125;,</span><br><span class="line">    addressDialogClosed()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.$refs.addressFormRef.resetFields()</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"less"</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.el-cascader</span>&#123;</span></span><br><span class="line">    width: 100%;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="E-制作物流进度对话框"><a href="#E-制作物流进度对话框" class="headerlink" title="E.制作物流进度对话框"></a>E.制作物流进度对话框</h4><p>因为我们使用的是element-ui中提供的Timeline组件，所以需要导入并注册组件<br>打开element.js,编写代码会进行导入和注册</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import &#123;</span><br><span class="line">    Timeline,TimelineItem</span><br><span class="line">&#125; from 'element-ui'</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Vue</span>.</span></span>use(Timeline)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Vue</span>.</span></span>use(TimelineItem)</span><br></pre></td></tr></table></figure>
+<p>打开Order.vue文件，添加代码实现物流进度对话框</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 物流信息进度对话框 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">el-dialog</span> <span class="attr">title</span>=<span class="string">"物流进度"</span> <span class="attr">:visible.sync</span>=<span class="string">"progressVisible"</span> <span class="attr">width</span>=<span class="string">"50%"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 时间线组件  --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">el-timeline</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-timeline-item</span> <span class="attr">v-for</span>=<span class="string">"(activity, index) in progressInfo"</span> </span></span></span><br><span class="line"><span class="xml">        :key="index" :timestamp="activity.time"&gt;</span></span><br><span class="line"><span class="xml">            </span><span class="template-variable">&#123;&#123;activity.context&#125;&#125;</span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-timeline-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">el-timeline</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">import cityData from './citydata.js'</span></span><br><span class="line"><span class="xml">export default &#123;</span></span><br><span class="line"><span class="xml">  data() &#123;</span></span><br><span class="line"><span class="xml">    return &#123;</span></span><br><span class="line"><span class="xml">      ......</span></span><br><span class="line"><span class="xml">      //控制物流进度对话框的显示和隐藏</span></span><br><span class="line"><span class="xml">      progressVisible: false,</span></span><br><span class="line"><span class="xml">      //保存物流信息</span></span><br><span class="line"><span class="xml">      progressInfo: []</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">  &#125;,methods: &#123;</span></span><br><span class="line"><span class="xml">    ......</span></span><br><span class="line"><span class="xml">    async showProgress() &#123;</span></span><br><span class="line"><span class="xml">      //发送请求获取物流数据</span></span><br><span class="line"><span class="xml">      const &#123; data: res &#125; = await this.$http.get('/kuaidi/804909574412544580')</span></span><br><span class="line"></span><br><span class="line"><span class="xml">      if (res.meta.status !== 200) &#123;</span></span><br><span class="line"><span class="xml">        return this.$message.error('获取物流进度失败!')</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">      this.progressInfo = res.data</span></span><br><span class="line"><span class="xml">      //显示对话框</span></span><br><span class="line"><span class="xml">      this.progressVisible = true</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="F-推送代码"><a href="#F-推送代码" class="headerlink" title="F.推送代码"></a>F.推送代码</h4><p>将order分支代码推送至码云<br>将代码添加到暂存区：  git add .<br>将代码提交到本地仓库： git commit -m “完成订单列表功能开发”<br>将代码推送到码云：  git push<br>切换到master主分支： git checkout master<br>将goods_list分支代码合并到master: git merge order<br>将master推送到码云：  git push</p>
+<h3 id="3-数据统计"><a href="#3-数据统计" class="headerlink" title="3.数据统计"></a>3.数据统计</h3><h4 id="A-创建子分支"><a href="#A-创建子分支" class="headerlink" title="A.创建子分支"></a>A.创建子分支</h4><p>创建report子分支并推送到码云<br>创建report子分支: git checkout -b report<br>将report分支推送到码云： git push -u origin report</p>
+<h4 id="B-创建路由-1"><a href="#B-创建路由-1" class="headerlink" title="B.创建路由"></a>B.创建路由</h4><p>创建数据统计路由组件并添加路由规则</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">//在components中新建report文件夹，新建Report.vue组件，组件中添加代码如下</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>数据报表<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!-- 面包屑导航 --&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-breadcrumb</span> <span class="attr">separator</span>=<span class="string">"/"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span> <span class="attr">:to</span>=<span class="string">"</span></span></span><span class="template-variable">&#123; path: '/home' &#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span>&gt;</span>数据统计<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span>&gt;</span>数据报表<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-breadcrumb</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!-- 卡片视图区域 --&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-card</span>&gt;</span><span class="tag">&lt;/<span class="name">el-card</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">export default </span><span class="template-variable">&#123;</span></span><br><span class="line"><span class="template-variable">  data() &#123;</span></span><br><span class="line"><span class="template-variable">    return &#123;</span></span><br><span class="line"><span class="template-variable"></span></span><br><span class="line"><span class="template-variable">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;,created()</span><span class="template-variable">&#123;</span></span><br><span class="line"><span class="template-variable"></span></span><br><span class="line"><span class="template-variable">  &#125;</span><span class="xml">,methods:</span><span class="template-variable">&#123;</span></span><br><span class="line"><span class="template-variable"></span></span><br><span class="line"><span class="template-variable">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"less"</span> <span class="attr">scoped</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>打开router.js，导入Report.vue并设置路由规则</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Report from <span class="string">'./components/report/Report.vue'</span></span><br><span class="line"><span class="string">path:</span> <span class="string">'/home'</span>, <span class="string">component:</span> Home, <span class="string">redirect:</span> <span class="string">'/welcome'</span>, <span class="string">children:</span> [</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/welcome"</span>, <span class="string">component:</span> Welcome &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/users"</span>, <span class="string">component:</span> Users &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/rights"</span>, <span class="string">component:</span> Rights &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/roles"</span>, <span class="string">component:</span> Roles  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/categories"</span>, <span class="string">component:</span> Cate  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/params"</span>, <span class="string">component:</span> Params  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/goods"</span>, <span class="string">component:</span> GoodList  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/goods/add"</span>, <span class="string">component:</span> GoodAdd  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/orders"</span>, <span class="string">component:</span> Order  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/reports"</span>, <span class="string">component:</span> Report  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h4 id="C-导入ECharts并使用"><a href="#C-导入ECharts并使用" class="headerlink" title="C.导入ECharts并使用"></a>C.导入ECharts并使用</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>数据报表<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 面包屑导航 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-breadcrumb</span> <span class="attr">separator</span>=<span class="string">"/"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span> <span class="attr">:to</span>=<span class="string">"&#123; path: '/home' &#125;"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span>&gt;</span>数据统计<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span>&gt;</span>数据报表<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-breadcrumb</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 卡片视图区域 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-card</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span> <span class="attr">style</span>=<span class="string">"width:750px;height:400px;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-card</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">//导入echarts</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> echarts <span class="keyword">from</span> <span class="string">'echarts'</span></span></span><br><span class="line"><span class="actionscript"><span class="comment">//导入lodash</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">import</span> _ <span class="keyword">from</span> <span class="string">'lodash'</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  data() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">//需要跟请求的折线图数据合并的options</span></span></span><br><span class="line">      options: &#123;</span><br><span class="line">        title: &#123;</span><br><span class="line"><span class="actionscript">          text: <span class="string">'用户来源'</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        tooltip: &#123;</span><br><span class="line"><span class="actionscript">          trigger: <span class="string">'axis'</span>,</span></span><br><span class="line">          axisPointer: &#123;</span><br><span class="line"><span class="actionscript">            type: <span class="string">'cross'</span>,</span></span><br><span class="line">            label: &#123;</span><br><span class="line"><span class="actionscript">              backgroundColor: <span class="string">'#E9EEF3'</span></span></span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;,</span><br><span class="line">        grid: &#123;</span><br><span class="line"><span class="actionscript">          left: <span class="string">'3%'</span>,</span></span><br><span class="line"><span class="actionscript">          right: <span class="string">'4%'</span>,</span></span><br><span class="line"><span class="actionscript">          bottom: <span class="string">'3%'</span>,</span></span><br><span class="line"><span class="actionscript">          containLabel: <span class="literal">true</span></span></span><br><span class="line">        &#125;,</span><br><span class="line">        xAxis: [</span><br><span class="line">          &#123;</span><br><span class="line"><span class="actionscript">            boundaryGap: <span class="literal">false</span></span></span><br><span class="line">          &#125;</span><br><span class="line">        ],</span><br><span class="line">        yAxis: [</span><br><span class="line">          &#123;</span><br><span class="line"><span class="actionscript">            type: <span class="string">'value'</span></span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;&#125;,</span><br><span class="line"><span class="javascript">  <span class="keyword">async</span> mounted() &#123;</span></span><br><span class="line"><span class="actionscript">    <span class="comment">//在页面dom元素加载完毕之后执行的钩子函数mounted</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">// 基于准备好的dom，初始化echarts实例</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> myChart = echarts.init(<span class="built_in">document</span>.getElementById(<span class="string">'main'</span>))</span></span><br><span class="line"><span class="actionscript">    <span class="comment">//准备数据和配置项</span></span></span><br><span class="line"><span class="actionscript">    <span class="comment">//发送请求获取折线图数据</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> &#123; <span class="attr">data</span>: res &#125; = <span class="keyword">await</span> <span class="keyword">this</span>.$http.get(<span class="string">'reports/type/1'</span>)</span></span><br><span class="line"></span><br><span class="line">    if (res.meta.status !== 200) &#123;</span><br><span class="line"><span class="actionscript">      <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'获取折线图数据失败'</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="comment">//合并res.data和this.options</span></span></span><br><span class="line"><span class="actionscript">    <span class="keyword">const</span> result = _.merge(res.data,<span class="keyword">this</span>.options)</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript">    <span class="comment">// 使用获取的数据展示图表</span></span></span><br><span class="line">    myChart.setOption(result)</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"less"</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="D-推送代码-1"><a href="#D-推送代码-1" class="headerlink" title="D.推送代码"></a>D.推送代码</h4><p>推送report分支到码云<br>将代码添加到暂存区：  git add .<br>将代码提交到本地仓库： git commit -m “完成数据报表功能开发”<br>将代码推送到码云：  git push<br>切换到master主分支： git checkout master<br>将report分支代码合并到master: git merge report<br>将master推送到码云：  git push</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/03/05/vue3-10/" title="vue_shop项目构建笔记">http://yoursite.com/2020/03/05/vue3-10/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+            <a href="/tags/vue-shop%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> vue_shop项目构建笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/03/%E9%9D%A2%E7%BB%8F04/" rel="next" title="token、cookie和session">
+                <i class="fa fa-chevron-left"></i> token、cookie和session
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/05/%E9%9D%A2%E7%BB%8F06/" rel="prev" title="同源策略和规避方法">
+                同源策略和规避方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#今日目标"><span class="nav-number">1.</span> <span class="nav-text">今日目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-添加商品"><span class="nav-number">2.</span> <span class="nav-text">1.添加商品</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-完成图片上传"><span class="nav-number">2.1.</span> <span class="nav-text">A.完成图片上传</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-使用富文本插件"><span class="nav-number">2.2.</span> <span class="nav-text">B.使用富文本插件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-添加商品"><span class="nav-number">2.3.</span> <span class="nav-text">C.添加商品</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-推送代码"><span class="nav-number">2.4.</span> <span class="nav-text">D.推送代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-订单列表"><span class="nav-number">3.</span> <span class="nav-text">2.订单列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-创建分支"><span class="nav-number">3.1.</span> <span class="nav-text">A.创建分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-创建路由"><span class="nav-number">3.2.</span> <span class="nav-text">B.创建路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-实现数据展示及分页"><span class="nav-number">3.3.</span> <span class="nav-text">C.实现数据展示及分页</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-制作省市区县联动"><span class="nav-number">3.4.</span> <span class="nav-text">D.制作省市区县联动</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#E-制作物流进度对话框"><span class="nav-number">3.5.</span> <span class="nav-text">E.制作物流进度对话框</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#F-推送代码"><span class="nav-number">3.6.</span> <span class="nav-text">F.推送代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-数据统计"><span class="nav-number">4.</span> <span class="nav-text">3.数据统计</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-创建子分支"><span class="nav-number">4.1.</span> <span class="nav-text">A.创建子分支</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-创建路由-1"><span class="nav-number">4.2.</span> <span class="nav-text">B.创建路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-导入ECharts并使用"><span class="nav-number">4.3.</span> <span class="nav-text">C.导入ECharts并使用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-推送代码-1"><span class="nav-number">4.4.</span> <span class="nav-text">D.推送代码</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Css3,前端基础," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CSS3–动画和渐变变形transform用于元素的变形，实现元素的选装，缩放，移动，倾斜等变形效果。 123transform：none|functionsnone：默认值，不设置变形functions：设置一个或者多个变形函数。变形函数包括：rotate（）、缩放scale（）、移动translate（）、倾斜skew（）、举证变形matrix（）等。设置多个变形函数用空格间隔">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css3笔记06--动画和渐变">
+<meta property="og:url" content="http://yoursite.com/2019/04/06/css3%E7%AC%94%E8%AE%B006/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="CSS3–动画和渐变变形transform用于元素的变形，实现元素的选装，缩放，移动，倾斜等变形效果。 123transform：none|functionsnone：默认值，不设置变形functions：设置一个或者多个变形函数。变形函数包括：rotate（）、缩放scale（）、移动translate（）、倾斜skew（）、举证变形matrix（）等。设置多个变形函数用空格间隔">
+<meta property="article:published_time" content="2019-04-06T12:44:42.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:41:04.975Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="Css3">
+<meta property="article:tag" content="前端基础">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/06/css3笔记06/"/>
+
+
+
+
+
+  <title>css3笔记06--动画和渐变 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/06/css3%E7%AC%94%E8%AE%B006/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css3笔记06--动画和渐变</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-06T20:44:42+08:00">
+                2019-04-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/css3/" itemprop="url" rel="index">
+                    <span itemprop="name">css3</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="CSS3–动画和渐变"><a href="#CSS3–动画和渐变" class="headerlink" title="CSS3–动画和渐变"></a>CSS3–动画和渐变</h2><h3 id="变形"><a href="#变形" class="headerlink" title="变形"></a>变形</h3><h4 id="transform"><a href="#transform" class="headerlink" title="transform"></a>transform</h4><p>用于元素的变形，实现元素的选装，缩放，移动，倾斜等变形效果。</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">transform</span>：none|<span class="built_in">functions</span></span><br><span class="line">none：默认值，不设置变形</span><br><span class="line"><span class="built_in">functions</span>：设置一个或者多个变形函数。变形函数包括：rotate（）、缩放<span class="built_in">scale</span>（）、移动<span class="built_in">translate</span>（）、倾斜skew（）、举证变形<span class="built_in">matrix</span>（）等。设置多个变形函数用空格间隔</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="旋转"><a href="#旋转" class="headerlink" title="旋转"></a>旋转</h3><p>rotate（）函数用于定义元素在二维空间的旋转</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">rotate</span>（<span class="keyword">angle</span>）</span><br></pre></td></tr></table></figure>
+
+<p>angle单位是deg。值为正表示顺时针旋转，值为负表示为逆时针旋转</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transform：rotate（<span class="number">30</span>deg）；</span><br><span class="line">-moz-transform：rotate（<span class="number">30</span>deg）；</span><br><span class="line">-o-transform：rotate（<span class="number">30</span>deg）；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-transform：rotate（<span class="number">30</span>deg）；<span class="comment">/*IE9*/</span></span><br><span class="line">transform：rotate（<span class="number">30</span>deg）；</span><br></pre></td></tr></table></figure>
+<h3 id="缩放和翻转"><a href="#缩放和翻转" class="headerlink" title="缩放和翻转"></a>缩放和翻转</h3><p>scale用于实现元素在二维空间的缩放和翻转<code>scale（x，y）</code></p>
+<ul>
+<li>x：表示元素在水平方向上的缩放倍数</li>
+<li>y：表示元素在垂直方向上的缩放倍数</li>
+<li>x、y的值可以为整数、负数、小数。当绝对值大于1表示放大，绝对值小于1表示缩小。当值为负数时，元素会被翻转如果y值省略，说明垂直方向上的缩放倍数跟水平方向上的缩放倍数相同</li>
+</ul>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-<span class="built_in">transform</span>：<span class="built_in">scale</span>（<span class="number">1.5</span>）；</span><br><span class="line">-moz-<span class="built_in">transform</span>：<span class="built_in">scale</span>（<span class="number">1.5</span>）；</span><br><span class="line">-o-<span class="built_in">transform</span>：<span class="built_in">scale</span>（<span class="number">1.5</span>）；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-<span class="built_in">transform</span>：<span class="built_in">scale</span>（<span class="number">1.5</span>）；<span class="comment">/*IE9*/</span></span><br><span class="line"><span class="built_in">transform</span>：<span class="built_in">scale</span>（<span class="number">1.5</span>）；</span><br></pre></td></tr></table></figure>
+<p>元素会放大1.5被倍数</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transform：scale（<span class="number">0.8</span>，<span class="number">-1.5</span>）；</span><br><span class="line">-moz-transform：scale（<span class="number">0.8</span>，<span class="number">-1.5</span>）；</span><br><span class="line">-o-transform：scale（<span class="number">0.8</span>，<span class="number">-1.5</span>）；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-transform：scale（<span class="number">0.8</span>，<span class="number">-1.5</span>）；<span class="comment">/*IE9*/</span></span><br><span class="line">transform：scale（<span class="number">0.8</span>，<span class="number">-1.5</span>）；</span><br></pre></td></tr></table></figure>
+<p>水平方向缩小，垂直方向为负值，且绝对值大于1，表现为元素会在垂直方向上放大并且翻转。</p>
+<h3 id="移动"><a href="#移动" class="headerlink" title="移动"></a>移动</h3><p>translate用于定义元素在二维空间上的移动<code>translate：（dx，dy）</code>；</p>
+<ul>
+<li>dx：表示在水平方向上的偏移距离</li>
+<li>dy：在垂直方向上的偏移距伦理</li>
+<li>dx、dy可以为负值和带小数的值，若取值大于0表示向下或享有偏移，取值小于0表示向上或向左偏移。如果dy值省略，表示垂直方向上的偏移距离默认为0.<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transform：translate（<span class="number">10</span>px <span class="number">5</span>px）；</span><br><span class="line">-moz-transform：translate（<span class="number">10</span>px <span class="number">5</span>px）；</span><br><span class="line">-o-transform：translate（<span class="number">10</span>px <span class="number">5</span>px）；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-transform：translate（<span class="number">10</span>px <span class="number">5</span>px）；<span class="comment">/*IE9*/</span></span><br><span class="line">transform：translate（<span class="number">10</span>px <span class="number">5</span>px）；</span><br></pre></td></tr></table></figure>
+元素会向右偏移10px，向下偏移5px<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-<span class="built_in">transform</span>：<span class="built_in">translate</span>（-10px）；</span><br><span class="line">-moz-<span class="built_in">transform</span>：<span class="built_in">translate</span>（-10px）；</span><br><span class="line">-o-<span class="built_in">transform</span>：<span class="built_in">translate</span>（-10px）；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-<span class="built_in">transform</span>：<span class="built_in">translate</span>（-10px）；<span class="comment">/*IE9*/</span></span><br><span class="line"><span class="built_in">transform</span>：<span class="built_in">translate</span>（-10px）；</span><br></pre></td></tr></table></figure>
+表示元素会在水平方向上向左偏移10px，垂直方向上不偏移</li>
+</ul>
+<h3 id="倾斜"><a href="#倾斜" class="headerlink" title="倾斜"></a>倾斜</h3><p>skew（）用于定义元素在二维空间上的倾斜变<code>skew（angleX，angleY）</code></p>
+<ul>
+<li>angleX：在水平方向的倾斜度数</li>
+<li>angleY：在垂直方向上的倾斜度数<br>angleX、angleY单位是deg，值为正表示顺时针旋转，值为负，表示逆时针旋转。如果angleY省略，则说明垂直方向上的倾斜度数默认是0。<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transform：skew（<span class="number">-30</span>deg）；</span><br><span class="line">-moz-transform：skew（<span class="number">-30</span>deg）；</span><br><span class="line">-o-transform：skew（<span class="number">-30</span>deg）；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-transform：skew（<span class="number">-30</span>deg）；<span class="comment">/*IE9*/</span></span><br><span class="line">transform：skew（<span class="number">-30</span>deg）；</span><br></pre></td></tr></table></figure>
+水平方向顺时针倾斜30度。<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transform：skew（<span class="number">30</span>deg，<span class="number">-10</span>deg）；</span><br><span class="line">-moz-transform：skew（<span class="number">30</span>deg，<span class="number">-10</span>deg）；</span><br><span class="line">-o-transform：skew（<span class="number">30</span>deg，<span class="number">-10</span>degg）；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-transform：skew（<span class="number">30</span>deg，<span class="number">-10</span>deg）；<span class="comment">/*IE9*/</span></span><br><span class="line">transform：skew（<span class="number">30</span>deg，<span class="number">-10</span>deg）；</span><br></pre></td></tr></table></figure>
+水平方向倾斜30度，垂直方向逆时针倾斜10度</li>
+</ul>
+<h3 id="同时使用多个变形函数"><a href="#同时使用多个变形函数" class="headerlink" title="同时使用多个变形函数"></a>同时使用多个变形函数</h3><p>可以同时使用多个变形函数</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transform：translate（<span class="number">10</span>px，<span class="number">10</span>px） rotate（<span class="number">30</span>deg） scale（<span class="number">1</span>，<span class="number">-1</span>）；</span><br><span class="line">-moz-transform：translate（<span class="number">10</span>px，<span class="number">10</span>px） rotate（<span class="number">30</span>deg） scale（<span class="number">1</span>，<span class="number">-1</span>）；</span><br><span class="line">-o-transform：translate（<span class="number">10</span>px，<span class="number">10</span>px） rotate（<span class="number">30</span>deg） scale（<span class="number">1</span>，<span class="number">-1</span>）；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-transform：translate（<span class="number">10</span>px，<span class="number">10</span>px） rotate（<span class="number">30</span>deg） scale（<span class="number">1</span>，<span class="number">-1</span>）；<span class="comment">/*IE9*/</span></span><br><span class="line">transform：translate（<span class="number">10</span>px，<span class="number">10</span>px） rotate（<span class="number">30</span>deg） scale（<span class="number">1</span>，<span class="number">-1</span>）；</span><br></pre></td></tr></table></figure>
+<p>当变形函数的顺序调换了不一样的时候，可能会产生不一样的变形效果</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transform：  rotate（<span class="number">30</span>deg） translate（<span class="number">10</span>px，<span class="number">10</span>px） scale（<span class="number">1</span>，<span class="number">-1</span>）；</span><br><span class="line">-moz-transform： rotate（<span class="number">30</span>deg） translate（<span class="number">10</span>px，<span class="number">10</span>px） scale（<span class="number">1</span>，<span class="number">-1</span>）；</span><br><span class="line">-o-transform： rotate（<span class="number">30</span>deg） translate（<span class="number">10</span>px，<span class="number">10</span>px） scale（<span class="number">1</span>，<span class="number">-1</span>）；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-transform： rotate（<span class="number">30</span>deg） translate（<span class="number">10</span>px，<span class="number">10</span>px） scale（<span class="number">1</span>，<span class="number">-1</span>）；<span class="comment">/*IE9*/</span></span><br><span class="line">transform： rotate（<span class="number">30</span>deg） translate（<span class="number">10</span>px，<span class="number">10</span>px） scale（<span class="number">1</span>，<span class="number">-1</span>）；</span><br></pre></td></tr></table></figure>
+<h3 id="transform-origin"><a href="#transform-origin" class="headerlink" title="transform-origin"></a>transform-origin</h3><p>定义变形原点<code>transform-origin：x，y</code></p>
+<ul>
+<li>x：定义变形的横坐标位置，默认值是50%，取值包括left、center、right、百分比值、长度值</li>
+<li>y：变形的纵坐标位置，默认是50%，取值包括top、middle、bottom、百分比值、长度值<br>百分比是相对于元素对象的宽度和高度而言的，而该坐标位置的计算，是以元素的左上角为坐标原点进行计算的。<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transform-origin：<span class="number">0</span> <span class="number">0</span>；</span><br><span class="line">-moz-transform-origin：<span class="number">0</span> <span class="number">0</span>；</span><br><span class="line">-o-transform-origin：<span class="number">0</span> <span class="number">0</span>；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-transform-origin：<span class="number">0</span> <span class="number">0</span>；<span class="comment">/*IE9*/</span></span><br><span class="line">transform-origin：<span class="number">0</span> <span class="number">0</span>；</span><br></pre></td></tr></table></figure>
+表示以该元素的左上角为原点，进行相关变形操作</li>
+</ul>
+<h3 id="过渡效果"><a href="#过渡效果" class="headerlink" title="过渡效果"></a>过渡效果</h3><p>transition</p>
+<figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition：transition-property|<span class="type">|transition</span>-duration|<span class="type">|transition</span>-timing-function|<span class="type">|transition</span>-delay</span><br></pre></td></tr></table></figure>
+<ul>
+<li>transition-property：定义过度的属性</li>
+<li>transition-duration：定义过渡过程需要的时间</li>
+<li>transition-timing-function：过渡方式</li>
+<li>transition-delay：延迟时间<br>可以同时设置定义两组或两组以上的过渡效果，每组用逗号间隔。<br>包含子属性：transition-property、transition-duration、transition-timing-function、transition-delay。<br>都需要加前缀。<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">-webkit-transition：all <span class="number">1000</span>ms linear <span class="number">500</span>ms；</span><br><span class="line">-moz-transition：all <span class="number">1000</span>ms linear <span class="number">500</span>ms；</span><br><span class="line">-o-transform-transition：all <span class="number">1000</span>ms linear <span class="number">500</span>ms；<span class="comment">/*presto内核*/</span></span><br><span class="line">-ms-transform-transition：all <span class="number">1000</span>ms linear <span class="number">500</span>ms；<span class="comment">/*IE9*/</span></span><br><span class="line">transform-transition：all <span class="number">1000</span>ms linear <span class="number">500</span>ms；</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="transition-property"><a href="#transition-property" class="headerlink" title="transition-property"></a>transition-property</h3><p>过度属性。<code>transition-property：none|all|property</code></p>
+<ul>
+<li>none：表示没有任何CSS过度属性</li>
+<li>all：为默认值，表示所有的CSS属性都有过渡效果</li>
+<li>property：指定一个用逗号分隔的多个属性，针对指定的这些属性有过渡效果。</li>
+</ul>
+<h3 id="transition-duration"><a href="#transition-duration" class="headerlink" title="transition-duration"></a>transition-duration</h3><p>用于定义过渡过程中需要的时间</p>
+<ul>
+<li>transition-duration：time；</li>
+<li>time：指定一个用逗号分隔的多个时间值，时间的单位可以是s或ms。默认情况下为0，即看不到过渡效果，看到的直接是结果。</li>
+</ul>
+<h3 id="transition-delay"><a href="#transition-delay" class="headerlink" title="transition-delay"></a>transition-delay</h3><p>transition-delay：time<br>单位可以是s，ms，默认为0.没有时间延迟，立即开始过渡效果。</p>
+<h3 id="transition-timing-function"><a href="#transition-timing-function" class="headerlink" title="transition-timing-function"></a>transition-timing-function</h3><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">transition-timing-function：ease|<span class="type">linear</span>|<span class="type">ease</span>-out|<span class="type">ease</span>-<span class="built_in">in</span>|<span class="type">ease</span>-<span class="built_in">in</span>-out|<span class="type">cubic</span>-bezier（n，n，n，n）；</span><br></pre></td></tr></table></figure>
+<ul>
+<li>linear：过度一直是一个速度，相当于cubic-bezier（0，0，1，1）</li>
+<li>ease：属性的默认值，表示过度的速度先慢再快最后非常慢，相当于cubic-bezier（0.25，0.1，0。25，1）</li>
+<li>ease-in：过度速度先慢后越来越快，直至结束，相当于cubic-bezier（0.42，0，1，1）</li>
+<li>ease-out：过渡速度先快后越来越慢，直至结束，相当于cubic-bezier（0，0，0.58，1）</li>
+<li>ease-in-out：过渡速度在开始和结束时都很慢，相当于cubic-bezier（0.42，0，0.58，1）</li>
+<li>cubic-bezier：自定义贝塞尔曲线效果，四个参数为0到1的数字。</li>
+</ul>
+<h2 id="动画"><a href="#动画" class="headerlink" title="动画"></a>动画</h2><h3 id="keyframes"><a href="#keyframes" class="headerlink" title="@keyframes"></a>@keyframes</h3><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@keyframes</span> animationname&#123;keyframes-selector&#123;css-styleless&#125;&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>animationname：动画的名称。必须定义一个动画名称，方便与动画属性animation绑定</li>
+<li>keyframes-selector：动画持续的百分比，也可以是从from到to；from=&gt;0%，to=&gt;100%。必须顶一个才能实现动画</li>
+<li>css-styleless：设置的一个或多个合法的样式属性，必须定义一些样式才能实现动画</li>
+</ul>
+<p>关键帧动画是通过名称和动画绑定的。例如</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">@-moz-keyframes mymove&#123;</span><br><span class="line">	<span class="number">0</span>%&#123;top：<span class="number">0</span>px；&#125;</span><br><span class="line">	<span class="number">25</span>%&#123;top：<span class="number">200</span>px； left：<span class="number">200</span>px&#125;</span><br><span class="line">	<span class="number">75</span>%&#123;top：<span class="number">50</span>px； left：<span class="number">10</span>px；&#125;</span><br><span class="line">	<span class="number">100</span>%&#123;top：<span class="number">100</span>px；left：<span class="number">60</span>px；&#125;</span><br><span class="line">&#125;</span><br><span class="line">@-webkit-keyframes mymove&#123;</span><br><span class="line">	<span class="number">0</span>%&#123;top：<span class="number">0</span>px；&#125;</span><br><span class="line">	<span class="number">25</span>%&#123;top：<span class="number">200</span>px； left：<span class="number">200</span>px&#125;</span><br><span class="line">	<span class="number">75</span>%&#123;top：<span class="number">50</span>px； left：<span class="number">10</span>px；&#125;</span><br><span class="line">	<span class="number">100</span>%&#123;top：<span class="number">100</span>px；left：<span class="number">60</span>px；&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="animation"><a href="#animation" class="headerlink" title="animation"></a>animation</h3><p>专门用于动画设计，可以把一个或多个关键帧动画绑定到元素上，以实现更复杂的动画</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">animation：<span class="keyword">name</span> duration timing-<span class="function"><span class="keyword">function</span></span> delay iyeration-<span class="built_in">count</span> direction</span><br></pre></td></tr></table></figure>
+<ul>
+<li>name：动画的名字，绑定指定的关键帧动画，默认值为none，表示没有动画</li>
+<li>duration：动画播放的周期时间，默认为0</li>
+<li>timing-function：动画的播放方式，即速度曲线</li>
+<li>delay：动画的延迟时间，默认0</li>
+<li>iyeration-count：动画应该播放的次数，infinite表示无限次的播放下去，默认属性值为1</li>
+<li>direction：播放的顺序方向，normal（默认值，按照关键帧定义的动画方向播放）altenate（表示动画的播放方向与上已播放周期相反）</li>
+</ul>
+<p>animation可以定义一个动画的6个方面的参数信息，还可以定义多个动画，每个动画的参数信息为一组，用逗号分开来。‘<br>包含子属性：<code>animation-name、 animation-duration 、animation-timing-function、animation- delay 、animation-iyeration-count、animation- direction</code></p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/04/06/css3%E7%AC%94%E8%AE%B006/" title="css3笔记06--动画和渐变">http://yoursite.com/2019/04/06/css3%E7%AC%94%E8%AE%B006/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Css3/" rel="tag"><i class="fa fa-tag"></i> Css3</a>
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 前端基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/05/css3%E7%AC%94%E8%AE%B005/" rel="next" title="css3笔记05--多列布局">
+                <i class="fa fa-chevron-left"></i> css3笔记05--多列布局
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/15/nodejs2-01/" rel="prev" title="Node.js02--01">
+                Node.js02--01 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3–动画和渐变"><span class="nav-number">1.</span> <span class="nav-text">CSS3–动画和渐变</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#变形"><span class="nav-number">1.1.</span> <span class="nav-text">变形</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#transform"><span class="nav-number">1.1.1.</span> <span class="nav-text">transform</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#旋转"><span class="nav-number">1.2.</span> <span class="nav-text">旋转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缩放和翻转"><span class="nav-number">1.3.</span> <span class="nav-text">缩放和翻转</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#移动"><span class="nav-number">1.4.</span> <span class="nav-text">移动</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#倾斜"><span class="nav-number">1.5.</span> <span class="nav-text">倾斜</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#同时使用多个变形函数"><span class="nav-number">1.6.</span> <span class="nav-text">同时使用多个变形函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transform-origin"><span class="nav-number">1.7.</span> <span class="nav-text">transform-origin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过渡效果"><span class="nav-number">1.8.</span> <span class="nav-text">过渡效果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition-property"><span class="nav-number">1.9.</span> <span class="nav-text">transition-property</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition-duration"><span class="nav-number">1.10.</span> <span class="nav-text">transition-duration</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition-delay"><span class="nav-number">1.11.</span> <span class="nav-text">transition-delay</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#transition-timing-function"><span class="nav-number">1.12.</span> <span class="nav-text">transition-timing-function</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#动画"><span class="nav-number">2.</span> <span class="nav-text">动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#keyframes"><span class="nav-number">2.1.</span> <span class="nav-text">@keyframes</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#animation"><span class="nav-number">2.2.</span> <span class="nav-text">animation</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

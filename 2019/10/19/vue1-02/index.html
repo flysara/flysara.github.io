@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="小碎片1、在vue中，使用事件绑定机制，为元素指定处理函数的时候，如果加了小括号，就可以给函数传参了。2、在vue中，已经实现了数据的双向绑定，每当我们修改了data中的数据，vie会默认监听到数据的改动，自动把最新的数据应用到页面上。3、之前，v-for中的数据都是直接从data上的list直接渲染过来的；现在我们自定义了一个serch方法，同时，把所有的关键字，通过传参的形式，传递给了sear">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue1-day2">
+<meta property="og:url" content="http://yoursite.com/2019/10/19/vue1-02/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="小碎片1、在vue中，使用事件绑定机制，为元素指定处理函数的时候，如果加了小括号，就可以给函数传参了。2、在vue中，已经实现了数据的双向绑定，每当我们修改了data中的数据，vie会默认监听到数据的改动，自动把最新的数据应用到页面上。3、之前，v-for中的数据都是直接从data上的list直接渲染过来的；现在我们自定义了一个serch方法，同时，把所有的关键字，通过传参的形式，传递给了sear">
+<meta property="article:published_time" content="2019-10-19T08:31:42.000Z">
+<meta property="article:modified_time" content="2020-02-17T03:11:33.554Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/19/vue1-02/"/>
+
+
+
+
+
+  <title>vue1-day2 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/19/vue1-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue1-day2</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-19T16:31:42+08:00">
+                2019-10-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/Vue1/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue1</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="小碎片"><a href="#小碎片" class="headerlink" title="小碎片"></a>小碎片</h2><p>1、在vue中，使用事件绑定机制，为元素指定处理函数的时候，如果加了小括号，就可以给函数传参了。<br>2、在vue中，已经实现了数据的双向绑定，每当我们修改了data中的数据，vie会默认监听到数据的改动，自动把最新的数据应用到页面上。<br>3、之前，v-for中的数据都是直接从data上的list直接渲染过来的；现在我们自定义了一个serch方法，同时，把所有的关键字，通过传参的形式，传递给了search方法。<br>4、forEach、some、filter、findIndex 这些都属于数组的新方法，都会对数组中的每一项，进行遍历，执行相关的操作。<br>5、ES6中，为字符串提供了一个新的方法，叫做string.prototype.includes(‘要包含的字符串’)；如果包含，则返回true，否则返回false。</p>
+<a id="more"></a>
+<h2 id="全局过滤器"><a href="#全局过滤器" class="headerlink" title="全局过滤器"></a>全局过滤器</h2><p>vue允许自定义被过滤器，可被用作一些常见的文本格式化。过滤器可以用在两个地方：mustache插值和v-bind表达式。过滤器应该被添加在js表达式的尾部，有管道标识符标识</p>
+<p>要输出的内容和定义的内容有差别，就可以用过滤器来进行格式化的改变。只是改变输出格式的变化，数据本身没有变化。</p>
+<p>在实例之前进行定义</p>
+<p>过滤器调用的格式</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; name | 过滤器的名称 &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="定义过滤器"><a href="#定义过滤器" class="headerlink" title="定义过滤器"></a>定义过滤器</h3><figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue.filter(<span class="string">'过滤器的名称'</span>，<span class="function"><span class="keyword">function</span><span class="params">(data)</span></span>&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>过滤器中的function，第一个参数已经被规定死了，永远都是过滤器管道符前面传递过来的数据。其他位置可以进行传参，也可以进行多个传参。</p>
+<p>过滤器也可以多个一起使用，比如</p>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; msg | msgFormat(<span class="name">'</span>疯狂'，'123') | test &#125;&#125;</span><br></pre></td></tr></table></figure>
+<p>结果是，先调用第一个过滤器，把第一个过滤器的结果再作为第二个过滤器的参数进行调用。</p>
+<p>所谓的全局过滤器就是所有的vm实例都可以共享。</p>
+<h2 id="私有过滤器"><a href="#私有过滤器" class="headerlink" title="私有过滤器"></a>私有过滤器</h2><p>直接在vm实例内部进行定义</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">vm</span> = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	<span class="keyword">e</span><span class="variable">l:</span><span class="string">'#app'</span>,</span><br><span class="line">	dat<span class="variable">a:</span>&#123;</span><br><span class="line">		d<span class="variable">t:new</span> Date()</span><br><span class="line">	&#125;,</span><br><span class="line">	method<span class="variable">s:</span>&#123;&#125;,</span><br><span class="line">	<span class="built_in">filter</span><span class="variable">s:</span>&#123;  </span><br><span class="line">		dateForma<span class="variable">t:function</span>(dataStr)&#123;&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<p>定义私有过滤器，过滤器有两个条件：过滤器名称和处理函数。<br>过滤器调用的时候，采用的是就近原则，如果私有过滤器和全局过滤器名称抑制了，这时候优先调用私有过滤器。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">使用ES6中的字符串新方法<span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>prototype.pad<span class="constructor">Start(<span class="params">maxLength</span>,<span class="params">dillString</span>='')</span>或</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">String</span>.</span></span>prototype.pad<span class="constructor">End(<span class="params">maxLength</span>,<span class="params">fillString</span>='')</span>来填充字符串</span><br></pre></td></tr></table></figure>
+
+<p>第一个参数表示填充的最大长度是多少，例如如果是2的话，那么小于2的字符串就会被填充，第二个参数表示用什么来进行填充。分别表示在前面填充和在后面填充。这个可以用来进行时间格式化。</p>
+<p>注意：全局的过滤器定义的时候不加s，私有的过滤器定义的时候要加s。</p>
+<h2 id="键值修饰符"><a href="#键值修饰符" class="headerlink" title="键值修饰符"></a>键值修饰符</h2><p>在监听键盘事件时，我们经常需要检测常见的键值。vue允许为v-on在监听键盘事件添加关键修饰符：</p>
+<figure class="highlight plain"><figcaption><span>@keyup.13</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br></pre></td><td class="code"><pre><span class="line">记住所有的keyCode比较困难，所以vue为做常用的按键提供了别名：</span><br><span class="line">~~~</span><br><span class="line">&#x2F;&#x2F;这里两种写法都是可以的，可以是键码，也可以是别名和自定义别名</span><br><span class="line">&lt;input @keyup.enter&#x3D;&quot;submit&quot;&gt;</span><br><span class="line">&lt;input @keyup.13&#x3D;&quot;submit&quot;&gt;</span><br><span class="line">~~~</span><br><span class="line">全部的按键别名：</span><br><span class="line">+ .enter</span><br><span class="line">+ .tab</span><br><span class="line">+ .delete(捕获删除键或者退格键)</span><br><span class="line">+ .esc</span><br><span class="line">+ .space</span><br><span class="line">+ .up</span><br><span class="line">+ .down</span><br><span class="line">+ .left</span><br><span class="line">+ .right</span><br><span class="line"></span><br><span class="line">可以通过全局config.keyCodes对象自定义键值修饰符别名：</span><br><span class="line">~~~</span><br><span class="line">Vue.config.keyCodes.f1&#x3D;112</span><br><span class="line">&#x2F;&#x2F;可以使用v-on:keyup.f1</span><br><span class="line">~~~</span><br><span class="line"></span><br><span class="line">定义的时候，跟定义全局过滤器一样，都是在全局进行定义的。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">## 自定义全局定义</span><br><span class="line">在vue中所有的指令在调用的时候都是以v-开头。</span><br><span class="line">~~~</span><br><span class="line">        Vue.directive(&#39;focus&#39;)&#x2F;&#x2F;调用的时候用v-focus</span><br><span class="line">~~~</span><br><span class="line">使用上述语法定义全局的指令。其中：</span><br><span class="line">+ 参数1：指令的名称，注意，在定义的时候，指令的名称前面不需要加v-前缀，</span><br><span class="line">但是 在调用的时候，必须在指令名称前加上v-前缀来进行调用。</span><br><span class="line">+ 参数2：是一个对象，身上有一些指令相关的钩子函数，这些函数可以在特定的阶段，执行相关的指令</span><br><span class="line"></span><br><span class="line">### 钩子函数</span><br><span class="line">指令定义提供了几个钩子函数：</span><br><span class="line">+ bind: 只调用一次，指令第一次绑定到元素时调用，用这个钩子函数可以定义一个在绑定时执行一次的初始化动作。</span><br><span class="line">+ inserted：被绑定元素插入父节点时调用（父节点存在即可调用，不必存在于document中）</span><br><span class="line">+ update：所在组件的VNode更新时调用，但是可能发生在其孩子的VNode更新之前。指令的值可能发生了改变也可能没有。但是可以通过较更新前后的值来忽略不必要的模板更新</span><br><span class="line">+ componentUpdated：所在组建的VNode及其汉字的VNode全部更新时调用</span><br><span class="line">+ unbind：只调用一次，指令与元素解绑时调用</span><br><span class="line"></span><br><span class="line">较为重要的时候，时前三个。</span><br><span class="line"></span><br><span class="line">钩子函数的参数：el、binding、vnode、oldvnode</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 钩子函数参数列表</span><br><span class="line">+ el：指令所绑定的元素，可以用来直接操作DOM。</span><br><span class="line">+ binding：一个对象，包含以下属性：</span><br><span class="line">   - name：指令名，不包括v-前缀</span><br><span class="line">   - value：指令的绑定值，例如v-my-directive&#x3D;&#39;1+1&#39;，value的值是2</span><br><span class="line">   - oldValue：指令绑定的前一个值，尽在update和component钩子中使用</span><br><span class="line">   - expression：绑定之的字符串形式。例如：v-my-directive&#x3D;“1+1”，expression的值是“1+1”</span><br><span class="line">   - arg：传给指令的参数。例如：v-my-directive：foo，arg的值是foo</span><br><span class="line">   - modifiers：一个包含修饰符的对象。例如：v-mt-directive.foo.bar，修饰符对象modifiers的值是（foo：true，bar：true）。</span><br><span class="line">+ vnode：Vue编译生成的虚拟节点</span><br><span class="line">+ oldVnode：上一个虚拟节点，仅在update和component钩子中使用</span><br><span class="line"></span><br><span class="line">注意binding.expression和binding.value的对比，前者是一个字符串形式，后者是它的值</span><br><span class="line"></span><br><span class="line">除了el之外，其他参数都应该是只读的，尽量不要修改他们，如果需要在钩子之间共享数据，建议通过元素的dataset来进行</span><br><span class="line"></span><br><span class="line">~~~</span><br><span class="line">Vue.directive(&#39;focus&#39;,&#123;</span><br><span class="line">	bind:function(el)&#123;&#x2F;&#x2F;每当指令绑定到元素上的时候，会立即执行这个bind函数，只执行一次</span><br><span class="line">&#x2F;&#x2F;注意：在每个函数中，第一个参数永远是el，表示被绑定了指令的哪个元素，这个el参数，是一个原生的js对象</span><br><span class="line">&#x2F;&#x2F;在元素刚绑定了指令的时候，还没有插入到DOM中去，这时候，调用focus方法没有作用，</span><br><span class="line">&#x2F;&#x2F;因为一个元素，只有插入DOM之后，才能获取焦点</span><br><span class="line">        &lt;!-- el.focus() --&gt;</span><br><span class="line">		&#125;,</span><br><span class="line">	inserted:function(el)&#123;&#x2F;&#x2F;表示元素插入到DOM中的时候，会执行该函数。只能触发一次</span><br><span class="line">		el.focus();&#x2F;&#x2F;可以显示出来，因为这个已经插入到DOM中去了</span><br><span class="line">		&#125;,</span><br><span class="line">	updated:function(el)&#123;&#x2F;&#x2F;当VNode更新的时候，会执行updated，可能会触发多次</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br><span class="line">~~~</span><br><span class="line"></span><br><span class="line">### bind和inserted的区别：</span><br><span class="line">我们看到的页面都是通过从内存中进行渲染在页面上来进行显示，数据从内存显示到页面的这个过程我们叫做inserted，而bind的话只要在内存中一进行绑定就可以执行该指令。</span><br><span class="line"></span><br><span class="line">样式，只要通过指令绑定给了元素，不管这个元素有没有被插入到页面中去，这个元素肯定有了一个内联样式。将来元素肯定会显示到页面中去，这时候，浏览器的渲染引擎必然会解析样式，应用给这个给样式。</span><br><span class="line"></span><br><span class="line">和js行为有关的操作，做好在inserted中去执行，防止js行为不生效。和样式相关的操作，一般都可以在bind中执行。</span><br><span class="line"></span><br><span class="line">### 使用钩子函数的第二个binding参数拿到传递的值</span><br><span class="line"></span><br><span class="line">举例子定义一个自定义指令：</span><br><span class="line">~~~</span><br><span class="line"> Vue.directive(&#39;color&#39;,&#123;</span><br><span class="line">          bind:function(el,binding)&#123;</span><br><span class="line">            el.style.color&#x3D;binding.value</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;)</span><br><span class="line">~~~</span><br><span class="line"></span><br><span class="line">调用的时候：</span><br><span class="line">~~~                   </span><br><span class="line">&lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; v-model&#x3D;&quot;keywords&quot; id&#x3D;&quot;search&quot; v-focus v-color&#x3D;&quot;&#39;blue&#39;&quot;&gt;</span><br><span class="line">~~~</span><br><span class="line"></span><br><span class="line">如果定义的时候是&#96;&#96;&#96;el.style.color&#x3D;binding.expression&#96;&#96;&#96;的话，得到的是：</span><br><span class="line">&#96;&#96;&#96;el.style.color&#x3D;&#39;blue&#39;</span><br></pre></td></tr></table></figure>
+
+<h3 id="自定义私有指令"><a href="#自定义私有指令" class="headerlink" title="自定义私有指令"></a>自定义私有指令</h3><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var <span class="keyword">vm</span> = Vue(&#123;</span><br><span class="line">	<span class="keyword">e</span><span class="variable">l:</span><span class="string">'#app'</span>,</span><br><span class="line">	dat<span class="variable">a:</span>&#123;</span><br><span class="line">		d<span class="variable">t:new</span> Date()</span><br><span class="line">	&#125;,</span><br><span class="line">	method<span class="variable">s:</span>&#123;&#125;,</span><br><span class="line">	<span class="built_in">filter</span><span class="variable">s:</span>&#123;&#125;,</span><br><span class="line">	directive<span class="variable">s:</span>&#123;//自定义私有指令</span><br><span class="line">		<span class="string">'fontweight'</span>:&#123;</span><br><span class="line">			bind:<span class="function"><span class="keyword">function</span><span class="params">(el,binding)</span>&#123;</span></span><br><span class="line">				<span class="keyword">el</span>.style.fontWeight = binding.value</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="指令函数的简写"><a href="#指令函数的简写" class="headerlink" title="指令函数的简写"></a>指令函数的简写</h3><p>不管是私有的还是全局的，后面都是跟的一个对象来进行定义<br>大多数情况下，我们可能想在bind和update钩子上做重复动作，并且不想关心其他的钩子函数。可以这样写：</p>
+<figure class="highlight openscad"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.directive('<span class="built_in">color</span>',<span class="function"><span class="keyword">function</span><span class="params">(el,binding)</span>&#123;</span></span><br><span class="line">	el.style.<span class="built_in">color</span> = binding.value</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<p>相当于说，这个function在bind和update中都写了一份</p>
+<h2 id="生命周期函数"><a href="#生命周期函数" class="headerlink" title="生命周期函数"></a>生命周期函数</h2><p>生命周期钩子=生命周期函数=生命周期事件</p>
+<p>什么是生命周期：从vue实例创建、运行、到销毁期间，总是伴随着各种各样的事件，这些事件统称为生命周期<br>生命周期钩子：就是生命周期事件的别名而已<br>主要的生命周期函数分类：</p>
+<ul>
+<li><p>创建期间的生命周期函数</p>
+<ul>
+<li>beforeCreated：实例刚在内存中被创建出来，此时还没有初始化好data和methods属性</li>
+<li>created：实例已在内存中创建ok，此时data和methods属性已经创建ok，此时还没有编译模板</li>
+<li>beforeMount：此时已经完成了模板的编译，但是还没有挂载到页面中</li>
+<li>mounted：此时，已经将编译好的模板，挂载到了页面指定的容器中心事</li>
+</ul>
+</li>
+<li><p>运行期间的生命周期函数</p>
+<ul>
+<li>beforeUpdate：状态更新之前执行此函数，此时data中的状态值时最新的，但是界面上溴铵是的数据还是旧的，因为此时还没有开始重新渲染DOM节点</li>
+<li>updated：实例更新完毕之后调用此函数，此时data中的状态值和界面上显示的数据，都已经完成了更新，界面已经被重新渲染好了。</li>
+</ul>
+</li>
+<li><p>销毁期间的生命周期函数</p>
+<ul>
+<li>beforeDestroy：实例销毁之前调用，在这一步，实例仍然完全可用</li>
+<li>destroy：Vue实例销毁后调用。调用后，Vue实例只是的所有东西都会解绑定，所有的事件监听器会被移除，所有的子实例也会被销毁。</li>
+</ul>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> <span class="type">Vue</span>(&#123;</span><br><span class="line">	el:<span class="type"></span>'<span class="meta">#app',</span></span><br><span class="line">	data:<span class="type"></span>&#123;&#125;,</span><br><span class="line">	methods:<span class="type"></span>&#123;&#125;,</span><br><span class="line">	beforeCreated()&#123;<span class="comment">//这是我们遇到的第一个生命周期函数，表示实例完全被创建出来之前，会调用它</span></span><br><span class="line">		<span class="comment">//在beforeCreated生命周期函数执行的时候，data和methods都还没有初始化。所以这个时候在这个</span></span><br><span class="line">		<span class="comment">//函数里面操作任何元素、属性或者数据都拿不到</span></span><br><span class="line">	&#125;,</span><br><span class="line">	created()&#123;</span><br><span class="line">		<span class="comment">//在created里面，data和methods都已经初始化了</span></span><br><span class="line">		<span class="comment">//如果要调用methods或者data，最早都需要在created中去操作</span></span><br><span class="line">	&#125;,</span><br><span class="line">	beforeMount()&#123;</span><br><span class="line">		<span class="comment">//表示模板已经在内存中编辑完成了，但是还没有渲染到页面上去</span></span><br><span class="line">		<span class="comment">//在该函数执行的时候，页面中的元素还没有真正切换过来，只是之前写的一些模板字符串</span></span><br><span class="line">	&#125;,</span><br><span class="line">	mounted()&#123;</span><br><span class="line">		<span class="comment">//表示内存中的模板已经真实的挂载到了页面中，用户已经可以看到渲染好的页面了</span></span><br><span class="line">		<span class="comment">//注意：mounted是实例创建期间的最后一个生命周期函数，当执行完mounted，就表示实例已经完全创建好了</span></span><br><span class="line">		<span class="comment">//此时如果没有其他操作的话，这个实例就会静静的躺在内存中，一动不动</span></span><br><span class="line">		<span class="comment">//如果要通过某些插件要操作页面上的DOM节点最早要在mounted中进行</span></span><br><span class="line">	&#125;,</span><br><span class="line"></span><br><span class="line">	<span class="comment">//接下来的是两个运行事件</span></span><br><span class="line">	beforeUpdate()&#123;</span><br><span class="line">		<span class="comment">//这时候，表示我们的界面还没有被更新，数据被更新了</span></span><br><span class="line">		<span class="comment">//当执行该函数的时候，页面中的显示数据，还是旧的，而此时data数据是最新的，页面尚未和最新的数据保持同步</span></span><br><span class="line">	&#125;,</span><br><span class="line">	updated()&#123;</span><br><span class="line">		<span class="comment">//该事件执行的时候，页面和data数据已经保持同步了，都是最新的</span></span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+<p>beforeUpdate函数之后的一个变化就是，虚拟树的重新渲染和挂载。这一步执行的是，现根据data中的最新的数据，重新渲染出一份最新的内存DOM树，当最新的DOM树更新之后眯会吧最新的内存DOM书，重新渲染到真实的页面中去，这时候，就完成了数据从data-&gt;view的更新</p>
+<p>当执行beforeDestroy钩子函数的时候，就已经从运行极端进入到了销毁阶段，实例身上所有的data和methods以及过滤器、指令等都处于可用过程，此时，还没有真正的执行销毁过程。</p>
+<p>当执行dextroy钩子函数的时候，组件已经完全销毁了，组件中的所有data、methods、过滤器、指令都不可用。</p>
+<h2 id="vue-resource发起get、post、jsonp请求"><a href="#vue-resource发起get、post、jsonp请求" class="headerlink" title="vue-resource发起get、post、jsonp请求"></a>vue-resource发起get、post、jsonp请求</h2><p>使用jquery发起数据请求，需要操作DOM。<br>除了vue-resource还可以有使用axios的第三方包实现数据的请求。<br>常见的请求：个get、post、jsonp</p>
+<p>vue-resource依赖vue</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//发起get请求之后，通过.then来设置成功的回调函数</span></span><br><span class="line"><span class="keyword">this</span>.$http.get(<span class="string">'路径地址'</span>).then(<span class="function"><span class="keyword">function</span><span class="params">(result)</span></span>&#123;</span><br><span class="line">	<span class="comment">//回调函数</span></span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>手动发起的post请求，默认没有表单格式，所以，有的服务器处理不了</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.$http.post(<span class="string">'路径地址'</span>,&#123;&#125;,&#123;&#125;).then(<span class="function"><span class="params">result</span>=&gt;</span> &#123;</span><br><span class="line"></span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="jsonp实现原理"><a href="#jsonp实现原理" class="headerlink" title="jsonp实现原理"></a>jsonp实现原理</h3><p>由于浏览器的安全性限制，不允许AJAX访问协议不同、域名不同、端口号不同的数据接口，浏览器认为通过这种访问不安全。<br>可以通过动态创建script标签的形式，把script标签的src属性，指向数据接口的地址，因为script标签不存在跨域限制，这种数据获取方式，称之为JSONP，其只支持get请求。</p>
+<ul>
+<li>具体实现过程<ul>
+<li>先在客户端定义一个回调方法，预定义对数据的操作</li>
+<li>再把这个回调方法的名称，通过URL传参的形式，提交到服务器的数据接口</li>
+<li>服务器数据接口组织好要发送给客户端的数据，再拿着客户端传递过来的回调方法和名称，拼接出一个调用这个方法的字符串，发送给客户端去执行</li>
+<li>客户端拿到服务器返回的字符串之后，当作script脚本去解析执行，这样就能够拿到jsonp的数据了</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/10/19/vue1-02/" title="vue1-day2">http://yoursite.com/2019/10/19/vue1-02/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/16/vue1-01/" rel="next" title="vue1-day1">
+                <i class="fa fa-chevron-left"></i> vue1-day1
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/21/vue1-03/" rel="prev" title="vue1-day3">
+                vue1-day3 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小碎片"><span class="nav-number">1.</span> <span class="nav-text">小碎片</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#全局过滤器"><span class="nav-number">2.</span> <span class="nav-text">全局过滤器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#定义过滤器"><span class="nav-number">2.1.</span> <span class="nav-text">定义过滤器</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#私有过滤器"><span class="nav-number">3.</span> <span class="nav-text">私有过滤器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#键值修饰符"><span class="nav-number">4.</span> <span class="nav-text">键值修饰符</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#自定义私有指令"><span class="nav-number">4.1.</span> <span class="nav-text">自定义私有指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指令函数的简写"><span class="nav-number">4.2.</span> <span class="nav-text">指令函数的简写</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#生命周期函数"><span class="nav-number">5.</span> <span class="nav-text">生命周期函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-resource发起get、post、jsonp请求"><span class="nav-number">6.</span> <span class="nav-text">vue-resource发起get、post、jsonp请求</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jsonp实现原理"><span class="nav-number">6.1.</span> <span class="nav-text">jsonp实现原理</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,994 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端基础,浏览器前端优化," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="浏览器笔记————CSRF和XSS网络攻击和防范根据网上的资料做了一些补充和修改，以下是原文链接：原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;zl834205311&#x2F;article&#x2F;details&#x2F;81773511 XSSXSS：跨站脚本攻击，是说攻击者通过注入恶意的脚本，恶意攻击者往 Web 页面里嵌入恶意的客户端脚本，当用户浏览此网页时，脚本就会在用户的浏览器上执行，进而达到攻击者的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浏览器02--CSRF和XSS网络攻击和防范">
+<meta property="og:url" content="http://yoursite.com/2019/03/29/%E6%B5%8F%E8%A7%88%E5%99%A802/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="浏览器笔记————CSRF和XSS网络攻击和防范根据网上的资料做了一些补充和修改，以下是原文链接：原文链接：https:&#x2F;&#x2F;blog.csdn.net&#x2F;zl834205311&#x2F;article&#x2F;details&#x2F;81773511 XSSXSS：跨站脚本攻击，是说攻击者通过注入恶意的脚本，恶意攻击者往 Web 页面里嵌入恶意的客户端脚本，当用户浏览此网页时，脚本就会在用户的浏览器上执行，进而达到攻击者的">
+<meta property="article:published_time" content="2019-03-29T11:54:23.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:26:06.043Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端基础">
+<meta property="article:tag" content="浏览器前端优化">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/29/浏览器02/"/>
+
+
+
+
+
+  <title>浏览器02--CSRF和XSS网络攻击和防范 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/29/%E6%B5%8F%E8%A7%88%E5%99%A802/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">浏览器02--CSRF和XSS网络攻击和防范</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-29T19:54:23+08:00">
+                2019-03-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/%E6%B5%8F%E8%A7%88%E5%99%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">浏览器</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="浏览器笔记————CSRF和XSS网络攻击和防范"><a href="#浏览器笔记————CSRF和XSS网络攻击和防范" class="headerlink" title="浏览器笔记————CSRF和XSS网络攻击和防范"></a>浏览器笔记————CSRF和XSS网络攻击和防范</h1><p>根据网上的资料做了一些补充和修改，以下是原文链接：<br>原文链接：<a href="https://blog.csdn.net/zl834205311/article/details/81773511" target="_blank" rel="noopener">https://blog.csdn.net/zl834205311/article/details/81773511</a></p>
+<h2 id="XSS"><a href="#XSS" class="headerlink" title="XSS"></a>XSS</h2><p>XSS：跨站脚本攻击，是说攻击者通过注入恶意的脚本，恶意攻击者往 Web 页面里嵌入恶意的客户端脚本，当用户浏览此网页时，脚本就会在用户的浏览器上执行，进而达到攻击者的目的。比如获取用户的 Cookie、导航到恶意网站、携带木马等。借助安全圈里面非常有名的一句话：所有的输入都是有害的。<br>大部分的 XSS 漏洞都是由于没有处理好用户的输入，导致恶意脚本在浏览器中执行。任何输入提交数据的地方都有可能存在 XSS。</p>
+<a id="more"></a>
+<h3 id="XSS-攻击分类"><a href="#XSS-攻击分类" class="headerlink" title="XSS 攻击分类"></a>XSS 攻击分类</h3><h4 id="反射型"><a href="#反射型" class="headerlink" title="反射型"></a>反射型</h4><p>反射型输入一些数据但是不存储在数据库中，往往表现为将攻击代码放在url地址的请求参数中。<br>用户在页面输入框中输入数据，通过 get 或者 post 方法向服务器端传递数据，输入的数据一般是放在 URL 的 query string 中，或者是 form 表单中，如果服务端没有对这些数据进行过滤、验证或者编码，直接将用户输入的数据呈现出来，就可能会造成反射型 XSS。反射型 XSS 是非常普遍的，其危害程度通常较小，但是某些反射型 XSS 还是会造成严重后果的。<br>黑客通常通过构造一个包含 XSS 代码的 URL，诱导用户点击链接，触发 XSS 代码，达到劫持访问、获取 cookies 的目的。</p>
+<h4 id="存储型"><a href="#存储型" class="headerlink" title="存储型"></a>存储型</h4><p>存储型是攻击者输入一些数据并且存储到了数据库中。<br>通常是因为服务器端将用户输入的恶意脚本没有经过验证就存储在数据库中，并且通过调用数据库的方式，将数据呈现在浏览器上，当页面被用户打开的时候执行，每当用户打开浏览器，恶意脚本就会执行。存储型的 XSS 攻击相比非存储型的危害性更大，因为每当用户打开页面，恶意脚本都会执行。<br>例如一个评论功能，在提交评论的表单里面：<code>&lt;input type=&quot;text&quot; name=&quot;content&quot; value=&quot;评论内容&quot; &gt;</code><br>正常情况下，用户填入评论内容提交，服务端将评论内容保存到数据库，其他用户查看评论时，从后台提供的接口中取出数据展示。非正常情况下，恶意攻击者在 value 中填写恶意代码：<code>&lt;img src=&#39;&#39; onerror=&#39;alert(/攻击脚本/)&#39; /&gt;</code><br>后台保存到数据库中，其他用户查看评论的时候就会执行这些恶意攻击代码。</p>
+<h4 id="DOM-型-DOM-Based-XSS"><a href="#DOM-型-DOM-Based-XSS" class="headerlink" title="DOM 型( DOM Based XSS )"></a>DOM 型( DOM Based XSS )</h4><p>DOM 是一个树形结构，我们可以通过写 js 代码来修改节点，对象和值。DOM XSS 简单理解就是它的输出点在 DOM 。XSS 代码可能是插入简单的<code>&lt;script src=&quot;https://test.com/haker.js&quot;&gt;</code><br>载入第三方的恶意脚本，这些恶意脚本，通常是读取用户的 cookie 。</p>
+<h3 id="XSS-常见攻击方法"><a href="#XSS-常见攻击方法" class="headerlink" title="XSS 常见攻击方法"></a>XSS 常见攻击方法</h3><p>1、绕过 XSS-Filter，利用 &lt;&gt; 标签注入 Html/JavaScript 代码；</p>
+<p>2、利用 HTML 标签的属性值进行 XSS 攻击。例如：<code>&lt;img src=“javascript:alert(‘xss’)”/&gt;；</code><br>当然并不是所有的 Web 浏览器都支持 Javascript 伪协议，所以此类 XSS 攻击具有一定的局限性</p>
+<p>3、空格、回车和 Tab。如果 XSS Filter 仅仅将敏感的输入字符列入黑名单，比如 javascript，用户可以利用空格、回车和 Tab 键来绕过过滤，例如：<code>&lt;img src=“javas cript:alert(/xss/);”/&gt;；</code><br>4、利用事件来执行跨站脚本。例如：<code>&lt;img src=“#” onerror= “alert(1)”/&gt;；</code><br>当 src 错误的视乎就会执行 onerror 事件；<br>5、利用 CSS 跨站。例如：<code>body {backgrund-image: url(“javascript:alert(‘xss’)”)}</code>；<br>6、扰乱过滤规则。例如：<code>&lt;IMG SRC=“javaSCript: alert(/xss/);”/&gt;</code>；<br>7、利用字符编码，通过这种技巧，不仅能让 XSS 代码绕过服务端的过滤，还能更好地隐藏 Shellcode；（ JS 支持 unicode、eacapes、十六进制、十进制等编码形式）；<br>8、拆分跨站法，将 XSS 攻击的代码拆分开来，适用于应用程序没有过滤 XSS 关键字符（如&lt;、&gt;）却对输入字符长度有限制的情况下；<br>9、DOM 型的 XSS 主要是由客户端的脚本通过 DOM 动态地输出数据到页面上，它不依赖于提交数据到服务器，而是从客户端获得DOM中的数据在本地执行。容易导致 DOM 型的 XSS 的输入源包括：<code>Document.URL、Location(.pathname|.href|.search|.hash)、Document.referrer、Window.name、Document.cookie、localStorage/globalStorage；</code></p>
+<h3 id="XSS防御方法"><a href="#XSS防御方法" class="headerlink" title="XSS防御方法"></a>XSS防御方法</h3><p>XSS 漏洞是由于对用户提交的数据没有经过严格的过滤处理造成的，所以防御的原则就是不相信用户输入的数据，对输入进行过滤，对输出进行编码。防御的话大致分为cookie设置httpOnly属性，对用户的输入进行检查，进行特殊字符过滤。</p>
+<h4 id="使用-XSS-Filter"><a href="#使用-XSS-Filter" class="headerlink" title="使用 XSS Filter"></a>使用 XSS Filter</h4><p>针对用户提交的数据进行有效的验证，只接受我们规定的长度或内容的提交，过滤掉其他的输入内容。比如：</p>
+<p>表单数据指定值的类型：年龄只能是 int 、name 只能是字母数字等。<br>过滤或移除特殊的 html 标签：&lt;\script&gt;、&lt;\iframe&gt;等。<br>过滤 js 事件的标签：onclick、onerror、onfocus等。</p>
+<h4 id="html-实体"><a href="#html-实体" class="headerlink" title="html 实体"></a>html 实体</h4><p>当需要往 HTML 标签之间插入不可信数据的时候，首先要做的就是对不可信数据进行 HTML Entity 编码，在 html 中有些字符对于 HTML 来说是具有特殊意义的，所以这些特殊字符不允许在文本中直接使用，需要使用实体字符。 html 实体的存在是导致 XSS 漏洞的主要愿意之一，因此我们需要将实体转化为相应的实体编号。</p>
+<p>显示结果    描述    实体编号</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">空格	  ;</span><br><span class="line">&lt;	小于	&lt; ;</span><br><span class="line">&gt;	大于	&gt; ;</span><br><span class="line"><span class="meta">&amp;	和/td&gt;	&amp; ;</span></span><br><span class="line">''	引号	<span class="string">" ;</span></span><br></pre></td></tr></table></figure>
+<h4 id="JavaScript编码"><a href="#JavaScript编码" class="headerlink" title="JavaScript编码"></a>JavaScript编码</h4><p>这条原则主要针对动态生成的JavaScript代码，这包括脚本部分以及HTML标签的事件处理属性（如onerror, onload等）。在往JavaScript代码里插入数据的时候，只有一种情况是安全的，那就是对不可信数据进行JavaScript编码，并且只把这些数据放到使用引号包围起来的值部分（data value）之中，除了上面的那些转义之外，还要附加上下面的转义：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">\</span> 转成 <span class="string">\\</span></span><br><span class="line">/ 转成 <span class="string">\/</span></span><br><span class="line">; 转成 ；(全角;)</span><br></pre></td></tr></table></figure>
+<p>注意：在对不可信数据做编码的时候，不能图方便使用反斜杠\ 对特殊字符进行简单转义，比如将双引号 ”转义成 \”，这样做是不可靠的，因为浏览器在对页面做解析的时候，会先进行HTML解析，然后才是JavaScript解析，所以双引号很可能会被当做HTML字符进行HTML解析，这时双引号就可以突破代码的值部分，使得攻击者可以继续进行XSS攻击；另外，输出的变量的时候，变量值必须在引号内部，避免安全问题；更加严格的方式，对除了数字和字母以外的所有字符，使用十六进制\xhh 的方式进行编码。</p>
+<h4 id="Http-Only-cookie"><a href="#Http-Only-cookie" class="headerlink" title="Http Only cookie"></a>Http Only cookie</h4><p>许多 XSS 攻击的目的就是为了获取用户的 cookie，将重要的 cookie 标记为 http only，这样的话当浏览器向服务端发起请求时就会带上 cookie 字段，但是在脚本中却不能访问 cookie，这样就避免了 XSS 攻击利用 js 的 document.cookie获取 cookie。</p>
+<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p>跨站请求伪造，可以理解为攻击者盗用了用户的身份，以用户的名义发送了恶意请求，比如用户登录了一个网站后，立刻在另一个ｔａｂ页面访问量攻击者用来制造攻击的网站，这个网站要求访问刚刚登陆的网站，并发送了一个恶意请求，这时候CSRF就产生了，比如这个制造攻击的网站使用一张图片，但是这种图片的链接却是可以修改数据库的，这时候攻击者就可以以用户的名义操作这个数据库.<br>CSRF攻击攻击原理及过程如下：</p>
+<p>用户C打开浏览器，访问受信任网站A，输入用户名和密码请求登录网站A；<br>在用户信息通过验证后，网站A产生Cookie信息并返回给浏览器，此时用户登录网站A成功，可以正常发送请求到网站A；<br>用户未退出网站A之前，在同一浏览器中，打开一个TAB页访问网站B；<br>网站B接收到用户请求后，返回一些攻击性代码，并发出一个请求要求访问第三方站点A；<br>浏览器在接收到这些攻击性代码后，根据网站B的请求，在用户不知情的情况下携带Cookie信息，向网站A发出请求。网站A并不知道该请求其实是由B发起的，所以会根据用户C的Cookie信息以C的权限处理该请求，导致来自网站B的恶意代码被执行。<br>CSRF攻击实例</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">受害者 <span class="keyword">Bob </span>在银行有一笔存款，通过对银行的网站发送请求 http://<span class="keyword">bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=bob2 </span>可以使 <span class="keyword">Bob </span>把 <span class="number">1000000</span> 的存款转到 <span class="keyword">bob2 </span>的账号下。通常情况下，该请求发送到网站后，服务器会先验证该请求是否来自一个合法的 session，并且该 session 的用户 <span class="keyword">Bob </span>已经成功登陆。</span><br><span class="line"></span><br><span class="line">黑客 Mallory 自己在该银行也有账户，他知道上文中的 URL 可以把钱进行转帐操作。Mallory 可以自己发送一个请求给银行：http://<span class="keyword">bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=Mallory。但是这个请求来自 </span>Mallory 而非 <span class="keyword">Bob，他不能通过安全认证，因此该请求不会起作用。</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">这时，Mallory </span>想到使用 CSRF 的攻击方式，他先自己做一个网站，在网站中放入如下代码： src=”http://<span class="keyword">bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=Mallory </span>”，并且通过广告等诱使 <span class="keyword">Bob </span>来访问他的网站。当 <span class="keyword">Bob </span>访问该网站时，上述 url 就会从 <span class="keyword">Bob </span>的浏览器发向银行，而这个请求会附带 <span class="keyword">Bob </span>浏览器中的 cookie 一起发向银行服务器。大多数情况下，该请求会失败，因为他要求 <span class="keyword">Bob </span>的认证信息。但是，如果 <span class="keyword">Bob </span>当时恰巧刚访问他的银行后不久，他的浏览器与银行网站之间的 session 尚未过期，浏览器的 cookie 之中含有 <span class="keyword">Bob </span>的认证信息。这时，悲剧发生了，这个 url 请求就会得到响应，钱将从 <span class="keyword">Bob </span>的账号转移到 Mallory 的账号，而 <span class="keyword">Bob </span>当时毫不知情。等以后 <span class="keyword">Bob </span>发现账户钱少了，即使他去银行查询日志，他也只能发现确实有一个来自于他本人的合法请求转移了资金，没有任何被攻击的痕迹。而 Mallory 则可以拿到钱后逍遥法外。</span><br></pre></td></tr></table></figure>
+<h3 id="CSRF漏洞检测："><a href="#CSRF漏洞检测：" class="headerlink" title="CSRF漏洞检测："></a>CSRF漏洞检测：</h3><p>检测CSRF漏洞是一项比较繁琐的工作，最简单的方法就是抓取一个正常请求的数据包，去掉Referer字段后再重新提交，如果该提交还有效，那么基本上可以确定存在CSRF漏洞。<br>随着对CSRF漏洞研究的不断深入，不断涌现出一些专门针对CSRF漏洞进行检测的工具，如CSRFTester，CSRF Request Builder等。<br>以CSRFTester工具为例，CSRF漏洞检测工具的测试原理如下：使用CSRFTester进行测试时，首先需要抓取我们在浏览器中访问过的所有链接以及所有的表单等信息，然后通过在CSRFTester中修改相应的表单等信息，重新提交，这相当于一次伪造客户端请求。如果修改后的测试请求成功被网站服务器接受，则说明存在CSRF漏洞，当然此款工具也可以被用来进行CSRF攻击。</p>
+<h3 id="防御CSRF攻击："><a href="#防御CSRF攻击：" class="headerlink" title="防御CSRF攻击："></a>防御CSRF攻击：</h3><p>目前防御 CSRF 攻击主要有三种策略：验证 HTTP Referer 字段；在请求地址中添加 token 并验证；在 HTTP 头中自定义属性并验证。(防御方式：使用验证码，检查https头部的refer，使用token)</p>
+<p><b>(1)验证 HTTP Referer 字段</b></p>
+<p>根据 HTTP 协议，在 HTTP 头中有一个字段叫 Referer，它记录了该 HTTP 请求的来源地址。在通常情况下，访问一个安全受限页面的请求来自于同一个网站，比如需要访问 <a href="http://bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=Mallory，用户必须先登陆" target="_blank" rel="noopener">http://bank.example/withdraw?account=bob&amp;amount=1000000&amp;for=Mallory，用户必须先登陆</a> bank.example，然后通过点击页面上的按钮来触发转账事件。这时，该转帐请求的 Referer 值就会是转账按钮所在的页面的 URL，通常是以 bank.example 域名开头的地址。而如果黑客要对银行网站实施 CSRF 攻击，他只能在他自己的网站构造请求，当用户通过黑客的网站发送请求到银行时，该请求的 Referer 是指向黑客自己的网站。因此，要防御 CSRF 攻击，银行网站只需要对于每一个转账请求验证其 Referer 值，如果是以 bank.example 开头的域名，则说明该请求是来自银行网站自己的请求，是合法的。如果 Referer 是其他网站的话，则有可能是黑客的 CSRF 攻击，拒绝该请求。</p>
+<p>这种方法的显而易见的好处就是简单易行，网站的普通开发人员不需要操心 CSRF 的漏洞，只需要在最后给所有安全敏感的请求统一增加一个拦截器来检查 Referer 的值就可以。特别是对于当前现有的系统，不需要改变当前系统的任何已有代码和逻辑，没有风险，非常便捷。</p>
+<p>然而，这种方法并非万无一失。Referer 的值是由浏览器提供的，虽然 HTTP 协议上有明确的要求，但是每个浏览器对于 Referer 的具体实现可能有差别，并不能保证浏览器自身没有安全漏洞。使用验证 Referer 值的方法，就是把安全性都依赖于第三方（即浏览器）来保障，从理论上来讲，这样并不安全。事实上，对于某些浏览器，比如 IE6 或 FF2，目前已经有一些方法可以篡改 Referer 值。如果 bank.example 网站支持 IE6 浏览器，黑客完全可以把用户浏览器的 Referer 值设为以 bank.example 域名开头的地址，这样就可以通过验证，从而进行 CSRF 攻击。<br>即便是使用最新的浏览器，黑客无法篡改 Referer 值，这种方法仍然有问题。因为 Referer 值会记录下用户的访问来源，有些用户认为这样会侵犯到他们自己的隐私权，特别是有些组织担心 Referer 值会把组织内网中的某些信息泄露到外网中。因此，用户自己可以设置浏览器使其在发送请求时不再提供 Referer。当他们正常访问银行网站时，网站会因为请求没有 Referer 值而认为是 CSRF 攻击，拒绝合法用户的访问。</p>
+<p><b>（2）在请求地址中添加 token 并验证</b><br>CSRF 攻击之所以能够成功，是因为黑客可以完全伪造用户的请求，该请求中所有的用户验证信息都是存在于 cookie 中，因此黑客可以在不知道这些验证信息的情况下直接利用用户自己的 cookie 来通过安全验证。要抵御 CSRF，关键在于在请求中放入黑客所不能伪造的信息，并且该信息不存在于 cookie 之中。可以在 HTTP 请求中以参数的形式加入一个随机产生的 token，并在服务器端建立一个拦截器来验证这个 token，如果请求中没有 token 或者 token 内容不正确，则认为可能是 CSRF 攻击而拒绝该请求。</p>
+<p>这种方法要比检查 Referer 要安全一些，token 可以在用户登陆后产生并放于 session 之中，然后在每次请求时把 token 从 session 中拿出，与请求中的 token 进行比对，但这种方法的难点在于如何把 token 以参数的形式加入请求。对于 GET 请求，token 将附在请求地址之后，这样 URL 就变成 <a href="http://url?csrftoken=tokenvalue。" target="_blank" rel="noopener">http://url?csrftoken=tokenvalue。</a> 而对于 POST 请求来说，要在 form 的最后加上<br>”tokenvalue”/<br>，这样就把 token 以参数的形式加入请求了。但是，在一个网站中，可以接受请求的地方非常多，要对于每一个请求都加上 token 是很麻烦的，并且很容易漏掉，通常使用的方法就是在每次页面加载时，使用 javascript 遍历整个 dom 树，对于 dom 中所有的 a 和 form 标签后加入 token。这样可以解决大部分的请求，但是对于在页面加载之后动态生成的 html 代码，这种方法就没有作用，还需要程序员在编码时手动添加 token。</p>
+<p>该方法还有一个缺点是难以保证 token 本身的安全。特别是在一些论坛之类支持用户自己发表内容的网站，黑客可以在上面发布自己个人网站的地址。由于系统也会在这个地址后面加上 token，黑客可以在自己的网站上得到这个 token，并马上就可以发动 CSRF 攻击。为了避免这一点，系统可以在添加 token 的时候增加一个判断，如果这个链接是链到自己本站的，就在后面添加 token，如果是通向外网则不加。不过，即使这个 csrftoken 不以参数的形式附加在请求之中，黑客的网站也同样可以通过 Referer 来得到这个 token 值以发动 CSRF 攻击。这也是一些用户喜欢手动关闭浏览器 Referer 功能的原因。</p>
+<p><b>（3）在 HTTP 头中自定义属性并验证</b></p>
+<p>这种方法也是使用 token 并进行验证，和上一种方法不同的是，这里并不是把 token 以参数的形式置于 HTTP 请求之中，而是把它放到 HTTP 头中自定义的属性里。通过 XMLHttpRequest 这个类，可以一次性给所有该类请求加上 csrftoken 这个 HTTP 头属性，并把 token 值放入其中。这样解决了上种方法在请求中加入 token 的不便，同时，通过 XMLHttpRequest 请求的地址不会被记录到浏览器的地址栏，也不用担心 token 会透过 Referer 泄露到其他网站中去。</p>
+<p>然而这种方法的局限性非常大。XMLHttpRequest 请求通常用于 Ajax 方法中对于页面局部的异步刷新，并非所有的请求都适合用这个类来发起，而且通过该类请求得到的页面不能被浏览器所记录下，从而进行前进，后退，刷新，收藏等操作，给用户带来不便。另外，对于没有进行 CSRF 防护的遗留系统来说，要采用这种方法来进行防护，要把所有请求都改为 XMLHttpRequest 请求，这样几乎是要重写整个网站，这代价无疑是不能接受的。</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/29/%E6%B5%8F%E8%A7%88%E5%99%A802/" title="浏览器02--CSRF和XSS网络攻击和防范">http://yoursite.com/2019/03/29/%E6%B5%8F%E8%A7%88%E5%99%A802/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 前端基础</a>
+          
+            <a href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8%E5%89%8D%E7%AB%AF%E4%BC%98%E5%8C%96/" rel="tag"><i class="fa fa-tag"></i> 浏览器前端优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/28/%E6%B5%8F%E8%A7%88%E5%99%A801/" rel="next" title="浏览器01--前端优化">
+                <i class="fa fa-chevron-left"></i> 浏览器01--前端优化
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/30/%E6%B5%8F%E8%A7%88%E5%99%A803/" rel="prev" title="浏览器03--Repaint和Reflow">
+                浏览器03--Repaint和Reflow <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#浏览器笔记————CSRF和XSS网络攻击和防范"><span class="nav-number">1.</span> <span class="nav-text">浏览器笔记————CSRF和XSS网络攻击和防范</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XSS"><span class="nav-number">1.1.</span> <span class="nav-text">XSS</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS-攻击分类"><span class="nav-number">1.1.1.</span> <span class="nav-text">XSS 攻击分类</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#反射型"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">反射型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#存储型"><span class="nav-number">1.1.1.2.</span> <span class="nav-text">存储型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DOM-型-DOM-Based-XSS"><span class="nav-number">1.1.1.3.</span> <span class="nav-text">DOM 型( DOM Based XSS )</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS-常见攻击方法"><span class="nav-number">1.1.2.</span> <span class="nav-text">XSS 常见攻击方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XSS防御方法"><span class="nav-number">1.1.3.</span> <span class="nav-text">XSS防御方法</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-XSS-Filter"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">使用 XSS Filter</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#html-实体"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">html 实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript编码"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">JavaScript编码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Http-Only-cookie"><span class="nav-number">1.1.3.4.</span> <span class="nav-text">Http Only cookie</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CSRF"><span class="nav-number">1.2.</span> <span class="nav-text">CSRF</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#CSRF漏洞检测："><span class="nav-number">1.2.1.</span> <span class="nav-text">CSRF漏洞检测：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#防御CSRF攻击："><span class="nav-number">1.2.2.</span> <span class="nav-text">防御CSRF攻击：</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

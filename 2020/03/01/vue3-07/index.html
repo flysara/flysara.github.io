@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue,vue_shop项目构建笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今日目标1.修改用户,删除用户2.推送代码到码云3.权限列表4.角色列表5.分配角色">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue_shop项目构建笔记">
+<meta property="og:url" content="http://yoursite.com/2020/03/01/vue3-07/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="今日目标1.修改用户,删除用户2.推送代码到码云3.权限列表4.角色列表5.分配角色">
+<meta property="article:published_time" content="2020-03-01T07:25:48.000Z">
+<meta property="article:modified_time" content="2020-03-07T07:33:25.012Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="vue_shop项目构建笔记">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/01/vue3-07/"/>
+
+
+
+
+
+  <title>vue_shop项目构建笔记 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/vue3-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue_shop项目构建笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T15:25:48+08:00">
+                2020-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/vue-shop/" itemprop="url" rel="index">
+                    <span itemprop="name">vue_shop</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/vue-shop/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="今日目标"><a href="#今日目标" class="headerlink" title="今日目标"></a>今日目标</h3><p>1.修改用户,删除用户<br>2.推送代码到码云<br>3.权限列表<br>4.角色列表<br>5.分配角色</p>
+<a id="more"></a>
+<h3 id="1-修改用户信息"><a href="#1-修改用户信息" class="headerlink" title="1.修改用户信息"></a>1.修改用户信息</h3><p>A.为用户列表中的修改按钮绑定点击事件<br>B.在页面中添加修改用户对话框，并修改对话框的属性<br>C.根据id查询需要修改的用户数据</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//展示编辑用户的对话框</span></span><br><span class="line">async showEditDialog(id) &#123;</span><br><span class="line">    <span class="comment">//发送请求根据id获取用户信息</span></span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="keyword">data</span>: res &#125; = await <span class="keyword">this</span>.$http.<span class="keyword">get</span>(<span class="string">'users/'</span> + id)</span><br><span class="line">    <span class="comment">//判断如果添加失败，就做提示</span></span><br><span class="line">    <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>) <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'获取用户信息失败'</span>)</span><br><span class="line">    <span class="comment">//将获取到的数据保存到数据editForm中</span></span><br><span class="line">    <span class="keyword">this</span>.editForm = res.<span class="keyword">data</span></span><br><span class="line">    <span class="comment">//显示弹出窗</span></span><br><span class="line">    <span class="keyword">this</span>.editDialogVisible = <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>D.在弹出窗中添加修改用户信息的表单并做响应的数据绑定以及数据验证</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 对话框主体区域 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-form</span> <span class="attr">:model</span>=<span class="string">"editForm"</span> <span class="attr">:rules</span>=<span class="string">"editFormRules"</span> <span class="attr">ref</span>=<span class="string">"editFormRef"</span> <span class="attr">label-width</span>=<span class="string">"70px"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"用户名"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"editForm.username"</span> <span class="attr">disabled</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"邮箱"</span> <span class="attr">prop</span>=<span class="string">"email"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"editForm.email"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"电话"</span> <span class="attr">prop</span>=<span class="string">"mobile"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"editForm.mobile"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>数据绑定以及验证：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//控制修改用户对话框的显示与否</span></span><br><span class="line"><span class="attribute">editDialogVisible</span>: false,</span><br><span class="line"><span class="comment">//修改用户的表单数据</span></span><br><span class="line"><span class="attribute">editForm</span>: &#123;</span><br><span class="line">    <span class="attribute">username</span>: <span class="string">''</span>,</span><br><span class="line">    <span class="attribute">email</span>: <span class="string">''</span>,</span><br><span class="line">    <span class="attribute">mobile</span>: <span class="string">''</span></span><br><span class="line">&#125;,</span><br><span class="line"><span class="comment">//修改表单的验证规则对象</span></span><br><span class="line"><span class="attribute">editFormRules</span>: &#123;</span><br><span class="line">    <span class="attribute">email</span>: [</span><br><span class="line">        &#123; <span class="attribute">required</span>: true, <span class="attribute">message</span>: <span class="string">'请输入邮箱'</span>, <span class="attribute">trigger</span>: <span class="string">'blur'</span> &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="attribute">validator</span>: checkEmail,</span><br><span class="line">        <span class="attribute">message</span>: <span class="string">'邮箱格式不正确，请重新输入'</span>,</span><br><span class="line">        <span class="attribute">trigger</span>: <span class="string">'blur'</span></span><br><span class="line">        &#125;</span><br><span class="line">    ],</span><br><span class="line">    <span class="attribute">mobile</span>: [</span><br><span class="line">        &#123; <span class="attribute">required</span>: true, <span class="attribute">message</span>: <span class="string">'请输入手机号码'</span>, <span class="attribute">trigger</span>: <span class="string">'blur'</span> &#125;,</span><br><span class="line">        &#123;</span><br><span class="line">        <span class="attribute">validator</span>: checkMobile,</span><br><span class="line">        <span class="attribute">message</span>: <span class="string">'手机号码不正确，请重新输入'</span>,</span><br><span class="line">        <span class="attribute">trigger</span>: <span class="string">'blur'</span></span><br><span class="line">        &#125;</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>E.监听对话框关闭事件，在对话框关闭之后，重置表单</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-dialog title=<span class="string">"修改用户"</span> :visible.sync=<span class="string">"editDialogVisible"</span> <span class="attribute">width</span>=<span class="string">"50%"</span> @close=<span class="string">"editDialogClosed"</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="title">editDialogClosed</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="comment">//对话框关闭之后，重置表达</span></span><br><span class="line">    this.<span class="variable">$refs</span><span class="selector-class">.editFormRef</span>.resetFields()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>F.在用户点击确定按钮的时候，验证数据成功之后发送请求完成修改</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">editUser() &#123;</span><br><span class="line">    <span class="comment">//用户点击修改表单中的确定按钮之后，验证表单数据</span></span><br><span class="line">    <span class="keyword">this</span>.$refs.editFormRef.validate(async valid =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> (!valid) <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'请填写完整用户信息'</span>)</span><br><span class="line">    <span class="comment">//发送请求完成修改用户的操作</span></span><br><span class="line">    <span class="keyword">const</span> &#123; <span class="keyword">data</span>: res &#125; = await <span class="keyword">this</span>.$http.put(</span><br><span class="line">        <span class="string">'users/'</span> + <span class="keyword">this</span>.editForm.id,</span><br><span class="line">        <span class="keyword">this</span>.editForm</span><br><span class="line">    )</span><br><span class="line">    <span class="comment">//判断如果修改失败，就做提示</span></span><br><span class="line">    <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>) <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'修改用户失败'</span>)</span><br><span class="line">    <span class="comment">//修改成功的提示</span></span><br><span class="line">    <span class="keyword">this</span>.$message.success(<span class="string">'修改用户成功'</span>)</span><br><span class="line">    <span class="comment">//关闭对话框</span></span><br><span class="line">    <span class="keyword">this</span>.editDialogVisible = <span class="literal">false</span></span><br><span class="line">    <span class="comment">//重新请求最新的数据</span></span><br><span class="line">    <span class="keyword">this</span>.getUserList()</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-删除用户"><a href="#2-删除用户" class="headerlink" title="2.删除用户"></a>2.删除用户</h3><p>在点击删除按钮的时候，我们应该跳出提示信息框，让用户确认要进行删除操作。<br>如果想要使用确认取消提示框，我们需要先将提示信息框挂载到vue中。<br>A.导入MessageBox组件，并将MessageBox组件挂载到实例。<br>Vue.prototype.$confirm = MessageBox.confirm<br>B.给用户列表中的删除按钮添加事件，并在事件处理函数中弹出确定取消窗,最后再根据id发送删除用户的请求</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">async removeUserById(id)&#123;</span><br><span class="line">    <span class="comment">//弹出确定取消框，是否删除用户</span></span><br><span class="line">    <span class="keyword">const</span> confirmResult = await <span class="keyword">this</span>.$confirm(<span class="string">'请问是否要永久删除该用户'</span>,<span class="string">'删除提示'</span>,&#123;</span><br><span class="line">    confirmButtonText:<span class="string">'确认删除'</span>,</span><br><span class="line">    cancelButtonText:<span class="string">'取消'</span>,</span><br><span class="line">    type:<span class="string">'warning'</span></span><br><span class="line">    &#125;).<span class="keyword">catch</span>(err=&gt;err)</span><br><span class="line">    <span class="comment">//如果用户点击确认，则confirmResult 为'confirm'</span></span><br><span class="line">    <span class="comment">//如果用户点击取消, 则confirmResult获取的就是catch的错误消息'cancel'</span></span><br><span class="line">    <span class="keyword">if</span>(confirmResult != <span class="string">"confirm"</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.info(<span class="string">"已经取消删除"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//发送请求根据id完成删除操作</span></span><br><span class="line">    <span class="keyword">const</span> &#123;<span class="keyword">data</span>:res&#125; = await <span class="keyword">this</span>.$http.delete(<span class="string">'users/'</span>+id)</span><br><span class="line">    <span class="comment">//判断如果删除失败，就做提示</span></span><br><span class="line">    <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>) <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'删除用户失败'</span>)</span><br><span class="line">    <span class="comment">//修改成功的提示</span></span><br><span class="line">    <span class="keyword">this</span>.$message.success(<span class="string">'删除用户成功'</span>)</span><br><span class="line">    <span class="comment">//重新请求最新的数据</span></span><br><span class="line">    <span class="keyword">this</span>.getUserList()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-推送代码"><a href="#3-推送代码" class="headerlink" title="3.推送代码"></a>3.推送代码</h3><p>创建user子分支，并将代码推送到码云<br>A.创建user子分支  git checkout -b user<br>B.将代码添加到暂存区 git add .<br>C.将代码提交并注释 git commit -m ‘添加完成用户列表功能’<br>D.将本地的user分支推送到码云 git push -u origin user<br>E.将user分支代码合并到master:<br>切换到master   git checkout master<br>合并user       git merge user<br>F.将本地master分支的代码推送到码云  git push</p>
+<p>创建rights子分支<br>A.创建rights子分支 git checkout -b rights<br>B.将本地的rights分支推送到码云 git push -u origin rights</p>
+<h3 id="4-权限列表"><a href="#4-权限列表" class="headerlink" title="4.权限列表"></a>4.权限列表</h3><h4 id="A-添加权限列表路由"><a href="#A-添加权限列表路由" class="headerlink" title="A.添加权限列表路由"></a>A.添加权限列表路由</h4><p>创建权限管理组件（Rights.vue），并在router.js添加对应的路由规则</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">import Rights <span class="keyword">from</span> <span class="string">'./components/power/Rights.vue'</span></span><br><span class="line"><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span></span><br><span class="line">      path: <span class="string">'/home'</span>, component: Home, redirect: <span class="string">'/welcome'</span>, children: [</span><br><span class="line">        &#123; path: <span class="string">"/welcome"</span>, component: Welcome &#125;,</span><br><span class="line">        &#123; path: <span class="string">"/users"</span>, component:<span class="built_in"> Users </span>&#125;,</span><br><span class="line">        &#123; path: <span class="string">"/rights"</span>, component: Rights &#125;</span><br><span class="line">      ]</span><br><span class="line"><span class="built_in">..</span><span class="built_in">..</span><span class="built_in">..</span></span><br></pre></td></tr></table></figure>
+<h4 id="B-添加面包屑导航"><a href="#B-添加面包屑导航" class="headerlink" title="B.添加面包屑导航"></a>B.添加面包屑导航</h4><p>在Rights.vue中添加面包屑组件展示导航路径</p>
+<h4 id="C-显示数据"><a href="#C-显示数据" class="headerlink" title="C.显示数据"></a>C.显示数据</h4><p>在data中添加一个rightsList数据，在methods中提供一个getRightsList方法发送请求获取权限列表数据，在created中调用这个方法获取数据</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">"rightsList"</span> <span class="attr">stripe</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">type</span>=<span class="string">"index"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"权限名称"</span> <span class="attr">prop</span>=<span class="string">"authName"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"路径"</span> <span class="attr">prop</span>=<span class="string">"path"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"权限等级"</span> <span class="attr">prop</span>=<span class="string">"level"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">"scope"</span>&gt;</span> </span><br><span class="line">            <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">v-if</span>=<span class="string">"scope.row.level === 0"</span>&gt;</span>一级权限<span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">v-if</span>=<span class="string">"scope.row.level === 1"</span> <span class="attr">type</span>=<span class="string">"success"</span>&gt;</span>二级权限<span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">v-if</span>=<span class="string">"scope.row.level === 2"</span> <span class="attr">type</span>=<span class="string">"warning"</span>&gt;</span>三级权限<span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    data()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">            <span class="comment">//列表形式的权限</span></span></span><br><span class="line">            rightsList:[]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    created()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.getRightsList();</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods:&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">async</span> getRightsList()&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> &#123;<span class="attr">data</span>:res&#125; = <span class="keyword">await</span> <span class="keyword">this</span>.$http.get(<span class="string">'rights/list'</span>)</span></span><br><span class="line"><span class="actionscript">            <span class="comment">//如果返回状态为异常状态则报错并返回</span></span></span><br><span class="line">            if (res.meta.status !== 200)</span><br><span class="line"><span class="actionscript">                <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'获取权限列表失败'</span>)</span></span><br><span class="line"><span class="actionscript">            <span class="comment">//如果返回状态正常，将请求的数据保存在data中</span></span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.rightsList = res.data</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="5-角色列表"><a href="#5-角色列表" class="headerlink" title="5.角色列表"></a>5.角色列表</h3><h4 id="A-添加角色列表路由"><a href="#A-添加角色列表路由" class="headerlink" title="A.添加角色列表路由"></a>A.添加角色列表路由</h4><p>添加角色列表子组件（power/Roles.vue），并添加对应的规则</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">path:</span> <span class="string">'/home'</span>, <span class="string">component:</span> Home, <span class="string">redirect:</span> <span class="string">'/welcome'</span>, <span class="string">children:</span> [</span><br><span class="line">        &#123; <span class="string">path:</span> <span class="string">"/welcome"</span>, <span class="string">component:</span> Welcome &#125;,</span><br><span class="line">        &#123; <span class="string">path:</span> <span class="string">"/users"</span>, <span class="string">component:</span> Users &#125;,</span><br><span class="line">        &#123; <span class="string">path:</span> <span class="string">"/rights"</span>, <span class="string">component:</span> Rights &#125;,</span><br><span class="line">        &#123; <span class="string">path:</span> <span class="string">"/roles"</span>, <span class="string">component:</span> Roles  &#125;</span><br><span class="line">      ]</span><br></pre></td></tr></table></figure>
+<h4 id="B-添加面包屑导航-1"><a href="#B-添加面包屑导航-1" class="headerlink" title="B.添加面包屑导航"></a>B.添加面包屑导航</h4><p>在Roles.vue中添加面包屑组件展示导航路径</p>
+<h4 id="C-显示数据-1"><a href="#C-显示数据-1" class="headerlink" title="C.显示数据"></a>C.显示数据</h4><p>在data中添加一个roleList数据，在methods中提供一个getRoleList方法发送请求获取权限列表数据，在created中调用这个方法获取数据</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 角色列表区域 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- row-key="id" 是2019年3月提供的新特性，</span></span><br><span class="line"><span class="comment">if there's nested data, rowKey is required.</span></span><br><span class="line"><span class="comment">如果这是一个嵌套的数据，rowkey 是必须添加的属性 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-table</span> <span class="attr">row-key</span>=<span class="string">"id"</span> <span class="attr">:data</span>=<span class="string">"roleList"</span> <span class="attr">border</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- 添加展开列 --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">type</span>=<span class="string">"expand"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">type</span>=<span class="string">"index"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"角色名称"</span> <span class="attr">prop</span>=<span class="string">"roleName"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"角色描述"</span> <span class="attr">prop</span>=<span class="string">"roleDesc"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"操作"</span> <span class="attr">width</span>=<span class="string">"300px"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">"scope"</span>&gt;</span> </span><br><span class="line">            <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">size</span>=<span class="string">"mini"</span> <span class="attr">type</span>=<span class="string">"primary"</span> <span class="attr">icon</span>=<span class="string">"el-icon-edit"</span>&gt;</span>编辑<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">size</span>=<span class="string">"mini"</span> <span class="attr">type</span>=<span class="string">"danger"</span> <span class="attr">icon</span>=<span class="string">"el-icon-delete"</span>&gt;</span>删除<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">size</span>=<span class="string">"mini"</span> <span class="attr">type</span>=<span class="string">"warning"</span> <span class="attr">icon</span>=<span class="string">"el-icon-setting"</span>&gt;</span>分配权限<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">    data()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> &#123;</span></span><br><span class="line">            roleList:[]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,created()&#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.getRoleList();</span></span><br><span class="line">    &#125;,methods:&#123;</span><br><span class="line"><span class="javascript">        <span class="keyword">async</span> getRoleList()&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> &#123;<span class="attr">data</span>:res&#125; = <span class="keyword">await</span> <span class="keyword">this</span>.$http.get(<span class="string">'roles'</span>)</span></span><br><span class="line"><span class="actionscript">            <span class="comment">//如果返回状态为异常状态则报错并返回</span></span></span><br><span class="line"><span class="actionscript">            <span class="comment">// if (res.meta.status !== 200)</span></span></span><br><span class="line"><span class="actionscript">            <span class="comment">//     return this.$message.error('获取角色列表失败')</span></span></span><br><span class="line"><span class="actionscript">            <span class="comment">// //如果返回状态正常，将请求的数据保存在data中</span></span></span><br><span class="line"><span class="actionscript">            <span class="comment">// this.roleList = res.data</span></span></span><br><span class="line"><span class="javascript">            <span class="built_in">console</span>.log(res.data)</span></span><br><span class="line"><span class="actionscript">            <span class="keyword">this</span>.roleList = res.data;</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="D-补充说明"><a href="#D-补充说明" class="headerlink" title="D.补充说明"></a>D.补充说明</h4><p>之前学习过类似的添加角色，删除角色，编辑角色请参照之前编写过的代码还有接口文档完成效果。</p>
+<h4 id="E-生成权限列表"><a href="#E-生成权限列表" class="headerlink" title="E.生成权限列表"></a>E.生成权限列表</h4><p>使用三重嵌套for循环生成权限下拉列表</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 添加展开列 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">type</span>=<span class="string">"expand"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">"scope"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-row</span> <span class="attr">:class</span>=<span class="string">"['bdbottom',i1===0?'bdtop':'']"</span> <span class="attr">v-for</span>=<span class="string">"(item1,i1) in scope.row.children"</span> <span class="attr">:key</span>=<span class="string">"item1.id"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="comment">&lt;!-- 渲染一级权限 --&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"5"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    </span><span class="template-variable">&#123;&#123;item1.authName&#125;&#125;</span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"el-icon-caret-right"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="comment">&lt;!-- 渲染二，三级权限 --&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"19"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="comment">&lt;!-- 通过for循环嵌套渲染二级权限  --&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-row</span> <span class="attr">:class</span>=<span class="string">"[i2===0?'':'bdtop' ]"</span> <span class="attr">v-for</span>=<span class="string">"(item2,i2) in item1.children"</span> <span class="attr">:key</span>=<span class="string">"item2.id"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"6"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">type</span>=<span class="string">"success"</span>&gt;</span></span><span class="template-variable">&#123;&#123;item2.authName&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">i</span> <span class="attr">class</span>=<span class="string">"el-icon-caret-right"</span>&gt;</span><span class="tag">&lt;/<span class="name">i</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"18"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">el-tag</span> <span class="attr">type</span>=<span class="string">"warning"</span> <span class="attr">v-for</span>=<span class="string">"(item3) in item2.children"</span> <span class="attr">:key</span>=<span class="string">"item3.id"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                            </span><span class="template-variable">&#123;&#123;item3.authName&#125;&#125;</span></span><br><span class="line"><span class="xml">                        <span class="tag">&lt;/<span class="name">el-tag</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">el-row</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-row</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<h4 id="F-美化样式"><a href="#F-美化样式" class="headerlink" title="F.美化样式"></a>F.美化样式</h4><p>通过设置global.css中的#app样式min-width:1366px 解决三级权限换行的问题<br>，通过给一级权限el-row添加display:flex,align-items:center的方式解决一级权限垂直居中的问题，二级权限也类似添加，因为需要给多个内容添加，可以将这个样式设置为一个.vcenter{display:flex;align-items:center}</p>
+<h4 id="G-添加权限删除功能"><a href="#G-添加权限删除功能" class="headerlink" title="G.添加权限删除功能"></a>G.添加权限删除功能</h4><p>给每一个权限的el-tag添加closable属性，是的权限右侧出现“X”图标<br>再给el-tag添加绑定close事件处理函数removeRightById(scope.row,item1.id)<br>removeRightById(scope.row,item2.id)<br>removeRightById(scope.row,item3.id)</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">async removeRightById(role,rightId)&#123;</span><br><span class="line">    <span class="comment">//弹窗提示用户是否要删除</span></span><br><span class="line">    <span class="keyword">const</span> confirmResult = await <span class="keyword">this</span>.$confirm(<span class="string">'请问是否要删除该权限'</span>,<span class="string">'删除提示'</span>,&#123;</span><br><span class="line">        confirmButtonText:<span class="string">'确认删除'</span>,</span><br><span class="line">        cancelButtonText:<span class="string">'取消'</span>,</span><br><span class="line">        type:<span class="string">'warning'</span></span><br><span class="line">    &#125;).<span class="keyword">catch</span>(err=&gt;err)</span><br><span class="line">    <span class="comment">//如果用户点击确认，则confirmResult 为'confirm'</span></span><br><span class="line">    <span class="comment">//如果用户点击取消, 则confirmResult获取的就是catch的错误消息'cancel'</span></span><br><span class="line">    <span class="keyword">if</span>(confirmResult != <span class="string">"confirm"</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.info(<span class="string">"已经取消删除"</span>)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//用户点击了确定表示真的要删除</span></span><br><span class="line">    <span class="comment">//当发送delete请求之后，返回的数据就是最新的角色权限信息</span></span><br><span class="line">    <span class="keyword">const</span> &#123;<span class="keyword">data</span>:res&#125; = await <span class="keyword">this</span>.$http.delete(`roles/$&#123;role.id&#125;/rights/$&#123;rightId&#125;`)</span><br><span class="line">    <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'删除角色权限失败'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">//无需再重新加载所有权限</span></span><br><span class="line">    <span class="comment">//只需要对现有的角色权限进行更新即可</span></span><br><span class="line">    role.children = res.<span class="keyword">data</span></span><br><span class="line">    <span class="comment">// this.getRoleList();</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="H-完成权限分配功能"><a href="#H-完成权限分配功能" class="headerlink" title="H.完成权限分配功能"></a>H.完成权限分配功能</h4><p>先给分配权限按钮添加事件</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;el-button <span class="attribute">size</span>=<span class="string">"mini"</span> <span class="attribute">type</span>=<span class="string">"warning"</span> <span class="attribute">icon</span>=<span class="string">"el-icon-setting"</span> @<span class="attribute">click</span>=<span class="string">"showSetRightDialog"</span>&gt;分配权限&lt;/el-button&gt;</span><br></pre></td></tr></table></figure>
+<p>在showSetRightDialog函数中请求权限树数据并显示对话框</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">async showSetRightDialog() &#123;</span><br><span class="line">    <span class="comment">//当点击分配权限按钮时，展示对应的对话框</span></span><br><span class="line">    <span class="keyword">this</span>.setRightDialogVisible = <span class="literal">true</span>;</span><br><span class="line">    <span class="comment">//获取所有权限的数据</span></span><br><span class="line">    <span class="keyword">const</span> &#123;<span class="keyword">data</span>:res&#125; = await <span class="keyword">this</span>.$http.<span class="keyword">get</span>(<span class="string">'rights/tree'</span>)</span><br><span class="line">    <span class="comment">//如果返回状态为异常状态则报错并返回</span></span><br><span class="line">    <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'获取权限树失败'</span>)</span><br><span class="line">    <span class="comment">//如果返回状态正常，将请求的数据保存在data中</span></span><br><span class="line">    <span class="keyword">this</span>.rightsList = res.<span class="keyword">data</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>添加分配权限对话框，并添加绑定数据setRightDialogVisible</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 分配权限对话框 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-dialog</span> <span class="attr">title</span>=<span class="string">"分配权限"</span> <span class="attr">:visible.sync</span>=<span class="string">"setRightDialogVisible"</span> <span class="attr">width</span>=<span class="string">"50%"</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span>&gt;</span>这是一段信息<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">slot</span>=<span class="string">"footer"</span> <span class="attr">class</span>=<span class="string">"dialog-footer"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">"setRightDialogVisible = false"</span>&gt;</span>取 消<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"primary"</span> @<span class="attr">click</span>=<span class="string">"setRightDialogVisible = false"</span>&gt;</span>确 定<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="I-完成树形结构弹窗"><a href="#I-完成树形结构弹窗" class="headerlink" title="I.完成树形结构弹窗"></a>I.完成树形结构弹窗</h4><p>在element.js中引入Tree，注册Tree</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 分配权限对话框 --&gt;</span><br><span class="line">&lt;el-dialog title=<span class="string">"分配权限"</span> :visible.sync=<span class="string">"setRightDialogVisible"</span> width=<span class="string">"50%"</span> <span class="meta">@close</span>=<span class="string">"setRightDialogClose"</span>&gt;</span><br><span class="line">    &lt;!-- 树形组件</span><br><span class="line">    show-checkbox:显示复选框</span><br><span class="line">    node-key:设置选中节点对应的值</span><br><span class="line">    <span class="keyword">default</span>-expand-all:是否默认展开所有节点</span><br><span class="line">    :<span class="keyword">default</span>-checked-keys 设置默认选中项的数组</span><br><span class="line">    ref:设置引用 --&gt;</span><br><span class="line">    &lt;el-tree :<span class="keyword">data</span>=<span class="string">"rightsList"</span> :props=<span class="string">"treeProps"</span> show-checkbox node-key=<span class="string">"id"</span> <span class="keyword">default</span>-expand-all :<span class="keyword">default</span>-checked-keys=<span class="string">"defKeys"</span> ref=<span class="string">"treeRef"</span>&gt;&lt;/el-tree&gt;</span><br><span class="line">    &lt;span slot=<span class="string">"footer"</span> <span class="class"><span class="keyword">class</span>="<span class="title">dialog</span>-<span class="title">footer</span>"&gt;</span></span><br><span class="line">        &lt;el-button <span class="meta">@click</span>=<span class="string">"setRightDialogVisible = false"</span>&gt;取 消&lt;/el-button&gt;</span><br><span class="line">        &lt;el-button type=<span class="string">"primary"</span> <span class="meta">@click</span>=<span class="string">"allotRights"</span>&gt;确 定&lt;/el-button&gt;</span><br><span class="line">    &lt;/span&gt;</span><br><span class="line">&lt;/el-dialog&gt;</span><br><span class="line"></span><br><span class="line">&lt;script&gt;</span><br><span class="line">export <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">data</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      <span class="comment">//角色列表数据</span></span><br><span class="line">      roleList: [],</span><br><span class="line">      <span class="comment">//控制分配权限对话框的显示</span></span><br><span class="line">      setRightDialogVisible: <span class="literal">false</span>,</span><br><span class="line">      <span class="comment">//权限树数据</span></span><br><span class="line">      rightsList: [],</span><br><span class="line">      <span class="comment">//树形控件的属性绑定对象</span></span><br><span class="line">      treeProps: &#123;</span><br><span class="line">        <span class="comment">//通过label设置树形节点文本展示authName</span></span><br><span class="line">        label: <span class="string">'authName'</span>,</span><br><span class="line">        <span class="comment">//设置通过children属性展示子节点信息</span></span><br><span class="line">        children: <span class="string">'children'</span></span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="comment">//设置树形控件中默认选中的内容</span></span><br><span class="line">      defKeys: [],</span><br><span class="line">      <span class="comment">//保存正在操作的角色id</span></span><br><span class="line">      roleId:<span class="string">''</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line">    <span class="keyword">this</span>.getRoleList()</span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line">    async getRoleList() &#123;</span><br><span class="line">      <span class="keyword">const</span> &#123; <span class="keyword">data</span>: res &#125; = await <span class="keyword">this</span>.$http.<span class="keyword">get</span>(<span class="string">'roles'</span>)</span><br><span class="line">      <span class="comment">//如果返回状态为异常状态则报错并返回</span></span><br><span class="line">      <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'获取角色列表失败'</span>)</span><br><span class="line">      <span class="comment">//如果返回状态正常，将请求的数据保存在data中</span></span><br><span class="line">      <span class="comment">// this.roleList = res.data</span></span><br><span class="line">      console.log(res.<span class="keyword">data</span>)</span><br><span class="line">      <span class="keyword">this</span>.roleList = res.<span class="keyword">data</span></span><br><span class="line">    &#125;,</span><br><span class="line">    async removeRightById(role, rightId) &#123;</span><br><span class="line">      <span class="comment">//弹窗提示用户是否要删除</span></span><br><span class="line">      <span class="keyword">const</span> confirmResult = await <span class="keyword">this</span>.$confirm(</span><br><span class="line">        <span class="string">'请问是否要删除该权限'</span>,</span><br><span class="line">        <span class="string">'删除提示'</span>,</span><br><span class="line">        &#123;</span><br><span class="line">          confirmButtonText: <span class="string">'确认删除'</span>,</span><br><span class="line">          cancelButtonText: <span class="string">'取消'</span>,</span><br><span class="line">          type: <span class="string">'warning'</span></span><br><span class="line">        &#125;</span><br><span class="line">      ).<span class="keyword">catch</span>(err =&gt; err)</span><br><span class="line">      <span class="comment">//如果用户点击确认，则confirmResult 为'confirm'</span></span><br><span class="line">      <span class="comment">//如果用户点击取消, 则confirmResult获取的就是catch的错误消息'cancel'</span></span><br><span class="line">      <span class="keyword">if</span> (confirmResult != <span class="string">'confirm'</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.info(<span class="string">'已经取消删除'</span>)</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">//用户点击了确定表示真的要删除</span></span><br><span class="line">      <span class="comment">//当发送delete请求之后，返回的数据就是最新的角色权限信息</span></span><br><span class="line">      <span class="keyword">const</span> &#123; <span class="keyword">data</span>: res &#125; = await <span class="keyword">this</span>.$http.delete(</span><br><span class="line">        `roles/$&#123;role.id&#125;/rights/$&#123;rightId&#125;`</span><br><span class="line">      )</span><br><span class="line">      <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'删除角色权限失败'</span>)</span><br><span class="line"></span><br><span class="line">      <span class="comment">//无需再重新加载所有权限</span></span><br><span class="line">      <span class="comment">//只需要对现有的角色权限进行更新即可</span></span><br><span class="line">      role.children = res.<span class="keyword">data</span></span><br><span class="line">      <span class="comment">// this.getRoleList();</span></span><br><span class="line">    &#125;,</span><br><span class="line">    async showSetRightDialog(role) &#123;</span><br><span class="line">      <span class="comment">//将role.id保存起来以供保存权限时使用</span></span><br><span class="line">      <span class="keyword">this</span>.roleId = role.id;  </span><br><span class="line">      <span class="comment">//获取所有权限的数据</span></span><br><span class="line">      <span class="keyword">const</span> &#123; <span class="keyword">data</span>: res &#125; = await <span class="keyword">this</span>.$http.<span class="keyword">get</span>(<span class="string">'rights/tree'</span>)</span><br><span class="line">      <span class="comment">//如果返回状态为异常状态则报错并返回</span></span><br><span class="line">      <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>) <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'获取权限树失败'</span>)</span><br><span class="line">      <span class="comment">//如果返回状态正常，将请求的数据保存在data中</span></span><br><span class="line">      <span class="keyword">this</span>.rightsList = res.<span class="keyword">data</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//调用getLeafKeys进行递归，将三级权限添加到数组中</span></span><br><span class="line">      <span class="keyword">this</span>.getLeafKeys(role, <span class="keyword">this</span>.defKeys)</span><br><span class="line">      <span class="comment">//当点击分配权限按钮时，展示对应的对话框</span></span><br><span class="line">      <span class="keyword">this</span>.setRightDialogVisible = <span class="literal">true</span></span><br><span class="line">      console.log(<span class="keyword">this</span>.defKeys)</span><br><span class="line">    &#125;,</span><br><span class="line">    getLeafKeys(node, arr) &#123;</span><br><span class="line">      <span class="comment">//该函数会获取到当前角色的所有三级权限id并添加到defKeys中</span></span><br><span class="line">      <span class="comment">//如果当前节点不包含children属性，则表示node为三级权限</span></span><br><span class="line">      <span class="keyword">if</span> (!node.children) &#123;</span><br><span class="line">        <span class="keyword">return</span> arr.push(node.id)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//递归调用</span></span><br><span class="line">      node.children.forEach(item =&gt; <span class="keyword">this</span>.getLeafKeys(item, arr))</span><br><span class="line">    &#125;,</span><br><span class="line">    setRightDialogClose() &#123;</span><br><span class="line">      <span class="comment">//当用户关闭树形权限对话框的时候，清除掉所有选中状态</span></span><br><span class="line">      <span class="keyword">this</span>.defKeys = []</span><br><span class="line">    &#125;,</span><br><span class="line">    async allotRights() &#123;</span><br><span class="line">      <span class="comment">//当用户在树形权限对话框中点击确定，将用户选择的</span></span><br><span class="line">      <span class="comment">//权限发送请求进行更新</span></span><br><span class="line"></span><br><span class="line">      <span class="comment">//获取所有选中及半选的内容</span></span><br><span class="line">      <span class="keyword">const</span> keys = [</span><br><span class="line">        ...<span class="keyword">this</span>.$refs.treeRef.getCheckedKeys(),</span><br><span class="line">        ...<span class="keyword">this</span>.$refs.treeRef.getHalfCheckedKeys()</span><br><span class="line">      ]</span><br><span class="line">      <span class="comment">//将数组转换为 , 拼接的字符串</span></span><br><span class="line">      <span class="keyword">const</span> idStr = keys.join(<span class="string">','</span>)</span><br><span class="line"></span><br><span class="line">      <span class="comment">//发送请求完成更新</span></span><br><span class="line">      <span class="keyword">const</span> &#123; <span class="keyword">data</span>: res &#125; = await <span class="keyword">this</span>.$http.post(</span><br><span class="line">        `roles/$&#123;<span class="keyword">this</span>.roleId&#125;/rights`,</span><br><span class="line">        &#123; rids:idStr &#125;</span><br><span class="line">      )</span><br><span class="line">      <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'分配权限失败'</span>)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">this</span>.$message.success(<span class="string">"分配权限成功"</span>)</span><br><span class="line">      <span class="keyword">this</span>.getRoleList();</span><br><span class="line">      <span class="comment">//关闭对话框</span></span><br><span class="line">      <span class="keyword">this</span>.setRightDialogVisible = <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="6-分配角色"><a href="#6-分配角色" class="headerlink" title="6.分配角色"></a>6.分配角色</h3><p>打开Users.vue，完成分配角色的功能<br>A.添加分配角色对话框</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 分配角色对话框 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">el-dialog</span> <span class="attr">title</span>=<span class="string">"分配角色"</span> <span class="attr">:visible.sync</span>=<span class="string">"setRoleDialogVisible"</span> <span class="attr">width</span>=<span class="string">"50%"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>当前的用户:</span><span class="template-variable">&#123;&#123;userInfo.username&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>当前的角色:</span><span class="template-variable">&#123;&#123;userInfo.role_name&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>分配新角色:<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">slot</span>=<span class="string">"footer"</span> <span class="attr">class</span>=<span class="string">"dialog-footer"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">el-button</span> @<span class="attr">click</span>=<span class="string">"setRoleDialogVisible = false"</span>&gt;</span>取 消<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"primary"</span> @<span class="attr">click</span>=<span class="string">"setRoleDialogVisible = false"</span>&gt;</span>确 定<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">el-dialog</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>B.给分配角色按钮添加点击事件，点击之后弹出一个对话框进行角色分配</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 分配角色 --&gt;</span><br><span class="line">&lt;el-tooltip <span class="class"><span class="keyword">class</span>="<span class="title">item</span>" <span class="title">effect</span>="<span class="title">dark</span>" <span class="title">content</span>="分配角色" <span class="title">placement</span>="<span class="title">top</span>" :<span class="type">enterable="false"&gt;</span></span></span><br><span class="line">    &lt;el-button type=<span class="string">"warning"</span> icon=<span class="string">"el-icon-setting"</span> size=<span class="string">'mini'</span> <span class="meta">@click</span>=<span class="string">"setRole(scope.row)"</span>&gt;&lt;/el-button&gt;</span><br><span class="line">&lt;/el-tooltip&gt;</span><br><span class="line"></span><br><span class="line"><span class="keyword">data</span>()&#123;</span><br><span class="line">    ......</span><br><span class="line">    <span class="comment">//控制显示分配角色对话框</span></span><br><span class="line">    setRoleDialogVisible:<span class="literal">false</span>,</span><br><span class="line">    <span class="comment">//保存正在操作的那个用户信息</span></span><br><span class="line">    userInfo:&#123;&#125;,</span><br><span class="line">    <span class="comment">//保存所有的角色信息</span></span><br><span class="line">    rolesList:[],</span><br><span class="line">    <span class="comment">//保存用户选中的角色id</span></span><br><span class="line">    selectedRoleId:<span class="string">''</span></span><br><span class="line">&#125;,</span><br><span class="line">methods:&#123;</span><br><span class="line">    ......</span><br><span class="line">    async setRole( userInfo )&#123;</span><br><span class="line">      <span class="comment">//保存起来以供后续使用</span></span><br><span class="line">      <span class="keyword">this</span>.userInfo = userInfo;</span><br><span class="line">      <span class="comment">//获取所有的角色信息，以备下拉列表使用</span></span><br><span class="line">      <span class="comment">//发送请求根据id完成删除操作</span></span><br><span class="line">      <span class="keyword">const</span> &#123; <span class="keyword">data</span>: res &#125; = await <span class="keyword">this</span>.$http.<span class="keyword">get</span>(<span class="string">'roles'</span>)</span><br><span class="line">      <span class="comment">//判断如果删除失败，就做提示</span></span><br><span class="line">      <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>) <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'获取角色列表失败'</span>)</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">this</span>.rolesList = res.<span class="keyword">data</span>;</span><br><span class="line">      <span class="comment">//展示分配角色对话框</span></span><br><span class="line">      <span class="keyword">this</span>.setRoleDialogVisible = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">      </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>C.在element.js中引入Select，Option，注册Select，Option</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 角色选择下拉框</span></span><br><span class="line"><span class="comment">v-model：设置用户选中角色之后的id绑定数据</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-select</span> <span class="attr">v-model</span>=<span class="string">"selectedRoleId"</span> <span class="attr">placeholder</span>=<span class="string">"请选择角色"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- :label 显示文本，:value 选中值 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">el-option</span> <span class="attr">v-for</span>=<span class="string">"item in rolesList"</span> <span class="attr">:key</span>=<span class="string">"item.id"</span> <span class="attr">:label</span>=<span class="string">"item.roleName"</span> <span class="attr">:value</span>=<span class="string">"item.id"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-option</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">el-select</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>D.当用户点击对话框中的确定之后，完成分配角色的操作</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- 分配角色对话框 --&gt;</span><br><span class="line">&lt;el-dialog title=<span class="string">"分配角色"</span> :visible.sync=<span class="string">"setRoleDialogVisible"</span> width=<span class="string">"50%"</span> @close=<span class="string">"setRoleDialogClosed"</span>&gt;</span><br><span class="line">    &lt;div&gt;</span><br><span class="line">    &lt;p&gt;当前的用户:&#123;&#123;userInfo.username&#125;&#125;&lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;p&gt;当前的角色:&#123;&#123;userInfo.role_name&#125;&#125;&lt;/</span>p&gt;</span><br><span class="line">    &lt;p&gt;分配新角色:</span><br><span class="line">        &lt;!-- 角色选择下拉框</span><br><span class="line">        v-model：设置用户选中角色之后的id绑定数据</span><br><span class="line">        --&gt;</span><br><span class="line">        &lt;el-select v-model=<span class="string">"selectedRoleId"</span> placeholder=<span class="string">"请选择角色"</span>&gt;</span><br><span class="line">        &lt;!-- :label 显示文本，:value 选中值 --&gt;</span><br><span class="line">        &lt;el-option v-<span class="keyword">for</span>=<span class="string">"item in rolesList"</span> :key=<span class="string">"item.id"</span> :label=<span class="string">"item.roleName"</span> :value=<span class="string">"item.id"</span>&gt;</span><br><span class="line">        &lt;<span class="regexp">/el-option&gt;</span></span><br><span class="line"><span class="regexp">        &lt;/</span>el-select&gt;</span><br><span class="line">    &lt;<span class="regexp">/p&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>div&gt;</span><br><span class="line">    &lt;span slot=<span class="string">"footer"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"dialog-footer"</span>&gt;</span><br><span class="line">    &lt;el-button @click=<span class="string">"setRoleDialogVisible = false"</span>&gt;取 消&lt;<span class="regexp">/el-button&gt;</span></span><br><span class="line"><span class="regexp">    &lt;el-button type="primary" @click="saveRoleInfo"&gt;确 定&lt;/</span>el-button&gt;</span><br><span class="line">    &lt;<span class="regexp">/span&gt;</span></span><br><span class="line"><span class="regexp">&lt;/</span>el-dialog&gt;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">methods:&#123;</span><br><span class="line">    .......</span><br><span class="line">    <span class="keyword">async</span> saveRoleInfo()&#123;</span><br><span class="line">      <span class="comment">//当用户点击确定按钮之后</span></span><br><span class="line">      <span class="comment">//判断用户是否选择了需要分配的角色</span></span><br><span class="line">      <span class="keyword">if</span>(!<span class="keyword">this</span>.selectedRoleId)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'请选择需要分配的角色'</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="comment">//发送请求完成分配角色的操作</span></span><br><span class="line">      <span class="keyword">const</span> &#123;<span class="attr">data</span>:res&#125; = <span class="keyword">await</span> <span class="keyword">this</span>.$http.put(<span class="string">`users/<span class="subst">$&#123;<span class="keyword">this</span>.userInfo.id&#125;</span>/role`</span>,&#123;<span class="attr">rid</span>:<span class="keyword">this</span>.selectedRoleId&#125;)</span><br><span class="line"></span><br><span class="line">      <span class="comment">//判断如果删除失败，就做提示</span></span><br><span class="line">      <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'分配角色失败'</span>)</span><br><span class="line"></span><br><span class="line">      <span class="keyword">this</span>.$message.success(<span class="string">'分配角色成功'</span>)</span><br><span class="line">      <span class="keyword">this</span>.getUserList();</span><br><span class="line">      <span class="comment">//关闭对话框</span></span><br><span class="line">      <span class="keyword">this</span>.setRoleDialogVisible = <span class="literal">false</span></span><br><span class="line">    &#125;,</span><br><span class="line">    setRoleDialogClosed()&#123;</span><br><span class="line">      <span class="comment">//当关闭对话框的时候，重置下拉框中的内容</span></span><br><span class="line">      <span class="keyword">this</span>.selectedRoleId = <span class="string">''</span></span><br><span class="line">      <span class="keyword">this</span>.userInfo = &#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="7-将代码推送到码云"><a href="#7-将代码推送到码云" class="headerlink" title="7.将代码推送到码云"></a>7.将代码推送到码云</h3><p>A.将代码推送到暂存区 git add .<br>B.将代码提交到仓库 git commit -m ‘完成了权限功能开发’<br>C.将rights分支代码推送到码云 git push<br>D.将代码合并到master<br>    git checkout master<br>    git merge rights<br>E.将master代码推送到码云<br>    git push</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/03/01/vue3-07/" title="vue_shop项目构建笔记">http://yoursite.com/2020/03/01/vue3-07/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+            <a href="/tags/vue-shop%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> vue_shop项目构建笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/23/git01/" rel="next" title="git01">
+                <i class="fa fa-chevron-left"></i> git01
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/01/%E9%9D%A2%E7%BB%8F00/" rel="prev" title="watch和computed对比">
+                watch和computed对比 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#今日目标"><span class="nav-number">1.</span> <span class="nav-text">今日目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-修改用户信息"><span class="nav-number">2.</span> <span class="nav-text">1.修改用户信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-删除用户"><span class="nav-number">3.</span> <span class="nav-text">2.删除用户</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-推送代码"><span class="nav-number">4.</span> <span class="nav-text">3.推送代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-权限列表"><span class="nav-number">5.</span> <span class="nav-text">4.权限列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-添加权限列表路由"><span class="nav-number">5.1.</span> <span class="nav-text">A.添加权限列表路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-添加面包屑导航"><span class="nav-number">5.2.</span> <span class="nav-text">B.添加面包屑导航</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-显示数据"><span class="nav-number">5.3.</span> <span class="nav-text">C.显示数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-角色列表"><span class="nav-number">6.</span> <span class="nav-text">5.角色列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-添加角色列表路由"><span class="nav-number">6.1.</span> <span class="nav-text">A.添加角色列表路由</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-添加面包屑导航-1"><span class="nav-number">6.2.</span> <span class="nav-text">B.添加面包屑导航</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-显示数据-1"><span class="nav-number">6.3.</span> <span class="nav-text">C.显示数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-补充说明"><span class="nav-number">6.4.</span> <span class="nav-text">D.补充说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#E-生成权限列表"><span class="nav-number">6.5.</span> <span class="nav-text">E.生成权限列表</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#F-美化样式"><span class="nav-number">6.6.</span> <span class="nav-text">F.美化样式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#G-添加权限删除功能"><span class="nav-number">6.7.</span> <span class="nav-text">G.添加权限删除功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#H-完成权限分配功能"><span class="nav-number">6.8.</span> <span class="nav-text">H.完成权限分配功能</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#I-完成树形结构弹窗"><span class="nav-number">6.9.</span> <span class="nav-text">I.完成树形结构弹窗</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-分配角色"><span class="nav-number">7.</span> <span class="nav-text">6.分配角色</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-将代码推送到码云"><span class="nav-number">8.</span> <span class="nav-text">7.将代码推送到码云</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

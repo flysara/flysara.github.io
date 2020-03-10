@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="url-loaderurl-loader的使用注意：npm有两种安装方式，本地安装和全局安装，如果是本地安装，则可以通过require来引入包，如果是全局安装是提供给命令行用的，即全局安装的方式在代码中不用require方式引用。 默认情况下，webpack无法处理css文件中的url地址，不管是图片还是字体库，只要是url地址都处理不了 这是在webpack.config.js文件中新增的处理u">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue1-day6">
+<meta property="og:url" content="http://yoursite.com/2019/11/04/vue1-06/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="url-loaderurl-loader的使用注意：npm有两种安装方式，本地安装和全局安装，如果是本地安装，则可以通过require来引入包，如果是全局安装是提供给命令行用的，即全局安装的方式在代码中不用require方式引用。 默认情况下，webpack无法处理css文件中的url地址，不管是图片还是字体库，只要是url地址都处理不了 这是在webpack.config.js文件中新增的处理u">
+<meta property="article:published_time" content="2019-11-04T07:01:22.000Z">
+<meta property="article:modified_time" content="2020-02-17T03:11:54.017Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/04/vue1-06/"/>
+
+
+
+
+
+  <title>vue1-day6 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/04/vue1-06/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue1-day6</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-04T15:01:22+08:00">
+                2019-11-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/Vue1/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue1</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="url-loader"><a href="#url-loader" class="headerlink" title="url-loader"></a>url-loader</h2><h3 id="url-loader的使用"><a href="#url-loader的使用" class="headerlink" title="url-loader的使用"></a>url-loader的使用</h3><p>注意：npm有两种安装方式，本地安装和全局安装，如果是本地安装，则可以通过require来引入包，如果是全局安装是提供给命令行用的，即全局安装的方式在代码中不用require方式引用。</p>
+<p>默认情况下，webpack无法处理css文件中的url地址，不管是图片还是字体库，只要是url地址都处理不了</p>
+<p>这是在webpack.config.js文件中新增的处理url的erl-loader文件</p>
+<a id="more"></a>
+<figure class="highlight clojure"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; test: /\.(<span class="name">jpg</span>|png|gif|bmp|jpeg)$/, use: 'url-loader?limit=7600&amp;name=[name].[ext]' &#125;</span><br></pre></td></tr></table></figure>
+<p>limit传参的作用就是，当传参的大小大于文件（图片）的大小的时候，会把图片进行base64编码，转换为base64的字符串（可以通过检查网页），如果传参值小于或等于图片大小的时候，就不会进行编码。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">limit</span>的作用：让大图保真，让小图压缩</span><br></pre></td></tr></table></figure>
+<h2 id="babel"><a href="#babel" class="headerlink" title="babel"></a>babel</h2><p>在webpack中，默认只能处理一部分es6的新语法，一些更高级的es6或者es7语法，webpack是处理不了的，这时候就需要借助第三方的loader来帮助webpack处理这些高级的语法，当第三方loader把高级语法转为低级的语法之后，会把结果交给webpack去打包到main.js中</p>
+<p>在webpack中，默认只能处理一部分es6的新语法，一些更高级的es6或者es7语法，webpack是处理不了的，这时候就需要借助第三方的loader<br>来帮助webpack处理这些高级的语法，当第三方loader把高级语法转为低级的语法之后，会把结果交给webpack去打包到main.js中，由于</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">babel-loader <span class="number">8.</span>x对应Babel-core <span class="number">7.</span>x</span><br><span class="line">babel-loader <span class="number">7.</span>x对应babel-core <span class="number">6.</span>x</span><br></pre></td></tr></table></figure>
+<p>我安装的是最新的babel-loader，所以跟视频老师说的一些不一样<br>1、通过babel，可以帮我们将高级的语法转换为低级的语法，在webpack中，可以运行如下两套命令安装两套包，去安装babel相关的loader功能</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">第一套包：cnpm i @<span class="keyword">babel/core </span><span class="keyword">babel-loader </span>@<span class="keyword">babel/plugin-transform-runtime </span>@<span class="keyword">babel/runtime </span>-D</span><br><span class="line">  第二套包：cnpm i @<span class="keyword">babel/preset-env </span><span class="keyword">babel-preset-mobx </span>-D</span><br></pre></td></tr></table></figure>
+<p>2、打开webpack的配置文件，在module节点下的rules数组中，添加一个新的匹配规则：<br>   2.1<br>    <figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="string">test:</span> <span class="regexp">/\.js$/</span>, <span class="string">use:</span> <span class="string">'babel-loader'</span>, <span class="string">exclude:</span><span class="regexp">/node_modules/</span> &#125;</span><br></pre></td></tr></table></figure><br>    第三个exclude，表示的是，除了node_modules中的js文件，其他都可以进行转换<br>   2.2注意：在配置babel的loader规则的时候，必须把node_modules通过exclude排除掉js文件，如果不排除，babel会把node_modules中的<br>           第三方js文件，都打包编译，这样会非常消耗CPU，同时打包速度非常慢<br>           哪怕，最终babel把所有node_modules中的所有js都转换完毕了，项目也无法正常运行<br>  3、在项目的根目录中新建一个叫做.babelrc的babel配置文件，这个配置文件属于json格式，在写.babelrc文件的时候，必须符合json语法规范，不能写注释，字符串必须使用双引号<br>   3.1在babel配置文件中写如下的配置：<br>   <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"presets"</span>: [<span class="string">"@bable/preset-env"</span>,<span class="string">"mobx"</span>],</span><br><span class="line">    <span class="attr">"plugins"</span>: [<span class="string">"@babel/plugin-transform-runtime"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>   4、了解，目前我们安装的babel-preset-env，是比较新的es语法，之前我们安装的是babel-preset-es2015，当然现在最新的是@babel-preset-env，它包含了所有和<code>es***</code>相关的语法</p>
+<h4 id="关于babel的几点说明"><a href="#关于babel的几点说明" class="headerlink" title="关于babel的几点说明"></a>关于babel的几点说明</h4><p>第一套包负责转换，转换器，第二套包负责对应语法的转换，语法对应关系</p>
+<h2 id="render"><a href="#render" class="headerlink" title="render"></a>render</h2><h3 id="在普通页面中使用render函数渲染组件"><a href="#在普通页面中使用render函数渲染组件" class="headerlink" title="在普通页面中使用render函数渲染组件"></a>在普通页面中使用render函数渲染组件</h3><p>用render来进项渲染就相当于是插值表达式，会替换el对应的指定容器，全部覆盖，就算容器之间有内容，也会全部覆盖为组件内容，但是使用原始的组件标签方式的话，在el对应的哪个容器里面就算有内容，也不会进行覆盖，只是在里面进行展示。</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">var login = &#123;</span><br><span class="line">           template: <span class="string">'&lt;h1&gt;login&lt;/h1&gt;'</span></span><br><span class="line">       &#125;</span><br><span class="line"></span><br><span class="line">       var <span class="keyword">vm</span> = <span class="keyword">new</span>(&#123;</span><br><span class="line">           <span class="keyword">e</span><span class="variable">l:</span> <span class="string">'#app'</span>,</span><br><span class="line">           dat<span class="variable">a:</span> &#123;&#125;,</span><br><span class="line">           method<span class="variable">s:</span> &#123;&#125;,</span><br><span class="line">           component<span class="variable">s:</span> &#123;</span><br><span class="line">               login</span><br><span class="line">           &#125;,</span><br><span class="line">           render: <span class="function"><span class="keyword">function</span><span class="params">(createElements)</span>&#123;</span></span><br><span class="line">               //createElements是一个方法，调用它，能够把指定的组件模板渲染为html结构</span><br><span class="line">               <span class="keyword">return</span> createElements(login)</span><br><span class="line">               //这里<span class="keyword">return</span>的结果会替换页面中指定<span class="keyword">el</span>的哪个容器</span><br><span class="line">               </span><br><span class="line">           &#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="在webpack中配置-vue组件页面的解析"><a href="#在webpack中配置-vue组件页面的解析" class="headerlink" title="在webpack中配置.vue组件页面的解析"></a>在webpack中配置.vue组件页面的解析</h3><p>1、运行<code>npm i vue -S</code>将vue安装为依赖<br>2、运行<code>npm i vue-loader vue-template-compiler -D</code>将解析转换vue的包安装为开发依赖<br>3、运行<code>npm i style-loader css-loader -D</code>将解析转换css的包安装为开发依赖，因为.vue文件中会写css样式<br>4、在<code>webpack.config.js</code>文件中，添加如下modules规则：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">modules:</span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在webpack.config.js文件中添加resolve属性：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">resolve：&#123;</span><br><span class="line">	<span class="built_in">alias</span>：&#123;</span><br><span class="line">		<span class="string">'vue$'</span>:<span class="string">'vue/dist/vue.esm.js'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h3 id="总结梳理：webpack中如何使用vue"><a href="#总结梳理：webpack中如何使用vue" class="headerlink" title="总结梳理：webpack中如何使用vue"></a>总结梳理：webpack中如何使用vue</h3><p>1、安装vue的包，npm i vue -S<br>2、由于在webpack中推荐使用.vue这个组件模板文件定义组件，所以 需要安装能解析这种文件的loader： npm i vue-loader vue-template-complier -D<br>3、在index.js中，导入vue模块，import Vue from ‘vue’<br>4、定义一个.vue结尾的组件，其中，组件有三部分组成：template、script、style<br>5、使用import导入这个组件,import login from ‘./login.vue’<br>6、创建vm的实例 var vm = new Vue（{el：’#app’,render:c =&gt; c(login)}}<br>7、在页面中船舰一个id为app的div元素，作为我们vm实例要控制的区域</p>
+<h2 id="export-default和export使用方法"><a href="#export-default和export使用方法" class="headerlink" title="export default和export使用方法"></a>export default和export使用方法</h2><p>在node中向外暴露成员的形式：module.exports = {}，在es6中，也通过规范的形式，规定了es6中如何导入和导出模块</p>
+<p>es6中导入模块：<code>import 模块名称from &#39;模块标识符&#39;     import &#39;表示路径&#39;</code><br>es6中导出模块，使用export default和export向外暴露成员；  </p>
+<p>在node中使用var 名称 = require(“模块标识符”)<br>module.exports和exports来暴露成员</p>
+<p>注意：+ <code>export default</code>向外暴露的成员，可以使用任意的变量来接收<br>     + 在一个模块中export default只允许向外暴露一次<br>     + 在一个模块中可以同时使用export default和export向外暴露成员<br>     + 使用export暴露的成员，引入的时候，必须要加上{}，例如export title，引入的时候：import {title}，这种形式叫做按需导出<br>     + export可以向外暴露多个成员，import {title，title1}，同时如果某些成员，我们在import的时候不需要则可以不再{}中定义引入<br>     + 使用export导出的成员，必须严格按照导出收的名称来引入<br>     + 使用export导出的成员，如果就想换个名称来接收，可以使用as来起一个别名</p>
+<h2 id="scoped属性选择器实现原理"><a href="#scoped属性选择器实现原理" class="headerlink" title="scoped属性选择器实现原理"></a>scoped属性选择器实现原理</h2><p>只要设置了scoped属性以后，就会给该组件的 根容器设定一个自定义属性[]（可以通过网页检查元素看到）然后通过该属性在div样式设置上添加来生效。<br>样式的是scoped是通过css的属性选择器实现的。</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/11/04/vue1-06/" title="vue1-day6">http://yoursite.com/2019/11/04/vue1-06/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/28/vue1-05/" rel="next" title="vue1-day5">
+                <i class="fa fa-chevron-left"></i> vue1-day5
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/08/vue1-07/" rel="prev" title="vue1-day7">
+                vue1-day7 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#url-loader"><span class="nav-number">1.</span> <span class="nav-text">url-loader</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#url-loader的使用"><span class="nav-number">1.1.</span> <span class="nav-text">url-loader的使用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#babel"><span class="nav-number">2.</span> <span class="nav-text">babel</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#关于babel的几点说明"><span class="nav-number">2.0.1.</span> <span class="nav-text">关于babel的几点说明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#render"><span class="nav-number">3.</span> <span class="nav-text">render</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#在普通页面中使用render函数渲染组件"><span class="nav-number">3.1.</span> <span class="nav-text">在普通页面中使用render函数渲染组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在webpack中配置-vue组件页面的解析"><span class="nav-number">3.2.</span> <span class="nav-text">在webpack中配置.vue组件页面的解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结梳理：webpack中如何使用vue"><span class="nav-number">3.3.</span> <span class="nav-text">总结梳理：webpack中如何使用vue</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#export-default和export使用方法"><span class="nav-number">4.</span> <span class="nav-text">export default和export使用方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#scoped属性选择器实现原理"><span class="nav-number">5.</span> <span class="nav-text">scoped属性选择器实现原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

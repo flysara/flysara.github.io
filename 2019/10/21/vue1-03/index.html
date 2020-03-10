@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="get步骤：1、导入vue-resource包，所以可以直接通过this.$http来发起数据请求2、根据接口API文档，知道获取列表的时候，应该发起一个get请求3、this.$http.get（’url’）.then（function（result）{}）4、当通过then指定回调函数之后，再回调函数中，可以拿到数据服务器返回的result（数据格式是json）5、先判断result.stat">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue1-day3">
+<meta property="og:url" content="http://yoursite.com/2019/10/21/vue1-03/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="get步骤：1、导入vue-resource包，所以可以直接通过this.$http来发起数据请求2、根据接口API文档，知道获取列表的时候，应该发起一个get请求3、this.$http.get（’url’）.then（function（result）{}）4、当通过then指定回调函数之后，再回调函数中，可以拿到数据服务器返回的result（数据格式是json）5、先判断result.stat">
+<meta property="article:published_time" content="2019-10-21T10:21:42.000Z">
+<meta property="article:modified_time" content="2020-02-17T03:11:39.042Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/21/vue1-03/"/>
+
+
+
+
+
+  <title>vue1-day3 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/21/vue1-03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue1-day3</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-21T18:21:42+08:00">
+                2019-10-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/Vue1/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue1</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="get"><a href="#get" class="headerlink" title="get"></a>get</h2><p>步骤：<br>1、导入vue-resource包，所以可以直接通过this.$http来发起数据请求<br>2、根据接口API文档，知道获取列表的时候，应该发起一个get请求<br>3、this.$http.get（’url’）.then（function（result）{}）<br>4、当通过then指定回调函数之后，再回调函数中，可以拿到数据服务器返回的result（数据格式是json）<br>5、先判断result.status是否等于0，如果等于0，就成功了，可以把result是一个对象，result.body.massage赋值给this.list；如果不等于0，可以弹框提醒，获取数据失败！</p>
+<a id="more"></a>
+<p>只有返回数据中的result.body.status=0，才说明这个请求成功。result.body.massage是返回结果里面的所有 信息，就会把所有能获取到的信息都返回给一个数组，进行储存或者显示</p>
+<h2 id="post"><a href="#post" class="headerlink" title="post"></a>post</h2><p>步骤分析：<br>1、经过查看数据API接口，要发送一个post请求，this.$http.post()<br>2、this.$http.post()中接受三个参数</p>
+<ul>
+<li>第一个参数：要请求的url地址</li>
+<li>第二个参数：要提交给服务器的数据，要以对象形式提交到服务器（name：this.name）</li>
+<li>第三个参数：是一个配置对象，要以哪种表单数据类型提交过去，{emulateJSON：true}，以普通表单格式，将数据提交给服务器application/x-www-form-urlencoded，这个参数一般是必须的，如果不传入的话，也可能会出问题。<br>3、再post方法中，使用.then来设置成功的回调函数，如果想要拿到成功的结果，需要result.body。</li>
+</ul>
+<p>注意：第二个参数和第三个参数都是以对象形式进行传参，所以都要加{xxx}，{xxx}</p>
+<p>对{emulateJSON：true}进行全局配置，</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">在Vue实例之前进行添加一句</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Vue</span>.</span></span>http.options.emulateJSON = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+<p>这样的话，会全局启用emulateJSON</p>
+<p>如果我们通过全局配置了，请求的数据接口 根域名，则再每次单独发起http请求的时候，请求的url路径，应该以相对路径开头，强调，后面的相对路径前面不能带/，否则就不是相对路径。</p>
+<h2 id="vue中的动画"><a href="#vue中的动画" class="headerlink" title="vue中的动画"></a>vue中的动画</h2><h3 id="使用过渡类名"><a href="#使用过渡类名" class="headerlink" title="使用过渡类名"></a>使用过渡类名</h3><p>1、html结构</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"动起来"</span> @<span class="attr">click</span>=<span class="string">"myanimate"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 使用transition将需要过渡的元素包裹起来 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"fade"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-show</span>=<span class="string">"isshow"</span>&gt;</span>动画<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>transition中的name=“”中的值是自定义的前缀，如果如上所示，则用fade-enter来进行动画控制。不自定义的话，直接就是v-enter。</p>
+<p>2、vm实例</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建vue实例，得到viewmodel</span></span><br><span class="line"><span class="keyword">var</span> vm = new Vue(&#123;</span><br><span class="line">	el:<span class="string">'#app'</span>,</span><br><span class="line">	<span class="keyword">data</span>:&#123;</span><br><span class="line">		isshow:<span class="literal">false</span></span><br><span class="line">	&#125;,</span><br><span class="line">	methods:&#123;</span><br><span class="line">		myanimate()&#123;</span><br><span class="line">			<span class="keyword">this</span>.isshow = !<span class="keyword">this</span>.isshow</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;);</span><br><span class="line">~~~ </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">步骤分析：</span><br><span class="line"><span class="number">1</span>、使用transition元素，把需要被动画控制的元素包裹起来。transition元素，是vue官方提供的</span><br><span class="line"><span class="number">2</span>、自定义两组样式，来控制transition内部的元素实现动画。v-enter：进入之前，元素的起始状态，此时还没有进入【这是一个时间点】；v-leave-to：是动画离开之后，离开的终止状态，此时元素已经结束了。v-enter-active：入场动画时间段，v-leave-active：离场时间段。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">### 使用第三方animate.css类库实现动画</span><br><span class="line">animate.css，可以直接在百度进行搜索该网页，进行动画展示</span><br><span class="line">在对transition进行添加我们所选择的类样式之外，还需要再样式前面加一个一个基本类样式animated</span><br></pre></td></tr></table></figure>
+<transition enter-active-class="bounceinIn" leave-active-class="bounceOut">
+<div v-show="isshow" class="animated">动画</div>
+</transition>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">或者使用这种方式</span><br></pre></td></tr></table></figure>
+<transition enter-active-class="animated bounceinIn" leave-active-class="animated bounceOut">
+<div v-show="isshow">动画</div>
+</transition>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">再transition标签后面添加```<span class="symbol">:duration=<span class="string">"200"</span>```</span>表示该动画所需要的时长。</span><br><span class="line">如果改成在transition标签后面添加```<span class="symbol">:duration=<span class="string">"&#123;enter:200,leave:400&#125;"</span>```</span>表示分别给入场和离场设置时间。即如果用一个对象来设置duration的话就是分别给两个动画来设置动画时长。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">### 钩子函数实现半场动画</span></span><br><span class="line">即只有进入没有离开的动画，我们叫做半场动画。用上述的两种方法和自定义的函数方法都不能够实现半场动画，所以这个时候就需要使用钩子函数来实现。</span><br><span class="line"></span><br><span class="line">可以在属性中声明javascript钩子</span><br></pre></td></tr></table></figure>
+<transition
+ v-on:before-enter="beforeEnter"
+ v-on:enter="enter"
+ v-on:after-enter="afterEnter"
+ v-on:enter-cancelled="enterCancelled"
+
+<p> v-on:before-leave=”beforeLeave”<br> v-on:lever=”leave”<br> v-on:after-leave=”afterLeave”<br> v-on:leave-cancelled=”leaveCancelled”</p>
+<blockquote>
+</blockquote>
+ </transition>
+ <figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">都可以称作动画的生命周期函数，前一部分是进入，后一部分是离开。上述有八个事件，那么对应的在<span class="keyword">methods</span>中也有对应的八个函数方法。来对此进行定义。如果只需要半场函数的话，那我们就只需要前面一部分的事件，而不需要后面一部分的事件。</span><br></pre></td></tr></table></figure>
+ methods:{
+     //进入中
+     beforeEnter:function(el){},
+
+
+<p> }</p>
+<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">当只用 <span class="keyword">JavaScript </span>过渡的时候，在 enter 和 leave 中必须使用 done 进行回调。否则，它们将被同步调用，过渡会立即完成。</span><br><span class="line"></span><br><span class="line">推荐对于仅使用 <span class="keyword">JavaScript </span>过渡的元素添加 v-<span class="keyword">bind:css="false"，Vue </span>会跳过 CSS 的检测。这也可以避免过渡过程中 CSS 的影响。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">## 实现列表动画</span></span><br><span class="line">样式设计</span><br></pre></td></tr></table></figure>
+<p>.v-enter,<br>    .v-leave-to{<br>        opacity: 0;<br>        transform:translateY(80px);<br>    }</p>
+<pre><code>.v-enter-active,
+.v-leave-active{
+    transition:all 0.6s ease;
+}</code></pre><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">在实现列表过度的时候，如果需要过渡的元素是通过v-for循环渲染出来的，不能使用<span class="attribute">transition</span>包裹，需要使用transitionGroup包裹。</span><br></pre></td></tr></table></figure>
+<ul>
+            <transition-group>
+                    <li v-for="item in list" :key="item.id">
+                             --- 
+                        </li>
+            </transition-group>
+</ul>
+<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果要为v-for循环创建的元素设置动画，必须为每一个元素设置：key属性</span><br><span class="line"></span><br><span class="line">### 列表删除动画</span><br><span class="line">只需要在上述基础上再添加以下样式就可以了，一般都是固定写法。还要注意的是，需要在li样式中添加width属性值，避免```position：absolute```在起作用的同时，也会将宽度变为最小值。</span><br></pre></td></tr></table></figure>
+.v-move{
+        transition:all 0.6s ease;
+    }
+.v-leave-active{
+        position:absolute;
+    }
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line">### transition-group中的appear和tag属性</span><br><span class="line">给transition-group添加apper属性，实现页面刚展示出来入场时候 的效果。</span><br></pre></td></tr></table></figure>
+<transition-group appear>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">如果就直接按照上述规则填写的话，在页面检查元素检查出来会发现页面将transition-group标签渲染成span标签了。</span><br><span class="line">解决办法是去掉ul标签，然后在```&lt;transition-group appear tag=<span class="string">"ul"</span>&gt;```添加tag=<span class="string">"ul"</span>属性值就可以了。</span><br><span class="line"></span><br><span class="line">通过为transition-group元素，设置tag属性，指定transition-group渲染为指定的元素，如果不指定tag属性，默认渲染为span标签。</span><br><span class="line"></span><br><span class="line">## vue组件</span><br><span class="line">什么是组件？组件的出现就是为了拆分vue实例的代码量的，能够让我们以不同的组件，来划分不同的功能模块。将来我们需要什么样的功能，就去调用对应的组件即可。</span><br><span class="line"></span><br><span class="line">组件话和模块化的不同？</span><br><span class="line">+ 模块化是从代码逻辑的角度进行划分的。方便代码的分层开发，保证每个功能模块的职能单一</span><br><span class="line">+ 组件化是从UI界面的角度进行划分的 。前端的组件化，方便UI组建的重用</span><br><span class="line"></span><br><span class="line">### 创建组件</span><br><span class="line">#### 方式一：使用Vue.extend来创建全局的Vue组件</span><br><span class="line">这些创建过程是在script标签中创建的</span><br></pre></td></tr></table></figure>
+//1、使用Vue.extend来创建全局的Vue组件
+var com1 = Vue.extend({
+    template:'<h3>这是使用Vue.extend创建的组件</h3>'//通过template属性，指定了组件要展示的HTML结构，将来要展示的具体内容
+    })
+//2、使用Vue.component('组件的名称，将来要引用的名称',创建出来的组件模板对象)
+Vue.component('mycom1',com1)
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">引用组件：</span><br></pre></td></tr></table></figure>
+//如果要使用组件，直接把组件的名称，以HTML标签的形式，引入到页面中
+<my-com1></my-com1>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">注意：在创建的时候，可以使用驼峰的方法来书写名称，但是在使用的时候，需要使用带-的方式来写，即把大写的驼峰改成小写的字母带-来表示。如果不写驼峰，直接拿名称就可以了。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">直接把上述步骤合成一个步骤即可</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Vue</span>.</span></span>component第一个参数：组件的名称，将来在引用组件的时候，就是一个标签形式来引入它的/第二个参数：<span class="module-access"><span class="module"><span class="identifier">Vue</span>.</span></span>extend（）创建的组件，template就是组件将来要展示的HTML内容。</span><br></pre></td></tr></table></figure>
+Vue.component('myCom1',Vue.extend({
+    template:''
+    }))
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 方式二创建组件</span><br></pre></td></tr></table></figure>
+Vue.component('mycom2',{
+    template:'<h3>这是直接使用Vue.component创建出来的组件</h3>'
+    })
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">引用的时候，还是使用标签的形式，引入自己的组件。</span><br><span class="line"></span><br><span class="line">注意：无论是哪种方式创建出来的组件，组建的template属性指向的模板内容，必须有且只有唯一的一个根元素。</span><br><span class="line"></span><br><span class="line">#### 创建组件方式三</span><br></pre></td></tr></table></figure>
+Vue.component('mycom3',{
+    template:'#temp1'
+    })
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">使用方式，在被控制的<span class="meta">#app外面使用template元素，定义组件的模板结构</span></span><br></pre></td></tr></table></figure>
+<div id="app">
+<mycom3></mycom3>//引用组件
+</div>//这是vm实例控制部分
+
+
+<template id="temp1">
+  <div>
+   <h3>这是通过template元素，在外部定义的组件结构，这个方式，有代码的只能提示个高亮</h3>
+   <h4>好用</h4>
+  </div>
+</template>
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### 使用component定义私有组件</span><br><span class="line">上述的都是全局组件，</span><br></pre></td></tr></table></figure>
+var vm = new Vue({
+    el:'#app2',
+    data:{},
+    methods:{},
+    filters:{},
+    directives:{},
+    components:{
+        //定义实例内部私有组件，不和其他公用，在实力内部自己使用
+        login：'<h1>这是私有的login组件</h1>'
+    }
+    })
+<figure class="highlight smali"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">调用，只能在控制的实例上app2上使用</span><br></pre></td></tr></table></figure>
+<div id="app2">
+<login></login>
+</div>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">也可以像上述方式的改进一样，写在template里面，对其进行整合</span><br><span class="line"></span><br><span class="line">### 组件中的<span class="keyword">data</span></span><br><span class="line">组件中也有一个<span class="keyword">data</span>，但是跟实例中的<span class="keyword">data</span>不一样，组件的<span class="keyword">data</span>必须是一个<span class="function"><span class="keyword">function</span></span>并且<span class="keyword">return</span>一个对象，但实例中的<span class="keyword">data</span>是一个对象。组件中的<span class="keyword">data</span>数据使用方式和实例中的<span class="keyword">data</span>数据使用方式完全一样。</span><br></pre></td></tr></table></figure>
+Vue.component('mycom1',{
+    template:'<h1>这是一个全局组件---</h1>',
+    data:function(){
+        return{
+            msg:'这是组件中的data定义的数据'
+        }
+    }
+    })
+<figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 为什么组件中的data中必须是一个function</span><br><span class="line">例如</span><br></pre></td></tr></table></figure>
+<template id="tmp1">
+<div>
+<input type="button" value="+1" @click="increment">
+<h3></h3>
+</div>
+<template>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">~~~</span><br><span class="line">var dataObj=&#123;<span class="built_in">count</span>:<span class="number">0</span>&#125;</span><br><span class="line">//这是一个计数器的组件，身上有个按钮，每当点击按钮，让<span class="keyword">data</span>中的<span class="built_in">count</span>加<span class="number">1</span></span><br><span class="line">Vue.component(<span class="string">'counter'</span>,&#123;</span><br><span class="line">	template:<span class="string">'#tmp1'</span>,</span><br><span class="line">	<span class="keyword">data</span>:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">		<span class="keyword">return</span> dataObj  //这种方法不推荐，最好是<span class="keyword">return</span>&#123;<span class="built_in">count</span>：<span class="number">0</span>&#125;因为这样的话他们就互相不会干扰</span><br><span class="line">	&#125;,</span><br><span class="line">	methods:&#123;</span><br><span class="line">		increment()&#123;</span><br><span class="line">			this.<span class="built_in">count</span>++</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="组件切换"><a href="#组件切换" class="headerlink" title="组件切换"></a>组件切换</h3><p>使用v-if和v-else结合flag进行切换<br>定义一个flag，让默认组件显示为v-if=”flag”，然后另外一个组件设置v-else=”flag”就可以了。<br>缺点就是只能切换两个画面，如果有三个以上的就需要另外的方法。</p>
+<h4 id="组件切换方式二"><a href="#组件切换方式二" class="headerlink" title="组件切换方式二"></a>组件切换方式二</h4><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- vue提供了component，来展示对应名称的组件 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- component是一个占位符，：is属性可以用来指定要展示的组件的名称 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">component</span> <span class="attr">:is</span>=<span class="string">"componentId"</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>错误使用：<code>&lt;component :is=&quot;counter&quot;&gt;&lt;/component&gt;</code>因为组件名称是一个字符串，在component的is属性用了属性绑定，所以要写<br><code>&lt;component :is=&quot;&#39;counter&#39;&quot;&gt;&lt;/component&gt;</code>使用字符串将其绑定</p>
+<p>总结：当前学习的vue标签：</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">&lt;component&gt;</span>   <span class="attribute">template</span>   transition   transitionGroup</span><br></pre></td></tr></table></figure>
+
+<h4 id="应用切换动画和mode方式"><a href="#应用切换动画和mode方式" class="headerlink" title="应用切换动画和mode方式"></a>应用切换动画和mode方式</h4><p>多个组件的过渡我们不需要使用key属性，我们只需要使用动态组件</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">transition</span> <span class="attr">name</span>=<span class="string">"component-fade"</span> <span class="attr">mode</span>=<span class="string">"out-in"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">component</span> <span class="attr">v-bind:is</span>=<span class="string">"view"</span>&gt;</span><span class="tag">&lt;/<span class="name">component</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">transition</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	<span class="keyword">e</span><span class="variable">l:</span><span class="string">""</span>,</span><br><span class="line">	dat<span class="variable">a:</span>&#123;</span><br><span class="line">		<span class="keyword">vie</span><span class="variable">w:</span><span class="string">'v-a'</span></span><br><span class="line">	&#125;,</span><br><span class="line">	componen<span class="variable">t:</span>&#123;</span><br><span class="line">		<span class="string">'v-a'</span>:&#123;</span><br><span class="line">			template:<span class="string">''</span></span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="string">'v-b'</span>:&#123;</span><br><span class="line">			template:<span class="string">''</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>mode属性的”out-in”指的是先出去的动画结束了才进来，也可以改成”in-out”就是先进来在出去<br>通过mode属性设置组件切换时候的模式。</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/10/21/vue1-03/" title="vue1-day3">http://yoursite.com/2019/10/21/vue1-03/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/19/vue1-02/" rel="next" title="vue1-day2">
+                <i class="fa fa-chevron-left"></i> vue1-day2
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/27/vue1-04/" rel="prev" title="vue1-day4">
+                vue1-day4 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#get"><span class="nav-number">1.</span> <span class="nav-text">get</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#post"><span class="nav-number">2.</span> <span class="nav-text">post</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue中的动画"><span class="nav-number">3.</span> <span class="nav-text">vue中的动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用过渡类名"><span class="nav-number">3.1.</span> <span class="nav-text">使用过渡类名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.2.</span> <span class="nav-text">这是使用Vue.extend创建的组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#null"><span class="nav-number">3.3.</span> <span class="nav-text">这是直接使用Vue.component创建出来的组件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#temp1"><span class="nav-number">3.4.</span> <span class="nav-text">这是通过template元素，在外部定义的组件结构，这个方式，有代码的只能提示个高亮</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#temp1"><span class="nav-number">3.4.1.</span> <span class="nav-text">好用</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">这是私有的login组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#null"><span class="nav-number"></span> <span class="nav-text">这是一个全局组件---</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#tmp1"><span class="nav-number">0.1.</span> <span class="nav-text"></span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件切换"><span class="nav-number">0.2.</span> <span class="nav-text">组件切换</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#组件切换方式二"><span class="nav-number">0.2.1.</span> <span class="nav-text">组件切换方式二</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#应用切换动画和mode方式"><span class="nav-number">0.2.2.</span> <span class="nav-text">应用切换动画和mode方式</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

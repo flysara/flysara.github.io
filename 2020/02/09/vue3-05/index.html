@@ -1,0 +1,1080 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue,vue_shop项目构建笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今日目标1.初始化项目2.基于Vue技术栈进行项目开发3.使用Vue的第三方组件进行项目开发4.理解前后端分离开发模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue_shop项目构建笔记">
+<meta property="og:url" content="http://yoursite.com/2020/02/09/vue3-05/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="今日目标1.初始化项目2.基于Vue技术栈进行项目开发3.使用Vue的第三方组件进行项目开发4.理解前后端分离开发模式">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/%E6%B3%A8%E5%86%8C%E7%A0%81%E4%BA%91.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/%E7%A0%81%E4%BA%91%E7%82%B9%E5%87%BB%E8%AE%BE%E7%BD%AE.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/%E5%88%9B%E5%BB%BA%E5%85%AC%E9%92%A5.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/pub%E6%96%87%E4%BB%B6.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/ssh%E5%85%AC%E9%92%A5.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/success.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%932.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/config.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/%E9%A1%B9%E7%9B%AE%E7%BB%88%E7%AB%AF%E6%89%A7%E8%A1%8C%E5%85%B3%E8%81%94.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/phpStudy.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/mysql.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/postman.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/branch.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/ui%E7%95%8C%E9%9D%A2%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE.jpg">
+<meta property="og:image" content="http://yoursite.com/2020/02/09/vue3-05/images/less.jpg">
+<meta property="article:published_time" content="2020-02-09T07:25:48.000Z">
+<meta property="article:modified_time" content="2020-03-07T07:29:10.342Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="vue_shop项目构建笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://yoursite.com/2020/02/09/vue3-05/images/%E6%B3%A8%E5%86%8C%E7%A0%81%E4%BA%91.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/02/09/vue3-05/"/>
+
+
+
+
+
+  <title>vue_shop项目构建笔记 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/09/vue3-05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue_shop项目构建笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-09T15:25:48+08:00">
+                2020-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/vue-shop/" itemprop="url" rel="index">
+                    <span itemprop="name">vue_shop</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/vue-shop/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="今日目标"><a href="#今日目标" class="headerlink" title="今日目标"></a>今日目标</h3><p>1.初始化项目<br>2.基于Vue技术栈进行项目开发<br>3.使用Vue的第三方组件进行项目开发<br>4.理解前后端分离开发模式</p>
+<a id="more"></a>
+<h3 id="1-电商业务概述"><a href="#1-电商业务概述" class="headerlink" title="1.电商业务概述"></a>1.电商业务概述</h3><p>客户使用的业务服务：PC端，小程序，移动web，移动app<br>管理员使用的业务服务：PC后台管理端。<br>PC后台管理端的功能：管理用户账号（登录，退出，用户管理，权限管理），商品管理（商品分类，分类参数，商品信息，订单），数据统计<br>电商后台管理系统采用前后端分离的开发模式<br>前端项目是基于Vue的SPA（单页应用程序）项目</p>
+<p>前端技术栈:Vue,Vue-Router,Element-UI,Axios,Echarts<br>后端技术栈：Node.js,Express,Jwt(模拟session),Mysql,Sequelize(操作数据库的框架)</p>
+<h3 id="2-项目初始化"><a href="#2-项目初始化" class="headerlink" title="2.项目初始化"></a>2.项目初始化</h3><p>A.安装Vue脚手架<br>B.通过脚手架创建项目<br>C.配置路由<br>D.配置Element-UI:在插件中安装，搜索vue-cli-plugin-element<br>E.配置Axios：在依赖中安装,搜索axios(运行依赖)<br>F.初始化git仓库<br>G.将本地项目托管到github或者码云中</p>
+<h3 id="3-码云相关操作"><a href="#3-码云相关操作" class="headerlink" title="3.码云相关操作"></a>3.码云相关操作</h3><p>A.注册登录码云账号<br><img src="images/%E6%B3%A8%E5%86%8C%E7%A0%81%E4%BA%91.jpg" alt=""></p>
+<p>B.安装git<br>    在Windows上使用Git，可以从Git官网直接下载安装程序进行安装。<br>    测试命令：git –version</p>
+<p>C.点击网站右上角“登录”，登录码云，并进行账号设置<br><img src="images/%E7%A0%81%E4%BA%91%E7%82%B9%E5%87%BB%E8%AE%BE%E7%BD%AE.jpg" alt=""></p>
+<p>D.在本地创建公钥：在终端运行：ssh-keygen -t rsa -C “<a href="mailto:xxx@xxx.com">xxx@xxx.com</a>“<br><img src="images/%E5%88%9B%E5%BB%BA%E5%85%AC%E9%92%A5.jpg" alt=""><br>E.找到公钥地址：<br>Your identification has been saved in /c/Users/My/.ssh/id_rsa.<br>Your public key has been saved in /c/Users/My/.ssh/id_rsa.pub.<br>当我们创建公钥完毕之后，请注意打印出来的信息“Your public key has been saved in”<br>/c/Users/My/.ssh/id_rsa.pub : c盘下面的Users下面的My下面的.ssh下面的id_rsa.pub就是我们创建好的公钥了</p>
+<p>E.打开id_rsa.pub文件，复制文件中的所有代码，点击码云中的SSH公钥，将生成的公钥复制到公钥中<br><img src="images/pub%E6%96%87%E4%BB%B6.jpg" alt=""></p>
+<p><img src="images/ssh%E5%85%AC%E9%92%A5.jpg" alt=""><br>G.测试公钥：打开终端，输入命令<br>ssh -T <a href="mailto:git@gitee.com">git@gitee.com</a><br><img src="images/success.jpg" alt=""></p>
+<p>H.将本地代码托管到码云中<br>点击码云右上角的+号-&gt;新建仓库<br><img src="images/%E6%96%B0%E5%BB%BA%E4%BB%93%E5%BA%93.jpg" alt=""><br><img src="images/%E5%88%9B%E5%BB%BA%E4%BB%93%E5%BA%932.jpg" alt=""></p>
+<p>I.进行git配置：<br><img src="images/config.jpg" alt=""><br>打开项目所在位置的终端，进行git仓库关联<br><img src="images/%E9%A1%B9%E7%9B%AE%E7%BB%88%E7%AB%AF%E6%89%A7%E8%A1%8C%E5%85%B3%E8%81%94.jpg" alt=""></p>
+<h3 id="4-配置后台项目"><a href="#4-配置后台项目" class="headerlink" title="4.配置后台项目"></a>4.配置后台项目</h3><p>A.安装phpStudy并导入mysql数据库数据<br><img src="images/phpStudy.jpg" alt=""></p>
+<p><img src="images/mysql.jpg" alt=""><br>B.安装nodeJS，配置后台项目,从终端打开后台项目vue_api_server<br>然后在终端中输入命令安装项目依赖包：npm install</p>
+<p>C.使用postman测试api接口<br><img src="images/postman.jpg" alt=""></p>
+<h3 id="5-实现登录功能"><a href="#5-实现登录功能" class="headerlink" title="5.实现登录功能"></a>5.实现登录功能</h3><p>A.登录状态保持<br>如果服务器和客户端同源，建议可以使用cookie或者session来保持登录状态<br>如果客户端和服务器跨域了，建议使用token进行维持登录状态。</p>
+<p>B.登录逻辑：<br>在登录页面输入账号和密码进行登录，将数据发送给服务器<br>服务器返回登录的结果，登录成功则返回数据中带有token<br>客户端得到token并进行保存，后续的请求都需要将此token发送给服务器，服务器会验证token以保证用户身份。</p>
+<p>C.添加新分支login，在login分支中开发当前项目vue_shop：<br>打开vue_shop终端，使用git status确定当前项目状态。<br>确定当前工作目录是干净的之后，创建一个分支进行开发，开发完毕之后将其合并到master<br>git checkout -b login<br>然后查看新创建的分支：git branch<br>确定我们正在使用login分支进行开发<br><img src="images/branch.jpg" alt=""></p>
+<p>然后执行vue ui命令打开ui界面，然后运行serve，运行app查看当前项目效果<br><img src="images/ui%E7%95%8C%E9%9D%A2%E5%90%AF%E5%8A%A8%E9%A1%B9%E7%9B%AE.jpg" alt=""></p>
+<p>发现现在是一个默认页面，我们需要进行更改，打开项目的src目录，点击main.js文件（入口文件）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">'./App.vue'</span></span><br><span class="line"><span class="keyword">import</span> router <span class="keyword">from</span> <span class="string">'./router'</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">'./plugins/element.js'</span></span><br><span class="line"></span><br><span class="line">Vue.config.productionTip = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">  router,</span><br><span class="line">  render: <span class="function"><span class="params">h</span> =&gt;</span> h(App)</span><br><span class="line">&#125;).$mount(<span class="string">'#app'</span>)</span><br></pre></td></tr></table></figure>
+<p>再打开App.vue(根组件)，将根组件的内容进行操作梳理(template中留下根节点，script中留下默认导出，去掉组件，style中去掉所有样式)</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">  </span><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    </span><span class="xml"><span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span></span><br><span class="line"><span class="xml">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">export default </span><span class="xquery">&#123;</span></span><br><span class="line"><span class="xquery"> <span class="built_in"> name</span>: <span class="string">'app'</span></span></span><br><span class="line"><span class="xquery">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>再打开router.js(路由)，将routes数组中的路由规则清除，然后将views删除，将components中的helloworld.vue删除</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line">import Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line"><span class="builtin-name">export</span><span class="built_in"> default </span>new Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    </span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>在components文件夹中新建Login.vue组件,添加template，script，style标签,style标签中的scoped可以防止组件之间的样式冲突，没有scoped则样式是全局的</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"login_container"</span>&gt;</span></span><br><span class="line">        </span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  </span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"less"</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.login_container</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="selector-tag">background-color</span>: <span class="selector-id">#2b5b6b</span>;</span></span><br><span class="line">  height: 100%;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>在router.js中导入组件并设置规则<br>在App.vue中添加路由占位符</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">const router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line"><span class="symbol">  routes:</span> [</span><br><span class="line">    &#123; <span class="string">path:</span> <span class="string">'/'</span>, <span class="string">redirect:</span> <span class="string">'/login'</span> &#125;,</span><br><span class="line">    &#123; <span class="string">path:</span> <span class="string">'/login'</span>, <span class="string">component:</span> Login &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>当我们给Login.vue中的内容添加样式的时候，会报错“缺少less-loader”，需要配置less加载器（开发依赖），安装less(开发依赖)<br><img src="images/less.jpg" alt=""><br>然后需要添加公共样式，在assets文件夹下面添加css文件夹，创建global.css文件,添加全局样式</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 全局样式表 */</span></span><br><span class="line"><span class="selector-tag">html</span>,<span class="selector-tag">body</span>,<span class="selector-id">#app</span>&#123;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">100%</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在main.js中导入global.css，使得全局样式生效 import “./assets/css/global.css”<br>然后Login.vue中的根元素也需要设置撑满全屏（height:100%）<br>最终Login.vue文件中的代码如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"login_container"</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 登录盒子  --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"login_box"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 头像 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"avatar_box"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">img</span> <span class="attr">src</span>=<span class="string">"../assets/logo.png"</span> <span class="attr">alt</span>=<span class="string">""</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 登录表单 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-form</span> <span class="attr">:model</span>=<span class="string">"loginForm"</span> <span class="attr">ref</span>=<span class="string">"LoginFormRef"</span> <span class="attr">:rules</span>=<span class="string">"loginFormRules"</span> <span class="attr">label-width</span>=<span class="string">"0px"</span> <span class="attr">class</span>=<span class="string">"login_form"</span>&gt;</span></span><br><span class="line">                <span class="comment">&lt;!-- 用户名 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">prop</span>=<span class="string">"username"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"loginForm.username"</span> <span class="attr">prefix-icon</span>=<span class="string">"iconfont icon-user"</span> &gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span> </span><br><span class="line">                <span class="comment">&lt;!-- 密码 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">prop</span>=<span class="string">"password"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">type</span>=<span class="string">"password"</span> <span class="attr">v-model</span>=<span class="string">"loginForm.password"</span> <span class="attr">prefix-icon</span>=<span class="string">"iconfont icon-3702mima"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span> </span><br><span class="line">                <span class="comment">&lt;!-- 按钮 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">class</span>=<span class="string">"btns"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"primary"</span> @<span class="attr">click</span>=<span class="string">"login"</span>&gt;</span>登录<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"info"</span> @<span class="attr">click</span>=<span class="string">"resetLoginForm"</span>&gt;</span>重置<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span> </span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  data() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">//数据绑定</span></span></span><br><span class="line">      loginForm: &#123;</span><br><span class="line"><span class="actionscript">        username: <span class="string">'admin'</span>,</span></span><br><span class="line"><span class="actionscript">        password: <span class="string">'123456'</span></span></span><br><span class="line">      &#125;,</span><br><span class="line"><span class="actionscript">      <span class="comment">//表单验证规则</span></span></span><br><span class="line">      loginFormRules: &#123;</span><br><span class="line">        username: [</span><br><span class="line"><span class="actionscript">          &#123; required: <span class="literal">true</span>, message: <span class="string">'请输入登录名'</span>, trigger: <span class="string">'blur'</span> &#125;,</span></span><br><span class="line">          &#123;</span><br><span class="line">            min: 3,</span><br><span class="line">            max: 10,</span><br><span class="line"><span class="actionscript">            message: <span class="string">'登录名长度在 3 到 10 个字符'</span>,</span></span><br><span class="line"><span class="actionscript">            trigger: <span class="string">'blur'</span></span></span><br><span class="line">          &#125;</span><br><span class="line">        ],</span><br><span class="line">        password: [</span><br><span class="line"><span class="actionscript">          &#123; required: <span class="literal">true</span>, message: <span class="string">'请输入密码'</span>, trigger: <span class="string">'blur'</span> &#125;,</span></span><br><span class="line">          &#123;</span><br><span class="line">            min: 6,</span><br><span class="line">            max: 15,</span><br><span class="line"><span class="actionscript">            message: <span class="string">'密码长度在 6 到 15 个字符'</span>,</span></span><br><span class="line"><span class="actionscript">            trigger: <span class="string">'blur'</span></span></span><br><span class="line">          &#125;</span><br><span class="line">        ]</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line"><span class="actionscript">  <span class="comment">//添加行为，</span></span></span><br><span class="line">  methods: &#123;</span><br><span class="line"><span class="actionscript">    <span class="comment">//添加表单重置方法</span></span></span><br><span class="line">    resetLoginForm() &#123;</span><br><span class="line"><span class="actionscript">      <span class="comment">//this=&gt;当前组件对象，其中的属性$refs包含了设置的表单ref</span></span></span><br><span class="line"><span class="actionscript">      <span class="comment">//   console.log(this)</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.$refs.LoginFormRef.resetFields()</span></span><br><span class="line">    &#125;,</span><br><span class="line">    login() &#123;</span><br><span class="line"><span class="actionscript">      <span class="comment">//点击登录的时候先调用validate方法验证表单内容是否有误</span></span></span><br><span class="line"><span class="javascript">      <span class="keyword">this</span>.$refs.LoginFormRef.validate(<span class="keyword">async</span> valid =&gt; &#123;</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(<span class="keyword">this</span>.loginFormRules)</span></span><br><span class="line"><span class="actionscript">        <span class="comment">//如果valid参数为true则验证通过</span></span></span><br><span class="line">        if (!valid) &#123;</span><br><span class="line"><span class="actionscript">          <span class="keyword">return</span></span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="comment">//发送请求进行登录</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> &#123; <span class="attr">data</span>: res &#125; = <span class="keyword">await</span> <span class="keyword">this</span>.$http.post(<span class="string">'login'</span>, <span class="keyword">this</span>.loginForm)</span></span><br><span class="line"><span class="actionscript">        <span class="comment">//   console.log(res);</span></span></span><br><span class="line">        if (res.meta.status !== 200) &#123;</span><br><span class="line"><span class="actionscript">          <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'登录失败:'</span> + res.meta.msg) <span class="comment">//console.log("登录失败:"+res.meta.msg)</span></span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.$message.success(<span class="string">'登录成功'</span>)</span></span><br><span class="line"><span class="javascript">        <span class="built_in">console</span>.log(res)</span></span><br><span class="line"><span class="actionscript">        <span class="comment">//保存token</span></span></span><br><span class="line"><span class="javascript">        <span class="built_in">window</span>.sessionStorage.setItem(<span class="string">'token'</span>, res.data.token)</span></span><br><span class="line"><span class="actionscript">        <span class="comment">// 导航至/home</span></span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.$router.push(<span class="string">'/home'</span>)</span></span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"less"</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="css"><span class="selector-class">.login_container</span> &#123;</span></span><br><span class="line"><span class="css">  <span class="selector-tag">background-color</span>: <span class="selector-id">#2b5b6b</span>;</span></span><br><span class="line">  height: 100%;</span><br><span class="line">&#125;</span><br><span class="line"><span class="css"><span class="selector-class">.login_box</span> &#123;</span></span><br><span class="line">  width: 450px;</span><br><span class="line">  height: 300px;</span><br><span class="line"><span class="css">  <span class="selector-tag">background</span>: <span class="selector-id">#fff</span>;</span></span><br><span class="line">  border-radius: 3px;</span><br><span class="line">  position: absolute;</span><br><span class="line">  left: 50%;</span><br><span class="line">  top: 50%;</span><br><span class="line">  transform: translate(-50%, -50%);</span><br><span class="line"><span class="css">  <span class="selector-class">.avatar_box</span> &#123;</span></span><br><span class="line">    height: 130px;</span><br><span class="line">    width: 130px;</span><br><span class="line"><span class="css">    <span class="selector-tag">border</span>: 1<span class="selector-tag">px</span> <span class="selector-tag">solid</span> <span class="selector-id">#eee</span>;</span></span><br><span class="line">    border-radius: 50%;</span><br><span class="line">    padding: 10px;</span><br><span class="line"><span class="css">    <span class="selector-tag">box-shadow</span>: 0 0 10<span class="selector-tag">px</span> <span class="selector-id">#ddd</span>;</span></span><br><span class="line">    position: absolute;</span><br><span class="line">    left: 50%;</span><br><span class="line">    transform: translate(-50%, -50%);</span><br><span class="line"><span class="css">    <span class="selector-tag">background-color</span>: <span class="selector-id">#fff</span>;</span></span><br><span class="line">    img &#123;</span><br><span class="line">      width: 100%;</span><br><span class="line">      height: 100%;</span><br><span class="line">      border-radius: 50%;</span><br><span class="line"><span class="css">      <span class="selector-tag">background-color</span>: <span class="selector-id">#eee</span>;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="css"><span class="selector-class">.login_form</span> &#123;</span></span><br><span class="line">  position: absolute;</span><br><span class="line">  bottom: 0;</span><br><span class="line">  width: 100%;</span><br><span class="line">  padding: 0 20px;</span><br><span class="line">  box-sizing: border-box;</span><br><span class="line">&#125;</span><br><span class="line"><span class="css"><span class="selector-class">.btns</span> &#123;</span></span><br><span class="line">  display: flex;</span><br><span class="line">  justify-content: flex-end;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>其中我们有用到一下内容，需要进行进一步处理：</p>
+<p>A.添加element-ui的表单组件<br>在plugins文件夹中打开element.js文件，进行elementui的按需导入<br>import Vue from ‘vue’<br>import { Button } from ‘element-ui’<br>import { Form, FormItem } from ‘element-ui’<br>import { Input } from ‘element-ui’</p>
+<p>Vue.use(Button)<br>Vue.use(Form)<br>Vue.use(FormItem)<br>Vue.use(Input)</p>
+<p>B.添加第三方字体<br>复制素材中的fonts文件夹到assets中,在入口文件main.js中导入import ‘./assets/fonts/iconfont.css’<br>然后直接在 <el-input prefix-icon="iconfont icon-3702mima"></el-input><br>接着添加登录盒子</p>
+<p>C.添加表单验证的步骤<br>1).给<el-form>添加属性:rules=”rules”，rules是一堆验证规则，定义在script、中<br>2).在script中添加rules：export default{ data(){return{……, rules: {<br>          name: [<br>            { required: true, message: ‘请输入活动名称’, trigger: ‘blur’ },<br>            { min: 3, max: 5, message: ‘长度在 3 到 5 个字符’, trigger: ‘blur’ }<br>          ],<br>          region: [<br>            { required: true, message: ‘请选择活动区域’, trigger: ‘change’ }<br>          ]<br>}……<br>3).通过<el-form-item>的prop属性设置验证规则<el-form-item label="活动名称" prop="name"></p>
+<p>4.导入axios以发送ajax请求<br>打开main.js，import axios from ‘axios’;<br>设置请求的根路径：axios.defaults.baseURL = ‘<a href="http://127.0.0.1:8888/api/private/v1/&#39;" target="_blank" rel="noopener">http://127.0.0.1:8888/api/private/v1/&#39;</a>;<br>挂载axios：Vue.prototype.$http = axios;</p>
+<p>5.配置弹窗提示：<br>在plugins文件夹中打开element.js文件，进行elementui的按需导入<br>import {Message} from ‘element-ui’<br>进行全局挂载：Vue.prototype.$message = Message;<br>在login.vue组件中编写弹窗代码：this.$message.error(‘登录失败’)</p>
+<h3 id="6-登录成功之后的操作"><a href="#6-登录成功之后的操作" class="headerlink" title="6.登录成功之后的操作"></a>6.登录成功之后的操作</h3><p>A.登录成功之后，需要将后台返回的token保存到sessionStorage中<br>操作完毕之后，需要跳转到/home</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">login() &#123;</span><br><span class="line">      <span class="comment">//点击登录的时候先调用validate方法验证表单内容是否有误</span></span><br><span class="line">      <span class="keyword">this</span>.$refs.LoginFormRef.validate(async valid =&gt; &#123;</span><br><span class="line">        console.log(<span class="keyword">this</span>.loginFormRules)</span><br><span class="line">        <span class="comment">//如果valid参数为true则验证通过</span></span><br><span class="line">        <span class="keyword">if</span> (!valid) &#123;</span><br><span class="line">          <span class="keyword">return</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//发送请求进行登录</span></span><br><span class="line">        <span class="keyword">const</span> &#123; <span class="keyword">data</span>: res &#125; = await <span class="keyword">this</span>.$http.post(<span class="string">'login'</span>, <span class="keyword">this</span>.loginForm)</span><br><span class="line">        <span class="comment">//   console.log(res);</span></span><br><span class="line">        <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'登录失败:'</span> + res.meta.msg) <span class="comment">//console.log("登录失败:"+res.meta.msg)</span></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.$message.success(<span class="string">'登录成功'</span>)</span><br><span class="line">        console.log(res)</span><br><span class="line">        <span class="comment">//保存token</span></span><br><span class="line">        window.sessionStorage.setItem(<span class="string">'token'</span>, res.<span class="keyword">data</span>.token)</span><br><span class="line">        <span class="comment">// 导航至/home</span></span><br><span class="line">        <span class="keyword">this</span>.$router.push(<span class="string">'/home'</span>)</span><br><span class="line">      &#125;)</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+<p>添加一个组件Home.vue，并为之添加规则</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        this is home</span><br><span class="line">        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"info"</span> @<span class="attr">click</span>=<span class="string">"logout"</span>&gt;</span> 退出 <span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  methods: &#123;</span><br><span class="line">    logout() &#123;</span><br><span class="line"><span class="javascript">      <span class="built_in">window</span>.sessionStorage.clear()</span></span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.$router.push(<span class="string">'/login'</span>)</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">'less'</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>添加路由规则</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const router = <span class="keyword">new</span> Router(&#123;</span><br><span class="line"><span class="symbol">  routes:</span> [</span><br><span class="line">    &#123; <span class="string">path:</span> <span class="string">'/'</span>, <span class="string">redirect:</span> <span class="string">'/login'</span> &#125;,</span><br><span class="line">    &#123; <span class="string">path:</span> <span class="string">'/login'</span>, <span class="string">component:</span> Login &#125;,</span><br><span class="line">    &#123; <span class="string">path:</span> <span class="string">'/home'</span>, <span class="string">component:</span> Home &#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+<p>添加路由守卫<br>如果用户没有登录，不能访问/home,如果用户通过url地址直接访问，则强制跳转到登录页面<br>打开router.js</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">'vue'</span></span><br><span class="line"><span class="keyword">import</span> Router <span class="keyword">from</span> <span class="string">'vue-router'</span></span><br><span class="line"><span class="keyword">import</span> <span class="keyword">Login</span> <span class="keyword">from</span> <span class="string">'./components/Login.vue'</span></span><br><span class="line"><span class="keyword">import</span> Home <span class="keyword">from</span> <span class="string">'./components/Home.vue'</span></span><br><span class="line"></span><br><span class="line">Vue.use(Router)</span><br><span class="line"></span><br><span class="line">const router = <span class="built_in">new</span> Router(&#123;</span><br><span class="line">  routes: [</span><br><span class="line">    &#123; <span class="type">path</span>:<span class="string">'/'</span>, redirect:<span class="string">'/login'</span>&#125;,</span><br><span class="line">    &#123; <span class="type">path</span>:<span class="string">'/login'</span> , component:<span class="keyword">Login</span> &#125;,</span><br><span class="line">    &#123; <span class="type">path</span>:<span class="string">'/home'</span> , component:Home&#125;</span><br><span class="line">  ]</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">//挂载路由导航守卫,<span class="keyword">to</span>表示将要访问的路径，<span class="keyword">from</span>表示从哪里来，next是下一个要做的操作</span><br><span class="line">router.beforeEach((<span class="keyword">to</span>,<span class="keyword">from</span>,next)=&gt;&#123; </span><br><span class="line">  <span class="keyword">if</span>(<span class="keyword">to</span>.path === <span class="string">'/login'</span>)</span><br><span class="line">    <span class="keyword">return next</span>();</span><br><span class="line">  </span><br><span class="line">  //获取token</span><br><span class="line">  const tokenStr = <span class="keyword">window</span>.sessionStorage.getItem(<span class="string">'token'</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(!tokenStr)</span><br><span class="line">    <span class="keyword">return next</span>(<span class="string">'/login'</span>);</span><br><span class="line"></span><br><span class="line">  next();</span><br><span class="line"></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">export <span class="keyword">default</span> router</span><br></pre></td></tr></table></figure>
+
+<p>实现退出功能<br>在Home组件中添加一个退出功能按钮,给退出按钮添加点击事件，添加事件处理代码如下：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="builtin-name">export</span><span class="built_in"> default </span>&#123;</span><br><span class="line">    methods:&#123;</span><br><span class="line">        logout()&#123;</span><br><span class="line">            window.sessionStorage.clear();</span><br><span class="line">            this.<span class="variable">$router</span>.push(<span class="string">'/login'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>A.处理ESLint警告<br>打开脚手架面板，查看警告信息<br>[图片]<br>默认情况下，ESLint和vscode格式化工具有冲突，需要添加配置文件解决冲突。<br>在项目根目录添加 .prettierrc 文件</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"semi"</span>:<span class="literal">false</span>,</span><br><span class="line">    <span class="attr">"singleQuote"</span>:<span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打开.eslintrc.js文件，禁用对 space-before-function-paren 的检查:</p>
+<figure class="highlight sml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">rules: &#123;</span><br><span class="line">  <span class="symbol">'no</span>-console': process.env.<span class="type">NODE_ENV</span> === <span class="symbol">'production'</span> ? <span class="symbol">'error'</span> : <span class="symbol">'off'</span>,</span><br><span class="line">  <span class="symbol">'no</span>-debugger': process.env.<span class="type">NODE_ENV</span> === <span class="symbol">'production'</span> ? <span class="symbol">'error'</span> : <span class="symbol">'off'</span>,</span><br><span class="line">  <span class="symbol">'space</span>-before-function-paren' : <span class="number">0</span></span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+<p>B.合并按需导入的element-ui</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import Vue from 'vue'</span><br><span class="line">import &#123; Button, Form, FormItem, Input, Message &#125; from 'element-ui'</span><br><span class="line"></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Vue</span>.</span></span>use(Button)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Vue</span>.</span></span>use(Form)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Vue</span>.</span></span>use(FormItem)</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Vue</span>.</span></span>use(Input)</span><br><span class="line"><span class="comment">// 进行全局挂载：</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Vue</span>.</span></span>prototype.$message = Message</span><br></pre></td></tr></table></figure>
+
+<p>C.将代码提交到码云<br>新建一个项目终端,输入命令‘git status’查看修改过的与新增的文件内容<br>将所有文件添加到暂存区：git add .<br>将所有代码提交到本地仓库：git commit -m “添加登录功能以及/home的基本结构”<br>查看分支： git branch  发现所有代码都被提交到了login分支<br>将login分支代码合并到master主分支，先切换到master：git checkout master<br>在master分支进行代码合并：git merge login<br>将本地的master推送到远端的码云：git push</p>
+<p>推送本地的子分支到码云，先切换到子分支：git checkout 分支名<br>然后推送到码云：git push -u origin 远端分支名</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/02/09/vue3-05/" title="vue_shop项目构建笔记">http://yoursite.com/2020/02/09/vue3-05/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+            <a href="/tags/vue-shop%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> vue_shop项目构建笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/07/vue3-04/" rel="next" title="vue_shop项目构建笔记">
+                <i class="fa fa-chevron-left"></i> vue_shop项目构建笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/17/vue3-06/" rel="prev" title="vue_shop项目构建笔记">
+                vue_shop项目构建笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#今日目标"><span class="nav-number">1.</span> <span class="nav-text">今日目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-电商业务概述"><span class="nav-number">2.</span> <span class="nav-text">1.电商业务概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-项目初始化"><span class="nav-number">3.</span> <span class="nav-text">2.项目初始化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-码云相关操作"><span class="nav-number">4.</span> <span class="nav-text">3.码云相关操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-配置后台项目"><span class="nav-number">5.</span> <span class="nav-text">4.配置后台项目</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-实现登录功能"><span class="nav-number">6.</span> <span class="nav-text">5.实现登录功能</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-登录成功之后的操作"><span class="nav-number">7.</span> <span class="nav-text">6.登录成功之后的操作</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充"><span class="nav-number">8.</span> <span class="nav-text">补充</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

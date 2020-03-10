@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="面经,Vue双向绑定原理," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="参考文章- 摘要Vue内部通过Obeject.defineProperty方法属性拦截的方式，把data对象里每个数据的读写转化为getter&#x2F;setter，当数据变化时通知视图更新。 思路分析MVVM数据双向绑定：数据变化时更新视图，视图变化时更新数据。也就是说：  输入框内容变化时，data中的数据同步变化。即view &#x3D;&gt; model的变化 data中的数据变化时，文本节点的内容同步变">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue双向绑定原理">
+<meta property="og:url" content="http://yoursite.com/2020/03/01/%E9%9D%A2%E7%BB%8F01/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="参考文章- 摘要Vue内部通过Obeject.defineProperty方法属性拦截的方式，把data对象里每个数据的读写转化为getter&#x2F;setter，当数据变化时通知视图更新。 思路分析MVVM数据双向绑定：数据变化时更新视图，视图变化时更新数据。也就是说：  输入框内容变化时，data中的数据同步变化。即view &#x3D;&gt; model的变化 data中的数据变化时，文本节点的内容同步变">
+<meta property="article:published_time" content="2020-03-01T12:06:18.000Z">
+<meta property="article:modified_time" content="2020-03-09T09:02:50.785Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="面经">
+<meta property="article:tag" content="Vue双向绑定原理">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/01/面经01/"/>
+
+
+
+
+
+  <title>Vue双向绑定原理 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/%E9%9D%A2%E7%BB%8F01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Vue双向绑定原理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-01T20:06:18+08:00">
+                2020-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E9%9D%A2%E7%BB%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">面经</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><a href="https://www.cnblogs.com/wangjiachen666/p/9883916.html" target="_blank" rel="noopener">参考文章</a>-</p>
+<h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>Vue内部通过<code>Obeject.defineProperty</code>方法属性拦截的方式，把<code>data</code>对象里每个数据的读写转化为<code>getter/setter</code>，当数据变化时通知视图更新。</p>
+<h3 id="思路分析"><a href="#思路分析" class="headerlink" title="思路分析"></a>思路分析</h3><p>MVVM数据双向绑定：数据变化时更新视图，视图变化时更新数据。<br>也就是说：</p>
+<ul>
+<li>输入框内容变化时，data中的数据同步变化。即view =&gt; model的变化</li>
+<li>data中的数据变化时，文本节点的内容同步变化。即model =&gt; view 的变化<a id="more"></a>
+要实现这个过程，关键点在于数据变化时如何更新视图，因为视图变化更新数据我们可以通过事件的监听方式来实现。所以着重讨论数据变化如何更新视图。</li>
+</ul>
+<p>数据变化的关键点在于是怎么知道数据发生了变化，知道数据在何时发生了变化，那我们就只需在数据变化的时候取更新视图即可。</p>
+<h3 id="使数据对象变得“可观测”"><a href="#使数据对象变得“可观测”" class="headerlink" title="使数据对象变得“可观测”"></a>使数据对象变得“可观测”</h3><p>数据的每次读和写都能够被看见，即我们能够知道数据什么时候被读取了或者数据什么时候被改写了，这种特性被称为数据的“可观测”</p>
+<p>要将数据变成可观测的，就需要借助<code>Object.defineProperty</code>方法了，MDN的介绍如下：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Object</span>.</span></span>define<span class="constructor">Property()</span>方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回这个对象。</span><br></pre></td></tr></table></figure>
+
+<p>我们就可以使用这个方法让数据变得“可观测”<br>首先，我们定义一个数据对象<code>car</code>:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">let</span> car = &#123;</span><br><span class="line">	<span class="string">'brand'</span>: <span class="string">'BMW'</span>,</span><br><span class="line">	<span class="string">'price'</span>: 3000</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>我们定义了<code>car</code>的品牌<code>brand</code>是<code>BMW</code>，价格<code>price</code>是3000.现在就可以通过<code>car.brand</code>和<code>car.price</code>直接读写这个car对应的属性值。但是当这个car的属性被读取或被修改时，我们并不知情。那么应该怎么让car主动告诉我们它被修改了呢。</p>
+<p>使用<code>object.defineProperty</code>改写上面的例子：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> car = &#123;&#125;</span><br><span class="line"><span class="keyword">let</span> val = <span class="number">3000</span></span><br><span class="line"><span class="built_in">Object</span>.defineProperty(car, <span class="string">'price'</span>, &#123;</span><br><span class="line">	<span class="keyword">get</span>() &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'price属性被读取了'</span>)</span><br><span class="line">		<span class="keyword">return</span> val</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="keyword">set</span>(newVal) &#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="string">'price属性被修改了'</span>)</span><br><span class="line">		val = newVal</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<p>使用<code>Object.defineProperty()</code>方法给<code>car</code>定义了一个price属性，并把这个属性的读和写分别使用<code>get()</code>和<code>set()</code>进行拦截，每当该属性进行读和写的操作的时候就会触发才<code>get()</code>和<code>set()</code>。<br>这样的化，<code>car</code>就已经可以主动告诉我们它的属性的读写情况了，这就意味着这个<code>car</code>对象已经是“可观测”的。</p>
+<p>把car的所有属性都变得可观测的，可以编写如下函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 把一个对象的每一项都转化成可观测对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">observable</span> (<span class="params">obj</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">if</span> (!obj || <span class="keyword">typeof</span> obj !== <span class="string">'object'</span>) &#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">let</span> keys = <span class="built_in">Object</span>.keys(obj)</span><br><span class="line">	keys.forEach(<span class="function"><span class="params">key</span> =&gt;</span> &#123;</span><br><span class="line">		defineReactive(obj, key, obj[key])</span><br><span class="line">		&#125;)</span><br><span class="line">	<span class="keyword">return</span> obj</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 使一个对象转化成可观测对象</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defineReactive</span>(<span class="params">obj, key, val</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">			<span class="keyword">get</span>() &#123;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>属性被读取了`</span>)</span><br><span class="line">				<span class="keyword">return</span> val</span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="keyword">set</span>(newVal) &#123;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>属性被修改了`</span>)</span><br><span class="line">				val = newVal</span><br><span class="line">			&#125;</span><br><span class="line">			&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样就可以把car定义成为可观测的对象了</p>
+<h3 id="依赖收集"><a href="#依赖收集" class="headerlink" title="依赖收集"></a>依赖收集</h3><p>完成了数据的可观测，我们就可以知道数据在什么时候被读或写了，那么我们就可以在数据被读或者写的时候通知哪些依赖该数据的视图更新了。为了方便，我们需要先将所有的依赖对象收集起来，一旦数据发生变化，就统一通知更新。这就是典型的<code>发布订阅者</code>模式，数据变化为“发布者”，依赖对象为“订阅者”。</p>
+<p>现在我们需要创建一个依赖收集容器，也就是消息订阅器Dep，用来容纳所有的“订阅者”。订阅器Dep主要负责收集订阅者，然后当数据变化的时候执行对应订阅者的更新函数。</p>
+<p>创建消息订阅器Dep：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Dep</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>() &#123;</span><br><span class="line">		<span class="keyword">this</span>.subs = []</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// 增加订阅者</span></span><br><span class="line">	addSub(sub)&#123;</span><br><span class="line">		<span class="keyword">this</span>.subs.push(sub)</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// 判断是否增加订阅者</span></span><br><span class="line">	depend() &#123;</span><br><span class="line">		<span class="keyword">if</span>(Dep.target) &#123;</span><br><span class="line">			<span class="keyword">this</span>.addSun(Dep.target)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="comment">// 通知订阅者更新</span></span><br><span class="line">	notify() &#123;</span><br><span class="line">		<span class="keyword">this</span>.subs.forEach(sub =&gt; &#123;</span><br><span class="line">			sub.update()</span><br><span class="line">			&#125;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">Dep.target = <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+<p>有了订阅器，再将<code>defineReactive</code>函数进行改造一下，向其植入订阅器</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">defineReactive</span> (<span class="params">obj, key, val</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">let</span> dep = <span class="keyword">new</span> Dep()</span><br><span class="line">	<span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">			<span class="keyword">get</span>() &#123;</span><br><span class="line">				dep.depend()</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>属性被读取了`</span>)</span><br><span class="line">				<span class="keyword">return</span> val</span><br><span class="line">			&#125;,</span><br><span class="line">			<span class="keyword">set</span>(newVal) &#123;</span><br><span class="line">				<span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;key&#125;</span>属性被修改了`</span>)</span><br><span class="line">				val = newVal</span><br><span class="line">				dep.notify() <span class="comment">// 数据变化时通知所有订阅者</span></span><br><span class="line">			&#125;</span><br><span class="line">			&#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我们设计了一个订阅器Dep类，该类里面定义了一些属性和方法，这里需要特别主义的是它有一个静态属性<code>target</code>,这是一个全局唯一的<code>watcher</code>，这是以恶搞非常巧妙的设计，因为在同一时间只能有一个全局的<code>watcher</code>被计算，另外它的<code>subs</code>自身属性也是<code>watcher</code>的数组。</p>
+<p>将订阅器Dep添加订阅者的操作设计在<code>getter</code>里面，这是为了让<code>watcher</code>初始化时进行触发，因此需要判断是否添加订阅者。在<code>setter</code>函数里面，如果数据变化，就回去通知所有订阅者，订阅者们就会去执行对应的更新的函数。</p>
+<p>到此，订阅器Dep设计完毕，接下来我们设计订阅者watcher。</p>
+<h3 id="订阅者watcher"><a href="#订阅者watcher" class="headerlink" title="订阅者watcher"></a>订阅者watcher</h3><p>订阅者<code>watcher</code>在初始化的时候需要将自己添加进订阅器<code>Dep</code>中，那么该如何添加呢？我们已经知道监听器<code>Observer</code>是在<code>get</code>函数执行了添加订阅者<code>watcher</code>的操作的，所以我们只要在订阅者<code>watcher</code>初始化的时候触发对应的<code>get</code>函数去执行添加订阅者操作即可，那要如何触发<code>get</code>函数呢？只要获取对应的属性值就可以触发了，核心原因就是因为我们使用了<code>Object.defineProperty()</code>进行数据监听。我们只要在订阅者<code>watcher</code>初始化的时候才需要添加订阅者。所以需要做一个判断操作，因此可以在订阅器上做一下手脚：在<code>Dep.target</code>上缓存下订阅者，添加成功后在未将其去掉就可以了。订阅者<code>watcher</code>的实现如下：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Watcher</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span>(vm, exp, cb) &#123;</span><br><span class="line">		<span class="keyword">this</span>.vm = vm</span><br><span class="line">		<span class="keyword">this</span>.exp = exp</span><br><span class="line">		<span class="keyword">this</span>.cb = cb</span><br><span class="line">		<span class="keyword">this</span>.value = <span class="keyword">this</span>.<span class="keyword">get</span>()  <span class="comment">//将自己添加到订阅器的操作</span></span><br><span class="line">	&#125;,</span><br><span class="line">	update() &#123;</span><br><span class="line">		let value = <span class="keyword">this</span>.vm.<span class="keyword">data</span>[<span class="keyword">this</span>.exp]</span><br><span class="line">		let oldVal = <span class="keyword">this</span>.value</span><br><span class="line">		<span class="keyword">if</span> (value !== oldVal) &#123;</span><br><span class="line">			<span class="keyword">this</span>.value = value</span><br><span class="line">			<span class="keyword">this</span>.cb.call(<span class="keyword">this</span>.vm, value, oldVal)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="keyword">get</span>() &#123;</span><br><span class="line">		Dep.target = <span class="keyword">this</span> <span class="comment">//缓存自己</span></span><br><span class="line">		let value = <span class="keyword">this</span>.vm.<span class="keyword">data</span>[<span class="keyword">this</span>.exp] <span class="comment">//强制执行监听器里的get函数</span></span><br><span class="line">		Dep.target = <span class="literal">null</span> <span class="comment">//释放自己</span></span><br><span class="line">		<span class="keyword">return</span> value</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>订阅者是一个类，在他的构造函数中，定义了一些属性：</p>
+<ul>
+<li>vm：一个Vue的实例对象</li>
+<li>exp：时node节点的v-model或v-on：clock等指令的属性值。如<code>v-model=&#39;name&#39;</code>，exp就是name</li>
+<li>cb： 时watcher绑定的更新函数</li>
+</ul>
+<p>当我们去实例化一个渲染<code>Watcher</code>的时候，首先进入watcher的构造函数逻辑，就会执行它的this.get()方法，进入get函数，首先会执行：</p>
+<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Dep.<span class="keyword">target</span> = <span class="keyword">this</span> <span class="comment">//缓存自己</span></span><br></pre></td></tr></table></figure>
+<p>实际上九十八Dep.target赋值为当前的渲染watcher，接着又执行了：</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">let value = <span class="keyword">this</span>.vm.<span class="keyword">data</span>[<span class="keyword">this</span>.exp]<span class="comment">// 强制执行监听器里的get函数</span></span><br></pre></td></tr></table></figure>
+<p>因为当前vm的数据依赖收集已经完成，那么对应的渲染Dep.target也需要改变。而update（）函数是用来当数据发生变化时调用watcher自身的更新函数进行更新的操作。先通过<code>let value = this.vm.data[this.exp]</code>获取到最新的数据，然后将其与之前get（）获得的旧数据进行比较，如果不一样，则调用cb进行更新。<br>至此，简单的订阅者设计完毕</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>实现数据的双向绑定，首先要对数据进行劫持监听，所以需要设置一个监听器observer，用来监听所有属性。如果属性发生变化了，就需要告诉订阅者watcher看是否需要更新。因为订阅者是有很多个，所以我们需要有一个消息订阅器Dep来专门收集这些订阅者，然后在监听器observer和订阅者watcher之间进行统一管理的。</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/03/01/%E9%9D%A2%E7%BB%8F01/" title="Vue双向绑定原理">http://yoursite.com/2020/03/01/%E9%9D%A2%E7%BB%8F01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E9%9D%A2%E7%BB%8F/" rel="tag"><i class="fa fa-tag"></i> 面经</a>
+          
+            <a href="/tags/Vue%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E5%8E%9F%E7%90%86/" rel="tag"><i class="fa fa-tag"></i> Vue双向绑定原理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/01/%E9%9D%A2%E7%BB%8F00/" rel="next" title="watch和computed对比">
+                <i class="fa fa-chevron-left"></i> watch和computed对比
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/01/%E9%9D%A2%E7%BB%8F02/" rel="prev" title="Vue数据传递的方法">
+                Vue数据传递的方法 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#摘要"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#思路分析"><span class="nav-number">2.</span> <span class="nav-text">思路分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使数据对象变得“可观测”"><span class="nav-number">3.</span> <span class="nav-text">使数据对象变得“可观测”</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖收集"><span class="nav-number">4.</span> <span class="nav-text">依赖收集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#订阅者watcher"><span class="nav-number">5.</span> <span class="nav-text">订阅者watcher</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">6.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

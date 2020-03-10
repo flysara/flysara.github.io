@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="说明这一部分是针对于vue1进行的一些补充。这是看了视频VUE全家桶做的一些补充。  声明式编程： 模板的结构和最终显示的效果基本一致     模板语法指令 v-cloak背后的原理：先通过样式隐藏内容，然后再内存中进行值的替换，替换好以后再显示最终的结果 v-text 相比较v-cloak更加简洁 v-html 不安全，本站内部数据可以使用，来自第三方数据不可使用 v-pre 显示原始信息，跳过">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue2-01">
+<meta property="og:url" content="http://yoursite.com/2019/12/08/vue2-01/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="说明这一部分是针对于vue1进行的一些补充。这是看了视频VUE全家桶做的一些补充。  声明式编程： 模板的结构和最终显示的效果基本一致     模板语法指令 v-cloak背后的原理：先通过样式隐藏内容，然后再内存中进行值的替换，替换好以后再显示最终的结果 v-text 相比较v-cloak更加简洁 v-html 不安全，本站内部数据可以使用，来自第三方数据不可使用 v-pre 显示原始信息，跳过">
+<meta property="article:published_time" content="2019-12-08T09:18:24.000Z">
+<meta property="article:modified_time" content="2020-02-19T03:15:00.828Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/12/08/vue2-01/"/>
+
+
+
+
+
+  <title>vue2-01 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/12/08/vue2-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue2-01</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-08T17:18:24+08:00">
+                2019-12-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/Vue2/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue2</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h1><p>这一部分是针对于vue1进行的一些补充。这是看了视频VUE全家桶做的一些补充。</p>
+<ul>
+<li>声明式编程：<ul>
+<li>模板的结构和最终显示的效果基本一致 </li>
+</ul>
+</li>
+</ul>
+<h2 id="模板语法"><a href="#模板语法" class="headerlink" title="模板语法"></a>模板语法</h2><h3 id="指令"><a href="#指令" class="headerlink" title="指令"></a>指令</h3><ul>
+<li>v-cloak背后的原理：先通过样式隐藏内容，然后再内存中进行值的替换，替换好以后再显示最终的结果</li>
+<li>v-text 相比较v-cloak更加简洁</li>
+<li>v-html 不安全，本站内部数据可以使用，来自第三方数据不可使用</li>
+<li>v-pre 显示原始信息，跳过编译过程<a id="more"></a>
+
+</li>
+</ul>
+<h3 id="数据响应式"><a href="#数据响应式" class="headerlink" title="数据响应式"></a>数据响应式</h3><ul>
+<li>理解数据响应式<ul>
+<li>html5中的响应式（屏幕尺寸改变导致样式的变化）</li>
+<li>数据的响应式（数据的变化会导致页面内容的变化）</li>
+</ul>
+</li>
+<li>什么是数据绑定<ul>
+<li>数据绑定：将数据填充到标签中</li>
+</ul>
+</li>
+<li>v-once只编译一次<ul>
+<li>显示内容之后不再具有响应式的功能</li>
+<li>应用场景：如果现实的信息后续不需要修改，这样可以提高性能（如果使用方法会不停的监听）</li>
+</ul>
+</li>
+</ul>
+<h3 id="事件"><a href="#事件" class="headerlink" title="事件"></a>事件</h3><ul>
+<li>如果事件直接绑定函数名称，那么默认会传递事件对象作为事件函数的第一个参数</li>
+<li>如果事件绑定函数调用，那么事件对象必须作为最后一个参数显示传递，并且事件对象的名称是$event</li>
+<li>事件默认是由冒泡的</li>
+<li>v-model的底层实现原理：<figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">input</span> v-<span class="keyword">bind</span>:value=<span class="string">"msg"</span> v-on:<span class="keyword">input</span>=<span class="string">"msg=$event.target.value"</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//另一种方法</span></span><br><span class="line">&lt;<span class="keyword">input</span> v-<span class="keyword">bind</span>:value=<span class="string">"msg"</span> v-on:<span class="keyword">input</span>=<span class="string">"handle"</span>&gt;</span><br><span class="line">&#123;</span><br><span class="line">	data:&#123;</span><br><span class="line">		msg:''</span><br><span class="line">	&#125;,</span><br><span class="line">	methods:&#123;</span><br><span class="line">		handle: <span class="keyword">function</span>(<span class="keyword">event</span>)&#123;</span><br><span class="line">			<span class="comment">//使用输入域中最新的数据覆盖原来的数据</span></span><br><span class="line">			<span class="keyword">this</span><span class="variable">.msg</span> = <span class="keyword">event</span><span class="variable">.target</span><span class="variable">.value</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="样式绑定"><a href="#样式绑定" class="headerlink" title="样式绑定"></a>样式绑定</h3><p>相关细节：</p>
+<ul>
+<li>对象绑定和数组绑定可以结合使用 [class1,class2,[class3:isTrue]]</li>
+<li>class绑定的值可以简化操作</li>
+<li>默认的class如何处理(默认的不会被覆盖，只会被合并)</li>
+</ul>
+<p>class绑定的样式类样式，style绑定的是内联样式。</p>
+<h3 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h3><ul>
+<li>v-for循环中key的作用：帮助vue区分不同的元素，从而提高性能。</li>
+<li>v-if和v-for可以结合使用</li>
+</ul>
+<h2 id="Vue常用特性"><a href="#Vue常用特性" class="headerlink" title="Vue常用特性"></a>Vue常用特性</h2><p>表单操作、自定义指令、计算属性、监听器、过滤器、生命周期</p>
+<h3 id="表单操作"><a href="#表单操作" class="headerlink" title="表单操作"></a>表单操作</h3><ul>
+<li>input单行文本</li>
+<li>textarea 多行文本</li>
+<li>select 下拉选择框</li>
+<li>radio 单选框</li>
+<li>checkbox 多选框</li>
+</ul>
+<h4 id="表单修饰符"><a href="#表单修饰符" class="headerlink" title="表单修饰符"></a>表单修饰符</h4><ul>
+<li>number 将输入的转化为数值</li>
+<li>trim 去掉开始和结尾的空格</li>
+<li>lazy 将input事件转换为change事件（change事件是要失去焦点的时候才会触发，而input只要是有变化就触发）<ul>
+<li>一般用来注册用户名，输入完了再去验证</li>
+</ul>
+</li>
+</ul>
+<p><b>lazy事件可以用来验证用户注册名字，是否被占用</b></p>
+<h3 id="computed-VS-methods"><a href="#computed-VS-methods" class="headerlink" title="computed VS methods"></a>computed VS methods</h3><ul>
+<li>computed 是基于依赖的，具有缓存特性，优化内存特性</li>
+<li>methods方法不进行缓存</li>
+</ul>
+<h3 id="侦听器"><a href="#侦听器" class="headerlink" title="侦听器"></a>侦听器</h3><ul>
+<li>数据一旦发生变化就通知侦听器所绑定方法。</li>
+<li>应用场景：数据变化时执行异步或开销较大的操作</li>
+<li>是对数据本身添加一个方法，来对其进行监听改变，而计算属性是添加一个格外的方法来返回一个方法结果</li>
+</ul>
+<p>案例：验证用户名是否被注册<br>步骤：</p>
+<ul>
+<li>采用侦听器监听用户名的变化</li>
+<li>调用后台接口进行验证</li>
+<li>根据验证的结果调整提示信息</li>
+<li>使用表单的lazy修饰符来改变事件触发时间 </li>
+</ul>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">methods: &#123;</span><br><span class="line">	checkName: <span class="function"><span class="keyword">function</span><span class="params">(uname)</span></span>&#123;</span><br><span class="line">		<span class="comment">//调用接口，但是可以调用定时任务的方式模拟接口调用</span></span><br><span class="line">		<span class="keyword">var</span> that = <span class="keyword">this</span></span><br><span class="line">		setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line">			<span class="comment">//模拟接口调用</span></span><br><span class="line">			<span class="keyword">if</span>(uname == <span class="string">'admin'</span>)&#123;</span><br><span class="line">				that.tip = <span class="string">'用户名已经存在，请更换一个'</span></span><br><span class="line">			&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">				that.tip = <span class="string">'用户名可以使用'</span></span><br><span class="line">			&#125;</span><br><span class="line">			&#125;,<span class="number">2000</span>)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;,</span><br><span class="line">watch: &#123;</span><br><span class="line">	uname: <span class="function"><span class="keyword">function</span><span class="params">(val)</span></span>&#123;</span><br><span class="line">		<span class="comment">//调用后台接口验证用户名的合法性</span></span><br><span class="line">		<span class="keyword">this</span>.checkName(val);</span><br><span class="line">		<span class="comment">//修改提示信息</span></span><br><span class="line">		<span class="keyword">this</span>.tip = <span class="string">'正在验证'</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="过滤器"><a href="#过滤器" class="headerlink" title="过滤器"></a>过滤器</h3><ul>
+<li>作用：格式化数据，比如字符串格式转化为首字母大写，将日期格式转化为指定的格式等。</li>
+<li>插值表达式和绑定属性都可以使用</li>
+<li>可以传参，第一个是默认参数指向这个元素，第二个就可以是传过来的参数。</li>
+</ul>
+<h3 id="生命周期"><a href="#生命周期" class="headerlink" title="生命周期"></a>生命周期</h3><ul>
+<li>挂载（初始化相关属性）<ul>
+<li>beforeCreate</li>
+<li>created</li>
+<li>beforeMount</li>
+<li>mounted（模板内容已经填充完毕，一般用于从后台获取数据挂载到模板中，已经挂载到实例上）</li>
+</ul>
+</li>
+<li>更新（元素或组件的变更操作）<ul>
+<li>beforeUpdate</li>
+<li>updated</li>
+</ul>
+</li>
+<li>销毁（销毁相关属性）<ul>
+<li>beforeDestroy</li>
+<li>destroyed</li>
+</ul>
+</li>
+</ul>
+<h3 id="补充-数组相关API"><a href="#补充-数组相关API" class="headerlink" title="补充(数组相关API)"></a>补充(数组相关API)</h3><p>数据的变化会影响页面的变化（通过编译方法来实现的）。而替换数组的方式的话就需要对原始数组进行赋值来实现页面数据的更新。也就是说使用替换数组的方法，都不会影响原始数组的数据，页面也就不会进行改变，要想改变页面只有重新将新的数组赋值给原始数组。</p>
+<ul>
+<li>变异方法（修改原有数据）<ul>
+<li>push()</li>
+<li>pop()</li>
+<li>shift()</li>
+<li>unshift()</li>
+<li>splice()</li>
+<li>sort()</li>
+<li>reverse()</li>
+</ul>
+</li>
+<li>替换数组（生成新的数组）<ul>
+<li>filter()</li>
+<li>concat()</li>
+<li>slice()</li>
+</ul>
+</li>
+</ul>
+<h4 id="数组的响应式变化"><a href="#数组的响应式变化" class="headerlink" title="数组的响应式变化"></a>数组的响应式变化</h4><p><b>用索引修改数组的方式不是响应式的</b><br><b>直接在data中的数据添加属性或者添加值都不是响应式的，也就是页面不会随着该数据的改变而改变</b>，所以以下两个API既可以对数组进行响应式添加数据也可以对数据进行响应式添加数据<br>修改响应式数据：</p>
+<ul>
+<li>Vue.set(vm.items,indexOfItem,newValue)</li>
+<li>vm.$set(vm.items,indexOfItem,newValue)<ul>
+<li>参数一标识要处理的数组名称</li>
+<li>参数二标识要处理的数组索引</li>
+<li>参数三要处理的数组的值</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/12/08/vue2-01/" title="vue2-01">http://yoursite.com/2019/12/08/vue2-01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/25/ECMAScript6-02/" rel="next" title="ECMAScript6--变量的解构赋值">
+                <i class="fa fa-chevron-left"></i> ECMAScript6--变量的解构赋值
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/09/ECMAScript6-03/" rel="prev" title="ECMAScript6--字符串的扩展">
+                ECMAScript6--字符串的扩展 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#说明"><span class="nav-number">1.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#模板语法"><span class="nav-number">1.1.</span> <span class="nav-text">模板语法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指令"><span class="nav-number">1.1.1.</span> <span class="nav-text">指令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据响应式"><span class="nav-number">1.1.2.</span> <span class="nav-text">数据响应式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#事件"><span class="nav-number">1.1.3.</span> <span class="nav-text">事件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#样式绑定"><span class="nav-number">1.1.4.</span> <span class="nav-text">样式绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#循环"><span class="nav-number">1.1.5.</span> <span class="nav-text">循环</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue常用特性"><span class="nav-number">1.2.</span> <span class="nav-text">Vue常用特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#表单操作"><span class="nav-number">1.2.1.</span> <span class="nav-text">表单操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#表单修饰符"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">表单修饰符</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#computed-VS-methods"><span class="nav-number">1.2.2.</span> <span class="nav-text">computed VS methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#侦听器"><span class="nav-number">1.2.3.</span> <span class="nav-text">侦听器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#过滤器"><span class="nav-number">1.2.4.</span> <span class="nav-text">过滤器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#生命周期"><span class="nav-number">1.2.5.</span> <span class="nav-text">生命周期</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#补充-数组相关API"><span class="nav-number">1.2.6.</span> <span class="nav-text">补充(数组相关API)</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数组的响应式变化"><span class="nav-number">1.2.6.1.</span> <span class="nav-text">数组的响应式变化</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

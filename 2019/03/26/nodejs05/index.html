@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Node.js(1),Node基础," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="Node.js笔记(五)————Buffer(缓冲区)Node.js Buffer(缓冲区)JavaScript 语言自身只有字符串数据类型，没有二进制数据类型。 但在处理像TCP流或文件流时，必须使用到二进制数据。因此在 Node.js中，定义了一个 Buffer 类，该类用来创建一个专门存放二进制数据的缓存区。 在 Node.js 中，Buffer 类是随 Node 内核一起发布的核心库。Bu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js01--Buffer(缓冲区)">
+<meta property="og:url" content="http://yoursite.com/2019/03/26/nodejs05/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="Node.js笔记(五)————Buffer(缓冲区)Node.js Buffer(缓冲区)JavaScript 语言自身只有字符串数据类型，没有二进制数据类型。 但在处理像TCP流或文件流时，必须使用到二进制数据。因此在 Node.js中，定义了一个 Buffer 类，该类用来创建一个专门存放二进制数据的缓存区。 在 Node.js 中，Buffer 类是随 Node 内核一起发布的核心库。Bu">
+<meta property="article:published_time" content="2019-03-26T07:34:58.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:43:35.505Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="Node.js(1)">
+<meta property="article:tag" content="Node基础">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/26/nodejs05/"/>
+
+
+
+
+
+  <title>Node.js01--Buffer(缓冲区) | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/26/nodejs05/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node.js01--Buffer(缓冲区)</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-26T15:34:58+08:00">
+                2019-03-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/Node-js-1/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js(1)</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/Node-js-1/Node%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">Node基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Node-js笔记-五-————Buffer-缓冲区"><a href="#Node-js笔记-五-————Buffer-缓冲区" class="headerlink" title="Node.js笔记(五)————Buffer(缓冲区)"></a>Node.js笔记(五)————Buffer(缓冲区)</h1><h2 id="Node-js-Buffer-缓冲区"><a href="#Node-js-Buffer-缓冲区" class="headerlink" title="Node.js Buffer(缓冲区)"></a>Node.js Buffer(缓冲区)</h2><p>JavaScript 语言自身只有字符串数据类型，没有二进制数据类型。</p>
+<p>但在处理像TCP流或文件流时，必须使用到二进制数据。因此在 Node.js中，定义了一个 Buffer 类，该类用来创建一个专门存放二进制数据的缓存区。</p>
+<p>在 Node.js 中，Buffer 类是随 Node 内核一起发布的核心库。Buffer 库为 Node.js 带来了一种存储原始数据的方法，可以让 Node.js 处理二进制数据，每当需要在 Node.js 中处理I/O操作中移动的数据时，就有可能使用 Buffer 库。原始数据存储在 Buffer 类的实例中。一个 Buffer 类似于一个整数数组，但它对应于 V8 堆内存之外的一块原始内存。</p>
+<a id="more"></a>
+<h3 id="Buffer-与字符编码"><a href="#Buffer-与字符编码" class="headerlink" title="Buffer 与字符编码"></a>Buffer 与字符编码</h3><p>Buffer 实例一般用于表示编码字符的序列，比如 UTF-8 、 UCS2 、 Base64 、或十六进制编码的数据。 通过使用显式的字符编码，就可以在 Buffer 实例与普通的 JavaScript 字符串之间进行相互转换。</p>
+<figure class="highlight sqf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">const buf = Buffer.<span class="keyword">from</span>(<span class="string">'runoob'</span>, <span class="string">'ascii'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 72756e6f6f62</span></span><br><span class="line">console.<span class="built_in">log</span>(buf.<span class="built_in">toString</span>(<span class="string">'hex'</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 输出 cnVub29i</span></span><br><span class="line">console.<span class="built_in">log</span>(buf.<span class="built_in">toString</span>(<span class="string">'base64'</span>));</span><br></pre></td></tr></table></figure>
+<h3 id="创建-Buffer-类"><a href="#创建-Buffer-类" class="headerlink" title="创建 Buffer 类"></a>创建 Buffer 类</h3><p>Buffer 提供了以下 API 来创建 Buffer 类：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="module-access"><span class="module"><span class="identifier">Buffer</span>.</span></span>alloc(size<span class="literal">[, <span class="identifier">fill</span>[, <span class="identifier">encoding</span>]</span>])： 返回一个指定大小的 Buffer 实例，如果没有设置 fill，则默认填满 <span class="number">0</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Buffer</span>.</span></span>alloc<span class="constructor">Unsafe(<span class="params">size</span>)</span>： 返回一个指定大小的 Buffer 实例，但是它不会被初始化，所以它可能包含敏感的数据</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Buffer</span>.</span></span>alloc<span class="constructor">UnsafeSlow(<span class="params">size</span>)</span></span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Buffer</span>.</span></span>from(<span class="built_in">array</span>)： 返回一个被 <span class="built_in">array</span> 的值初始化的新的 Buffer 实例（传入的 <span class="built_in">array</span> 的元素只能是数字，不然就会自动被 <span class="number">0</span> 覆盖）</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Buffer</span>.</span></span>from(arrayBuffer<span class="literal">[, <span class="identifier">byteOffset</span>[, <span class="identifier">length</span>]</span>])： 返回一个新建的与给定的 ArrayBuffer 共享同一内存的 Buffer。</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Buffer</span>.</span></span>from(buffer)： 复制传入的 Buffer 实例的数据，并返回一个新的 Buffer 实例</span><br><span class="line"><span class="module-access"><span class="module"><span class="identifier">Buffer</span>.</span></span>from(<span class="built_in">string</span><span class="literal">[, <span class="identifier">encoding</span>]</span>)： 返回一个被 <span class="built_in">string</span> 的值初始化的新的 Buffer 实例</span><br></pre></td></tr></table></figure>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建一个长度为 10、且用 0 填充的 Buffer。</span></span><br><span class="line"><span class="keyword">const</span> buf1 = Buffer.alloc(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个长度为 10、且用 0x1 填充的 Buffer。 </span></span><br><span class="line"><span class="keyword">const</span> buf2 = Buffer.alloc(<span class="number">10</span>, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个长度为 10、且未初始化的 Buffer。</span></span><br><span class="line"><span class="comment">// 这个方法比调用 Buffer.alloc() 更快，</span></span><br><span class="line"><span class="comment">// 但返回的 Buffer 实例可能包含旧数据，</span></span><br><span class="line"><span class="comment">// 因此需要使用 fill() 或 write() 重写。</span></span><br><span class="line"><span class="keyword">const</span> buf3 = Buffer.allocUnsafe(<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个包含 [0x1, 0x2, 0x3] 的 Buffer。</span></span><br><span class="line"><span class="keyword">const</span> buf4 = Buffer.<span class="keyword">from</span>([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个包含 UTF-8 字节 [0x74, 0xc3, 0xa9, 0x73, 0x74] 的 Buffer。</span></span><br><span class="line"><span class="keyword">const</span> buf5 = Buffer.<span class="keyword">from</span>(<span class="string">'tést'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个包含 Latin-1 字节 [0x74, 0xe9, 0x73, 0x74] 的 Buffer。</span></span><br><span class="line"><span class="keyword">const</span> buf6 = Buffer.<span class="keyword">from</span>(<span class="string">'tést'</span>, <span class="string">'latin1'</span>);</span><br></pre></td></tr></table></figure>
+
+<h3 id="写入缓冲区"><a href="#写入缓冲区" class="headerlink" title="写入缓冲区"></a>写入缓冲区</h3><p>写入 Node 缓冲区的语法如下所示：</p>
+<figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.write(string[<span class="string">, offset[, length</span>]][, encoding])</span><br></pre></td></tr></table></figure>
+<p>参数描述如下：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">string</span> - 写入缓冲区的字符串。</span><br><span class="line"><span class="built_in">offset</span> - 缓冲区开始写入的索引值，默认为 <span class="number">0</span> 。</span><br><span class="line"><span class="built_in">length</span> - 写入的字节数，默认为 buffer.<span class="built_in">length</span></span><br><span class="line">encoding - 使用的编码。默认为 <span class="string">'utf8'</span> 。</span><br></pre></td></tr></table></figure>
+<p>根据 encoding 的字符编码写入 string 到 buf 中的 offset 位置。 length 参数是写入的字节数。 如果 buf 没有足够的空间保存整个字符串，则只会写入 string 的一部分。 只部分解码的字符不会被写入。 返回实际写入的大小。如果 buffer 空间不足， 则只会写入部分字符串。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">buf = Buffer.alloc(<span class="number">256</span>);</span><br><span class="line"><span class="built_in">len</span> = buf.<span class="built_in">write</span>(<span class="string">"www.runoob.com"</span>);</span><br><span class="line"></span><br><span class="line">console.<span class="built_in">log</span>(<span class="string">"写入字节数 : "</span>+  <span class="built_in">len</span>);</span><br></pre></td></tr></table></figure>
+<p>执行以上代码，输出结果为：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$<span class="keyword">node</span> <span class="title">main</span>.js</span><br><span class="line">写入字节数 : <span class="number">14</span></span><br><span class="line">从缓冲区读取数据</span><br></pre></td></tr></table></figure>
+<p>读取 Node 缓冲区数据的语法如下所示：</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.<span class="keyword">to</span><span class="constructor">String([<span class="params">encoding</span>[, <span class="params">start</span>[, <span class="params">end</span>]]])</span></span><br></pre></td></tr></table></figure>
+<p>参数描述如下：</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">encoding</span> - 使用的编码。默认为 <span class="string">'utf8'</span> 。</span><br><span class="line"><span class="keyword">start</span> - 指定开始读取的索引位置，默认为 <span class="number">0</span>。</span><br><span class="line"><span class="keyword">end</span> - 结束位置，默认为缓冲区的末尾。</span><br></pre></td></tr></table></figure>
+<p>解码缓冲区数据并使用指定的编码返回字符串。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">buf = <span class="module-access"><span class="module"><span class="identifier">Buffer</span>.</span></span>alloc(<span class="number">26</span>);</span><br><span class="line">for (var i = <span class="number">0</span> ; i &lt; <span class="number">26</span> ; i++) &#123;</span><br><span class="line">  buf<span class="literal">[<span class="identifier">i</span>]</span> = i + <span class="number">97</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">console.log( buf.<span class="keyword">to</span><span class="constructor">String('<span class="params">ascii</span>')</span>);       <span class="comment">// 输出: abcdefghijklmnopqrstuvwxyz</span></span><br><span class="line">console.log( buf.<span class="keyword">to</span><span class="constructor">String('<span class="params">ascii</span>',0,5)</span>);   <span class="comment">// 输出: abcde</span></span><br><span class="line">console.log( buf.<span class="keyword">to</span><span class="constructor">String('<span class="params">utf8</span>',0,5)</span>);    <span class="comment">// 输出: abcde</span></span><br><span class="line">console.log( buf.<span class="keyword">to</span><span class="constructor">String(<span class="params">undefined</span>,0,5)</span>); <span class="comment">// 使用 'utf8' 编码, 并输出: abcde</span></span><br></pre></td></tr></table></figure>
+<h3 id="将-Buffer-转换为-JSON-对象"><a href="#将-Buffer-转换为-JSON-对象" class="headerlink" title="将 Buffer 转换为 JSON 对象"></a>将 Buffer 转换为 JSON 对象</h3><p>将 Node Buffer 转换为 JSON 对象的函数语法格式如下：<code>buf.toJSON()</code><br>当字符串化一个 Buffer 实例时，JSON.stringify() 会隐式地调用该 toJSON()。<br>返回 JSON 对象</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">const buf = Buffer.<span class="keyword">from</span>([<span class="number">0x1</span>, <span class="number">0x2</span>, <span class="number">0x3</span>, <span class="number">0x4</span>, <span class="number">0x5</span>]);</span><br><span class="line">const <span class="type">json</span> = <span class="type">JSON</span>.stringify(buf);</span><br><span class="line"></span><br><span class="line">// 输出: &#123;"type":"Buffer","data":[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>]&#125;</span><br><span class="line">console.log(<span class="type">json</span>);</span><br><span class="line"></span><br><span class="line">const copy = <span class="type">JSON</span>.parse(<span class="type">json</span>, (key, <span class="keyword">value</span>) =&gt; &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">value</span> &amp;&amp; <span class="keyword">value</span>.<span class="keyword">type</span> === <span class="string">'Buffer'</span> ?</span><br><span class="line">    Buffer.<span class="keyword">from</span>(<span class="keyword">value</span>.data) :</span><br><span class="line">    <span class="keyword">value</span>;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">// 输出: &lt;Buffer <span class="number">01</span> <span class="number">02</span> <span class="number">03</span> <span class="number">04</span> <span class="number">05</span>&gt;</span><br><span class="line">console.log(<span class="keyword">copy</span>);//&lt;Buffer <span class="number">01</span> <span class="number">02</span> <span class="number">03</span> <span class="number">04</span> <span class="number">05</span>&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="缓冲区合并"><a href="#缓冲区合并" class="headerlink" title="缓冲区合并"></a>缓冲区合并</h3><p>Node 缓冲区合并的语法如下所示：<code>Buffer.concat(list[, totalLength])</code><br>参数描述如下：</p>
+<ul>
+<li>list - 用于合并的 Buffer 对象数组列表。</li>
+<li>totalLength - 指定合并后Buffer对象的总长度。<br>返回一个多个成员合并的新 Buffer 对象。<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer1 = <span class="built_in">Buffer</span>.from((<span class="string">'adv'</span>));</span><br><span class="line"><span class="keyword">var</span> buffer2 = <span class="built_in">Buffer</span>.from((<span class="string">'fffff'</span>));</span><br><span class="line"><span class="keyword">var</span> buffer3 = <span class="built_in">Buffer</span>.concat([buffer1,buffer2]);</span><br><span class="line">console.log(<span class="string">"buffer3 内容: "</span> + buffer3.toString());</span><br><span class="line"><span class="comment">//输出结果为：buffer3 内容: advfffff</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="缓冲区比较"><a href="#缓冲区比较" class="headerlink" title="缓冲区比较"></a>缓冲区比较</h3><p>Node Buffer 比较的函数语法如下所示, 该方法在 Node.js v0.12.2 版本引入：<code>buf.compare(otherBuffer)</code>;<br>参数描述如下：</p>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">otherBuffer</span> - 与 <span class="keyword">buf </span>对象比较的另外一个 <span class="keyword">Buffer </span>对象。返回一个数字，表示 <span class="keyword">buf </span>在 otherBuffer 之前，之后或相同。</span><br></pre></td></tr></table></figure>
+<figure class="highlight armasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">var</span> <span class="keyword">buffer1 </span>= <span class="keyword">Buffer.from('ABC');</span></span><br><span class="line"><span class="keyword">var </span><span class="keyword">buffer2 </span>= <span class="keyword">Buffer.from('ABCD');</span></span><br><span class="line"><span class="keyword">var </span>result = <span class="keyword">buffer1.compare(buffer2);</span></span><br><span class="line"><span class="keyword"></span></span><br><span class="line"><span class="keyword">if(result </span>&lt; <span class="number">0</span>) &#123;</span><br><span class="line">   console.log(<span class="keyword">buffer1 </span>+ <span class="string">" 在 "</span> + <span class="keyword">buffer2 </span>+ <span class="string">"之前"</span>)<span class="comment">;</span></span><br><span class="line">&#125;<span class="meta">else</span> <span class="meta">if</span>(result == <span class="number">0</span>)&#123;</span><br><span class="line">   console.log(<span class="keyword">buffer1 </span>+ <span class="string">" 与 "</span> + <span class="keyword">buffer2 </span>+ <span class="string">"相同"</span>)<span class="comment">;</span></span><br><span class="line">&#125;<span class="meta">else</span> &#123;</span><br><span class="line">   console.log(<span class="keyword">buffer1 </span>+ <span class="string">" 在 "</span> + <span class="keyword">buffer2 </span>+ <span class="string">"之后"</span>)<span class="comment">;</span></span><br><span class="line">&#125;//结果为：ABC在ABCD之前</span><br></pre></td></tr></table></figure>
+
+<h3 id="拷贝缓冲区"><a href="#拷贝缓冲区" class="headerlink" title="拷贝缓冲区"></a>拷贝缓冲区</h3><p>Node 缓冲区拷贝语法如下所示：</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">buf.copy(targetBuffer<span class="comment">[, targetStart<span class="comment">[, sourceStart<span class="comment">[, sourceEnd]</span>]</span>]</span>)</span><br></pre></td></tr></table></figure>
+<p>参数描述如下：</p>
+<ul>
+<li>targetBuffer - 要拷贝的 Buffer 对象。</li>
+<li>targetStart - 数字, 可选, 默认: 0</li>
+<li>sourceStart - 数字, 可选, 默认: 0</li>
+<li>sourceEnd - 数字, 可选, 默认: buffer.length<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buf1 = <span class="built_in">Buffer</span>.from(<span class="string">'abcdefghijkl'</span>);</span><br><span class="line"><span class="keyword">var</span> buf2 = <span class="built_in">Buffer</span>.from(<span class="string">'RUNOOB'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">//将 buf2 插入到 buf1 指定位置上</span></span><br><span class="line">buf2.copy(buf1, <span class="number">2</span>);</span><br><span class="line"></span><br><span class="line">console.log(buf1.toString());</span><br><span class="line"><span class="comment">//输出结果为：abRUNOOBijkl</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h3 id="缓冲区裁剪"><a href="#缓冲区裁剪" class="headerlink" title="缓冲区裁剪"></a>缓冲区裁剪</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">buf.<span class="keyword">slice</span>([<span class="keyword">start</span>[, <span class="keyword">end</span>]])</span><br><span class="line"><span class="keyword">start</span> - 数字, 可选, 默认: <span class="number">0</span></span><br><span class="line"><span class="keyword">end</span> - 数字, 可选, 默认: buffer.length</span><br></pre></td></tr></table></figure>
+<p>返回一个新的缓冲区，它和旧缓冲区指向同一块内存，但是从索引 start 到 end 的位置剪切。</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer1 = <span class="built_in">Buffer</span>.from(<span class="string">'runoob'</span>);</span><br><span class="line"><span class="comment">// 剪切缓冲区</span></span><br><span class="line"><span class="keyword">var</span> buffer2 = buffer1.slice(<span class="number">0</span>,<span class="number">2</span>);</span><br><span class="line">console.log(<span class="string">"buffer2 content: "</span> + buffer2.toString());</span><br><span class="line"><span class="comment">//输出结果为：buffer2 content: ru</span></span><br></pre></td></tr></table></figure>
+<h3 id="缓冲区长度"><a href="#缓冲区长度" class="headerlink" title="缓冲区长度"></a>缓冲区长度</h3><p>buf.length;<br>返回 Buffer 对象所占据的内存长度。</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> buffer = <span class="built_in">Buffer</span>.from(<span class="string">'www.runoob.com'</span>);</span><br><span class="line"><span class="comment">//  缓冲区长度</span></span><br><span class="line">console.log(<span class="string">"buffer length: "</span> + buffer.length);</span><br><span class="line"><span class="comment">//输出结果为：buffer length: 14</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/26/nodejs05/" title="Node.js01--Buffer(缓冲区)">http://yoursite.com/2019/03/26/nodejs05/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node-js-1/" rel="tag"><i class="fa fa-tag"></i> Node.js(1)</a>
+          
+            <a href="/tags/Node%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> Node基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/25/nodejs06/" rel="next" title="Node.js01--全局函数">
+                <i class="fa fa-chevron-left"></i> Node.js01--全局函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/27/nodejs07/" rel="prev" title="Node.js01--零散总结">
+                Node.js01--零散总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Node-js笔记-五-————Buffer-缓冲区"><span class="nav-number">1.</span> <span class="nav-text">Node.js笔记(五)————Buffer(缓冲区)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Node-js-Buffer-缓冲区"><span class="nav-number">1.1.</span> <span class="nav-text">Node.js Buffer(缓冲区)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Buffer-与字符编码"><span class="nav-number">1.1.1.</span> <span class="nav-text">Buffer 与字符编码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建-Buffer-类"><span class="nav-number">1.1.2.</span> <span class="nav-text">创建 Buffer 类</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写入缓冲区"><span class="nav-number">1.1.3.</span> <span class="nav-text">写入缓冲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将-Buffer-转换为-JSON-对象"><span class="nav-number">1.1.4.</span> <span class="nav-text">将 Buffer 转换为 JSON 对象</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓冲区合并"><span class="nav-number">1.1.5.</span> <span class="nav-text">缓冲区合并</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓冲区比较"><span class="nav-number">1.1.6.</span> <span class="nav-text">缓冲区比较</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#拷贝缓冲区"><span class="nav-number">1.1.7.</span> <span class="nav-text">拷贝缓冲区</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓冲区裁剪"><span class="nav-number">1.1.8.</span> <span class="nav-text">缓冲区裁剪</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缓冲区长度"><span class="nav-number">1.1.9.</span> <span class="nav-text">缓冲区长度</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="computed VS methodcomputed： 1234567&amp;#123;&amp;#123; reverseMsg &amp;#125;&amp;#125;computed:&amp;#123;	reverseMsg: function(&amp;#123;		&#x2F;&#x2F;		&amp;#125;)&amp;#125; method：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue1--零散笔记">
+<meta property="og:url" content="http://yoursite.com/2019/11/16/vue1-10/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="computed VS methodcomputed： 1234567&amp;#123;&amp;#123; reverseMsg &amp;#125;&amp;#125;computed:&amp;#123;	reverseMsg: function(&amp;#123;		&#x2F;&#x2F;		&amp;#125;)&amp;#125; method：">
+<meta property="article:published_time" content="2019-11-16T10:31:48.000Z">
+<meta property="article:modified_time" content="2020-02-17T03:12:15.864Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/16/vue1-10/"/>
+
+
+
+
+
+  <title>vue1--零散笔记 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/16/vue1-10/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue1--零散笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-16T18:31:48+08:00">
+                2019-11-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/Vue1/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue1</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="computed-VS-method"><a href="#computed-VS-method" class="headerlink" title="computed VS method"></a>computed VS method</h2><p>computed：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; reverseMsg &#125;&#125;</span><br><span class="line"></span><br><span class="line">computed:&#123;</span><br><span class="line">	reverseMsg: <span class="function"><span class="keyword">function</span>(<span class="params">&#123;</span></span></span><br><span class="line"><span class="function"><span class="params">		<span class="regexp">//</span></span></span></span><br><span class="line"><span class="function"><span class="params">		&#125;</span>)</span></span><br><span class="line"><span class="function">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>method：</p>
+<a id="more"></a>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&#123;&#123; reverseMsg &#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">methods</span>:&#123;</span><br><span class="line">	reverseMsg: <span class="function"><span class="keyword">function</span><span class="params">()</span>&#123;&#125;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>假设上述两种方法出来的结果是一样的，都是反转字符串的结果。我们可以将同一个函数定义为一个方法而不是一个计算属性。结果相同，不同的是计算属性是基于它们的<b>响应性依赖</b>进行缓存的。只在响应式依赖发生改变时，它们才会重新求值。这就意味着只要Msg没有发生改变，多次访问reverseMsg计算属性会立即返回之前的结果，而不必再次执行函数。可如果是函数的话每调用一次都要调用该方法，也就是说<code>computed有缓存，methods没有缓存</code>。但是computed的缓存只是针对<b>响应式依赖</b>。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">computed</span>:&#123;</span><br><span class="line">	<span class="attribute">now</span>:<span class="built_in">function</span>()&#123;</span><br><span class="line">		return Date.<span class="built_in">now</span>()</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>该代码因为Date.now不是响应式依赖，所以当它改变的时候，就不会再更新！！！<br>相比之下，每当触发重新渲染时，调用方法总会再次执行函数。</p>
+<h2 id="computed-VS-watch"><a href="#computed-VS-watch" class="headerlink" title="computed VS watch"></a>computed VS watch</h2><p>虽然computed再大多数情况下更合适，但有时也需要一个自定义的watch来响应数据的变化，当需要再数据变化时执行异步或开销较大的操作时，这个方法时最有效的。</p>
+<h2 id="多页应用和单页应用"><a href="#多页应用和单页应用" class="headerlink" title="多页应用和单页应用"></a>多页应用和单页应用</h2><h3 id="多页应用"><a href="#多页应用" class="headerlink" title="多页应用"></a>多页应用</h3><p>每一次多页面跳转的时候，后台服务器都会给返回一个新的html文档（页面跳转=》返回html）</p>
+<ul>
+<li>优点：首屏事件快，SEO效果好（服务端渲染）</li>
+<li>缺点：页面切换慢，每次跳转都是一个http请求</li>
+</ul>
+<h3 id="单页应用"><a href="#单页应用" class="headerlink" title="单页应用"></a>单页应用</h3><p>第一次进入页面的时候会请求一个html文件。切换到其他组件，路径也响应变化，但是并没有新的html文件请求，页面内容改变了。<br>原理：js会感知到url的变化，通过这一点，可以用js动态的将当前页面的内容清除掉，然后将下一个页面的内容挂载到当前页面上，这个时候的路由不是后端来做了，而是前端来做判断页面到底是显示哪个组件，清楚不需要的，显示需要的组件。每次跳转的时候不再请求html文件了，只有一个完整页面，在加载页面时，不会加载整个页面，而是只更新某个指定的容器中内容（页面跳转=》js渲染）</p>
+<ul>
+<li>优点:页面切换速度快</li>
+<li>缺点：首屏事件稍慢，SEO差（只认识HTML中的内容，不认识js内容）<br>单页应用首屏时间包括了一次html请求时间和一次js请求时间</li>
+</ul>
+<h2 id="客户端渲染和服务端渲染区别"><a href="#客户端渲染和服务端渲染区别" class="headerlink" title="客户端渲染和服务端渲染区别"></a>客户端渲染和服务端渲染区别</h2><h3 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h3><p>DOM树在服务端生成，然后返回给前端</p>
+<h3 id="客户端渲染"><a href="#客户端渲染" class="headerlink" title="客户端渲染"></a>客户端渲染</h3><p>前端去后端获取数据生成DOM树</p>
+<h3 id="优缺点比较"><a href="#优缺点比较" class="headerlink" title="优缺点比较"></a>优缺点比较</h3><h4 id="服务端渲染-1"><a href="#服务端渲染-1" class="headerlink" title="服务端渲染"></a>服务端渲染</h4><ul>
+<li>优点<ul>
+<li>尽量不占用前端的资源，前端这块耗时少，速度快</li>
+<li>有利于SEO优化，因为在后端有完整的html页面，首屏时间少</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>不利于前后端分离，开发效率更低</li>
+<li>对html的解析，对前端来说加快了速度，但是也加大了服务器压力</li>
+</ul>
+</li>
+</ul>
+<h4 id="客服端渲染"><a href="#客服端渲染" class="headerlink" title="客服端渲染"></a>客服端渲染</h4><ul>
+<li>优点<ul>
+<li>前后端分离，开发效率高</li>
+<li>用户体验好，将网站做成了SPA（单页面应用）</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>前端响应速度慢，特别是首屏时间长</li>
+<li>不利于SEO</li>
+</ul>
+</li>
+</ul>
+<h2 id="别名和重定向"><a href="#别名和重定向" class="headerlink" title="别名和重定向"></a>别名和重定向</h2><h3 id="重定向"><a href="#重定向" class="headerlink" title="重定向"></a>重定向</h3><p>当用户访问/a时，url将会被替换成/b，然后匹配路由为/b</p>
+<h3 id="别名"><a href="#别名" class="headerlink" title="别名"></a>别名</h3><p>/a的别名时/b，意味着当用户访问/b时，url会保持/b，但是路由会被匹配为/a，就像用户访问/a</p>
+<h2 id="vue-nextTick工作原理"><a href="#vue-nextTick工作原理" class="headerlink" title="vue nextTick工作原理"></a>vue nextTick工作原理</h2><p>vue在修改数据后，视图不会立即更新，而是等同一个事件循环中的所有数据变化完成之后，再统一进行属兔更新。<br>用途：需要再=视图更新之后，基于新的视图进行操作。再created、mounted阶段，如果需要操作选然后的视图，也需要使用nextTick方法。也就是说在下一次数据改变后视图没有更新之前。</p>
+<h2 id="碎片化笔记"><a href="#碎片化笔记" class="headerlink" title="碎片化笔记"></a>碎片化笔记</h2><ul>
+<li>当在一个自定义组件上使用class属性时，这些class将被添加到该组件的根元素上面。这个元素上已经存在的class不会被覆盖</li>
+<li>当v-bind：style使用需要添加浏览器引擎前缀的css属性时，如transform，Vue.js会自己侦测并添加响应前缀</li>
+<li>v-if和v-for一起使用时，v-for是有比v-if更高的优先级</li>
+<li>Vue不能检测对象属性的添加或删除，我们只能现在data数据挂载对象上定义一个响应式元素，这样的话就可以监听检测到它的改变，如果直接是给一个元素添加不存在data响应式数据的话，就不会检测到，只能手动的用vue的set方法。</li>
+<li>v-model会忽略所有表单元素的value、checked、selected attribute的初始值，而总是将vue实例的数据作为数据来源。</li>
+<li>因为组件时可复用的vue实例，所有它们与new vue接收相同的选项，例如data、computed、watch、methods以及生命周期钩子等。仅有的例外时向el这样根实例特有的选项</li>
+<li>一个组件的data选项必须是一个函数，因此每个实例可以维护一份被返回对象的独立拷贝，如果没有这条规则，点击一个按钮就可能会像代码一样影响到其他所有实例。也就是说，组件是可以复用的，如果data不是一个函数，只是一个对象的话，那么复用的所有组件都共享一个data内存数据，即其中一个组件的改变可能会影响到另外组件的相关改变，所以只能用data作为一个函数来进行独立拷贝，这样的话就可以维护每一个可复用组件独立的数据。</li>
+<li>全局注册的行为必须在根实例之前（new vue）创建之前发生。所有的prop都使得父子prop之前形成了单项下行绑定：父级prop的更新会向下流动到子组件中，但反过来则不行，这样会防止从子组件意外改变父组件的状态，从而导致应用数据流难以理解</li>
+<li>一个足尖上的v-mode默认会利用名为value的prop和名为input的事件</li>
+<li>v-slot只能添加在<code>&lt;template&gt;</code>上</li>
+<li>当只用JavaScript过渡的时候，在enterheleave中必须使用done进行回调，否则，它们将被同步调用，过渡立即完成。</li>
+<li>使用FLIP过渡的元素不能设置为display：inline。作为替代方案，可以设置为display：inline-block或者放置于flex中</li>
+<li>render中的createElement参数返回的是一个实际的DOM元素，它更准确的名字较createNodeDescription，因为它所包含的信息会告诉vue页面上需要渲染什么样的节点，包括及其子节点的描述，我们把这样的节点称为virtualNode</li>
+<li>插件通常用来为vue添加全局功能。组件（全局和局部）一般是复用代码，实现一些小的功能，提高代码的可复用性</li>
+<li>响应式是非侵入响应式的，数据模型是普遍的js对象，响应式：当修改数据的时候，视图会进行更新。当把一个js进入vue中data选项，vue会遍历次对象所有的属性，并使用object.defineProperty将这些属性全部转换为getter/seeter。object.defineProperty是ES5中一个无法shim的特性，这也就是vue为何不能再IE8及以下的版本浏览器中使用</li>
+<li>vue无法检测到对象属性的添加或者删除，由于vue会在初始化实例时对属性进行getter/setter转化，所以属性必须再data上才是响应式。</li>
+<li>导航守卫：主要用来通过跳转或取消的方式首位导航（防止路由改变）相当于一个拦截器</li>
+<li>props可以是数组或对象，用于接收来自父组件的数据。如果props时对象，则允许配置高级选项，如雷响检测、自定义验证和设置默认值</li>
+<li>mixns：接收一个混入对象的数组。合并使用，以后使用自身组件，minxin钩子按照传入顺序依次调用，并在调用自身的钩子之前被调用</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/11/16/vue1-10/" title="vue1--零散笔记">http://yoursite.com/2019/11/16/vue1-10/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/15/vue1-09/" rel="next" title="vue1-day9">
+                <i class="fa fa-chevron-left"></i> vue1-day9
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/18/ECMAScript6-01/" rel="prev" title="ECMAScript6--01">
+                ECMAScript6--01 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#computed-VS-method"><span class="nav-number">1.</span> <span class="nav-text">computed VS method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#computed-VS-watch"><span class="nav-number">2.</span> <span class="nav-text">computed VS watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多页应用和单页应用"><span class="nav-number">3.</span> <span class="nav-text">多页应用和单页应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多页应用"><span class="nav-number">3.1.</span> <span class="nav-text">多页应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单页应用"><span class="nav-number">3.2.</span> <span class="nav-text">单页应用</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#客户端渲染和服务端渲染区别"><span class="nav-number">4.</span> <span class="nav-text">客户端渲染和服务端渲染区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端渲染"><span class="nav-number">4.1.</span> <span class="nav-text">服务端渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端渲染"><span class="nav-number">4.2.</span> <span class="nav-text">客户端渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点比较"><span class="nav-number">4.3.</span> <span class="nav-text">优缺点比较</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#服务端渲染-1"><span class="nav-number">4.3.1.</span> <span class="nav-text">服务端渲染</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#客服端渲染"><span class="nav-number">4.3.2.</span> <span class="nav-text">客服端渲染</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#别名和重定向"><span class="nav-number">5.</span> <span class="nav-text">别名和重定向</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#重定向"><span class="nav-number">5.1.</span> <span class="nav-text">重定向</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#别名"><span class="nav-number">5.2.</span> <span class="nav-text">别名</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue-nextTick工作原理"><span class="nav-number">6.</span> <span class="nav-text">vue nextTick工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#碎片化笔记"><span class="nav-number">7.</span> <span class="nav-text">碎片化笔记</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

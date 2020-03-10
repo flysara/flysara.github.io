@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Node基础,Node.js(2)," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="代码规范 standard style 细则 使用两个空格进行缩进 字符串使用单引号-需要转义的地方除外 不再有冗余的变量-导致大量bug的源头 无分号，要注意三种情况 以（ [ ^开头的时候，则在前面补充一个分号避免发生一些解析错误">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js02--02">
+<meta property="og:url" content="http://yoursite.com/2019/04/17/nodejs2-02/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="代码规范 standard style 细则 使用两个空格进行缩进 字符串使用单引号-需要转义的地方除外 不再有冗余的变量-导致大量bug的源头 无分号，要注意三种情况 以（ [ ^开头的时候，则在前面补充一个分号避免发生一些解析错误">
+<meta property="article:published_time" content="2019-04-17T05:44:32.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:45:19.716Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="Node基础">
+<meta property="article:tag" content="Node.js(2)">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/17/nodejs2-02/"/>
+
+
+
+
+
+  <title>Node.js02--02 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/17/nodejs2-02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node.js02--02</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-17T13:44:32+08:00">
+                2019-04-17
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/Node-js-2/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js(2)</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/Node-js-2/Node%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">Node基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="代码规范"><a href="#代码规范" class="headerlink" title="代码规范"></a>代码规范</h2><ul>
+<li>standard style<ul>
+<li>细则<ul>
+<li>使用两个空格进行缩进</li>
+<li>字符串使用单引号-需要转义的地方除外</li>
+<li>不再有冗余的变量-导致大量bug的源头</li>
+<li>无分号，要注意三种情况<ul>
+<li>以<code>（ [ ^</code>开头的时候，则在前面补充一个分号避免发生一些解析错误<a id="more"></a></li>
+</ul>
+</li>
+<li>行首不要以<code>(，[,or^</code>开头</li>
+<li>关键字后加空格if （）</li>
+<li>函数名后加空格function name（）</li>
+<li>坚持使用 === 摒弃 ==——但在需要检查<code>null||undefined</code>时可以使用obj ==null</li>
+<li>一定要处理node.js中错误回调传递进来的error参数。</li>
+<li>使用浏览器全局变量时加上window前缀：document和navigator除外</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><code>aibinb style</code></li>
+</ul>
+<h2 id="模板引擎不关心内容"><a href="#模板引擎不关心内容" class="headerlink" title="模板引擎不关心内容"></a>模板引擎不关心内容</h2><p>模板引擎不关心你的字符串内容，只关心自己能认识的模板标记语法 在node也可以使用art-template模板引擎模板引擎最早就是诞生于服务器领域，后来才发展到前端</p>
+<ul>
+<li>使用步骤<ul>
+<li>1、安装 npm install art-template</li>
+<li>2、 在需要使用的文件模块中加载art-template<br>   例如var template = require(‘art-template’)，使用require方法加载，参数中的art-template就是下载的包的名字，install的是什么就是什么</li>
+<li>3、查文档，使用模板引擎的API<ul>
+<li>模板引擎的render方法需要接收的是字符串，所以我们需要把data二进制转为字符串，才可以给模板引擎使用</li>
+</ul>
+</li>
+<li>```<br>fs.readdir(wwwDir,function(err,files){<br>  if(err){<pre><code>return res.end(&apos;  jjj&apos;)</code></pre>}<br>  //这里只需要使用模板引擎解析替换data中的模板字符串就可以了<br>  //数据data 就是files<br>  //然后去你的temmplate.html文件中编写你的模板语法就可以了<br>  var html = template.render(data.toString(),{<pre><code>files:files</code></pre>}<br>  )<br>})<br>var template = require(‘art-template’)<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="addition">+</span></span><br></pre></td></tr></table></figure>
+var ret = template.render(原始内容（会被替换）,替换对象)</li>
+<li>var ret = template.render(‘hello {{ name }}‘,{<br>name:’jack’<br>})<pre><code></code></pre></li>
+</ul>
+</li>
+</ul>
+<h2 id="服务端渲染和客户端渲染"><a href="#服务端渲染和客户端渲染" class="headerlink" title="服务端渲染和客户端渲染"></a>服务端渲染和客户端渲染</h2><p>服务端渲染就是模板引擎</p>
+<ul>
+<li>客户端渲染<ul>
+<li>1、收到服务端响应的字符串了</li>
+<li>2、从上到下依次解析，在解析的过程中，如果发现ajax请求，则再次发起新的请求</li>
+<li>3、发送请求</li>
+<li>4、拿到ajax响应结果</li>
+<li>5、模板引擎渲染</li>
+</ul>
+</li>
+</ul>
+<p>至少经过两次请求，第一次请求拿到的是页面，第二次请求拿到的是动态数据，即页面结构和数据是分开传送和请求的<br>好处是会先看到页面，尽管页面里面没有内容，所以第一次给客户端以后客户端还要进行相关处理，所以会有利于用户体验，并且可以局部刷新</p>
+<ul>
+<li>服务端渲染<br>页面+数据<ul>
+<li>1、读取index.html</li>
+<li>2、模板引擎渲染，在发送给客户端之前，我在服务端就已经把inde.html渲染处理了</li>
+</ul>
+</li>
+</ul>
+<p>服务端渲染值请求了一次，请求一次服务端就把页面和数据一起发送给客户端，服务端渲染，相应的结果就是最终的结果，客户端不需要做任何处理</p>
+<p>服务端不利于用户体验，因为会一下子全部加载完，不会有一个过度的效果，并且会有利于搜索引擎优化</p>
+<ul>
+<li>客户端渲染和服务端渲染的区别<ul>
+<li>客户端渲染不利于SEO搜索引擎优化</li>
+<li>服务端渲染是可以被爬虫抓取到的，客户端异步渲染时很难被爬虫渲染的</li>
+<li>所以你会发现真正的网站既不是纯异步也不是纯服务端渲染出来的，而是两者结合起来</li>
+<li>例如京东的商品列表就是采用的服务端渲染，目的为了SEO搜索引擎优化</li>
+<li>而他的商品评论列表为了用户体验，而且也不需要SEO优化，所以采用的时客户端渲染</li>
+</ul>
+</li>
+</ul>
+<h2 id="处理网站中的静态资源"><a href="#处理网站中的静态资源" class="headerlink" title="处理网站中的静态资源"></a>处理网站中的静态资源</h2><ul>
+<li><p>浏览器收到HTML响应内容以后，就要开始从上到下依次解析，挡在解析的过程中，如果发现：link、script、img、iframe、video、audio等带有src或者href(link)属性标签（具有外链的资源）的时候，浏览器会自动对这些资源发起新的请求。我们把这些资源请求内容称作为静态资源</p>
+</li>
+<li><p>页面是一个请求，页面中的每一个资源也是一个请求。</p>
+</li>
+<li><p>我们为了方便的同意处理这些静态资源，所以我们约定把所有的静态资源都放在public文件夹里面<br>例如：public/css/main.css、public/js/main.js、public/lib/jquery.js这样子存放</p>
+<p>注意：在哪服务端中，文件中的路径就不要去写相对路径了。因为这个时候所有的资源都是通过url标识来获取的。我的服务器开放了/public目录。所以这里的请求路径都写成：/public/xxx ；  /在这里就是根路径的意思<br>浏览器再真正发送请求的时候会自动把地址网络地址拼接上。</p>
+<p>public整个目录中的资源都允许被访问</p>
+</li>
+</ul>
+<h2 id="表单get提交"><a href="#表单get提交" class="headerlink" title="表单get提交"></a>表单get提交</h2><p>以前表单是如何提交的？<br>表单中需要提交的表单控件元素必须具有name属性，表单提交分为两种：<br>  1、默认的提交行为<br>  2、表单异步提交</p>
+<p>action 就是表单提交的地址，说白了就是  请求的url地址<br>method 请求方法：get post</p>
+<p>由于有一种表单提交内容会把内容包含在url上，所以，对于这种表单提交的请求路径，其中含有用户动态填写的内容，所以不可能通过完整的url去处理这个请求。</p>
+<p>使用url.parse方法将路径解析为一个方便操作的对象，第二个参数为true表示将查询字符串转为一个对象（通过jquery属性来访问）</p>
+<h2 id="如何通过服务器让客户端重定向"><a href="#如何通过服务器让客户端重定向" class="headerlink" title="如何通过服务器让客户端重定向"></a>如何通过服务器让客户端重定向</h2><p>1、状态码设置为302，表示临时重定向  statusCode<br>2、在响应头中通过Location告诉客户端往哪儿重定向  setHeader</p>
+<p>如果客户端发现服务器的响应状态码时302，就会自动去响应头中招Location对应的url，所以就可以看到客户端自动跳转了</p>
+<p>微博评论小功能实现步骤：<br>1./index.html<br>2.开放public目录中的静态资源<br>  当请求/public/xxx的时候，读取响应public目录中的具体资源<br>3./post  post.html<br>4./pinglun<br>  4.1 接收表单提交数据<br>  4.2 存储表单提交的数据<br>  4.3 让表单重定向到 /<br>      statusCode<br>      setHeader </p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/04/17/nodejs2-02/" title="Node.js02--02">http://yoursite.com/2019/04/17/nodejs2-02/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> Node基础</a>
+          
+            <a href="/tags/Node-js-2/" rel="tag"><i class="fa fa-tag"></i> Node.js(2)</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/15/nodejs2-01/" rel="next" title="Node.js02--01">
+                <i class="fa fa-chevron-left"></i> Node.js02--01
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/18/nodejs2-03/" rel="prev" title="Node.js02--03">
+                Node.js02--03 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#代码规范"><span class="nav-number">1.</span> <span class="nav-text">代码规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模板引擎不关心内容"><span class="nav-number">2.</span> <span class="nav-text">模板引擎不关心内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务端渲染和客户端渲染"><span class="nav-number">3.</span> <span class="nav-text">服务端渲染和客户端渲染</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理网站中的静态资源"><span class="nav-number">4.</span> <span class="nav-text">处理网站中的静态资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单get提交"><span class="nav-number">5.</span> <span class="nav-text">表单get提交</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何通过服务器让客户端重定向"><span class="nav-number">6.</span> <span class="nav-text">如何通过服务器让客户端重定向</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

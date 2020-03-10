@@ -1,0 +1,1029 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端基础,巩固前端系列,背景+边框+列表+表格," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="背景+边框+列表+表格继续巩固CSS样式今天继续巩固学习CSS样式中的背景、边框和列表属性。 背景元素的背景是指，在元素内容、内边距和边界下层的区域。默认情况下就是这样——在新的浏览器中，你可以使用 background-clip属性改变背景所占用的区域。背景并不在外边距下层——外边距不是元素区域的一部分，而是元素外面的区域。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="巩固前端04--背景+边框+列表+表格">
+<meta property="og:url" content="http://yoursite.com/2019/02/26/%E5%B7%A9%E5%9B%BA4/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="背景+边框+列表+表格继续巩固CSS样式今天继续巩固学习CSS样式中的背景、边框和列表属性。 背景元素的背景是指，在元素内容、内边距和边界下层的区域。默认情况下就是这样——在新的浏览器中，你可以使用 background-clip属性改变背景所占用的区域。背景并不在外边距下层——外边距不是元素区域的一部分，而是元素外面的区域。">
+<meta property="article:published_time" content="2019-02-26T04:54:59.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:47:15.587Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端基础">
+<meta property="article:tag" content="巩固前端系列">
+<meta property="article:tag" content="背景+边框+列表+表格">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/26/巩固4/"/>
+
+
+
+
+
+  <title>巩固前端04--背景+边框+列表+表格 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/26/%E5%B7%A9%E5%9B%BA4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">巩固前端04--背景+边框+列表+表格</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-26T12:54:59+08:00">
+                2019-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/%E5%B7%A9%E5%9B%BA%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">巩固前端系列笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/%E5%B7%A9%E5%9B%BA%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/%E6%A0%B7%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">样式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  15
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="背景-边框-列表-表格"><a href="#背景-边框-列表-表格" class="headerlink" title="背景+边框+列表+表格"></a>背景+边框+列表+表格</h1><p>继续巩固CSS样式<br>今天继续巩固学习CSS样式中的背景、边框和列表属性。</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>元素的背景是指，在元素内容、内边距和边界下层的区域。默认情况下就是这样——在新的浏览器中，你可以使用 <code>background-clip</code>属性改变背景所占用的区域。<br>背景并不在外边距下层——外边距不是元素区域的一部分，而是元素外面的区域。</p>
+<a id="more"></a>
+<p>还有很多其他的属性可以用来操作元素的背景：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">background</span>-color: 为背景设置一个纯色。</span><br><span class="line"><span class="built_in">background</span>-<span class="built_in">image</span>: 指定在元素的背景中出现的背景图像。</span><br><span class="line">这可以是静态文件，也可以是生成的渐变。</span><br><span class="line"><span class="built_in">background</span>-<span class="built_in">position</span>:指定背景应该出现在元素背景中的位置。</span><br><span class="line"><span class="built_in">background</span>-repeat: 指定背景是否应该被重复(平铺)。</span><br><span class="line"><span class="built_in">background</span>-attachment: 当内容滚动时，指定元素背景的行为，例如，它是滚动的内容，还是固定的?</span><br><span class="line"><span class="built_in">background</span>: 在一行中指定以上五个属性的缩写。</span><br><span class="line"><span class="built_in">background</span>-<span class="built_in">size</span>: 允许动态调整背景图像的大小。</span><br></pre></td></tr></table></figure>
+<p>着重讲解<b>color、repeat、image、position</b>这四个属性</p>
+<h3 id="color"><a href="#color" class="headerlink" title="color"></a>color</h3><p>1、color：首先，大多数元素的默认背景颜色不是white，而是transparent。<br>此外，设置背景颜色作为后备也是很重要的。背景颜色在各处都得到了支持，而背景梯度等更奇异的特性只在较新的浏览器中得到支持，加上背景图像可能由于某种原因无法加载。因此，设置基本的背景颜色和指定这些特性是一个好主意，因此无论如何，元素的内容都是可读的。<br>用法：<code>background-color：#ffff（或者yellow等颜色单词）</code></p>
+<h3 id="background-image"><a href="#background-image" class="headerlink" title="background-image"></a>background-image</h3><p>2、background-image 属性指定了在元素背景中显示的背景图像。该属性最简单的用法是使用 url() 函数——–它以一个参数的路径作为参数——获取一个静态图像文件来插入，例如：<code>background-image: url( https: //mdn.mozillademos.org/files/13026/fire-ball-icon.png );</code><br>在默认情况下，图像在水平和垂直方向上都是重复的，这看起来不太好。我们可以使用background-repeat来修复这个问题。</p>
+<h3 id="background-repeat"><a href="#background-repeat" class="headerlink" title="background-repeat"></a>background-repeat</h3><p>3、background-repeat允许指定背景图像是如何重复的。默认值是repeat，它使图像一直重复，直到整个元素的背景被填充。在这种情况下，这不是我们想要的(虽然可能在某些情况下是，例如，repeating-background.html)。其他常见的和广泛支持的值是：</p>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">no-<span class="keyword">repeat</span>: 图像将不会重复:它只会显示一次。</span><br><span class="line"><span class="keyword">repeat</span>-<span class="symbol">x</span>: 图像将在整个背景中水平地重复。</span><br><span class="line"><span class="keyword">repeat</span>-<span class="symbol">y</span>: 图像会在背景下垂直地重复。</span><br><span class="line"><span class="keyword">repeat</span>: 图像将在整个背景中水平和竖直地重复。</span><br></pre></td></tr></table></figure>
+<h3 id="background-position"><a href="#background-position" class="headerlink" title="background-position"></a>background-position</h3><p>4、background-position 允许我们在背景中任意位置放置背景图像。通常，该属性将使用两个通过空格分隔的值，该空间指定了图像的水平(x)和垂直(y)坐标。图像的左上角是原点(0,0)。把背景想象成一个图形，x坐标从左到右，y坐标从上到下<br>该属性可以接受许多不同的值类型，最常用的是：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">像px这样的绝对值——比如 <span class="built_in">background</span>-<span class="built_in">position</span>: 200px 25px.</span><br><span class="line">像rems 这样的相对值——比如 <span class="built_in">background</span>-<span class="built_in">position</span>: 20<span class="built_in">rem</span> <span class="number">2.</span>5<span class="built_in">rem</span>.</span><br><span class="line">百分比 ——比如 <span class="built_in">background</span>-<span class="built_in">position</span>: <span class="number">90</span><span class="symbol">%</span> <span class="number">25</span><span class="symbol">%</span>.</span><br><span class="line">关键字——比如 <span class="built_in">background</span>-<span class="built_in">position</span>: right <span class="built_in">center</span>. 这两个值是直观的，可以分别取值比如 left，<span class="built_in">center</span>， right和 top，<span class="built_in">center</span>， bottom。</span><br><span class="line">应该注意，我们可以混合并匹配这些值，比如 <span class="built_in">background</span>-<span class="built_in">position</span>: <span class="number">99</span><span class="symbol">%</span> <span class="built_in">center</span>。还要注意，如果只指定一个值，那么该值将被假定为水平值，而垂直值将默认为<span class="built_in">center</span>。</span><br></pre></td></tr></table></figure>
+<h3 id="颜色渐变"><a href="#颜色渐变" class="headerlink" title="颜色渐变"></a>颜色渐变</h3><p>5、 background-image还有另一组可用的值——颜色渐变，渐变就是在背景中平滑的颜色过渡。动态生成的渐变是在不久之前引入的，这是因为在web设计中使用渐变是非常受欢迎的，但是使用背景图像来实现渐变是相当不灵活的。目前有两种类型的渐变——线性渐变(从一条直线到另一条直线)和径向渐变(从一个点发散出来)。</p>
+<h2 id="linear-gradient"><a href="#linear-gradient" class="headerlink" title="linear gradient"></a>linear gradient</h2><p>线性渐变是通过<code>linear-gradient()</code>函数传入的，它是一个<code>background-image</code>属性的值。函数至少需要用逗号分隔的三个参数——背景中渐变的方向，开始的颜色和结尾的颜色。例如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(to bottom, orange, yellow);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个渐变将从上到下，从顶部的橙色开始，然后平稳过渡到底部的黄色。可以使用关键字来指定方向 （to bottom，to right， to bottom right等）， 或角度值 (0deg相当于 to top，90deg 相当于 to right，直到 360deg，它再次相当于 to top ）。<br>也可以在颜色定义的渐变中指定其他的点——这些被称为颜色站点(color stops)，浏览器会计算出每一组颜色站点之间的颜色渐变。比如：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line"><span class="attribute">background-image</span>: <span class="built_in">linear-gradient</span>(to bottom, yellow, orange <span class="number">40%</span>, yellow);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个渐变从上往下，从顶部（高度为0%处）到橙色指定位置（高度为40%处），由黄色向橙色渐变，然后再由该位置到底部（高度为100%处），由橙色向黄色渐变。我们可以指定任意多个颜色站点，也可以使用其他的单位来指定这些颜色站点的位置，例如rem，px等。</p>
+<p>注意，还可以使用<code>repeating-linear-gradient()</code>函数来设置一个重复的线性渐变。它的工作方式完全相同，只不过你设置的模式会不断重复，直到背景的边沿。例如：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">background</span>-<span class="built_in">image</span>: repeating-<span class="built_in">linear</span>-gradient(to right, yellow, orange 25px, yellow 50px);</span><br></pre></td></tr></table></figure>
+<p>这将会产生一个渐变，从黄色到橙色，再沿着渐变的每50个像素再回来。<br>用度数来表示的时候：</p>
+<figure class="highlight vbscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">background-image:linear-gradient(</span><br><span class="line"><span class="number">0</span>deg,</span><br><span class="line"><span class="built_in">rgb</span>(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>),</span><br><span class="line"><span class="built_in">rgb</span>(<span class="number">200</span>, <span class="number">200</span>, <span class="number">200</span>)</span><br><span class="line">);</span><br><span class="line"><span class="number">0</span>deg <span class="keyword">is</span> equivalent <span class="keyword">to</span> <span class="keyword">to</span> top.</span><br><span class="line"><span class="number">90</span>deg <span class="keyword">is</span> equivalent <span class="keyword">to</span> <span class="keyword">to</span> <span class="built_in">right</span>.</span><br><span class="line"><span class="number">180</span>deg <span class="keyword">is</span> equivalent <span class="keyword">to</span> <span class="keyword">to</span> bottom.</span><br><span class="line"><span class="number">270</span>deg <span class="keyword">is</span> equivalent <span class="keyword">to</span> <span class="keyword">to</span> <span class="built_in">left</span>.</span><br><span class="line"><span class="number">360</span>deg brings you back <span class="keyword">to</span> <span class="keyword">to</span> top again.</span><br></pre></td></tr></table></figure>
+<p>透明渐变：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">background-image:linear-gradient(</span><br><span class="line">to right,</span><br><span class="line">rgba(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">1</span>),</span><br><span class="line">rgba(<span class="number">100</span>, <span class="number">100</span>, <span class="number">100</span>, <span class="number">0.5</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>最后一个属性表示透明度，1表示不透明，0表示完全透明。</p>
+<h2 id="radial-gradient"><a href="#radial-gradient" class="headerlink" title="radial gradient"></a>radial gradient</h2><p>语句：</p>
+<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">radial-gradient(</span><br><span class="line"><span class="keyword">position</span>,</span><br><span class="line"><span class="built_in">size</span> and <span class="built_in">shape</span>,</span><br><span class="line">colour stops</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>由于浏览器的不同版本，可能会有浏览器的兼容问题。所以完整的写法为：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">-webkit-radial-gradient(<span class="number">50</span>% <span class="number">50</span>%, circle, rgb(<span class="number">75</span>, <span class="number">75</span>, <span class="number">200</span>), rgb(<span class="number">0</span>, <span class="number">0</span>, <span class="number">75</span>));</span><br><span class="line">-moz-radial-gradient(<span class="number">50</span>% <span class="number">50</span>%, circle, rgb(<span class="number">75</span>, <span class="number">75</span>, <span class="number">200</span>), rgb(<span class="number">0</span>, <span class="number">0</span>, <span class="number">75</span>));</span><br><span class="line">-ms-radial-gradient(<span class="number">50</span>% <span class="number">50</span>%, circle, rgb(<span class="number">75</span>, <span class="number">75</span>, <span class="number">200</span>), rgb(<span class="number">0</span>, <span class="number">0</span>, <span class="number">75</span>));</span><br><span class="line">-o-radial-gradient(<span class="number">50</span>% <span class="number">50</span>%, circle, rgb(<span class="number">75</span>, <span class="number">75</span>, <span class="number">200</span>), rgb(<span class="number">0</span>, <span class="number">0</span>, <span class="number">75</span>));</span><br><span class="line">radial-gradient(circle at <span class="number">50</span>% <span class="number">50</span>%, rgb(<span class="number">75</span>, <span class="number">75</span>, <span class="number">200</span>), rgb(<span class="number">0</span>, <span class="number">0</span>, <span class="number">75</span>));</span><br><span class="line">position：第一个<span class="number">20</span>%是指直径水平方向从左边开始的<span class="number">20</span>%处，第二个<span class="number">20</span>%是指直径纵向从上顶点开始的长度的<span class="number">20</span>%处。<span class="number">50</span>% <span class="number">50</span>%就是原点处。</span><br></pre></td></tr></table></figure>
+<h2 id="背景附着"><a href="#背景附着" class="headerlink" title="背景附着"></a>背景附着</h2><p>另一个可供选择的选项是指定当内容滚动时它们是如何滚动的。这是使用<code>background-attachment</code>属性来控制的，该属性可以使用以下值：</p>
+<figure class="highlight gauss"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">scroll</span>: 会使元素的背景在页面滚动时滚动。如果元素内容滚动了，背景并不会滚动。实际上，背景固定在了页面上相同的位置，所以当页面滚动时它才滚动。</span><br><span class="line">fixed: 会使元素的背景相对于视口固定。因此不管当页面还是元素内容滚动时，它都不会滚动，它会始终保持在屏幕上相同的位置。</span><br><span class="line"><span class="keyword">local</span>:这个值后来被添加了(它只在Internet Explorer <span class="number">9</span>+中得到支持，而其他的则在IE4+中得到支持)，因为<span class="keyword">scroll</span>值相当混乱，并且在许多情况下并没有真正做您想要的事情。 <span class="keyword">local</span> 值将背景设置为它所设置的元素的背景，因此当您滚动元素时，背景会随之滚动。</span><br></pre></td></tr></table></figure>
+<h3 id="多个背景"><a href="#多个背景" class="headerlink" title="多个背景"></a>多个背景</h3><p>最近(自从Internet Explorer 9)，我们已经具备了将多个背景连接到单个元素的能力。这是一件好事，因为多重背景非常有用。用逗号分隔不同的背景定义：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">div</span> &#123;</span><br><span class="line"><span class="attribute">background</span>: <span class="built_in">url</span>(image.png) no-repeat <span class="number">99%</span> center,</span><br><span class="line"><span class="built_in">url</span>(background-tile.png),</span><br><span class="line"><span class="built_in">linear-gradient</span>(to bottom, yellow, #dddd00 <span class="number">50%</span>, orange);</span><br><span class="line"><span class="attribute">background-color</span>: yellow;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这些背景都是堆叠在一起的，第一个出现在顶部，第二个在下面，第三个，等等。这可能不是我们所期待的，所以要小心。还要注意的是，我们已经将后备背景颜色放入一个单独的属性声明中，因为尝试将其包含在多个背景中似乎会破坏一些东西。<br>我们也可以将多个值放入到普通写法的 background- 属性中，比如：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">background-image</span>: url(<span class="string">image.png</span>), url(<span class="string">background-tile.png</span>);</span><br><span class="line"><span class="attribute">background-repeat</span>: no-repeat, repeat;</span><br></pre></td></tr></table></figure>
+<h3 id="背景尺寸"><a href="#背景尺寸" class="headerlink" title="背景尺寸"></a>背景尺寸</h3><p>正如我们之前提到的，有一个可用的属性——background-size ——它允许你动态地改变背景图像的大小，使它更适合你的设计。这在很多方面都很有用，例如自动纠正没有正确上传的图标的大小。请记住，这并不支持Internet Explorer低于9的版本，所以如果您需要支持旧的浏览器，那么您就不能依赖它。对于每个背景图像，您需要包含两个背景大小值，一个用于水平维度，另一个用于垂直方向：</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">background</span>-<span class="built_in">image</span>: url(myimage.png);</span><br><span class="line"><span class="built_in">background</span>-<span class="built_in">size</span>: <span class="number">16</span>px <span class="number">16</span>px;</span><br></pre></td></tr></table></figure>
+<h2 id="边框"><a href="#边框" class="headerlink" title="边框"></a>边框</h2><p>元素有一个边界，它位于元素的内边距(padding)和外边距(margin)之间。默认情况下，边界的大小为0，使其不可见，但可以设置边界的粗细、样式和颜色以使其显示出来。</p>
+<h3 id="边界回顾"><a href="#边界回顾" class="headerlink" title="边界回顾"></a>边界回顾</h3><p>border简写属性允许一次将所有的这些都设置在四个边，例如：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">p &#123;</span><br><span class="line">padding: 10px;</span><br><span class="line"><span class="built_in">background</span>: yellow;</span><br><span class="line"><span class="built_in">border</span>: 2px solid red;</span><br><span class="line">&#125; <span class="built_in">border</span>可以分解成许多不同的属性，以获得更具体的样式需求：</span><br><span class="line"></span><br><span class="line"><span class="built_in">border</span>-top, <span class="built_in">border</span>-right, <span class="built_in">border</span>-bottom, <span class="built_in">border</span>-left: 设置边界一侧的宽度，样式和颜色。</span><br><span class="line"><span class="built_in">border</span>-<span class="built_in">width</span>, <span class="built_in">border</span>-<span class="built_in">style</span>, <span class="built_in">border</span>-<span class="built_in">color</span>: 设置边界宽度、样式或颜色，但是会设置边界的四个边。</span><br><span class="line">还可以单独三个属性中的一个并且设置其中一侧边界生效。</span><br><span class="line"><span class="built_in">border</span>-top-<span class="built_in">width</span>, <span class="built_in">border</span>-top-<span class="built_in">style</span>, <span class="built_in">border</span>-top-<span class="built_in">color</span>等。</span><br></pre></td></tr></table></figure>
+<h3 id="边界半径"><a href="#边界半径" class="headerlink" title="边界半径"></a>边界半径</h3><p>盒子上的圆角是网站上另一个非常受欢迎的功能——如此流行以至于浏览器实现了专门用于实现圆角的属性 :<code>border-radius</code>。<br><code>border-radius</code> 只支持Internet Explorer 9以上。但是缺少圆角不能阻止用户阅读你的内容，所以老浏览器的用户可以不用它们。<br>在不同的角落放置不同大小的边界半径, 您可以指定两个，三个或四个值, 如：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">border-radius: <span class="number">20</span>px <span class="number">10</span>px;</span><br><span class="line"><span class="comment">// 1st value is top left corner, 2nd value is top right</span></span><br><span class="line"><span class="keyword">and</span> bottom left, <span class="number">3</span>rd value <span class="keyword">is</span> bottom right <span class="comment">//</span></span><br><span class="line">border-radius: <span class="number">20</span>px <span class="number">10</span>px <span class="number">50</span>px;</span><br><span class="line"><span class="comment">// top left, top right, bottom right, bottom left //</span></span><br><span class="line">border-radius: <span class="number">20</span>px <span class="number">10</span>px <span class="number">50</span>px <span class="number">0</span>;</span><br><span class="line">还可以创建椭圆形角（x半径与y半径不同）。两个不同的半径用正斜杠（/）分隔，您可以将其与值的任意组合组合。例如:</span><br><span class="line">border-radius: <span class="number">10</span>px / <span class="number">20</span>px;</span><br><span class="line">border-radius: <span class="number">10</span>px <span class="number">30</span>px / <span class="number">20</span>px <span class="number">40</span>px;</span><br></pre></td></tr></table></figure>
+<h3 id="边界图像"><a href="#边界图像" class="headerlink" title="边界图像"></a>边界图像</h3><p>CSS中最新的(和复杂的)操作，用于操作边界—— <code>border-image</code>。这里的想法是，有时创建复杂的用户界面特性需要一个复杂的界面设计，而不仅仅是一个纯色。这可能是通过在另一个较大的元素的顶部覆盖一个元素，然后将背景图像应用到底部元素，伪造一个复杂的边界来创建的。或者在极端情况下，甚至可能需要创建一个包含9个元素的3 x 3网格，其中的中心元素作为您的内容，以及周围的8个元素，将边界元素应用于它们。</p>
+<p>border-image图像使实现复杂的图形边界变得容易得多，即使必须在现代浏览器中才能实现(Internet Explorer 11+支持它，以及其他现代浏览器)。</p>
+<h3 id="其他属性"><a href="#其他属性" class="headerlink" title="其他属性"></a>其他属性</h3><p>两个不常用的边界图像属性如下：</p>
+<p><code>border-image-width</code>：只调整边界图像，而不是边界——如果这个设置小于border-width，它会贴着边界外侧，而不是填满边界。如果是它更大，那么它就会越过边界内侧，并开始重叠在内边距/内容上。<br><code>border-image-outset</code>：定义边界内部和内边距之间的额外空间的大小——有点像“边界填充”。如果需要的话，这是一种简单的方法，可以将边界图像移出一点。</p>
+<h2 id="表格"><a href="#表格" class="headerlink" title="表格"></a>表格</h2><p>给<code>table-layout</code>属性设置一个为fixed的值通常是一个好主意，因为它使表的行为在默认情况下更可预测。通常情况下，表列的尺寸会根据所包含的内容大小而变化，这会产生一些奇怪的结果。通过 table-layout: fixed，您可以根据列标题的宽度来规定列的宽度，然后适当地处理它们的内容。这就是为什么我们使用了thead th:nth-child(n) 选择了四个不同的标题(:nth-child)选择器（“选择第n个子元素，它是一个顺序排列的&lt; th&gt;元素，且其父元素是&lt; thead&gt;元素”）并给定了它们的百分比宽度。整个列宽度与列标题的宽度是一样的，这是一种很好的设定表列尺寸的方式。</p>
+<p>使您的表格标记尽可能简单，并且保持灵活性，例如使用百分比，这样设计就更有响应性。<br>使用 table-layout: fixed 创建更可控的表布局，可以通过在标题width中设置width来轻松设置列的宽度。<br>使用 border-collapse: collapse 使表元素边框合并，生成一个更整洁、更易于控制的外观。<br>使用&lt; thead&gt;, &lt; tbody&gt;和&lt; tfoot&gt; 将表格分割成逻辑块，并提供额外的应用CSS的地方，因此如果需要的话，可以更容易地将样式层叠在一起。<br>使用斑马线来让其他行更容易阅读。<br>使用 text-align直线对齐您的&lt; th&gt;和&lt; td&gt;文本，使内容更整洁、更易于跟随。</p>
+<h2 id="列表"><a href="#列表" class="headerlink" title="列表"></a>列表</h2><p>若干个默认的样式预设值：</p>
+<p>&lt; ul&gt; 和元素设置margin的顶部和底部: 16px(1em) 0;和 padding-left: 40px(2.5em); （在这里注意的是浏览器默认字体大小为16px）。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt; li&gt; 默认是没有设置间距的。</span><br><span class="line">&lt; dl&gt; 元素设置 margin的顶部和底部: <span class="number">16</span>px(<span class="number">1</span>em) ，无内边距设定。</span><br><span class="line">&lt; dd&gt; 元素设置为： margin-left <span class="number">40</span>px (<span class="number">2.5</span>em)。</span><br></pre></td></tr></table></figure>
+<p>在参考中提到的 &lt; p&gt; 元素设置 margin的顶部和底部: 16px(1em)，和其他的列表类型相同。<br>处理列表间距<br>创建样式列表时，您需要调整样式，使其保持与周围元素相同的垂直间距（例如段落和图片，有时称为垂直节奏））和相互间的水平间距。</p>
+<h3 id="列表特定样式"><a href="#列表特定样式" class="headerlink" title="列表特定样式"></a>列表特定样式</h3><p><code>list-style-type</code> ：<br>设置用于列表的项目符号的类型，例如无序列表的方形或圆形项目符号，或有序列表的数字，字母或罗马数字。</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">list-style-position</span> ：设置在每个项目开始之前，项目符号是出现在列表项内，还是出现在其外。</span><br><span class="line"><span class="built_in">list-style-image</span> ：允许您为项目符号使用自定义图片，而不是简单的方形或圆形。</span><br></pre></td></tr></table></figure>
+<h3 id="管理列表计数"><a href="#管理列表计数" class="headerlink" title="管理列表计数"></a>管理列表计数</h3><p>有时，我们可能想在有序列表上进行不同的计数方式。例如： 从1以外的数字开始，或向后倒数，或者按步或多于1计数。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">start 属性允许从1 以外的数字开始计数，例如：<span class="tag">&lt; <span class="attr">ol</span> <span class="attr">start</span>=<span class="string">”4”</span>&gt;</span></span><br><span class="line">reversed 属性将启动列表倒计数，例如：<span class="tag">&lt; <span class="attr">ol</span> <span class="attr">start</span>=<span class="string">”4”</span> <span class="attr">reversed</span>&gt;</span></span><br><span class="line">value 属性允许设置列表项指定数值， 例如： <span class="tag">&lt; <span class="attr">li</span> <span class="attr">value</span>=<span class="string">”2”</span>&gt;</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/02/26/%E5%B7%A9%E5%9B%BA4/" title="巩固前端04--背景+边框+列表+表格">http://yoursite.com/2019/02/26/%E5%B7%A9%E5%9B%BA4/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 前端基础</a>
+          
+            <a href="/tags/%E5%B7%A9%E5%9B%BA%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97/" rel="tag"><i class="fa fa-tag"></i> 巩固前端系列</a>
+          
+            <a href="/tags/%E8%83%8C%E6%99%AF-%E8%BE%B9%E6%A1%86-%E5%88%97%E8%A1%A8-%E8%A1%A8%E6%A0%BC/" rel="tag"><i class="fa fa-tag"></i> 背景+边框+列表+表格</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/25/%E5%B7%A9%E5%9B%BA3/" rel="next" title="巩固前端03--盒模型">
+                <i class="fa fa-chevron-left"></i> 巩固前端03--盒模型
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/26/%E5%B7%A9%E5%9B%BA5/" rel="prev" title="巩固前端05--框模型">
+                巩固前端05--框模型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#背景-边框-列表-表格"><span class="nav-number">1.</span> <span class="nav-text">背景+边框+列表+表格</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#color"><span class="nav-number">1.1.1.</span> <span class="nav-text">color</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#background-image"><span class="nav-number">1.1.2.</span> <span class="nav-text">background-image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#background-repeat"><span class="nav-number">1.1.3.</span> <span class="nav-text">background-repeat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#background-position"><span class="nav-number">1.1.4.</span> <span class="nav-text">background-position</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#颜色渐变"><span class="nav-number">1.1.5.</span> <span class="nav-text">颜色渐变</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#linear-gradient"><span class="nav-number">1.2.</span> <span class="nav-text">linear gradient</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#radial-gradient"><span class="nav-number">1.3.</span> <span class="nav-text">radial gradient</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景附着"><span class="nav-number">1.4.</span> <span class="nav-text">背景附着</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多个背景"><span class="nav-number">1.4.1.</span> <span class="nav-text">多个背景</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景尺寸"><span class="nav-number">1.4.2.</span> <span class="nav-text">背景尺寸</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#边框"><span class="nav-number">1.5.</span> <span class="nav-text">边框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#边界回顾"><span class="nav-number">1.5.1.</span> <span class="nav-text">边界回顾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边界半径"><span class="nav-number">1.5.2.</span> <span class="nav-text">边界半径</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#边界图像"><span class="nav-number">1.5.3.</span> <span class="nav-text">边界图像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他属性"><span class="nav-number">1.5.4.</span> <span class="nav-text">其他属性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表格"><span class="nav-number">1.6.</span> <span class="nav-text">表格</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表"><span class="nav-number">1.7.</span> <span class="nav-text">列表</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#列表特定样式"><span class="nav-number">1.7.1.</span> <span class="nav-text">列表特定样式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#管理列表计数"><span class="nav-number">1.7.2.</span> <span class="nav-text">管理列表计数</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

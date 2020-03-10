@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Node基础,Node.js(2)," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="node第一天为什么学习node.js 企业需求  全栈开发工程师 学习node的目的就是打开服务端学习大门，了解服务端才能更好的配合服务端">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js02--01">
+<meta property="og:url" content="http://yoursite.com/2019/04/15/nodejs2-01/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="node第一天为什么学习node.js 企业需求  全栈开发工程师 学习node的目的就是打开服务端学习大门，了解服务端才能更好的配合服务端">
+<meta property="article:published_time" content="2019-04-15T08:34:38.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:34:49.214Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="Node基础">
+<meta property="article:tag" content="Node.js(2)">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/15/nodejs2-01/"/>
+
+
+
+
+
+  <title>Node.js02--01 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/15/nodejs2-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node.js02--01</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-15T16:34:38+08:00">
+                2019-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/Node-js-2/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js(2)</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/Node-js-2/Node%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">Node基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="node第一天"><a href="#node第一天" class="headerlink" title="node第一天"></a>node第一天</h1><h2 id="为什么学习node-js"><a href="#为什么学习node-js" class="headerlink" title="为什么学习node.js"></a>为什么学习node.js</h2><ul>
+<li><p>企业需求</p>
+<ul>
+<li>全栈开发工程师</li>
+<li>学习node的目的就是打开服务端学习大门，了解服务端才能更好的配合服务端<a id="more"></a>
+</li>
+</ul>
+</li>
+<li><p>基本的网站开发能力</p>
+<ul>
+<li>服务端</li>
+<li>前端</li>
+<li>运维部署</li>
+</ul>
+</li>
+<li><p>学习node帮助学习前端高级内容</p>
+<ul>
+<li>vue </li>
+<li>react</li>
+<li>angular</li>
+</ul>
+</li>
+</ul>
+<h2 id="node是什么"><a href="#node是什么" class="headerlink" title="node是什么"></a>node是什么</h2><ul>
+<li><p>采用Javascript为基础，实现的后端语言<br>·node.js不是一门语言<br>·不是库、不是框架<br>·是一个javascript运行时环境<br>·简单点来讲就是node.js可以解析执行JavaScript代码<br>·以前只有浏览器可以执行解析JavaScript代码<br>·也就是说现在的JavaScript可以完全脱离浏览器来运行</p>
+</li>
+<li><p>浏览器中的JavaScript</p>
+<ul>
+<li>ecmascript<ul>
+<li>基本语法</li>
+<li>if</li>
+<li>var</li>
+<li>。。。。</li>
+</ul>
+</li>
+<li>DOM</li>
+<li>BOM</li>
+</ul>
+</li>
+<li><p>node.js中的JavaScript</p>
+<ul>
+<li>没有BOM DOM</li>
+<li>EcmaScript</li>
+<li>在node这个JavaScript执行环境中为JavaScript提供了一些服务器级别的操作API<ul>
+<li>例如文件读写</li>
+<li>网络服务的构建</li>
+<li>网络通信</li>
+<li>http 服务器</li>
+<li>。。。。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>构建与chrome v8引擎之上</p>
+<ul>
+<li>代码只是一串特殊的字符串</li>
+<li>引擎可以认识它，引擎可以帮忙去解析和执行</li>
+<li>Google chrome v8的引擎目前是公认的解析执行JavaScript代码最快的</li>
+</ul>
+</li>
+<li><p>事件驱动</p>
+</li>
+<li><p>非阻塞I/O模型（异步）</p>
+</li>
+<li><p>清凉和高效</p>
+</li>
+<li><p>npm是世界上最大的开源库生态系统</p>
+<ul>
+<li>绝大多的JavaScript相关的包都放在了npm上，这样做的目的是为了让更多的开发人员更方便的下载使用</li>
+</ul>
+</li>
+</ul>
+<h2 id="能做什么"><a href="#能做什么" class="headerlink" title="能做什么"></a>能做什么</h2><ul>
+<li>web服务器后台</li>
+<li>命令行工具<ul>
+<li>npm</li>
+<li>git（C）</li>
+<li>hexo</li>
+<li>。。。</li>
+</ul>
+</li>
+<li>对于前端开发工程师来说，使用最多的是它的命令行工具</li>
+</ul>
+<h2 id="一些资源"><a href="#一些资源" class="headerlink" title="一些资源"></a>一些资源</h2><p> 《深入浅出node.js》  —朴灵，偏理论没有任何实战内容 理解底层原理有帮助<br> 《node.js权威指南》  —API讲解，无实战<br> js标准参考教程：<a href="http://javascript.ruanyifeng.com/" target="_blank" rel="noopener">http://javascript.ruanyifeng.com/</a><br> node入门：<a href="http://www.nodebeginner.org/index-zh-cn.html" target="_blank" rel="noopener">http://www.nodebeginner.org/index-zh-cn.html</a><br> 官方API文档：<a href="https://nodejs.org/dist/latest-v6.x/docs/api" target="_blank" rel="noopener">https://nodejs.org/dist/latest-v6.x/docs/api</a><br> CNODE社区：<a href="http://cnodejs.org" target="_blank" rel="noopener">http://cnodejs.org</a><br> CNODE新手入门：<a href="http://cnode.org/getstart" target="_blank" rel="noopener">http://cnode.org/getstart</a></p>
+<h2 id="能学到啥"><a href="#能学到啥" class="headerlink" title="能学到啥"></a>能学到啥</h2><ul>
+<li>B/S编程模型<ul>
+<li>brower server</li>
+<li>任何服务器端这种BS编程模型都是一样，与语言无关</li>
+<li>node 只是我们学习BS编程模型的一个工具而已</li>
+</ul>
+</li>
+<li>模块化编程<ul>
+<li>Require JS</li>
+<li>SeaJS</li>
+<li>@import（‘’）</li>
+<li>以前认知的js只能用script标签来加载</li>
+<li>在node中可以向@import（）一样来引用加载js脚本文件</li>
+</ul>
+</li>
+<li>node常用API </li>
+<li>异步编程<ul>
+<li>回调函数</li>
+<li>Promise</li>
+<li>async</li>
+<li>generator</li>
+</ul>
+</li>
+<li>express 开发框架</li>
+<li>ES6</li>
+</ul>
+<h2 id="helloworld"><a href="#helloworld" class="headerlink" title="helloworld"></a>helloworld</h2><p>1、创建js脚本文件<br>2、打开终端，定位到脚本所属目录<br>3、输入‘node文件名’执行相应文件<br>注意：文件名不能以node.js来命名，不然会打开文件，且最好不要使用中文   code代码中的 01-noBOMandDOM.js</p>
+<h2 id="读写文件"><a href="#读写文件" class="headerlink" title="读写文件"></a>读写文件</h2><p>读文件和写文件全部通过实例代码编写放在code代码文件夹里面</p>
+<h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><p>http服务请求最简单的如04-http.js相关代码文件注释</p>
+<h2 id="node中的js"><a href="#node中的js" class="headerlink" title="node中的js"></a>node中的js</h2><p>·EcmaScript<br>·核心模块<br>·第三方模块<br>·用户自定义模块</p>
+<h3 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h3><p>node为JavaScript提供了很多服务器级别的API，这些API绝大多数都被包装到了一个具名的核心模块中了。<br>例如文件操作的fs核心模块，http服务构建的http模块，path路基那个操作模块，os操作系统信息模块。。。。<br>已经给我们封装起来了，直接使用不过就是要引入模块</p>
+<h3 id="用户自定义模块"><a href="#用户自定义模块" class="headerlink" title="用户自定义模块"></a>用户自定义模块</h3><ul>
+<li>相对路径必须加./</li>
+<li>在node中没有全局作用域，只有模块作用域,简单来讲就是文件作用域，只在文件作用域中有效，出了文件以后就无效，也不会污染其它文件</li>
+<li>相对路径中的./不能省略（会把它当成核心模块名来进行加载了）</li>
+<li>可以省略后缀名</li>
+</ul>
+<h2 id="端口号"><a href="#端口号" class="headerlink" title="端口号"></a>端口号</h2><ul>
+<li>计算机中只有一个物理网卡，而且同一份局域网中，网卡的地址必须是唯一的。</li>
+<li>网卡是通过唯一的ip地址来进行定位的。</li>
+<li>IP地址用来定位计算机，端口号用来定位具体的应用程序（所有需要联网的程序都需要端口号）。</li>
+<li>服务器（相当于是一台24小时不关机的计算机）里面可能会有很多软件的内存，但是这一台服务器在一个相同的局域网内，当另外一台计算机访问服务器想要获取内容时候，必须得根据相对应的软件来在服务器中找到相对应的软件，所以这就需要端口号，用来表示同一个局域网同一台计算机中的不同软件。即通过端口号来寻找在同一个服务器上的不同应用程序</li>
+<li>一切需要联网通信的软件都会占用一个端口号</li>
+<li>端口号的范围在0-65536</li>
+<li>计算机有一些默认的端口号，最好不要去使用<ul>
+<li>例如http服务的80</li>
+</ul>
+</li>
+<li>使用一些好记的且没有含义的就可以3000 5000 8000</li>
+<li>可以同时开启多个服务，但是要保证服务的端口号不一样</li>
+<li>同一时间，同意端口号只能被同意程序占用</li>
+</ul>
+<h2 id="content-type"><a href="#content-type" class="headerlink" title="content-type"></a>content-type</h2><p>用来高速浏览器我发给你的数据是什么内容<br>  解决方法就是告诉浏览器使用什么编码<br>  res.setHeader(‘Content-Type’,’text/plain;charset=utf-8’)</p>
+<ul>
+<li>text/plain  就是普通文本</li>
+<li>如果发送的是html格式的字符串，则也要高速浏览器发送的是html文档  text/html</li>
+<li>图片不需要指定编码了，因为我们常说的编码一般是：字符编码</li>
+</ul>
+<ul>
+<li>通过网络发送文件<ul>
+<li>发送的不是文件而是文件的内容</li>
+<li>根据content-type来进行解析处理</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/04/15/nodejs2-01/" title="Node.js02--01">http://yoursite.com/2019/04/15/nodejs2-01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> Node基础</a>
+          
+            <a href="/tags/Node-js-2/" rel="tag"><i class="fa fa-tag"></i> Node.js(2)</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/06/css3%E7%AC%94%E8%AE%B006/" rel="next" title="css3笔记06--动画和渐变">
+                <i class="fa fa-chevron-left"></i> css3笔记06--动画和渐变
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/17/nodejs2-02/" rel="prev" title="Node.js02--02">
+                Node.js02--02 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#node第一天"><span class="nav-number">1.</span> <span class="nav-text">node第一天</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么学习node-js"><span class="nav-number">1.1.</span> <span class="nav-text">为什么学习node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node是什么"><span class="nav-number">1.2.</span> <span class="nav-text">node是什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#能做什么"><span class="nav-number">1.3.</span> <span class="nav-text">能做什么</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些资源"><span class="nav-number">1.4.</span> <span class="nav-text">一些资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#能学到啥"><span class="nav-number">1.5.</span> <span class="nav-text">能学到啥</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#helloworld"><span class="nav-number">1.6.</span> <span class="nav-text">helloworld</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#读写文件"><span class="nav-number">1.7.</span> <span class="nav-text">读写文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">1.8.</span> <span class="nav-text">http</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node中的js"><span class="nav-number">1.9.</span> <span class="nav-text">node中的js</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#核心模块"><span class="nav-number">1.9.1.</span> <span class="nav-text">核心模块</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用户自定义模块"><span class="nav-number">1.9.2.</span> <span class="nav-text">用户自定义模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#端口号"><span class="nav-number">1.10.</span> <span class="nav-text">端口号</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#content-type"><span class="nav-number">1.11.</span> <span class="nav-text">content-type</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

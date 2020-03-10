@@ -1,0 +1,1124 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Node基础,Node.js(2)," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="文件路径和模块路径关系文件操作中的相对路径.&#x2F;可以省略，模块加载中的相对路径.&#x2F;不能省略  使用的所有文件操作API都是异步的  修改完代码自动重启使用一个第三方命令行工具，nodemon来帮助我们频繁修改代码重启服务器问题。nodemon是一个居于node.js开发的一个第三方命令行工具，我们使用的时候需要独立安装">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js02--04">
+<meta property="og:url" content="http://yoursite.com/2019/04/24/nodejs2-04/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="文件路径和模块路径关系文件操作中的相对路径.&#x2F;可以省略，模块加载中的相对路径.&#x2F;不能省略  使用的所有文件操作API都是异步的  修改完代码自动重启使用一个第三方命令行工具，nodemon来帮助我们频繁修改代码重启服务器问题。nodemon是一个居于node.js开发的一个第三方命令行工具，我们使用的时候需要独立安装">
+<meta property="article:published_time" content="2019-04-24T08:31:58.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:45:40.722Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="Node基础">
+<meta property="article:tag" content="Node.js(2)">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/24/nodejs2-04/"/>
+
+
+
+
+
+  <title>Node.js02--04 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/24/nodejs2-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node.js02--04</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-24T16:31:58+08:00">
+                2019-04-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/Node-js-2/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js(2)</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/Node-js-2/Node%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">Node基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.8k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="文件路径和模块路径关系"><a href="#文件路径和模块路径关系" class="headerlink" title="文件路径和模块路径关系"></a>文件路径和模块路径关系</h2><p>文件操作中的相对路径./可以省略，模块加载中的相对路径./不能省略</p>
+<ul>
+<li>使用的所有文件操作API都是异步的</li>
+</ul>
+<h2 id="修改完代码自动重启"><a href="#修改完代码自动重启" class="headerlink" title="修改完代码自动重启"></a>修改完代码自动重启</h2><p>使用一个第三方命令行工具，nodemon来帮助我们频繁修改代码重启服务器问题。<br>nodemon是一个居于node.js开发的一个第三方命令行工具，我们使用的时候需要独立安装</p>
+<a id="more"></a>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">npm</span> install --<span class="built_in">global</span> nodemon<span class="regexp">//</span>在任意目录执行该命令都可以</span><br></pre></td></tr></table></figure>
+<p>安装完毕之后，使用：</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//以前使用方式</span><br><span class="line"><span class="keyword">node</span> <span class="title">app</span>.js</span><br><span class="line"></span><br><span class="line">//现在的方式</span><br><span class="line">nodemon app.js</span><br></pre></td></tr></table></figure>
+<p>只要是通过<code>nodemon app.js</code>启动的服务，它就会监视你的文件变化，当文件发生变化的时候，自动帮助我们重启服务器。</p>
+<h2 id="express"><a href="#express" class="headerlink" title="express"></a>express</h2><h3 id="基本路由"><a href="#基本路由" class="headerlink" title="基本路由"></a>基本路由</h3><p>路由就是一张表，表里面由具体的映射关系。</p>
+<ul>
+<li>请求方法</li>
+<li>请求路径</li>
+<li>请求处理函数<br>get：<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//当你以<span class="built_in">get</span>方法请求/的时候，执行对应的处理函数</span><br><span class="line">app.<span class="built_in">get</span>(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="title">req</span>,<span class="title">res</span>)&#123;</span></span><br><span class="line">	res.<span class="built_in">send</span>(<span class="string">'hello express！！！'</span>)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>post：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//当你以<span class="built_in">post</span>防范请求/的时候，指定对应的处理函数</span><br><span class="line">app.<span class="built_in">post</span>(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="title">req</span>,<span class="title">res</span>)&#123;</span></span><br><span class="line">	res.<span class="built_in">send</span>(<span class="string">'get a post request'</span>)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="静态服务"><a href="#静态服务" class="headerlink" title="静态服务"></a>静态服务</h3><p>当以’/public/‘开头的时候，去’./public’目录中查找相对应的文件，访问路径必须要添加/public/</p>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// /public/xxx</span></span><br><span class="line">app.<span class="keyword">use</span>('/<span class="keyword">public</span>/',express.<span class="keyword">static</span>('./<span class="keyword">public</span>'))</span><br></pre></td></tr></table></figure>
+<p>当省略第一个参数的时候，则可以通过省略/public的方式来进行访问，可以额访问路径不用添加/public/</p>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// /xxx</span></span><br><span class="line">app.<span class="keyword">use</span>(express.<span class="keyword">static</span>('./<span class="keyword">public</span>'))</span><br></pre></td></tr></table></figure>
+
+<p>以下的方法代表的是以/static/来替换./public，也就是说，/static/是./public的别名</p>
+<figure class="highlight fsharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// /static/xxx</span></span><br><span class="line">app.<span class="keyword">use</span>('/<span class="keyword">static</span>/',express.<span class="keyword">static</span>('./<span class="keyword">public</span>'))</span><br></pre></td></tr></table></figure>
+
+<h3 id="在express中配置使用art-template模板引擎"><a href="#在express中配置使用art-template模板引擎" class="headerlink" title="在express中配置使用art-template模板引擎"></a>在express中配置使用art-template模板引擎</h3><p>安装：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm <span class="keyword">install</span> <span class="comment">--save art-template</span></span><br><span class="line">npm <span class="keyword">install</span> <span class="comment">--save express-art-template</span></span><br></pre></td></tr></table></figure>
+
+<p>配置使用art-template模板引擎，第一个参数表示当渲染以.art结尾的文件的时候，使用art-template模板引擎.<br>express-art-template是专门用来在express中把art-template整合到express中的，虽然这里不需要加载art-template，但是也必须安装该包，原因就在于express-art-template依赖了art-tempplate。</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">app.engine（<span class="string">'art'</span>,<span class="built_in">require</span>(<span class="string">'express-art-template'</span>)）</span><br></pre></td></tr></table></figure>
+<p>express为response相应对象提供了一个方法：render。render方法默认是不可以使用，但是如果配置了模板引擎就可以使用了。<br>语法：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">res</span><span class="selector-class">.render</span>(<span class="string">'html模板名'</span>,&#123;模板数据&#125;)</span><br></pre></td></tr></table></figure>
+<p>读取html模板名文件，渲染模板数据。第一个参数不能写路径，默认会去项目中的views目录中查找该模板文件，也就是说，express有一个约定：开发人员把所有的视图文件都放到views目录中。<br>例如：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="built_in">get</span>(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span>&#123;</span></span><br><span class="line">	<span class="keyword">res</span>.render(<span class="string">'404.art'</span>)</span><br><span class="line">	&#125;)</span><br><span class="line">/*</span><br><span class="line">注意：</span><br><span class="line">	<span class="number">1</span>、<span class="keyword">res</span>.render(<span class="string">'404.art'</span>)不能写成<span class="keyword">res</span>.render(<span class="string">'./views/404.art'</span>)，因为会默认去views这个目录下面查找</span><br><span class="line">	<span class="number">2</span>、要把views目录中对应的html文件名的后缀改成.art</span><br><span class="line">*/</span><br></pre></td></tr></table></figure>
+
+<p>如果不想要把改变views目录中文件的后缀名（不想把.html改成.art）的话，就需要在加载引擎的时候重新定义，即把：<br><code>app.engine（&#39;art&#39;,require(&#39;express-art-template&#39;)）</code>中的第一个参数由’art’改成’html’，这样的话加载的html文件就不需要改变后缀名了。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.engine（<span class="string">'art'</span>,<span class="built_in">require</span>(<span class="string">'express-art-template'</span>)）</span><br><span class="line">app.get(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">	res.render(<span class="string">'404.html'</span>)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>如果想要修改默认的views目录。则可以使用set方法：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">app.<span class="builtin-name">set</span>(<span class="string">'views'</span>,render函数的默认路径)</span><br><span class="line">app.<span class="builtin-name">set</span>(<span class="string">'views'</span>,<span class="string">'public'</span>)</span><br></pre></td></tr></table></figure>
+
+<p><b>总结</b></p>
+<ul>
+<li><p>安装</p>
+<ul>
+<li><code>npm install --save art-template</code></li>
+<li><code>npm install --save express-art-template</code></li>
+</ul>
+</li>
+<li><p>配置</p>
+<ul>
+<li><code>app.engine（&#39;art&#39;,require(&#39;express-art-template&#39;)）</code></li>
+<li>以上方法配置的时候，render的文件后缀名只能是.art</li>
+<li>如果向以.html为文件后缀名，需要把上述配置语句改为： </li>
+<li><code>app.engine（&#39;html&#39;,require(&#39;express-art-template&#39;)）</code></li>
+</ul>
+</li>
+<li><p>使用</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> app.<span class="built_in">get</span>(<span class="string">'/'</span>,<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span>&#123;</span></span><br><span class="line"><span class="keyword">res</span>.render(<span class="string">'index.html'</span>，&#123;</span><br><span class="line">	title：<span class="string">'hello world'</span></span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li><p>如果希望修改默认的views视图渲染存储目录，可以：</p>
+<ul>
+<li><code>app.set(&#39;views&#39;,render函数的默认路径)</code></li>
+<li>注意：第一个参数不能写错</li>
+</ul>
+</li>
+</ul>
+<h2 id="在express中配置解析表单post请求体数据"><a href="#在express中配置解析表单post请求体数据" class="headerlink" title="在express中配置解析表单post请求体数据"></a>在express中配置解析表单post请求体数据</h2><p>当以POST请求/post的时候，执行指定的处理函数</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">app.post(<span class="string">'/post'</span>，<span class="function"><span class="keyword">function</span><span class="params">(req,res)</span></span>&#123;</span><br><span class="line">	<span class="comment">//1. 获取表单POST请求体数据</span></span><br><span class="line">	<span class="comment">//2.处理</span></span><br><span class="line">	   <span class="comment">//将数据保存到db.json文件中用以持久化</span></span><br><span class="line">	<span class="comment">//3.发送响应</span></span><br><span class="line">	<span class="comment">/*</span></span><br><span class="line"><span class="comment">	因为文件中json存取的都是字符串，所以要先读取出来，转成对象</span></span><br><span class="line"><span class="comment">	然后往对象中push数据</span></span><br><span class="line"><span class="comment">	然后把对象转换为字符串</span></span><br><span class="line"><span class="comment">	然后把字符串再次写入文件</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	//req.query只能获取get方法的数据</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">	&#125;);</span></span><br></pre></td></tr></table></figure>
+<p>在express中没有内置获取表单POST请求体的API，这里我们需要一个第三方的包：<code>body-parser</code></p>
+<ul>
+<li>安装<ul>
+<li>npm install –save body-parser</li>
+</ul>
+</li>
+<li>配置<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"><span class="comment">//0 引包</span></span><br><span class="line"><span class="keyword">var</span> bodyParser = <span class="built_in">require</span>(<span class="string">'body-parser'</span>)</span><br><span class="line"><span class="keyword">var</span> app = express()</span><br><span class="line"></span><br><span class="line"><span class="comment">//配置</span></span><br><span class="line"><span class="comment">//只要加入这个配置，则在req对象上会多出来一个属性：body</span></span><br><span class="line"><span class="comment">//也就是说可以直接通过req.body来获取表单POST请求体数据了</span></span><br><span class="line"><span class="comment">//parse app</span></span><br><span class="line">app.use(bodyParser.urlencoded(&#123;<span class="attr">extended</span>:<span class="literal">false</span>&#125;))</span><br><span class="line"></span><br><span class="line"><span class="comment">//parse app/json</span></span><br><span class="line">app.use(bodyParser.json())</span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">	res.setHeader(<span class="string">'Content-Type'</span>,<span class="string">'text/plain'</span>)</span><br><span class="line">	res.write(<span class="string">'you posted:\n'</span>)</span><br><span class="line">	res.end(<span class="built_in">JSON</span>.stringify(req.body,<span class="literal">null</span>,<span class="number">2</span>))</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+res.send，res.redirect这些方法会自动结束响应</li>
+</ul>
+<h3 id="配置中间件body-parser"><a href="#配置中间件body-parser" class="headerlink" title="配置中间件body-parser"></a>配置中间件body-parser</h3><p>配置模板引擎和body-parser一定要在app.use(router)挂载路由之前，中间件加载是从上到下</p>
+<h2 id="从文件中读取各种数据"><a href="#从文件中读取各种数据" class="headerlink" title="从文件中读取各种数据"></a>从文件中读取各种数据</h2><p>模板引擎循环读取一些数据的时候，首先在app的</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">res</span>.render(<span class="string">'index.html'</span>),&#123;</span><br><span class="line">		student<span class="variable">s:</span>[</span><br><span class="line">	&#123;<span class="string">"name"</span>:<span class="string">"a"</span>,<span class="string">"age"</span>:<span class="number">18</span>,<span class="string">"gender"</span>:<span class="number">0</span>,<span class="string">"hobbies"</span>:<span class="string">"singing,dancing"</span>&#125;,</span><br><span class="line">	&#123;<span class="string">"name"</span>:<span class="string">"b"</span>,<span class="string">"age"</span>:<span class="number">18</span>,<span class="string">"gender"</span>:<span class="number">0</span>,<span class="string">"hobbies"</span>:<span class="string">"singing,dancing"</span>&#125;,</span><br><span class="line">	&#123;<span class="string">"name"</span>:<span class="string">"c"</span>,<span class="string">"age"</span>:<span class="number">18</span>,<span class="string">"gender"</span>:<span class="number">0</span>,<span class="string">"hobbies"</span>:<span class="string">"singing,dancing"</span>&#125;,</span><br><span class="line">	&#123;<span class="string">"name"</span>:<span class="string">"d"</span>,<span class="string">"age"</span>:<span class="number">18</span>,<span class="string">"gender"</span>:<span class="number">0</span>,<span class="string">"hobbies"</span>:<span class="string">"singing,dancing"</span>&#125;,</span><br><span class="line">	&#123;<span class="string">"name"</span>:<span class="string">"e"</span>,<span class="string">"age"</span>:<span class="number">18</span>,<span class="string">"gender"</span>:<span class="number">0</span>,<span class="string">"hobbies"</span>:<span class="string">"singing,dancing"</span>&#125;</span><br><span class="line">]</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<p>然后在index.html中这样写就可以了：</p>
+<figure class="highlight handlebars"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">tbody</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="comment">&lt;!-- 模板引擎循环渲染写法格式如下 --&gt;</span></span></span><br><span class="line"><span class="xml">	</span><span class="template-variable">&#123;&#123; <span class="builtin-name">each</span> fstudents &#125;&#125;</span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">td</span>&gt;</span></span><span class="template-variable">&#123;&#123; $value.name &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">td</span>&gt;</span></span><span class="template-variable">&#123;&#123; $value.age &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">td</span>&gt;</span></span><span class="template-variable">&#123;&#123; $value.gender &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;<span class="name">td</span>&gt;</span></span><span class="template-variable">&#123;&#123; $value.hobbies &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">td</span>&gt;</span></span></span><br><span class="line"><span class="xml">	<span class="tag">&lt;/<span class="name">tr</span>&gt;</span></span></span><br><span class="line"><span class="xml">	</span><span class="template-variable">&#123;&#123; /<span class="builtin-name">each</span> &#125;&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">tbody</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+<p>就可以了</p>
+<p>从文件中读取到的数据一定是字符串，所以需要手动转换成对象，需要对象的形式来放在render的第二个参数对象之中。</p>
+<figure class="highlight haskell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">fs</span>.readFile('./db.json',function(err,<span class="class"><span class="keyword">data</span>)&#123;</span></span><br><span class="line"><span class="class">		<span class="title">if</span>(<span class="title">err</span>)&#123;</span></span><br><span class="line"><span class="class">			<span class="title">return</span> <span class="title">res</span>.<span class="title">status</span>(500).<span class="title">send</span>('<span class="type">Server</span> <span class="title">error'</span>)</span></span><br><span class="line"><span class="class">		&#125;</span></span><br><span class="line">		/*console.log(<span class="class"><span class="keyword">data</span>.toString())，因为<span class="keyword">data</span>传过来是字符串，但是是二进制编码字符串，所以如果需要看清楚的话，需要加<span class="keyword">data</span>.toString（）来转换成我们能认识的字符串*/</span></span><br><span class="line">		res.render('index.html',&#123;</span><br><span class="line">			students:<span class="type">JSON</span>.parse(<span class="class"><span class="keyword">data</span>).students//从文件中读取到的数据一定是字符串，所以需要手动转换成对象</span></span><br><span class="line">		&#125;)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<p>注意：students:JSON.parse(data).students，一定要加.students这个对象属性，因为传过来得到的data是一个对象，对象包括了该文件里面的所有数据，所以不加.student的话，就找不到循环遍历的一些属性，students是data对象中的一个对象，必须要有这个关系存在才可以引用这个对象进行相关操作</p>
+<p>小总结：</p>
+<ul>
+<li>nodemon</li>
+<li>express <ul>
+<li>art-template模板引擎配置（art-template、express-art-template）</li>
+<li>body-parser解析表单POST请求体</li>
+</ul>
+</li>
+</ul>
+<h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><p>增删改查</p>
+<p>新建项目步骤：<br>1、新建文件夹<br>2、cd 文件夹名字，进入文件夹<br>3、在该文件夹下npm init -y 进行初始化，会在该文件夹根目录下生成package.json文件<br>4、再在该文件夹中npm install –save express下载并生成express框架依赖<br>5、新建app.js文件、public文件夹和views文件夹<br>6、要想使用res.render方法进行渲染页面的话，必须要配置模板引擎</p>
+<h2 id="路由模块的提取"><a href="#路由模块的提取" class="headerlink" title="路由模块的提取"></a>路由模块的提取</h2><p>express提供了一种方式专门用来包装路由的：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>)</span><br><span class="line"><span class="keyword">var</span> express = <span class="built_in">require</span>(<span class="string">'express'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//1.创建一个路由容器</span></span><br><span class="line"><span class="keyword">var</span> router = express.Router()</span><br><span class="line"></span><br><span class="line"><span class="comment">//2.把路由都挂载到router路由容器中</span></span><br><span class="line">router.get(<span class="string">'/students/new'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;)</span><br><span class="line">router.post(<span class="string">'/students/new'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;)</span><br><span class="line">router.get(<span class="string">'/students/new'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">req,res</span>)</span>&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//3.把router导出</span></span><br><span class="line"><span class="built_in">module</span>.exports = router</span><br></pre></td></tr></table></figure>
+<p>以上代码都是在router.js中写的，在app.js中没有</p>
+<p>在app中的代码：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> router = <span class="keyword">require</span>(<span class="string">'./router'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">//把路由容器挂载到app服务中</span></span><br><span class="line">app.<span class="keyword">use</span>(<span class="title">router</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="app-js"><a href="#app-js" class="headerlink" title="app.js"></a>app.js</h3><ul>
+<li>入门模块，职责：<ul>
+<li>启动服务</li>
+<li>做一些服务相关配置<ul>
+<li>模板引擎</li>
+<li>body-parser 解析表单 post请求体</li>
+<li>提供静态资源的服务</li>
+</ul>
+</li>
+<li>挂载路由</li>
+<li>监听端口启动服务</li>
+</ul>
+</li>
+</ul>
+<h3 id="router-js"><a href="#router-js" class="headerlink" title="router.js"></a>router.js</h3><ul>
+<li>路由模块，职责：<ul>
+<li>处理路由</li>
+<li>根据不同的请求方法+请求路径设置具体函数</li>
+</ul>
+</li>
+</ul>
+<h3 id="student-js"><a href="#student-js" class="headerlink" title="student.js"></a>student.js</h3><p>操作数据的API</p>
+<ul>
+<li>数据操作文件模块<ul>
+<li>操作文件中的数据，只处理数据，不关心业务<br>例如：<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取所有学生列表    return[]</span></span><br><span class="line">exports.find = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//添加保存学生</span></span><br><span class="line">exports.save = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//更新学生信息</span></span><br><span class="line">exports.update = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//删除学生信息</span></span><br><span class="line">exports.delete = <span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="自己编写的步骤"><a href="#自己编写的步骤" class="headerlink" title="自己编写的步骤"></a>自己编写的步骤</h3><ul>
+<li>处理模板</li>
+<li>配置开放静态资源</li>
+<li>配置模板引擎</li>
+<li>路由设计</li>
+<li>提取路由模块</li>
+<li>由于接下来的一系列操作都需要处理文件数据，所以需要处理业务数据文件</li>
+<li>业务文件结构</li>
+<li>实现具体功能</li>
+<li>业务功能顺序</li>
+<li>简单路由</li>
+</ul>
+<h2 id="回调函数"><a href="#回调函数" class="headerlink" title="回调函数"></a>回调函数</h2><ul>
+<li>如果需要获取一个函数中异步操作的结果，则必须通过回调函数来获取</li>
+<li>回调函数的目的就是为了获取异步操作的结果</li>
+</ul>
+<p>不成立的情况：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">	consle.log(<span class="number">1</span>)</span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">var</span> ret = x + y</span><br><span class="line">		<span class="keyword">return</span> ret</span><br><span class="line">		&#125;,<span class="number">0</span>)</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">		<span class="comment">//执行到这里就结束了，不会等到前面的定时器，所以就直接返回了undefined</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">10</span>,<span class="number">20</span>))<span class="comment">//1，3，undefined，2</span></span><br></pre></td></tr></table></figure>
+
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y</span>)</span>&#123;</span><br><span class="line">	consle.log(<span class="number">1</span>)</span><br><span class="line">	<span class="keyword">var</span> ret</span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">		ret = x + y</span><br><span class="line">		&#125;,<span class="number">0</span>)</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">		<span class="keyword">return</span> ret</span><br><span class="line">		<span class="comment">//执行到这里就结束了，不会等到前面的定时器，所以就直接返回了undefined</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">10</span>,<span class="number">20</span>))<span class="comment">//1，3，undefined，2</span></span><br></pre></td></tr></table></figure>
+
+<p>注意:凡是需要得到一个函数内部异步操作（setTimeout、readFile、writeFile、ajax，往往异步API都伴有一个回调函数：$.get(‘/‘,function(){})）的结果，这种情况必须通过回调函数取得。<br>回调函数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">x,y,callback</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="comment">//callback就是回调函数</span></span><br><span class="line">	<span class="comment">// var x = 10</span></span><br><span class="line">	<span class="comment">//var y = 20</span></span><br><span class="line">	<span class="comment">//var callback = function(ret)&#123; console.log(ret) &#125;</span></span><br><span class="line"></span><br><span class="line">	consle.log(<span class="number">1</span>)</span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">2</span>)</span><br><span class="line">		<span class="keyword">var</span> ret = x + y</span><br><span class="line">		callback(ret)</span><br><span class="line">		&#125;,<span class="number">0</span>)</span><br><span class="line">		<span class="built_in">console</span>.log(<span class="number">3</span>)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">add(<span class="number">10</span>,<span class="number">20</span>,<span class="function"><span class="keyword">function</span>(<span class="params">ret</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(ret)<span class="comment">//1,3,2,30</span></span><br><span class="line">	<span class="comment">//我现在得到这个函数可以做任何操作</span></span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="基于原生XMLHttpRequest封装get方法："><a href="#基于原生XMLHttpRequest封装get方法：" class="headerlink" title="基于原生XMLHttpRequest封装get方法："></a>基于原生XMLHttpRequest封装get方法：</h2><figure class="highlight qml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">url,callback</span>)</span>&#123;</span><br><span class="line">	<span class="keyword">var</span> o = <span class="keyword">new</span> XMLRequest()</span><br><span class="line">	<span class="comment">//当请求加载成功之后要调用指定的函数</span></span><br><span class="line">	o.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="comment">//我现在需要得到这里的o.responseText</span></span><br><span class="line">		callback(o.responseText)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	o.open(<span class="string">"get"</span>,<span class="built_in">url</span>,<span class="literal">true</span>)</span><br><span class="line">	o.send()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">get(<span class="string">'data.json'</span>,<span class="function"><span class="keyword">function</span> (<span class="params">data</span>)</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(data)</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/04/24/nodejs2-04/" title="Node.js02--04">http://yoursite.com/2019/04/24/nodejs2-04/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> Node基础</a>
+          
+            <a href="/tags/Node-js-2/" rel="tag"><i class="fa fa-tag"></i> Node.js(2)</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/18/nodejs2-03/" rel="next" title="Node.js02--03">
+                <i class="fa fa-chevron-left"></i> Node.js02--03
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/29/nodejs2-05/" rel="prev" title="Node.js02--05">
+                Node.js02--05 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件路径和模块路径关系"><span class="nav-number">1.</span> <span class="nav-text">文件路径和模块路径关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#修改完代码自动重启"><span class="nav-number">2.</span> <span class="nav-text">修改完代码自动重启</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#express"><span class="nav-number">3.</span> <span class="nav-text">express</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本路由"><span class="nav-number">3.1.</span> <span class="nav-text">基本路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#静态服务"><span class="nav-number">3.2.</span> <span class="nav-text">静态服务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在express中配置使用art-template模板引擎"><span class="nav-number">3.3.</span> <span class="nav-text">在express中配置使用art-template模板引擎</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在express中配置解析表单post请求体数据"><span class="nav-number">4.</span> <span class="nav-text">在express中配置解析表单post请求体数据</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置中间件body-parser"><span class="nav-number">4.1.</span> <span class="nav-text">配置中间件body-parser</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从文件中读取各种数据"><span class="nav-number">5.</span> <span class="nav-text">从文件中读取各种数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CRUD"><span class="nav-number">6.</span> <span class="nav-text">CRUD</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由模块的提取"><span class="nav-number">7.</span> <span class="nav-text">路由模块的提取</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#app-js"><span class="nav-number">7.1.</span> <span class="nav-text">app.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#router-js"><span class="nav-number">7.2.</span> <span class="nav-text">router.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#student-js"><span class="nav-number">7.3.</span> <span class="nav-text">student.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己编写的步骤"><span class="nav-number">7.4.</span> <span class="nav-text">自己编写的步骤</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#回调函数"><span class="nav-number">8.</span> <span class="nav-text">回调函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于原生XMLHttpRequest封装get方法："><span class="nav-number">9.</span> <span class="nav-text">基于原生XMLHttpRequest封装get方法：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

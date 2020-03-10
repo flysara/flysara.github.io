@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="概述什么是vue vue是目前最火的一个前端框架，react是最流行的一个前端框架（react除了开发网站，还可以开发手机app，vue语法也是可以进行手机app开发，需要借助weex） vue是前端的主流框架之一，和react、angular一起，称为前端三大主流框架 vue 是一套构建用户界面的框架，指关注视图层，它不仅易于上手，还便于与第三方库或既有项目整合。（vue由配套的第三方类库，可以">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue1-day1">
+<meta property="og:url" content="http://yoursite.com/2019/10/16/vue1-01/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="概述什么是vue vue是目前最火的一个前端框架，react是最流行的一个前端框架（react除了开发网站，还可以开发手机app，vue语法也是可以进行手机app开发，需要借助weex） vue是前端的主流框架之一，和react、angular一起，称为前端三大主流框架 vue 是一套构建用户界面的框架，指关注视图层，它不仅易于上手，还便于与第三方库或既有项目整合。（vue由配套的第三方类库，可以">
+<meta property="article:published_time" content="2019-10-16T03:31:42.000Z">
+<meta property="article:modified_time" content="2020-03-07T07:20:37.651Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/16/vue1-01/"/>
+
+
+
+
+
+  <title>vue1-day1 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/16/vue1-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue1-day1</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-16T11:31:42+08:00">
+                2019-10-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/Vue1/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue1</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.6k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  14
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="什么是vue"><a href="#什么是vue" class="headerlink" title="什么是vue"></a>什么是vue</h3><ul>
+<li>vue是目前最火的一个前端框架，react是最流行的一个前端框架（react除了开发网站，还可以开发手机app，vue语法也是可以进行手机app开发，需要借助weex）</li>
+<li>vue是前端的主流框架之一，和react、angular一起，称为前端三大主流框架</li>
+<li>vue 是一套构建用户界面的框架，指关注视图层，它不仅易于上手，还便于与第三方库或既有项目整合。（vue由配套的第三方类库，可以整合起来做大型项目的开发）</li>
+<li>前端的主要工作？主要负责为MVC中的V层，主要就是和界面打交道，来制作前端页面效果<a id="more"></a>
+
+</li>
+</ul>
+<h3 id="为什么学习流行框架"><a href="#为什么学习流行框架" class="headerlink" title="为什么学习流行框架"></a>为什么学习流行框架</h3><ul>
+<li>企业为了提高开发效率，企业中使用框架能够提高开发效率</li>
+<li>提高开发效率的过程：原生js-&gt;jQuery之类的类库-&gt;前端模块引擎-&gt;angular.js/Vue.js（帮助我们减少不必要的DOM操作；提高渲染效率，双向数据绑定的概念（通过框架提供的指令，我们前端程序员只需要关心数据的业务逻辑，不再关心DOM是如何渲染的））</li>
+<li>在vue中，一个核心的概念就是让用户不再操作DOM元素</li>
+</ul>
+<h2 id="框架和库的区别"><a href="#框架和库的区别" class="headerlink" title="框架和库的区别"></a>框架和库的区别</h2><ul>
+<li>框架：是一套完整的解决方案，对项目的侵入性比较大，项目需要更换框架，则需要重新架构整个项目。<ul>
+<li>node中的express</li>
+</ul>
+</li>
+<li>库（插件）：提供一个某一个小功能，对项目的侵入性比较小，如果某个库无法完成某些需求，可以很容易切换到其他库需求。<ul>
+<li>1.从jquery切换到zepto</li>
+<li>2.从EJS切换到art-template</li>
+</ul>
+</li>
+</ul>
+<h2 id="node（后端）中的mvc和前端中的mvvm之间的区别"><a href="#node（后端）中的mvc和前端中的mvvm之间的区别" class="headerlink" title="node（后端）中的mvc和前端中的mvvm之间的区别"></a>node（后端）中的mvc和前端中的mvvm之间的区别</h2><ul>
+<li>mvc是后端的分层开发概念（view前端-&gt;app.js项目入口模块-&gt;router.js路由部分-&gt;controller业务逻辑处理层-&gt;model层只负责操作数据库；controller层包括router.js和controller两个部分）</li>
+<li>mvvm是前端视图层的概念，前端图层分层开发思想，主要把每个页面分成了M,V,VM。其重VM是MVVM思想的核心，因为VM是M和V之间的调度者。这三个部分都是在view视图层里面的。M指的是每个页面中单独的数据，V是每个页面中的HTML结构，VM它是一个调度者，分割了M和V；每当v层想要获取后保存数据的适合，都要由vm做中间的处理。这么做的好处：前端页面中采用mvvm的思想，主要是为了让我们开发更加方便，因为mvvm提供了数据的双向绑定；注意：数据的双向绑定是由vm提供的。mvvm主要关注于视图分离层，也就是说，mvvm把前端的视图层，分为了三部分，model，view，vm viewmodel</li>
+</ul>
+<h2 id="vue基本代码和mvvm之间的对应关系"><a href="#vue基本代码和mvvm之间的对应关系" class="headerlink" title="vue基本代码和mvvm之间的对应关系"></a>vue基本代码和mvvm之间的对应关系</h2><p>步骤：1、导入vue的包 ；2、创建一个vue实例，当我们导入包以后，在浏览器的内存中，就多了一个vue构造函数</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml">//在头部要先引入vue的包，后续的才有用</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">//vue实例所控制的这个元素区域，就是我们的V</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span>  //将来new的Vue实例，会控制这个元素中 的所有内容</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span>    </span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">//注意：我们new出来的vm对象，就是我们mvvm中的vm调度者</span></span><br><span class="line"><span class="xml">var vm = new Vue(&#123;</span></span><br><span class="line"><span class="xml">	el: '#app', //表示当前我们new的这个实例，要控制页面上的哪个区域</span></span><br><span class="line"></span><br><span class="line"><span class="xml">	//这里的data就是mvvm中的m，专门用来保存每个每个页面的数据</span></span><br><span class="line"><span class="xml">	data:&#123;  //data属性中，存放的是el元素中要用到的数据,是一个data对象</span></span><br><span class="line"><span class="xml">       msg:'welcom vue' //通过vue提供的指令，很方便的就能把数据渲染到页面上，程序员不再手动操作DOM元素了。前端的vue之类的框架不提倡我们取手动操作DOM元素</span></span><br><span class="line"><span class="xml">	&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="xml">	&#125;)</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+
+<h2 id="v-cloak、v-text、v-html"><a href="#v-cloak、v-text、v-html" class="headerlink" title="v-cloak、v-text、v-html"></a>v-cloak、v-text、v-html</h2><p>直接用插值表达式的时候，如果网速有点慢，就会先显示然后再显示出msg的值，解决办法就是可以再插值表达式的标签里面添加v-cloack</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span>//网速较慢的情况下会直接显示插值表达式</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">var vm = new Vue(&#123;</span></span><br><span class="line"><span class="xml">	el:'#app',</span></span><br><span class="line"><span class="xml">	data:&#123;</span></span><br><span class="line"><span class="xml">		msg:'123'</span></span><br><span class="line"><span class="xml">	&#125;</span></span><br><span class="line"><span class="xml">	&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法1："><a href="#解决办法1：" class="headerlink" title="解决办法1："></a>解决办法1：</h3><p>使用v-cloack能够解决插值表达式闪烁问题</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span>&gt;</span></span></span><br><span class="line"><span class="xml">[v-cloack]&#123;</span></span><br><span class="line"><span class="xml">	display:none;//这是让网络比较慢的时候显示为none</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-cloack</span>&gt;</span></span><span class="template-variable">&#123;&#123; msg &#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">var vm = new Vue(&#123;</span></span><br><span class="line"><span class="xml">	el:'#app',</span></span><br><span class="line"><span class="xml">	data:&#123;</span></span><br><span class="line"><span class="xml">		msg:'123'</span></span><br><span class="line"><span class="xml">	&#125;</span></span><br><span class="line"><span class="xml">	&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="解决办法2："><a href="#解决办法2：" class="headerlink" title="解决办法2："></a>解决办法2：</h3><p>v-text也可以解决插值 闪烁问题</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-text</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">	el:<span class="string">'#app'</span>,</span></span><br><span class="line">	data:&#123;</span><br><span class="line"><span class="actionscript">		msg:<span class="string">'123'</span></span></span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="v-cloack和v-text的区别"><a href="#v-cloack和v-text的区别" class="headerlink" title="v-cloack和v-text的区别"></a>v-cloack和v-text的区别</h3><p>1、v-cloak如果没有写style样式中的display的话，也是会有闪烁问题。而v-text默认没有闪烁问题<br>2、v-text会覆盖元素中原本的内容，但是v-cloak插值表达式只会替换自己的占位符，不会把整个元素的内容清空</p>
+<h3 id="v-html"><a href="#v-html" class="headerlink" title="v-html"></a>v-html</h3><p>v-html是把data中的插值解释为html元素，也会覆盖元素中原本的内容</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-html</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">	el:<span class="string">'#app'</span>,</span></span><br><span class="line">	data:&#123;</span><br><span class="line"><span class="handlebars"><span class="xml">		msg:'<span class="tag">&lt;<span class="name">h1</span>&gt;</span>llllllll<span class="tag">&lt;/<span class="name">h1</span>&gt;</span>'</span></span></span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind"></a>v-bind</h2><p>v-bind是vue中提供用于绑定属性的一个指令<br>v-bind会把后面的属性绑定当作是一个变量，以js语句来解析，如果想要自己再添加什么东西，就往里面添加字符串就可以了，所以会把v-bind冒号里面的东西当作解析式来解析，然后把解析的结果来进行渲染</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">//mytitle是一个变量，如果直接写上去的话，会把它当作是一个直接的值从而显示在按钮上，如果想要告诉title这是一个变量的话，需要用v-bind来绑定title的值，mytitle是一个属性，所以这样的话解析title的时候就会去查找mytitle这个变量所代表的值</span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"按钮"</span> <span class="attr">v-bind:title</span>=<span class="string">"mytitle + '123'"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">	el:<span class="string">'#app'</span>,</span></span><br><span class="line">	data:&#123;</span><br><span class="line"><span class="actionscript">		mytitle:<span class="string">'这是一个我自己定义的title'</span></span></span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>简写：<br>v-bind可以被简写为一个英文的:，v-bind中可以写合法的js表达式</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="attribute">type</span>=<span class="string">"button"</span> <span class="attribute">value</span>=<span class="string">"按钮"</span> :<span class="attribute">title</span>=<span class="string">"mytitle + '123'"</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a>v-on</h2><p>v-on是用来绑定事件的，</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">"button"</span> <span class="attr">value</span>=<span class="string">"按钮"</span> <span class="attr">v-bind:title</span>=<span class="string">"mytitle + '123'"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="actionscript">	el:<span class="string">'#app'</span>,</span></span><br><span class="line">	data:&#123;</span><br><span class="line"><span class="actionscript">		mytitle:<span class="string">'这是一个我自己定义的title'</span></span></span><br><span class="line">	&#125;,</span><br><span class="line"><span class="actionscript">	methods:&#123;<span class="comment">//这个methods对象中定义了当前vue实例所有可用的方法</span></span></span><br><span class="line"><span class="actionscript">		show:<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;</span></span><br><span class="line"><span class="actionscript">			alert(<span class="string">'hello'</span>)</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="attribute">type</span>=<span class="string">"button"</span> <span class="attribute">value</span>=<span class="string">"按钮"</span> v-bind:<span class="attribute">title</span>=<span class="string">"mytitle + '123'"</span> v-on:<span class="attribute">click</span>=<span class="string">"show"</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>简写：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="attribute">type</span>=<span class="string">"button"</span> <span class="attribute">value</span>=<span class="string">"按钮"</span> v-bind:<span class="attribute">title</span>=<span class="string">"mytitle + '123'"</span> @<span class="attribute">click</span>=<span class="string">"show"</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<p>注意：在vm实例中，如果想要获取打他上的数据，或者想要调用methods中的方法，必须通过this.数据属性名或this.方法名来进行访问，这里的this，就表示我们new出来的vm实例对象。</p>
+<p>vm实例，会监听自己身上data中所有数据的改变，只要数据以发生变化，就会自动把最新的数据，从data上同步到页面上去；好处：程序员只需要关心数据，不需要考虑如何重新渲染DOM页面</p>
+<p>箭头函数，this的指向永远跟外部的指向一致</p>
+<h2 id="事件修饰符"><a href="#事件修饰符" class="headerlink" title="事件修饰符"></a>事件修饰符</h2><ul>
+<li>.stop 阻止冒泡</li>
+<li>.prevent 阻止默认事件</li>
+<li>.capture 添加事件侦听器时使用事件捕获模式</li>
+<li>.self 只当事件在该元素本身（比如不是子元素）触发时触发回调</li>
+<li>.once 事件只触发一次</li>
+</ul>
+<p>.self和.stop的区别：self并不能当作stop来使用，stop是可以阻止全部的冒泡行为，但是self只能阻止自己本身的冒泡行为，如果在该元素上级的上级还有父元素，则不能阻止该元素的父元素进行冒泡行为。但是stop会全部阻止冒泡行为。self只会阻止自己身上的冒泡行为，并不会阻止真正的冒泡行为</p>
+<h2 id="v-model-和双向数据绑定"><a href="#v-model-和双向数据绑定" class="headerlink" title="v-model 和双向数据绑定"></a>v-model 和双向数据绑定</h2><p>使用该指令，可以实现表单元素和model中数据的双向绑定，v-model只能运用在表单元素中，select、input（radio、text、address、email）、checkbox、textarea</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;input <span class="attribute">type</span>=<span class="string">"button"</span> <span class="attribute">value</span>=<span class="string">"按钮"</span> <span class="attribute">v-model</span>=<span class="string">"msg"</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="class类样式"><a href="#class类样式" class="headerlink" title="class类样式"></a>class类样式</h2><p>1、数组</p>
+<figure class="highlight plain"><figcaption><span>:class</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">2、数组中使用三元表达式</span><br><span class="line">&#96;&#96;&#96;&lt;h1 :class&#x3D;&quot;[&#39;red&#39;,&#39;thin&#39;,isactive?&#39;active&#39;:&#39;&#39;]&quot;&gt;这是一个邪恶的h1&lt;&#x2F;h1&gt;</span><br></pre></td></tr></table></figure>
+<p>3、数组中嵌套对象</p>
+<figure class="highlight plain"><figcaption><span>:class</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">4、直接使用对象</span><br><span class="line">&#96;&#96;&#96;&lt;h1 :class&#x3D;&quot;&#123;red:true,italic:true,active:true,thin:true&#125;&quot;&gt;这是一个邪恶的h1&lt;&#x2F;h1&gt;</span><br></pre></td></tr></table></figure>
+
+<p>在为class使用v-bind绑定对象的时候，对象的属性是类名，由于对象的属性可带引号，也可不带引号，属性的值是一个标识符.但是如果是复合属性名字，则必须要加引号，改成驼峰属性名称就可以不加引号</p>
+<h2 id="为元素绑定style行内样式"><a href="#为元素绑定style行内样式" class="headerlink" title="为元素绑定style行内样式"></a>为元素绑定style行内样式</h2><p>1、直接在元素上通过：style形式，书写样式对象<br><code>&lt;h1 :style=&quot;{color:&#39;red&#39;,&#39;font-size&#39;:&#39;40px&#39;}&quot;&gt;这是一个善良的h1&lt;/h1&gt;</code><br>2、姜堰市对象，定义到打他中，并直接引用到：style中</p>
+<ul>
+<li>在data中定义样式<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">data</span>:&#123;</span><br><span class="line">	<span class="attribute">h1styleobj</span>:&#123;<span class="attribute">color</span>:<span class="string">'red'</span>,<span class="string">'font-size'</span>:<span class="string">'40px'</span>,<span class="string">'font-weight'</span>:<span class="string">'200'</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在元素中，通过属性绑定的形式，将央视对象应用到元素中：<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">:style</span>=<span class="string">"h1styleobj"</span>&gt;</span>这是一个善良的h1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+3、在：style中通过数组，引用多个data上的样式对象</li>
+<li>在data上定义样式<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">data</span>：&#123;</span><br><span class="line">	<span class="attribute">hh1styleobj</span>:&#123;<span class="attribute">color</span>:<span class="string">'red'</span>,<span class="string">'font-size'</span>:<span class="string">'40px'</span>,<span class="string">'font-weight'</span>:<span class="string">'200'</span>&#125;,</span><br><span class="line">	<span class="attribute">h1styleobj2</span>:&#123;<span class="attribute">fontStyle</span>:<span class="string">'italic'</span>&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>在元素中，通过属性绑定的形式，将样式对象应用到元素中<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">:style</span>=<span class="string">"[h1styleobj,h1styleobj2]"</span>&gt;</span>这是一个善良的h1<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="v-for指令四种使用方法和key属性"><a href="#v-for指令四种使用方法和key属性" class="headerlink" title="v-for指令四种使用方法和key属性"></a>v-for指令四种使用方法和key属性</h2><p>1、迭代数组</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">"(item,i) in list"</span>&gt;</span>索引：</span><span class="template-variable">&#123;&#123;i&#125;&#125;</span><span class="xml">----姓名：</span><span class="template-variable">&#123;&#123;item.name&#125;&#125;</span><span class="xml">---年龄：</span><span class="template-variable">&#123;&#123;item.age&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">li</span>&gt;</span></span></span><br><span class="line"><span class="xml"> <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>2、迭代对象中的属性</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!--循环遍历对象身上的属性--&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-for</span>=<span class="string">"(val,key,i) in userInfo"</span>&gt;</span></span><span class="template-variable">&#123;&#123;val&#125;&#125;</span><span class="xml">---</span><span class="template-variable">&#123;&#123;key&#125;&#125;</span><span class="xml">---</span><span class="template-variable">&#123;&#123;i&#125;&#125;</span><span class="xml"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>3、迭代数字</p>
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">p</span> <span class="attr">v-for</span>=<span class="string">"i in 10"</span>&gt;</span>这是第</span><span class="template-variable">&#123;&#123;i&#125;&#125;</span><span class="xml">个p标签<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<p>注意：在遍历 对象身上的键值对的时候，除了有val  key，在第三个位置还有一个索引</p>
+<h3 id="v-for的使用事项"><a href="#v-for的使用事项" class="headerlink" title="v-for的使用事项"></a>v-for的使用事项</h3><p>注意:2.2.0+的版本里，挡在组件中使用v-for时，key现在时必须的。当vue用v-for正在更新已渲染的元素列表时，它默认用“就地复用”策略。如果数据项的顺序被改变，vue将不是移动DOM元素来匹配数据项的顺序，而是简单复用此处每个元素，并且确保他在特定索引下显示已被渲染过的每个元素。</p>
+<p>为了给vue一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，需要为每项提供一个唯一key属性。</p>
+<p>注意：1、v-for循环的时候，key属性只能能使用number或者string<br>      2、key在使用的时候，必须使用v-bind属性绑定的形式，指定key的值</p>
+<p>在组件中，使用v-for循环的时候，或者在一些特殊情况中，如果v-for有问题，必须在使用v-for的同时指定唯一的字符串/数字类型作为key值来进行绑定。进行绑定以后，每一个单选 项会跟自己的各个选项一起绑定成为一个主体，循环的时候，是全部一起来进行循环，不会只是他们分开来进行循环，从而有一些选项会落下。</p>
+<h2 id="v-if和v-show"><a href="#v-if和v-show" class="headerlink" title="v-if和v-show"></a>v-if和v-show</h2><figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">一般来说，v-<span class="keyword">if</span>有更高的切换消耗而v-<span class="keyword">show</span>有更高的初始渲染消耗。因此，如果需要频繁切换v-<span class="keyword">show</span>较好，如果在运行时条件不大可能改变v-<span class="keyword">if</span>较好。</span><br></pre></td></tr></table></figure>
+<p>如果一个元素从来都没有显示过或者说它可能会永远不会显示出来，也就是它的条件变化不是特别大，这个时候就使用v-if比较好，因为v-show有较高的渲染消耗。</p>
+<h3 id="对比"><a href="#对比" class="headerlink" title="对比"></a>对比</h3><p>v-if的特点：每次都会重新删除或者创建元素<br>v-show特点：每次不会重新进行DOM的删除和创建操作，只是切换了元素的display：none样式</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>1、mvc和mvvm的区别<br>2、学习了vue中最基本代码的结构<br>3、插值表达式 v-cloak、v-text、v-html、v-bind（：）、v-on（@）、v-model、v-for、v-if、v-show<br>4、时间修饰符 .stop  .prevent  .capture  .self   .once<br>5、el：指定要控制的区域、data：是个对象，制定了控制区域内要用到的数据、methods：虽然带个s后缀，但是是个对象，这里可以自定义了一些好用的方法<br>6、在vm实例中，如果要访问data上的数据或者要访问methods中的方法，必须要带this<br>7、在v-for中要会使用key属性（只接受string/number类型）<br>8、v-model只能用于表单元素<br>9、在vue中绑定央视的两种方式：v-bind：class（class类样式）、v-bind：style（行样式）</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/10/16/vue1-01/" title="vue1-day1">http://yoursite.com/2019/10/16/vue1-01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/27/js%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B007/" rel="next" title="js零散笔记07">
+                <i class="fa fa-chevron-left"></i> js零散笔记07
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/19/vue1-02/" rel="prev" title="vue1-day2">
+                vue1-day2 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是vue"><span class="nav-number">1.1.</span> <span class="nav-text">什么是vue</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么学习流行框架"><span class="nav-number">1.2.</span> <span class="nav-text">为什么学习流行框架</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#框架和库的区别"><span class="nav-number">2.</span> <span class="nav-text">框架和库的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node（后端）中的mvc和前端中的mvvm之间的区别"><span class="nav-number">3.</span> <span class="nav-text">node（后端）中的mvc和前端中的mvvm之间的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vue基本代码和mvvm之间的对应关系"><span class="nav-number">4.</span> <span class="nav-text">vue基本代码和mvvm之间的对应关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-cloak、v-text、v-html"><span class="nav-number">5.</span> <span class="nav-text">v-cloak、v-text、v-html</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法1："><span class="nav-number">5.1.</span> <span class="nav-text">解决办法1：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决办法2："><span class="nav-number">5.2.</span> <span class="nav-text">解决办法2：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-cloack和v-text的区别"><span class="nav-number">5.3.</span> <span class="nav-text">v-cloack和v-text的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#v-html"><span class="nav-number">5.4.</span> <span class="nav-text">v-html</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-bind"><span class="nav-number">6.</span> <span class="nav-text">v-bind</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-on"><span class="nav-number">7.</span> <span class="nav-text">v-on</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#事件修饰符"><span class="nav-number">8.</span> <span class="nav-text">事件修饰符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-model-和双向数据绑定"><span class="nav-number">9.</span> <span class="nav-text">v-model 和双向数据绑定</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#class类样式"><span class="nav-number">10.</span> <span class="nav-text">class类样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为元素绑定style行内样式"><span class="nav-number">11.</span> <span class="nav-text">为元素绑定style行内样式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-for指令四种使用方法和key属性"><span class="nav-number">12.</span> <span class="nav-text">v-for指令四种使用方法和key属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#v-for的使用事项"><span class="nav-number">12.1.</span> <span class="nav-text">v-for的使用事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#v-if和v-show"><span class="nav-number">13.</span> <span class="nav-text">v-if和v-show</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对比"><span class="nav-number">13.1.</span> <span class="nav-text">对比</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#总结"><span class="nav-number">14.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

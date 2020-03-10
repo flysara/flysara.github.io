@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Css3,前端基础," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CSS3–背景+边框多个背景图片1background：[background-image]|[background-origin]|[background-clip]|[background-repeat]|[background-size]|[background-position] 12345[background-origin]：指定背景的原点位置，属于新增的属性[background-c">
+<meta property="og:type" content="article">
+<meta property="og:title" content="css3笔记04--背景+边框">
+<meta property="og:url" content="http://yoursite.com/2019/04/05/css3%E7%AC%94%E8%AE%B004/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="CSS3–背景+边框多个背景图片1background：[background-image]|[background-origin]|[background-clip]|[background-repeat]|[background-size]|[background-position] 12345[background-origin]：指定背景的原点位置，属于新增的属性[background-c">
+<meta property="article:published_time" content="2019-04-05T12:39:55.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:22:31.537Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="Css3">
+<meta property="article:tag" content="前端基础">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/04/05/css3笔记04/"/>
+
+
+
+
+
+  <title>css3笔记04--背景+边框 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/05/css3%E7%AC%94%E8%AE%B004/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">css3笔记04--背景+边框</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-05T20:39:55+08:00">
+                2019-04-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/css3/" itemprop="url" rel="index">
+                    <span itemprop="name">css3</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  4
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="CSS3–背景-边框"><a href="#CSS3–背景-边框" class="headerlink" title="CSS3–背景+边框"></a>CSS3–背景+边框</h2><h3 id="多个背景图片"><a href="#多个背景图片" class="headerlink" title="多个背景图片"></a>多个背景图片</h3><figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">background</span>：[<span class="built_in">background</span>-<span class="built_in">image</span>]|[<span class="built_in">background</span>-origin]|[<span class="built_in">background</span>-clip]|[<span class="built_in">background</span>-repeat]|[<span class="built_in">background</span>-<span class="built_in">size</span>]|[<span class="built_in">background</span>-<span class="built_in">position</span>]</span><br></pre></td></tr></table></figure>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="built_in">background</span>-origin]：指定背景的原点位置，属于新增的属性</span><br><span class="line">[<span class="built_in">background</span>-clip]：指定 背景的显示区域</span><br><span class="line">[<span class="built_in">background</span>-repeat]：背景图像是否重排</span><br><span class="line">[<span class="built_in">background</span>-<span class="built_in">size</span>]：指定而背景图片的大小</span><br><span class="line">[<span class="built_in">background</span>-<span class="built_in">position</span>]：背景图像位置</span><br></pre></td></tr></table></figure>
+<p>如果定义多重背景图，则用逗号隔开各个背景图。</p>
+<p>比如：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background：url（.../images/<span class="number">1.</span>png) <span class="number">120</span>px <span class="number">110</span>px no-repeat,</span><br><span class="line">            url（.../images/<span class="number">2.</span>png) <span class="number">400</span>px <span class="number">10</span>px no-repeat,</span><br><span class="line">            url（.../images/<span class="number">3.</span>png) no-repeat;</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>写在前面的背景图像会显示在上面，写在后面的图像背景会显示在下面。<br>也可以改写成：</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">background-image：url（.../images/<span class="number">1.</span>png)，url（.../images/<span class="number">2.</span>png)，url（.../images/<span class="number">3.</span>png)；</span><br><span class="line">background-position：<span class="number">120</span>px <span class="number">110</span>px，<span class="number">400</span>px <span class="number">10</span>px，<span class="number">0</span> <span class="number">0</span>；</span><br><span class="line">background-repeat：no-repeat,no-repeat,no-repeat；</span><br></pre></td></tr></table></figure>
+<h3 id="背景的原点位置"><a href="#背景的原点位置" class="headerlink" title="背景的原点位置"></a>背景的原点位置</h3><p>用新增的background-origin来指定背景图像的原点位置。在默认情况下，background-position总是以元素边框以内的左上角为坐标原点进行背景图像定位。使用background-origin属性可以对该原点位置进行调整。</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">background</span>-<span class="built_in">origin</span>：<span class="built_in">border</span>-<span class="built_in">box</span>|padding-<span class="built_in">box</span>|<span class="built_in">content</span>-<span class="built_in">box</span></span><br><span class="line"><span class="built_in">border</span>-<span class="built_in">box</span>：原点位置为边框（<span class="built_in">border</span>）区域的开始位置（默认值）</span><br><span class="line">padding-<span class="built_in">box</span>：原点位置为内边距（padding）区域的开始位置</span><br><span class="line"><span class="built_in">content</span>-<span class="built_in">box</span>：原点位置为内容（<span class="built_in">content</span>）区域的开始位置</span><br></pre></td></tr></table></figure>
+<p>考虑兼容性，要加前缀</p>
+<h3 id="border-box"><a href="#border-box" class="headerlink" title="border-box"></a>border-box</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-webikit-<span class="built_in">background</span>-<span class="built_in">origin</span>：<span class="built_in">border</span>-<span class="built_in">box</span>；</span><br><span class="line">-moz-<span class="built_in">background</span>-<span class="built_in">origin</span>：<span class="built_in">border</span>-<span class="built_in">box</span>；</span><br><span class="line"><span class="built_in">background</span>-<span class="built_in">origin</span>：<span class="built_in">border</span>-<span class="built_in">box</span>；</span><br></pre></td></tr></table></figure>
+<h3 id="padding-box"><a href="#padding-box" class="headerlink" title="padding-box"></a>padding-box</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-webikit-<span class="built_in">background</span>-<span class="built_in">origin</span>：padding-<span class="built_in">box</span>；</span><br><span class="line">-moz-<span class="built_in">background</span>-<span class="built_in">origin</span>：padding-<span class="built_in">box</span>；</span><br><span class="line"><span class="built_in">background</span>-<span class="built_in">origin</span>：padding-<span class="built_in">box</span>；</span><br></pre></td></tr></table></figure>
+<h3 id="content-box"><a href="#content-box" class="headerlink" title="content-box"></a>content-box</h3><figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">-webikit-<span class="built_in">background</span>-<span class="built_in">origin</span>：<span class="built_in">content</span>-<span class="built_in">box</span>；</span><br><span class="line">-moz-<span class="built_in">background</span>-<span class="built_in">origin</span>：<span class="built_in">content</span>-<span class="built_in">box</span>；</span><br><span class="line"><span class="built_in">background</span>-<span class="built_in">origin</span>：<span class="built_in">content</span>-<span class="built_in">box</span>；</span><br></pre></td></tr></table></figure>
+<h3 id="指定背景的显示区域"><a href="#指定背景的显示区域" class="headerlink" title="指定背景的显示区域"></a>指定背景的显示区域</h3><p>background-clip用来指定北京的显示区域。在CSS3下，背景的显示区域是包含元素边框在内的。</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">background</span>-clip：<span class="built_in">border</span>-<span class="built_in">box</span>|padding-<span class="built_in">box</span>|<span class="built_in">content</span>-<span class="built_in">box</span></span><br><span class="line"><span class="built_in">border</span>-<span class="built_in">box</span>：背景从边框开始显示</span><br><span class="line">padding-<span class="built_in">box</span>：背景从内边距开始显示</span><br><span class="line"><span class="built_in">content</span>-<span class="built_in">box</span>：背景从内容区域开始显示</span><br></pre></td></tr></table></figure>
+<p>使用方式和background-origin相似，考虑兼容性需要添加前缀</p>
+<h3 id="指定背景元素大小"><a href="#指定背景元素大小" class="headerlink" title="指定背景元素大小"></a>指定背景元素大小</h3><p>用background-size属性来指定背景大小</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">background-size：[&lt;length&gt;|&lt;percentage&gt;|<span class="built_in">auto</span>]&#123;<span class="number">1</span>,<span class="number">2</span>&#125;|cover|contain</span><br><span class="line"></span><br><span class="line">length：长度值，不可为负值</span><br><span class="line">percentage：<span class="number">0</span>%~<span class="number">100</span>%之间的值，是基于背景图像的父元素的百分比</span><br><span class="line">cover：保持背景图像本身的宽高比例，将图像缩放到正好完全覆盖适应所定义的背景区域</span><br><span class="line">contain：保持背景图像本身的宽高比例，将图像缩放到正好适应所定义的背景区域</span><br><span class="line">cover和contain的区别：使用这两个属性的时候，图像都采用了缩放，不同的是，cover，背景图像按比例缩放，直至覆盖整个背景区域，但可能会裁剪掉部分图像。当属性为content时候，背景图像会完全显示出来，但可能不会完全覆盖背景区域。</span><br></pre></td></tr></table></figure>
+<h3 id="border-radius"><a href="#border-radius" class="headerlink" title="border-radius"></a>border-radius</h3><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">border-radius：none|&lt;length&gt;&#123;<span class="number">1</span>,<span class="number">4</span>&#125;</span><br><span class="line">none:默认值，没有圆角</span><br><span class="line">&lt; length&gt;：不可为负值。分为两组，每组有<span class="number">1</span>–<span class="number">4</span>个值，第一组为水平半径，第二组为垂直半径，如果第二组省略，则默认等于第一组的值</span><br></pre></td></tr></table></figure>
+<h3 id="派生子属性"><a href="#派生子属性" class="headerlink" title="派生子属性"></a>派生子属性</h3><figure class="highlight coq"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">border-<span class="built_in">top</span>-<span class="built_in">left</span>-radius：左上角</span><br><span class="line">border-<span class="built_in">top</span>-<span class="built_in">right</span>-radius：右上角</span><br><span class="line">border-<span class="built_in">bottom</span>-<span class="built_in">left</span>-radius：左下角</span><br><span class="line">border-<span class="built_in">bottom</span>-<span class="built_in">right</span>-radius：右下角</span><br></pre></td></tr></table></figure>
+<p>如果有空缺的值的话，以顺时针方向来填满。</p>
+<h3 id="两组半径的圆角"><a href="#两组半径的圆角" class="headerlink" title="两组半径的圆角"></a>两组半径的圆角</h3><p>可以同时指定两组半径值：第一组的值表示圆角的水平半径，第二组的值表示圆角的垂直半径。通常用该方式来画椭圆。第一组的值和第二组的值用/隔开。</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">border-radius：<span class="number">20</span>px/<span class="number">40</span>px；</span><br></pre></td></tr></table></figure>
+<p>此时的边框圆角每个都是1/4的椭圆</p>
+<p>border-radius的派生子属性不能用两组半径的方式来赋值</p>
+<h3 id="border-image"><a href="#border-image" class="headerlink" title="border-image"></a>border-image</h3><p>在CSS3之前，图像不能直接用于边框。border-image属性专门用来做边框图像处理<br>定义属性都跟border-radius相同，不过是把radius换成image而已</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">border</span>-<span class="built_in">image</span>-source：定义图片的资源</span><br><span class="line"><span class="built_in">border</span>-<span class="built_in">image</span>-slice：定义图像的切片，设置图像的边界向内的偏移长度</span><br><span class="line"><span class="built_in">border</span>-<span class="built_in">image</span>-repeat：重复</span><br><span class="line"><span class="built_in">border</span>-<span class="built_in">image</span>-<span class="built_in">width</span>：宽度</span><br><span class="line"><span class="built_in">border</span>-<span class="built_in">image</span>-outset：偏移位置</span><br></pre></td></tr></table></figure>
+<p>需要用兼容加前缀的方式来实现</p>
+<h3 id="border-color"><a href="#border-color" class="headerlink" title="border-color"></a>border-color</h3><p>可以加颜色和透明度<br>派生的子属性也同上述几种情况</p>
+<p>要想设计一个圆形边框，只用<code>border-radius：50% 50%</code></p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/04/05/css3%E7%AC%94%E8%AE%B004/" title="css3笔记04--背景+边框">http://yoursite.com/2019/04/05/css3%E7%AC%94%E8%AE%B004/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Css3/" rel="tag"><i class="fa fa-tag"></i> Css3</a>
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 前端基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/04/css3%E7%AC%94%E8%AE%B003/" rel="next" title="css3笔记03--界面设计">
+                <i class="fa fa-chevron-left"></i> css3笔记03--界面设计
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/04/05/css3%E7%AC%94%E8%AE%B005/" rel="prev" title="css3笔记05--多列布局">
+                css3笔记05--多列布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CSS3–背景-边框"><span class="nav-number">1.</span> <span class="nav-text">CSS3–背景+边框</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多个背景图片"><span class="nav-number">1.1.</span> <span class="nav-text">多个背景图片</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景的原点位置"><span class="nav-number">1.2.</span> <span class="nav-text">背景的原点位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#border-box"><span class="nav-number">1.3.</span> <span class="nav-text">border-box</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#padding-box"><span class="nav-number">1.4.</span> <span class="nav-text">padding-box</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#content-box"><span class="nav-number">1.5.</span> <span class="nav-text">content-box</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定背景的显示区域"><span class="nav-number">1.6.</span> <span class="nav-text">指定背景的显示区域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指定背景元素大小"><span class="nav-number">1.7.</span> <span class="nav-text">指定背景元素大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#border-radius"><span class="nav-number">1.8.</span> <span class="nav-text">border-radius</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#派生子属性"><span class="nav-number">1.9.</span> <span class="nav-text">派生子属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两组半径的圆角"><span class="nav-number">1.10.</span> <span class="nav-text">两组半径的圆角</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#border-image"><span class="nav-number">1.11.</span> <span class="nav-text">border-image</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#border-color"><span class="nav-number">1.12.</span> <span class="nav-text">border-color</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

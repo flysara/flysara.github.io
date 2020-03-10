@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Node基础,Node.js(2)," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="路径操作模块path path.basename 获取一个路径的文件名（默认包含扩展名）   path.dirname 获取一个路径的目录部分   path.extname 获取一个路径的扩展名部分   path.parse 把一个路径转换为对象">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.js02--07">
+<meta property="og:url" content="http://yoursite.com/2019/05/09/nodejs2-07/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="路径操作模块path path.basename 获取一个路径的文件名（默认包含扩展名）   path.dirname 获取一个路径的目录部分   path.extname 获取一个路径的扩展名部分   path.parse 把一个路径转换为对象">
+<meta property="article:published_time" content="2019-05-09T10:34:38.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:46:16.574Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="Node基础">
+<meta property="article:tag" content="Node.js(2)">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/05/09/nodejs2-07/"/>
+
+
+
+
+
+  <title>Node.js02--07 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/05/09/nodejs2-07/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Node.js02--07</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-09T18:34:38+08:00">
+                2019-05-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/Node-js-2/" itemprop="url" rel="index">
+                    <span itemprop="name">Node.js(2)</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Node-js/Node-js-2/Node%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">Node基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="路径操作模块path"><a href="#路径操作模块path" class="headerlink" title="路径操作模块path"></a>路径操作模块path</h2><ul>
+<li>path.basename<ul>
+<li>获取一个路径的文件名（默认包含扩展名）</li>
+</ul>
+</li>
+<li>path.dirname<ul>
+<li>获取一个路径的目录部分</li>
+</ul>
+</li>
+<li>path.extname<ul>
+<li>获取一个路径的扩展名部分</li>
+</ul>
+</li>
+<li>path.parse<ul>
+<li>把一个路径转换为对象<a id="more"></a>
+<ul>
+<li>root根路径</li>
+<li>dir目录</li>
+<li>base包含后缀名的文件名</li>
+<li>ext后缀名</li>
+<li>name不包含后缀名的文件名</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>path.join<ul>
+<li>当需要进行路径拼接的时候，就使用这个方法，这个方法可以纠正【拼接格式</li>
+</ul>
+</li>
+<li>path.isAbsolute<ul>
+<li>判断一个路径是否是绝对路径</li>
+</ul>
+</li>
+</ul>
+<h2 id="node中的非模块成员（其他成员）"><a href="#node中的非模块成员（其他成员）" class="headerlink" title="node中的非模块成员（其他成员）"></a>node中的非模块成员（其他成员）</h2><p>在每个模块中除了require、exports等模块关键API之外，还有两个特殊成员：</p>
+<ul>
+<li>_ dirname<ul>
+<li>可以用来获取当前文件模块所属目录的绝对路径</li>
+<li>动态获取</li>
+</ul>
+</li>
+<li>_ filename<ul>
+<li>可以用来获取文件的绝对路径</li>
+<li>动态获取</li>
+</ul>
+</li>
+<li>./指的是相对于node命令所处的终端路径<ul>
+<li>也就是说，文件操作路径中，相对路径设计指的是相对与node命令所处的终端路径</li>
+<li>在文件操作中，使用相对路径是不可靠的，所以为了解决这个路径，只需要把相对路径改成绝对路径就可以了</li>
+<li>所以可以使用<code>_dirname</code> 和 <code>_filename</code>来解决这个问题了</li>
+<li><code>_dirname</code> 和 <code>_filename</code>是不受node命令所属路径影响的</li>
+<li>在拼接路径的过程中，为了避免手动拼接带来的游戏额低级错误，所以推荐使用path.join()来辅助拼接。</li>
+<li>为了尽量避免路径带来的问题，我们以后再文件操作中使用的相对路径都统一转换为动态的绝对路径</li>
+</ul>
+</li>
+<li>模块中的路径表示和这里的路径没有关系，不受影响（相对于文件模块），即用require引入模块的时候不能省略相对路径<ul>
+<li>不受node命令所处路径影响<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">var fs = require('fs');</span><br><span class="line">fs.read<span class="constructor">File(<span class="params">__dirname</span> + '<span class="operator">/</span><span class="params">a</span>.<span class="params">txt</span>','<span class="params">utf8</span>',<span class="params">function</span>(<span class="params">err</span>,<span class="params">data</span>)</span>&#123;</span><br><span class="line"></span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//改进方法</span></span><br><span class="line">fs.read<span class="constructor">File(<span class="params">path</span>.<span class="params">join</span>(<span class="params">__dirname</span>,'<span class="operator">/</span><span class="params">a</span>.<span class="params">txt</span>')</span>,'utf8',<span class="keyword">function</span>(err,data)&#123;</span><br><span class="line">	</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="知识点"><a href="#知识点" class="headerlink" title="知识点"></a>知识点</h3><ul>
+<li>date.now()会立即调用</li>
+<li>date.now是一个方法</li>
+<li>表单具有默认的提交行为，默认是同步的，同步表单提交，浏览器会锁死等待服务器的响应结果。</li>
+<li>表单的同步提交以后，无论服务器响应的是什么，都会直接把响应的结果覆盖当前页面</li>
+<li>服务端重定向只针对同步请求有效，对异步请求无效</li>
+</ul>
+<h2 id="session"><a href="#session" class="headerlink" title="session"></a>session</h2><ul>
+<li><p>http是无状态的</p>
+</li>
+<li><p>cookie是 类似于小纸条，可以用来保存一些不太敏感的数据。但是不能用来保存用户登录状态</p>
+</li>
+<li><p>可以用来保存一些其他信息：例如：记住用户名、购物车<br>举例：</p>
+<figure class="highlight brainfuck"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">超市</span>--<span class="comment">》电子柜（服务端）</span>--<span class="comment">》你（客户端）（二维码小票（开箱凭证）cookie）（凭证是唯一的，不可能重复）</span></span><br><span class="line"><span class="comment">一旦丢失，不可找回，如果小票丢失，你的状态也就丢失了。</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">要是是服务器给的，所以就很安全了，不太容易伪造出来了。</span></span><br><span class="line"><span class="comment">这个时候，我们就可以包一些敏感的数据来保存到服务端，客户端只需要拿着这把钥匙就可以了。</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>在express这个框架中，默认不支持session和cookie</p>
+</li>
+<li><p>所以需要第三方中间件：express-session</p>
+<ul>
+<li>npm install express-session</li>
+<li>配置（一定要在app.use（router）之前）</li>
+<li>使用<ul>
+<li>当把这个插件配置好以后，我们就可以通过req.session来访问和设置session成员</li>
+<li>添加session数据：req.seesion = ‘bar’</li>
+<li>访问session数据：req.session.foo</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="配置："><a href="#配置：" class="headerlink" title="配置："></a>配置：</h3><figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//该插件为req请求对象添加一个成员：req.session默认是一个对象</span></span><br><span class="line"><span class="comment">//这是最简单的配置方式，暂且先不用关心里面参数的含义</span></span><br><span class="line"><span class="selector-tag">app</span><span class="selector-class">.use</span>(session(&#123;</span><br><span class="line">	<span class="comment">//配置加密字符串，它会爱原有加密基础上和这个字符串拼接起来去加密</span></span><br><span class="line">	<span class="comment">//目的是为了增加安全性，防止客户端恶意伪造</span></span><br><span class="line">	<span class="attribute">secret</span>:<span class="string">'itcast'</span>,</span><br><span class="line">	<span class="attribute">resave</span>:false,</span><br><span class="line">	<span class="attribute">saveUninitialized</span>:false<span class="comment">//无论是否使用session，我都能默认直接给你分配一把钥匙</span></span><br><span class="line">	&#125;))</span><br></pre></td></tr></table></figure>
+
+<h3 id="使用："><a href="#使用：" class="headerlink" title="使用："></a>使用：</h3><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//添加<span class="keyword">session</span>数据</span><br><span class="line">req.<span class="keyword">session</span>.foo = <span class="string">'bar'</span>;</span><br><span class="line">//获取<span class="keyword">session</span>数据</span><br><span class="line">req.<span class="keyword">session</span>.foo</span><br></pre></td></tr></table></figure>
+<p>提示：默认session数据是内存存储的，服务器一旦重启就会丢失，真正的生产环境会把session持久化存储。</p>
+<h2 id="写案例步骤"><a href="#写案例步骤" class="headerlink" title="写案例步骤"></a>写案例步骤</h2><p>目录结构：</p>
+<ul>
+<li>app.js                          项目的入口文件</li>
+<li>controllers                   </li>
+<li>models                          存储使用mongoose设计的数据模型</li>
+<li>node_modules                    第三方包</li>
+<li>package.json                    包描述文件</li>
+<li>package-lock.json               第三方包版本锁定文件（npm5以后才有）</li>
+<li>public                          公共的静态资源</li>
+<li>README.md                       项目说明文档</li>
+<li>routes                          如果业务比较多，代码量大，最好把路由按照业务的分类存储到routes目录中</li>
+<li>router.js                       简单一点把所有的路由都放到这个文件</li>
+<li>views                           存储视图目录</li>
+</ul>
+<p>步骤：</p>
+<ul>
+<li>创建目录结构</li>
+<li>整合静态-模板页<ul>
+<li>include </li>
+<li>block</li>
+<li>extend</li>
+</ul>
+</li>
+<li>设计用户登录、退出、注册的路由</li>
+<li>用户注册<ul>
+<li>先处理好客户端页面的内容（表单控件的name、收集表单数据、发起请求）</li>
+<li>服务端</li>
+<li>先获取客户端请求数据</li>
+<li>操作数据库<ul>
+<li>如果有错，发送500告诉客户端服务器报错</li>
+<li>其他根据业务发送不同的响应数据</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>用户登录</li>
+<li>用户退出</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>path模块</li>
+<li>__ dirname 和__filename两个属性<ul>
+<li>动态的，获取当前文件或者文件所处目录的绝对路径</li>
+<li>用来解决文件操作路径的相对路径问题</li>
+<li>因为在文件操作中，相对路径相对于执行node命令所处的目录</li>
+<li>所以为了尽量避免这个问题，都建议文件操作的目录都转为动态的</li>
+<li>方式：path.join(__ dirname,’文件名’)</li>
+</ul>
+</li>
+<li>art-template模板引擎高级语法<ul>
+<li>include</li>
+<li>extend</li>
+<li>block</li>
+</ul>
+</li>
+<li>表单同步提交和异步提交<ul>
+<li>以前没有ajax都是这么干的，甚至有些直接就是渲染了提示信息出来了</li>
+<li>异步提交页面不会刷新，交互方式更灵活</li>
+</ul>
+</li>
+<li>express中配置使用express-session中间件</li>
+</ul>
+<h2 id="表单同步和异步的区别"><a href="#表单同步和异步的区别" class="headerlink" title="表单同步和异步的区别"></a>表单同步和异步的区别</h2><p>同步：提交请求-》等待服务器处理-》处理完毕返回  这个期间客户端浏览器不能干任何事<br>异步：请求通过事件触发-》服务器处理（这时浏览器仍然可以做其他事情）-》处理完毕</p>
+<h2 id="中间件"><a href="#中间件" class="headerlink" title="中间件"></a>中间件</h2><p>处理请求的，本质就是个函数。我们把用户从请求到响应的整个过程分发到多个中间件中去处理，这样做的目的是为了提高代码的灵活性，动态可扩展的。</p>
+<p>在express中，对中间件有几种分类：</p>
+<h3 id="1、不关心请求路径和-请求方法的中间件，也就是说任何请求都会进入这个中间件"><a href="#1、不关心请求路径和-请求方法的中间件，也就是说任何请求都会进入这个中间件" class="headerlink" title="1、不关心请求路径和    请求方法的中间件，也就是说任何请求都会进入这个中间件"></a>1、不关心请求路径和    请求方法的中间件，也就是说任何请求都会进入这个中间件</h3><p>中间件本身是一个方法，该方法接收三个参数：request请求对象，response响应对象，next下一个中间件。next是一个方法会调用下一个中间件。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="function"><span class="keyword">function</span><span class="params">(req,res,next)</span></span>&#123;</span><br><span class="line">	console.<span class="built_in">log</span>(<span class="string">'1'</span>)</span><br><span class="line">	<span class="built_in">next</span>()</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">app.use(<span class="function"><span class="keyword">function</span><span class="params">(req,res,next)</span></span>&#123;</span><br><span class="line">	console.<span class="built_in">log</span>(<span class="string">'2'</span>)</span><br><span class="line">	<span class="built_in">next</span>()</span><br><span class="line">	&#125;)</span><br><span class="line">//<span class="number">1</span> <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<p>添加next，就会调用下一个中间件，所以调用next也是要匹配的，不是调用紧挨着的。如果请求进入中间件后，如果没有next则代码会停在当前中间件，如果调用了next则往后找到匹配的下一个中间件</p>
+<h3 id="2、关心路径请求的中间件，以-xxx开头的路径中间件"><a href="#2、关心路径请求的中间件，以-xxx开头的路径中间件" class="headerlink" title="2、关心路径请求的中间件，以/xxx开头的路径中间件"></a>2、关心路径请求的中间件，以/xxx开头的路径中间件</h3><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">app.use(<span class="string">'/a'</span>,<span class="function"><span class="keyword">function</span><span class="params">(req,res,next)</span></span>&#123;</span><br><span class="line">	console.<span class="built_in">log</span>(<span class="string">'1'</span>)</span><br><span class="line">	<span class="built_in">next</span>()</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>没有匹配中间件express会默认输出 CAN NOT GET/</p>
+<h3 id="3、除了以上中间件之外，还有一种最尝试用的严格匹配请求方法和匹配请求路径的中间件"><a href="#3、除了以上中间件之外，还有一种最尝试用的严格匹配请求方法和匹配请求路径的中间件" class="headerlink" title="3、除了以上中间件之外，还有一种最尝试用的严格匹配请求方法和匹配请求路径的中间件"></a>3、除了以上中间件之外，还有一种最尝试用的严格匹配请求方法和匹配请求路径的中间件</h3><p>app.get,app.post</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">app.get(<span class="string">'/a'</span>,<span class="function"><span class="keyword">function</span><span class="params">(req,res,next)</span></span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>如果中间件没有next则不会往下执行，只会停留在当前中间件<br>当调用next的时候，如果传递了参数v，则直接往后找到带有这个参数应用程序级别中间件<br>当发生错误的时候，我们可以调用next传递错误对象，然后就会被全局错误处理中间件匹配到并处理之</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/05/09/nodejs2-07/" title="Node.js02--07">http://yoursite.com/2019/05/09/nodejs2-07/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Node%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> Node基础</a>
+          
+            <a href="/tags/Node-js-2/" rel="tag"><i class="fa fa-tag"></i> Node.js(2)</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/03/nodejs2-06/" rel="next" title="Node.js02--06">
+                <i class="fa fa-chevron-left"></i> Node.js02--06
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/17/%E6%B5%8F%E8%A7%88%E5%99%A805/" rel="prev" title="浏览器05">
+                浏览器05 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#路径操作模块path"><span class="nav-number">1.</span> <span class="nav-text">路径操作模块path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#node中的非模块成员（其他成员）"><span class="nav-number">2.</span> <span class="nav-text">node中的非模块成员（其他成员）</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点"><span class="nav-number">2.1.</span> <span class="nav-text">知识点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#session"><span class="nav-number">3.</span> <span class="nav-text">session</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#配置："><span class="nav-number">3.1.</span> <span class="nav-text">配置：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用："><span class="nav-number">3.2.</span> <span class="nav-text">使用：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#写案例步骤"><span class="nav-number">4.</span> <span class="nav-text">写案例步骤</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#总结"><span class="nav-number">4.1.</span> <span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#表单同步和异步的区别"><span class="nav-number">5.</span> <span class="nav-text">表单同步和异步的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#中间件"><span class="nav-number">6.</span> <span class="nav-text">中间件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、不关心请求路径和-请求方法的中间件，也就是说任何请求都会进入这个中间件"><span class="nav-number">6.1.</span> <span class="nav-text">1、不关心请求路径和    请求方法的中间件，也就是说任何请求都会进入这个中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、关心路径请求的中间件，以-xxx开头的路径中间件"><span class="nav-number">6.2.</span> <span class="nav-text">2、关心路径请求的中间件，以&#x2F;xxx开头的路径中间件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、除了以上中间件之外，还有一种最尝试用的严格匹配请求方法和匹配请求路径的中间件"><span class="nav-number">6.3.</span> <span class="nav-text">3、除了以上中间件之外，还有一种最尝试用的严格匹配请求方法和匹配请求路径的中间件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

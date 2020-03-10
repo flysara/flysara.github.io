@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue,vue_shop项目构建笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="今日目标1.完成参数管理2.推送代码到码云3.制作商品列表页面4.制作商品添加页面">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue_shop项目构建笔记">
+<meta property="og:url" content="http://yoursite.com/2020/03/03/vue3-09/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="今日目标1.完成参数管理2.推送代码到码云3.制作商品列表页面4.制作商品添加页面">
+<meta property="article:published_time" content="2020-03-03T07:25:55.000Z">
+<meta property="article:modified_time" content="2020-03-07T07:36:04.329Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="vue_shop项目构建笔记">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/03/03/vue3-09/"/>
+
+
+
+
+
+  <title>vue_shop项目构建笔记 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/vue3-09/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue_shop项目构建笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-03-03T15:25:55+08:00">
+                2020-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/vue-shop/" itemprop="url" rel="index">
+                    <span itemprop="name">vue_shop</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/vue-shop/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  19
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="今日目标"><a href="#今日目标" class="headerlink" title="今日目标"></a>今日目标</h3><p>1.完成参数管理<br>2.推送代码到码云<br>3.制作商品列表页面<br>4.制作商品添加页面</p>
+<a id="more"></a>
+<h3 id="1-参数管理"><a href="#1-参数管理" class="headerlink" title="1.参数管理"></a>1.参数管理</h3><h4 id="A-展示动态参数可选项"><a href="#A-展示动态参数可选项" class="headerlink" title="A.展示动态参数可选项"></a>A.展示动态参数可选项</h4><p>动态参数可选项展示及操作<br>在获取动态参数的方法中进行处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//将获取到的数据中的attr_vals字符串转换为数组</span></span><br><span class="line">res.data.forEach(<span class="function"><span class="params">item</span> =&gt;</span> &#123;</span><br><span class="line">  item.attr_vals = item.attr_vals ? item.attr_vals.split(<span class="string">' '</span>) : []</span><br><span class="line">  <span class="comment">//添加一个bool值控制文本框的显示或者隐藏</span></span><br><span class="line">  item.inputVisible = <span class="literal">false</span></span><br><span class="line">  <span class="comment">//添加一个inputValue保存文本框值</span></span><br><span class="line">  item.inputValue = <span class="string">''</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">//然后再修改展开行中的代码，生成el-tag和文本框以及添加按钮</span></span><br><span class="line">&lt;!-- 展开行 --&gt;</span><br><span class="line">&lt;el-table-column type=<span class="string">"expand"</span>&gt;</span><br><span class="line">  &lt;template slot-scope=<span class="string">"scope"</span>&gt;</span><br><span class="line">    &lt;!-- 循环生成的el-tag --&gt;</span><br><span class="line">    &lt;el-tag v-<span class="keyword">for</span>=<span class="string">"(item,i) in scope.row.attr_vals"</span> :key=<span class="string">"i"</span> closable&gt;&#123;&#123;item&#125;&#125;&lt;<span class="regexp">/el-tag&gt;</span></span><br><span class="line"><span class="regexp">    &lt;!-- 输入框 --&gt;</span></span><br><span class="line"><span class="regexp">    &lt;el-input class="input-new-tag" v-if="scope.row.inputVisible" v-model="scope.row.inputValue" ref="saveTagInput" size="small" @keyup.enter.native="handleInputConfirm(scope.row)" @blur="handleInputConfirm(scope.row)"&gt;</span></span><br><span class="line"><span class="regexp">    &lt;/</span>el-input&gt;</span><br><span class="line">    &lt;!-- 添加按钮 --&gt;</span><br><span class="line">    &lt;el-button v-<span class="keyword">else</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"button-new-tag"</span> size=<span class="string">"small"</span> @click=<span class="string">"showInput(scope.row)"</span>&gt;+ New Tag&lt;<span class="regexp">/el-button&gt;</span></span><br><span class="line"><span class="regexp">  &lt;/</span>template&gt;</span><br><span class="line">&lt;<span class="regexp">/el-table-column&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/最后对应文本框的事件和按钮的事件添加处理函数</span></span><br><span class="line"><span class="regexp">handleInputConfirm(row)&#123;</span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/当用户在文本框中按下enter键或者焦点离开时都会触发执行</span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/判断用户在文本框中输入的内容是否合法</span></span><br><span class="line"><span class="regexp">  if(row.inputValue.trim().length===0)&#123;</span></span><br><span class="line"><span class="regexp">    row.inputValue = ''</span></span><br><span class="line"><span class="regexp">    row.inputVisible = false</span></span><br><span class="line"><span class="regexp">    return</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/ row.inputVisible = false</span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/如果用户输入了真实合法的数据，需要保存起来</span></span><br><span class="line"><span class="regexp">&#125;,</span></span><br><span class="line"><span class="regexp">showInput(row)&#123;</span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/用户点击添加按钮时触发</span></span><br><span class="line"><span class="regexp">  row.inputVisible = true</span></span><br><span class="line"><span class="regexp">  /</span><span class="regexp">/$nextTick:在页面上元素被重新渲染之后，调用回调函数的代码</span></span><br><span class="line"><span class="regexp">  this.$nextTick(_=&gt;&#123;</span></span><br><span class="line"><span class="regexp">    /</span><span class="regexp">/让文本框自动获得焦点</span></span><br><span class="line"><span class="regexp">    this.$refs.saveTagInput.$refs.input.focus()</span></span><br><span class="line"><span class="regexp">  &#125;)</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="B-添加-删除可选项"><a href="#B-添加-删除可选项" class="headerlink" title="B.添加/删除可选项"></a>B.添加/删除可选项</h4><p>添加/删除动态参数可选项</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">给el-tag添加删除事件</span><br><span class="line">&lt;el-tag v-<span class="keyword">for</span>=<span class="string">"(item,i) in scope.row.attr_vals"</span> :key=<span class="string">"i"</span> closable @close=<span class="string">"handleClose(i,scope.row)"</span>&gt;&#123;&#123;item&#125;&#125;&lt;/el-tag&gt;</span><br><span class="line"></span><br><span class="line">在methods中添加新增，删除事件处理函数</span><br><span class="line"><span class="function"><span class="title">handleInputConfirm</span><span class="params">(row)</span></span>&#123;</span><br><span class="line">  <span class="comment">//当用户在文本框中按下enter键或者焦点离开时都会触发执行</span></span><br><span class="line">  <span class="comment">//判断用户在文本框中输入的内容是否合法</span></span><br><span class="line">  <span class="keyword">if</span>(row<span class="selector-class">.inputValue</span>.trim().length===<span class="number">0</span>)&#123;</span><br><span class="line">    row<span class="selector-class">.inputValue</span> = <span class="string">''</span></span><br><span class="line">    row<span class="selector-class">.inputVisible</span> = false</span><br><span class="line">    return</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// row.inputVisible = false</span></span><br><span class="line">  <span class="comment">//如果用户输入了真实合法的数据，需要保存起来</span></span><br><span class="line">  row<span class="selector-class">.attr_vals</span>.push(row<span class="selector-class">.inputValue</span>.trim())</span><br><span class="line">  row<span class="selector-class">.inputValue</span> = <span class="string">''</span></span><br><span class="line">  row<span class="selector-class">.inputVisible</span> = false</span><br><span class="line"></span><br><span class="line">  this.saveAttrVals(row)</span><br><span class="line">&#125;,</span><br><span class="line"><span class="function"><span class="title">handleClose</span><span class="params">(index,row)</span></span>&#123;</span><br><span class="line">  <span class="comment">//删除对应索引的参数可选项</span></span><br><span class="line">  row<span class="selector-class">.attr_vals</span>.splice(index,<span class="number">1</span>)</span><br><span class="line">  <span class="comment">//调用函数，完成保存可选项的操作</span></span><br><span class="line">  this.saveAttrVals(row)</span><br><span class="line">&#125;,</span><br><span class="line">async saveAttrVals(row)&#123;</span><br><span class="line">  <span class="comment">//封装函数，完成保存可选项的操作</span></span><br><span class="line">  <span class="comment">//发起请求，保存参数细项</span></span><br><span class="line">  const &#123;data:res&#125; = await this.<span class="variable">$http</span>.put(`categories/$&#123;this.cateId&#125;/attributes/$&#123;row.attr_id&#125;`,</span><br><span class="line">  &#123;attr_name:row<span class="selector-class">.attr_name</span>,attr_sel:row<span class="selector-class">.attr_sel</span>,attr_vals:row<span class="selector-class">.attr_vals</span>.join(<span class="string">' '</span>)&#125;)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (res<span class="selector-class">.meta</span><span class="selector-class">.status</span> !== <span class="number">200</span>) &#123;</span><br><span class="line">    return this.<span class="variable">$message</span>.error(<span class="string">'修改参数项失败'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  this.<span class="variable">$message</span>.success(<span class="string">'修改参数项成功'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>补充：当用户在级联选择框中选中了非三级分类时，需要清空表格中数据</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">async handleChange() &#123;</span><br><span class="line">      <span class="comment">//如果用户选择的不是三级分类</span></span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.selectedCateKeys.length !== <span class="number">3</span>)&#123;</span><br><span class="line">        <span class="keyword">this</span>.selectedCateKeys = []</span><br><span class="line">        <span class="keyword">this</span>.manyTableData = []</span><br><span class="line">        <span class="keyword">this</span>.onlyTableData = []</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">      &#125;</span><br><span class="line">      ......</span><br></pre></td></tr></table></figure>
+
+<p>补充2：当完成了动态参数可选项的功能之后，我们也需要一样的方式完成静态属性可选项的功能。</p>
+<p>此时我们只需要将动态参数可选项中的展开行复制到静态属性的表格中即可</p>
+<h3 id="2-推送代码到码云"><a href="#2-推送代码到码云" class="headerlink" title="2.推送代码到码云"></a>2.推送代码到码云</h3><p>添加到暂存求： git add .<br>提交到本地仓库：  git commit -m ‘完成了分类参数开发’<br>推送到码云：  git push<br>切换到master ： git checkout master<br>合并到master ： git merge goods_params</p>
+<p>创建子分支<br>git checkout -b goods_list<br>推送至码云 git push -u origin goods_list</p>
+<h3 id="3-商品列表"><a href="#3-商品列表" class="headerlink" title="3.商品列表"></a>3.商品列表</h3><h4 id="A-制作商品列表基本结构"><a href="#A-制作商品列表基本结构" class="headerlink" title="A.制作商品列表基本结构"></a>A.制作商品列表基本结构</h4><p>添加子级路由组件以及对应的规则,并设置组件的基本机构<br>打开router.js,添加下面的代码</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> GoodList from <span class="string">'./components/goods/List.vue'</span></span><br><span class="line"></span><br><span class="line"><span class="string">path:</span> <span class="string">'/home'</span>, <span class="string">component:</span> Home, <span class="string">redirect:</span> <span class="string">'/welcome'</span>, <span class="string">children:</span> [</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/welcome"</span>, <span class="string">component:</span> Welcome &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/users"</span>, <span class="string">component:</span> Users &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/rights"</span>, <span class="string">component:</span> Rights &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/roles"</span>, <span class="string">component:</span> Roles  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/categories"</span>, <span class="string">component:</span> Cate  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/params"</span>, <span class="string">component:</span> Params  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/goods"</span>, <span class="string">component:</span> GoodList  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>打开List.vue组件，添加下列代码</p>
+<figure class="highlight dust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>商品列表<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!-- 面包屑导航 --&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-breadcrumb</span> <span class="attr">separator</span>=<span class="string">"/"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span> <span class="attr">:to</span>=<span class="string">"</span></span></span><span class="template-variable">&#123; path: '/home' &#125;</span><span class="xml"><span class="tag"><span class="string">"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span>&gt;</span>商品管理<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span>&gt;</span>商品列表<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-breadcrumb</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="comment">&lt;!-- 卡片视图区域 --&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-card</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-row</span> <span class="attr">:gutter</span>=<span class="string">"20"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"8"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">placeholder</span>=<span class="string">"请输入内容"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                        <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">slot</span>=<span class="string">"append"</span> <span class="attr">icon</span>=<span class="string">"el-icon-search"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"4"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                    <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"primary"</span>&gt;</span>添加商品<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">el-row</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-card</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">export default </span><span class="template-variable">&#123;</span></span><br><span class="line"><span class="template-variable">  data() &#123;</span></span><br><span class="line"><span class="template-variable">    return &#123;&#125;</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  created() </span><span class="template-variable">&#123;&#125;</span><span class="xml">,</span></span><br><span class="line"><span class="xml">  methods: </span><span class="template-variable">&#123;&#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"less"</span> <span class="attr">scoped</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="B-数据展示"><a href="#B-数据展示" class="headerlink" title="B.数据展示"></a>B.数据展示</h4><p>添加数据表格展示数据以及分页功能的实现,搜索功能的实现<br>在main.js中添加过滤器：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建过滤器将秒数过滤为年月日，时分秒</span></span><br><span class="line">Vue.filter(<span class="string">'dateFormat'</span>,<span class="function"><span class="keyword">function</span>(<span class="params">originVal</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> dt = <span class="keyword">new</span> <span class="built_in">Date</span>(originVal)</span><br><span class="line">  <span class="keyword">const</span> y = dt.getFullYear()</span><br><span class="line">  <span class="keyword">const</span> m = (dt.getMonth()+<span class="number">1</span>+<span class="string">''</span>).padStart(<span class="number">2</span>,<span class="string">'0'</span>)</span><br><span class="line">  <span class="keyword">const</span> d = (dt.getDate()+<span class="string">''</span>).padStart(<span class="number">2</span>,<span class="string">'0'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">const</span> hh = (dt.getHours()+<span class="string">''</span>).padStart(<span class="number">2</span>,<span class="string">'0'</span>)</span><br><span class="line">  <span class="keyword">const</span> mm = (dt.getMinutes()+<span class="string">''</span>).padStart(<span class="number">2</span>,<span class="string">'0'</span>)</span><br><span class="line">  <span class="keyword">const</span> ss = (dt.getSeconds()+<span class="string">''</span>).padStart(<span class="number">2</span>,<span class="string">'0'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;y&#125;</span>-<span class="subst">$&#123;m&#125;</span>-<span class="subst">$&#123;d&#125;</span> <span class="subst">$&#123;hh&#125;</span>:<span class="subst">$&#123;mm&#125;</span>:<span class="subst">$&#123;ss&#125;</span>`</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight django"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="xml"><span class="comment">&lt;!-- 卡片视图区域 --&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">el-card</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 搜索栏 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">el-row</span> <span class="attr">:gutter</span>=<span class="string">"20"</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"8"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">placeholder</span>=<span class="string">"请输入内容"</span> <span class="attr">v-model</span>=<span class="string">"queryInfo.query"</span> <span class="attr">clearable</span> @<span class="attr">clear</span>=<span class="string">"getGoodsList"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">slot</span>=<span class="string">"append"</span> <span class="attr">icon</span>=<span class="string">"el-icon-search"</span> @<span class="attr">click</span>=<span class="string">"getGoodsList"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-col</span> <span class="attr">:span</span>=<span class="string">"4"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">type</span>=<span class="string">"primary"</span>&gt;</span>添加商品<span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-col</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">el-row</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 表格区域 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">el-table</span> <span class="attr">:data</span>=<span class="string">"goodsList"</span> <span class="attr">border</span> <span class="attr">stripe</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">type</span>=<span class="string">"index"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"商品名称"</span> <span class="attr">prop</span>=<span class="string">"goods_name"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"商品价格(元)"</span> <span class="attr">prop</span>=<span class="string">"goods_price"</span> <span class="attr">width</span>=<span class="string">"95px"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"商品重量"</span> <span class="attr">prop</span>=<span class="string">"goods_weight"</span> <span class="attr">width</span>=<span class="string">"95px"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"创建时间"</span> <span class="attr">prop</span>=<span class="string">"add_time"</span> <span class="attr">width</span>=<span class="string">"140px"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">"scope"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                </span><span class="template-variable">&#123;&#123;scope.row.add_time | dateFormat&#125;&#125;</span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;<span class="name">el-table-column</span> <span class="attr">label</span>=<span class="string">"操作"</span> <span class="attr">width</span>=<span class="string">"125px"</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;<span class="name">template</span> <span class="attr">slot-scope</span>=<span class="string">"scope"</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">size</span>=<span class="string">"mini"</span> <span class="attr">type</span>=<span class="string">"primary"</span> <span class="attr">icon</span>=<span class="string">"el-icon-edit"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">                <span class="tag">&lt;<span class="name">el-button</span> <span class="attr">size</span>=<span class="string">"mini"</span> <span class="attr">type</span>=<span class="string">"danger"</span> <span class="attr">icon</span>=<span class="string">"el-icon-delete"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-button</span>&gt;</span></span></span><br><span class="line"><span class="xml">            <span class="tag">&lt;/<span class="name">template</span>&gt;</span></span></span><br><span class="line"><span class="xml">        <span class="tag">&lt;/<span class="name">el-table-column</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">el-table</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">    <span class="comment">&lt;!-- 分页 --&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;<span class="name">el-pagination</span> @<span class="attr">size-change</span>=<span class="string">"handleSizeChange"</span> @<span class="attr">current-change</span>=<span class="string">"handleCurrentChange"</span> <span class="attr">:current-page</span>=<span class="string">"queryInfo.pagenum"</span> <span class="attr">:page-sizes</span>=<span class="string">"[3, 5, 10, 15]"</span> <span class="attr">:page-size</span>=<span class="string">"queryInfo.pagesize"</span> <span class="attr">layout</span>=<span class="string">"total, sizes, prev, pager, next, jumper"</span> <span class="attr">:total</span>=<span class="string">"total"</span>&gt;</span></span></span><br><span class="line"><span class="xml">    <span class="tag">&lt;/<span class="name">el-pagination</span>&gt;</span></span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">el-card</span>&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="xml">//绑定数据以及添加方法</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span></span><br><span class="line"><span class="xml">export default &#123;</span></span><br><span class="line"><span class="xml">  data() &#123;</span></span><br><span class="line"><span class="xml">    return &#123;</span></span><br><span class="line"><span class="xml">      //查询参数</span></span><br><span class="line"><span class="xml">      queryInfo: &#123;</span></span><br><span class="line"><span class="xml">        query: '',</span></span><br><span class="line"><span class="xml">        pagenum: 1,</span></span><br><span class="line"><span class="xml">        pagesize: 10</span></span><br><span class="line"><span class="xml">      &#125;,</span></span><br><span class="line"><span class="xml">      //保存商品列表信息</span></span><br><span class="line"><span class="xml">      goodsList: [],</span></span><br><span class="line"><span class="xml">      //总数据条数</span></span><br><span class="line"><span class="xml">      total: 0</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  created() &#123;</span></span><br><span class="line"><span class="xml">    this.getGoodsList()</span></span><br><span class="line"><span class="xml">  &#125;,</span></span><br><span class="line"><span class="xml">  methods: &#123;</span></span><br><span class="line"><span class="xml">    async getGoodsList() &#123;</span></span><br><span class="line"><span class="xml">      //   根据分页获取对应的商品列表</span></span><br><span class="line"><span class="xml">      const &#123; data: res &#125; = await this.$http.get('goods', &#123;</span></span><br><span class="line"><span class="xml">        params: this.queryInfo</span></span><br><span class="line"><span class="xml">      &#125;)</span></span><br><span class="line"></span><br><span class="line"><span class="xml">      if (res.meta.status !== 200) &#123;</span></span><br><span class="line"><span class="xml">        return this.$message.error('获取商品列表失败')</span></span><br><span class="line"><span class="xml">      &#125;</span></span><br><span class="line"><span class="xml">      console.log(res.data)</span></span><br><span class="line"><span class="xml">      this.$message.success('获取商品列表成功')</span></span><br><span class="line"><span class="xml">      this.goodsList = res.data.goods</span></span><br><span class="line"><span class="xml">      this.total = res.data.total</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    handleSizeChange(newSize)&#123;</span></span><br><span class="line"><span class="xml">        //当页号发生改变时，更改pagesize，重新请求</span></span><br><span class="line"><span class="xml">        this.queryInfo.pagesize = newSize</span></span><br><span class="line"><span class="xml">        this.getGoodsList();</span></span><br><span class="line"><span class="xml">    &#125;,</span></span><br><span class="line"><span class="xml">    handleCurrentChange(newPage)&#123;</span></span><br><span class="line"><span class="xml">        //当页码发生改变时，更改pagesize，重新请求</span></span><br><span class="line"><span class="xml">        this.queryInfo.pagenum = newPage</span></span><br><span class="line"><span class="xml">        this.getGoodsList();</span></span><br><span class="line"><span class="xml">    &#125;</span></span><br><span class="line"><span class="xml">  &#125;</span></span><br><span class="line"><span class="xml">&#125;</span></span><br><span class="line"><span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="C-实现删除商品"><a href="#C-实现删除商品" class="headerlink" title="C.实现删除商品"></a>C.实现删除商品</h4><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//绑定按钮点击事件</span></span><br><span class="line">&lt;el-button size=<span class="string">"mini"</span> type=<span class="string">"danger"</span> icon=<span class="string">"el-icon-delete"</span> <span class="meta">@click</span>=<span class="string">"removeGoods(scope.row.goods_id)"</span>&gt;&lt;/el-button&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//事件函数代码编写</span></span><br><span class="line">async removeGoods(goods_id) &#123;</span><br><span class="line">  <span class="comment">//根据id删除对应的参数或属性</span></span><br><span class="line">  <span class="comment">//弹窗提示用户是否要删除</span></span><br><span class="line">  <span class="keyword">const</span> confirmResult = await <span class="keyword">this</span>.$confirm(</span><br><span class="line">    <span class="string">'请问是否要删除该商品'</span>,</span><br><span class="line">    <span class="string">'删除提示'</span>,</span><br><span class="line">    &#123;</span><br><span class="line">      confirmButtonText: <span class="string">'确认删除'</span>,</span><br><span class="line">      cancelButtonText: <span class="string">'取消'</span>,</span><br><span class="line">      type: <span class="string">'warning'</span></span><br><span class="line">    &#125;</span><br><span class="line">  ).<span class="keyword">catch</span>(err =&gt; err)</span><br><span class="line">  <span class="comment">//如果用户点击确认，则confirmResult 为'confirm'</span></span><br><span class="line">  <span class="comment">//如果用户点击取消, 则confirmResult获取的就是catch的错误消息'cancel'</span></span><br><span class="line">  <span class="keyword">if</span> (confirmResult != <span class="string">'confirm'</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.$message.info(<span class="string">'已经取消删除'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//没有取消就是要删除，发送请求完成删除</span></span><br><span class="line">  <span class="keyword">const</span> &#123;<span class="keyword">data</span>:res&#125; = await <span class="keyword">this</span>.$http.delete(`goods/$&#123;goods_id&#125;`)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'删除商品失败'</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.$message.success(<span class="string">'删除商品成功'</span>)</span><br><span class="line">  <span class="keyword">this</span>.getGoodsList()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-添加商品"><a href="#4-添加商品" class="headerlink" title="4.添加商品"></a>4.添加商品</h3><h4 id="A-添加编程式导航"><a href="#A-添加编程式导航" class="headerlink" title="A.添加编程式导航"></a>A.添加编程式导航</h4><p>在List.vue中添加编程式导航，并创建添加商品路由组件及规则</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">//在List.vue中添加编程式导航</span><br><span class="line">&lt;<span class="keyword">el</span>-<span class="keyword">col</span> :span=<span class="string">"4"</span>&gt;</span><br><span class="line">    &lt;<span class="keyword">el</span>-button <span class="built_in">type</span>=<span class="string">"primary"</span> @click=<span class="string">"goAddPage"</span>&gt;添加商品&lt;/<span class="keyword">el</span>-button&gt;</span><br><span class="line">&lt;/<span class="keyword">el</span>-<span class="keyword">col</span>&gt;</span><br><span class="line"></span><br><span class="line">goAddPage()&#123;</span><br><span class="line">    this.$router.push(<span class="string">'/goods/add'</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在router.js中引入goods/Add.vue,并添加路由规则</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> GoodAdd from <span class="string">'./components/goods/Add.vue'</span></span><br><span class="line"><span class="string">path:</span> <span class="string">'/home'</span>, <span class="string">component:</span> Home, <span class="string">redirect:</span> <span class="string">'/welcome'</span>, <span class="string">children:</span> [</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/welcome"</span>, <span class="string">component:</span> Welcome &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/users"</span>, <span class="string">component:</span> Users &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/rights"</span>, <span class="string">component:</span> Rights &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/roles"</span>, <span class="string">component:</span> Roles  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/categories"</span>, <span class="string">component:</span> Cate  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/params"</span>, <span class="string">component:</span> Params  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/goods"</span>, <span class="string">component:</span> GoodList  &#125;,</span><br><span class="line">  &#123; <span class="string">path:</span> <span class="string">"/goods/add"</span>, <span class="string">component:</span> GoodAdd  &#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<h4 id="B-布局Add-vue组件"><a href="#B-布局Add-vue组件" class="headerlink" title="B.布局Add.vue组件"></a>B.布局Add.vue组件</h4><p>布局过程中需要使用Steps组件，在element.js中引入并注册该组件，并在global.css中给组件设置全局样式</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;Steps,<span class="keyword">Step</span>&#125; <span class="keyword">from</span> <span class="string">'element-ui'</span></span><br><span class="line">Vue.use(<span class="keyword">Step</span>)</span><br><span class="line">Vue.use(Steps)</span><br><span class="line"></span><br><span class="line"><span class="comment">//global.css</span></span><br><span class="line">.el-steps&#123;</span><br><span class="line">    margin:<span class="number">15</span>px <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">.el-step__title&#123;</span><br><span class="line">    font-<span class="keyword">size</span>: <span class="number">13</span>px;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后再在Add.vue中进行页面布局</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">h3</span>&gt;</span>添加商品<span class="tag">&lt;/<span class="name">h3</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 面包屑导航 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-breadcrumb</span> <span class="attr">separator</span>=<span class="string">"/"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span> <span class="attr">:to</span>=<span class="string">"&#123; path: '/home' &#125;"</span>&gt;</span>首页<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span>&gt;</span>商品管理<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-breadcrumb-item</span>&gt;</span>添加商品<span class="tag">&lt;/<span class="name">el-breadcrumb-item</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-breadcrumb</span>&gt;</span></span><br><span class="line">        <span class="comment">&lt;!-- 卡片视图区域 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">el-card</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 消息提示 --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-alert</span> <span class="attr">title</span>=<span class="string">"添加商品信息"</span> <span class="attr">type</span>=<span class="string">"info"</span> <span class="attr">center</span> <span class="attr">show-icon</span> <span class="attr">:closable</span>=<span class="string">"false"</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-alert</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- 步骤条组件 --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- align-center(居中效果) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-steps</span> <span class="attr">:space</span>=<span class="string">"200"</span> <span class="attr">:active</span>=<span class="string">"activeIndex - 0"</span> <span class="attr">finish-status</span>=<span class="string">"success"</span> <span class="attr">align-center</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">el-step</span> <span class="attr">title</span>=<span class="string">"基本信息"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-step</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">el-step</span> <span class="attr">title</span>=<span class="string">"商品参数"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-step</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">el-step</span> <span class="attr">title</span>=<span class="string">"商品属性"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-step</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">el-step</span> <span class="attr">title</span>=<span class="string">"商品图片"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-step</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">el-step</span> <span class="attr">title</span>=<span class="string">"商品内容"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-step</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">el-step</span> <span class="attr">title</span>=<span class="string">"完成"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-step</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-steps</span>&gt;</span></span><br><span class="line"></span><br><span class="line">            <span class="comment">&lt;!-- tab栏区域:el-tab-pane必须是el-tabs的子节点</span></span><br><span class="line"><span class="comment">            :tab-position="'left'"(设置tab栏为左右结构tab栏) --&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 表单：label-position="top"(设置label在文本框上方) --&gt;</span></span><br><span class="line">            <span class="tag">&lt;<span class="name">el-form</span> <span class="attr">:model</span>=<span class="string">"addForm"</span> <span class="attr">:rules</span>=<span class="string">"addFormRules"</span> <span class="attr">ref</span>=<span class="string">"addFormRef"</span> <span class="attr">label-width</span>=<span class="string">"100px"</span> <span class="attr">label-position</span>=<span class="string">"top"</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">el-tabs</span> <span class="attr">v-model</span>=<span class="string">"activeIndex"</span> <span class="attr">:tab-position</span>=<span class="string">"'left'"</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">el-tab-pane</span> <span class="attr">label</span>=<span class="string">"基本信息"</span> <span class="attr">name</span>=<span class="string">"0"</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"商品名称"</span> <span class="attr">prop</span>=<span class="string">"goods_name"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"addForm.goods_name"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"商品价格"</span> <span class="attr">prop</span>=<span class="string">"goods_price"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"addForm.goods_price"</span> <span class="attr">type</span>=<span class="string">"number"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"商品重量"</span> <span class="attr">prop</span>=<span class="string">"goods_weight"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"addForm.goods_weight"</span> <span class="attr">type</span>=<span class="string">"number"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"商品数量"</span> <span class="attr">prop</span>=<span class="string">"goods_number"</span>&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">el-input</span> <span class="attr">v-model</span>=<span class="string">"addForm.goods_number"</span> <span class="attr">type</span>=<span class="string">"number"</span>&gt;</span><span class="tag">&lt;/<span class="name">el-input</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;<span class="name">el-form-item</span> <span class="attr">label</span>=<span class="string">"商品分类"</span> <span class="attr">prop</span>=<span class="string">"goods_cat"</span>&gt;</span></span><br><span class="line">                            <span class="comment">&lt;!-- 选择商品分类的级联选择框 --&gt;</span></span><br><span class="line">                            <span class="tag">&lt;<span class="name">el-cascader</span> <span class="attr">expandTrigger</span>=<span class="string">'hover'</span> <span class="attr">v-model</span>=<span class="string">"addForm.goods_cat"</span> <span class="attr">:options</span>=<span class="string">"cateList"</span> <span class="attr">:props</span>=<span class="string">"cateProps"</span> @<span class="attr">change</span>=<span class="string">"handleChange"</span> <span class="attr">clearable</span>&gt;</span><span class="tag">&lt;/<span class="name">el-cascader</span>&gt;</span></span><br><span class="line">                        <span class="tag">&lt;/<span class="name">el-form-item</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">el-tab-pane</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">el-tab-pane</span> <span class="attr">label</span>=<span class="string">"商品参数"</span> <span class="attr">name</span>=<span class="string">"1"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">el-tab-pane</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">el-tab-pane</span> <span class="attr">label</span>=<span class="string">"商品属性"</span> <span class="attr">name</span>=<span class="string">"2"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">el-tab-pane</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">el-tab-pane</span> <span class="attr">label</span>=<span class="string">"商品图片"</span> <span class="attr">name</span>=<span class="string">"3"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">el-tab-pane</span>&gt;</span></span><br><span class="line">                    <span class="tag">&lt;<span class="name">el-tab-pane</span> <span class="attr">label</span>=<span class="string">"商品内容"</span> <span class="attr">name</span>=<span class="string">"4"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">                    <span class="tag">&lt;/<span class="name">el-tab-pane</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">el-tabs</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">el-form</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">el-card</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript"><span class="keyword">export</span> <span class="keyword">default</span> &#123;</span></span><br><span class="line">  data() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">return</span> &#123;</span></span><br><span class="line"><span class="actionscript">      <span class="comment">//保存步骤条激活项索引</span></span></span><br><span class="line"><span class="actionscript">      activeIndex: <span class="string">'0'</span>,</span></span><br><span class="line"><span class="actionscript">      <span class="comment">//添加商品的表单数据对象</span></span></span><br><span class="line">      addForm: &#123;</span><br><span class="line"><span class="actionscript">        goods_name: <span class="string">''</span>,</span></span><br><span class="line">        goods_price: 0,</span><br><span class="line">        goods_weight: 0,</span><br><span class="line">        goods_number: 0,</span><br><span class="line">        goods_cat:[]</span><br><span class="line">      &#125;,</span><br><span class="line"><span class="actionscript">      <span class="comment">//验证规则</span></span></span><br><span class="line">      addFormRules: &#123;</span><br><span class="line">        goods_name: [</span><br><span class="line"><span class="actionscript">          &#123; required: <span class="literal">true</span>, message: <span class="string">'请输入商品名称'</span>, trigger: <span class="string">'blur'</span> &#125;</span></span><br><span class="line">        ],</span><br><span class="line">        goods_price: [</span><br><span class="line"><span class="actionscript">          &#123; required: <span class="literal">true</span>, message: <span class="string">'请输入商品价格'</span>, trigger: <span class="string">'blur'</span> &#125;</span></span><br><span class="line">        ],</span><br><span class="line">        goods_weight: [</span><br><span class="line"><span class="actionscript">          &#123; required: <span class="literal">true</span>, message: <span class="string">'请输入商品重量'</span>, trigger: <span class="string">'blur'</span> &#125;</span></span><br><span class="line">        ],</span><br><span class="line">        goods_number: [</span><br><span class="line"><span class="actionscript">          &#123; required: <span class="literal">true</span>, message: <span class="string">'请输入商品数量'</span>, trigger: <span class="string">'blur'</span> &#125;</span></span><br><span class="line">        ],</span><br><span class="line">        goods_cat: [</span><br><span class="line"><span class="actionscript">          &#123; required: <span class="literal">true</span>, message: <span class="string">'请选择商品分类'</span>, trigger: <span class="string">'blur'</span> &#125;</span></span><br><span class="line">        ]</span><br><span class="line">      &#125;,</span><br><span class="line"><span class="actionscript">      <span class="comment">//用来保存分类数据</span></span></span><br><span class="line">      cateList: [],</span><br><span class="line"><span class="actionscript">      <span class="comment">//配置级联菜单中数据如何展示</span></span></span><br><span class="line">      cateProps: &#123;</span><br><span class="line"><span class="actionscript">        value: <span class="string">'cat_id'</span>,</span></span><br><span class="line"><span class="actionscript">        label: <span class="string">'cat_name'</span>,</span></span><br><span class="line"><span class="actionscript">        children: <span class="string">'children'</span></span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  created() &#123;</span><br><span class="line"><span class="actionscript">    <span class="keyword">this</span>.getCateList()</span></span><br><span class="line">  &#125;,</span><br><span class="line">  methods: &#123;</span><br><span class="line"><span class="javascript">    <span class="keyword">async</span> getCateList() &#123;</span></span><br><span class="line"><span class="javascript">      <span class="keyword">const</span> &#123; <span class="attr">data</span>: res &#125; = <span class="keyword">await</span> <span class="keyword">this</span>.$http.get(<span class="string">'categories'</span>)</span></span><br><span class="line"></span><br><span class="line">      if (res.meta.status !== 200) &#123;</span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'获取商品分类数据失败'</span>)</span></span><br><span class="line">      &#125;</span><br><span class="line"><span class="actionscript">      <span class="keyword">this</span>.cateList = res.data</span></span><br><span class="line">    &#125;,</span><br><span class="line">    handleChange()&#123;</span><br><span class="line"><span class="actionscript">      <span class="comment">//如果用户选择的不是三级分类,该次选择无效，因为必须选择三级分类</span></span></span><br><span class="line"><span class="actionscript">      <span class="keyword">if</span>(<span class="keyword">this</span>.addForm.goods_cat.length !== <span class="number">3</span>)&#123;</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">this</span>.addForm.goods_cat = []</span></span><br><span class="line"><span class="actionscript">        <span class="keyword">return</span></span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">style</span> <span class="attr">lang</span>=<span class="string">"less"</span> <span class="attr">scoped</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">style</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h4 id="C-添加tab栏切换验证"><a href="#C-添加tab栏切换验证" class="headerlink" title="C.添加tab栏切换验证"></a>C.添加tab栏切换验证</h4><p>也就是说不输入某些内容，无法切换到别的tab栏</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//首先给tabs添加tab切换前事件</span></span><br><span class="line">&lt;el-tabs v-model=<span class="string">"activeIndex"</span> :tab-position=<span class="string">"'left'"</span> :before-leave=<span class="string">"beforeTabLeave"</span>&gt;</span><br><span class="line">......</span><br><span class="line">&lt;/el-tabs&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//再到methods编写事件函数beforeTabLeave</span></span><br><span class="line">beforeTabLeave(activeName,oldActiveName)&#123;</span><br><span class="line">  <span class="comment">//在tab栏切换之前触发，两个形参为切换前，后的tab栏name</span></span><br><span class="line">  <span class="keyword">if</span>(oldActiveName === <span class="string">'0'</span>)&#123;</span><br><span class="line">      <span class="comment">//在第一个标签页的时候</span></span><br><span class="line">      <span class="keyword">if</span>(<span class="keyword">this</span>.addForm.goods_cat.length !== <span class="number">3</span>)&#123;</span><br><span class="line">          <span class="keyword">this</span>.$message.error(<span class="string">'请选择商品的分类'</span>)</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.addForm.goods_name.trim() === <span class="string">''</span>)&#123;</span><br><span class="line">          <span class="keyword">this</span>.$message.error(<span class="string">'请输入商品名称'</span>)</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.addForm.goods_price.trim() === <span class="string">'0'</span>)&#123;</span><br><span class="line">          <span class="keyword">this</span>.$message.error(<span class="string">'请输入商品价格'</span>)</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.addForm.goods_weight.trim() === <span class="string">'0'</span>)&#123;</span><br><span class="line">          <span class="keyword">this</span>.$message.error(<span class="string">'请输入商品重量'</span>)</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="keyword">this</span>.addForm.goods_number.trim() === <span class="string">'0'</span>)&#123;</span><br><span class="line">          <span class="keyword">this</span>.$message.error(<span class="string">'请输入商品数量'</span>)</span><br><span class="line">          <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="D-展示信息"><a href="#D-展示信息" class="headerlink" title="D.展示信息"></a>D.展示信息</h4><p>展示商品参数信息,商品属性信息<br>在商品参数信息展示中使用的el-checkbox,el-checkbox-group组件，打开element.js引入组件并注册组件</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在用户点击tab栏时触发事件</span></span><br><span class="line">&lt;el-tabs v-model=<span class="string">"activeIndex"</span> :tab-position=<span class="string">"'left'"</span> :before-leave=<span class="string">"beforeTabLeave"</span> <span class="meta">@tab</span>-click=<span class="string">"tabClicked"</span>&gt;</span><br><span class="line">........</span><br><span class="line"></span><br><span class="line"><span class="comment">//在参数信息，商品属性面板中添加循环生成结构的代码</span></span><br><span class="line">&lt;el-tab-pane label=<span class="string">"商品参数"</span> name=<span class="string">"1"</span>&gt;</span><br><span class="line">  &lt;!-- 渲染表单item项 --&gt;</span><br><span class="line">  &lt;el-form-item :label=<span class="string">"item.attr_name"</span> :key=<span class="string">"item.attr_id"</span> v-<span class="keyword">for</span>=<span class="string">"item in manyTableData"</span>&gt;</span><br><span class="line">      &lt;!-- 使用数组渲染复选框组 --&gt;</span><br><span class="line">      &lt;el-checkbox-group v-model=<span class="string">"item.attr_vals"</span>&gt;</span><br><span class="line">          &lt;el-checkbox border :label=<span class="string">"val"</span> v-<span class="keyword">for</span>=<span class="string">"(val,i) in item.attr_vals"</span> :key=<span class="string">"i"</span>&gt;&lt;/el-checkbox&gt;</span><br><span class="line">      &lt;/el-checkbox-group&gt;</span><br><span class="line">  &lt;/el-form-item&gt;</span><br><span class="line">&lt;/el-tab-pane&gt;</span><br><span class="line">&lt;el-tab-pane label=<span class="string">"商品属性"</span> name=<span class="string">"2"</span>&gt;</span><br><span class="line">  &lt;!-- 循环生成静态属性 --&gt;</span><br><span class="line">  &lt;el-form-item :label=<span class="string">"item.attr_name"</span> v-<span class="keyword">for</span>=<span class="string">"item in onlyTableData"</span> :key=<span class="string">"item.attr_id"</span>&gt;</span><br><span class="line">      &lt;el-input v-model=<span class="string">"item.attr_vals"</span>&gt;&lt;/el-input&gt;</span><br><span class="line">  &lt;/el-form-item&gt;</span><br><span class="line">&lt;/el-tab-pane&gt;</span><br><span class="line"></span><br><span class="line"><span class="comment">//在data数据中添加保存动态参数和静态属性的数组</span></span><br><span class="line">export <span class="keyword">default</span> &#123;</span><br><span class="line">  <span class="keyword">data</span>() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      ......</span><br><span class="line">      <span class="comment">//动态参数列表</span></span><br><span class="line">      manyTableData: [],</span><br><span class="line">      <span class="comment">//静态属性列表</span></span><br><span class="line">      onlyTableData:[]</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;,methods: &#123;</span><br><span class="line">    .......</span><br><span class="line">    async tabClicked() &#123;</span><br><span class="line">      <span class="comment">//当用户点击切换tab栏时触发</span></span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.activeIndex === <span class="string">'1'</span>) &#123;</span><br><span class="line">        <span class="comment">//发送请求获取动态参数</span></span><br><span class="line">        <span class="keyword">const</span> &#123; <span class="keyword">data</span>: res &#125; = await <span class="keyword">this</span>.$http.<span class="keyword">get</span>(</span><br><span class="line">          `categories/$&#123;<span class="keyword">this</span>.cateId&#125;/attributes`,</span><br><span class="line">          &#123; params: &#123; sel: <span class="string">'many'</span> &#125; &#125;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'获取动态参数列表失败'</span>)</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//将attr_vals字符串转换为数组</span></span><br><span class="line">        res.<span class="keyword">data</span>.forEach(item =&gt; &#123;</span><br><span class="line">          item.attr_vals =</span><br><span class="line">            item.attr_vals.length === <span class="number">0</span> ? [] : item.attr_vals.split(<span class="string">' '</span>)</span><br><span class="line">        &#125;)</span><br><span class="line">        <span class="keyword">this</span>.manyTableData = res.<span class="keyword">data</span></span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">this</span>.activeIndex === <span class="string">'2'</span>) &#123;</span><br><span class="line">        <span class="comment">//发送请求获取静态属性</span></span><br><span class="line">        <span class="keyword">const</span> &#123; <span class="keyword">data</span>: res &#125; = await <span class="keyword">this</span>.$http.<span class="keyword">get</span>(</span><br><span class="line">          `categories/$&#123;<span class="keyword">this</span>.cateId&#125;/attributes`,</span><br><span class="line">          &#123; params: &#123; sel: <span class="string">'only'</span> &#125; &#125;</span><br><span class="line">        )</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (res.meta.status !== <span class="number">200</span>) &#123;</span><br><span class="line">          <span class="keyword">return</span> <span class="keyword">this</span>.$message.error(<span class="string">'获取静态属性列表失败'</span>)</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.onlyTableData = res.<span class="keyword">data</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="comment">//添加 计算属性获取三级分类</span></span><br><span class="line">  computed: &#123;</span><br><span class="line">    cateId() &#123;</span><br><span class="line">      <span class="keyword">if</span> (<span class="keyword">this</span>.addForm.goods_cat.length === <span class="number">3</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.addForm.goods_cat[<span class="number">2</span>]</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">null</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/03/03/vue3-09/" title="vue_shop项目构建笔记">http://yoursite.com/2020/03/03/vue3-09/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+            <a href="/tags/vue-shop%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> vue_shop项目构建笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/03/03/vue3-08/" rel="next" title="vue_shop项目构建笔记">
+                <i class="fa fa-chevron-left"></i> vue_shop项目构建笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/03/03/%E9%9D%A2%E7%BB%8F04/" rel="prev" title="token、cookie和session">
+                token、cookie和session <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#今日目标"><span class="nav-number">1.</span> <span class="nav-text">今日目标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-参数管理"><span class="nav-number">2.</span> <span class="nav-text">1.参数管理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-展示动态参数可选项"><span class="nav-number">2.1.</span> <span class="nav-text">A.展示动态参数可选项</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-添加-删除可选项"><span class="nav-number">2.2.</span> <span class="nav-text">B.添加&#x2F;删除可选项</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-推送代码到码云"><span class="nav-number">3.</span> <span class="nav-text">2.推送代码到码云</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-商品列表"><span class="nav-number">4.</span> <span class="nav-text">3.商品列表</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-制作商品列表基本结构"><span class="nav-number">4.1.</span> <span class="nav-text">A.制作商品列表基本结构</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-数据展示"><span class="nav-number">4.2.</span> <span class="nav-text">B.数据展示</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-实现删除商品"><span class="nav-number">4.3.</span> <span class="nav-text">C.实现删除商品</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-添加商品"><span class="nav-number">5.</span> <span class="nav-text">4.添加商品</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#A-添加编程式导航"><span class="nav-number">5.1.</span> <span class="nav-text">A.添加编程式导航</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#B-布局Add-vue组件"><span class="nav-number">5.2.</span> <span class="nav-text">B.布局Add.vue组件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#C-添加tab栏切换验证"><span class="nav-number">5.3.</span> <span class="nav-text">C.添加tab栏切换验证</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#D-展示信息"><span class="nav-number">5.4.</span> <span class="nav-text">D.展示信息</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

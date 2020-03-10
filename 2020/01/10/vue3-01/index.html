@@ -1,0 +1,1057 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue,vue_shop项目构建笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="插件和依赖的区别依赖运行时开发时都需要用到的jar包，比如项目中需要一个json的jar包，就需要一个依赖，这个依赖在项目运行时也需要，因此在项目打包时需要把这些依赖也打包进项目里 插件在项目的开发时需要，但是在项目运行时不需要，因此在项目开发完成后就不需要把插件打包进项目中。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue_shop项目构建笔记">
+<meta property="og:url" content="http://yoursite.com/2020/01/10/vue3-01/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="插件和依赖的区别依赖运行时开发时都需要用到的jar包，比如项目中需要一个json的jar包，就需要一个依赖，这个依赖在项目运行时也需要，因此在项目打包时需要把这些依赖也打包进项目里 插件在项目的开发时需要，但是在项目运行时不需要，因此在项目开发完成后就不需要把插件打包进项目中。">
+<meta property="article:published_time" content="2020-01-10T07:23:48.000Z">
+<meta property="article:modified_time" content="2020-03-07T06:57:56.183Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta property="article:tag" content="vue_shop项目构建笔记">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2020/01/10/vue3-01/"/>
+
+
+
+
+
+  <title>vue_shop项目构建笔记 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/10/vue3-01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue_shop项目构建笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-01-10T15:23:48+08:00">
+                2020-01-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/vue-shop/" itemprop="url" rel="index">
+                    <span itemprop="name">vue_shop</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/vue-shop/%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="插件和依赖的区别"><a href="#插件和依赖的区别" class="headerlink" title="插件和依赖的区别"></a>插件和依赖的区别</h2><h3 id="依赖"><a href="#依赖" class="headerlink" title="依赖"></a>依赖</h3><p>运行时开发时都需要用到的jar包，比如项目中需要一个json的jar包，就需要一个依赖，这个依赖在项目运行时也需要，因此在项目打包时需要把这些依赖也打包进项目里</p>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><p>在项目的开发时需要，但是在项目运行时不需要，因此在项目开发完成后就不需要把插件打包进项目中。</p>
+<a id="more"></a>
+
+<h2 id="Vue-packages-version-mismatch版本问题的解决"><a href="#Vue-packages-version-mismatch版本问题的解决" class="headerlink" title="Vue packages version mismatch版本问题的解决"></a>Vue packages version mismatch版本问题的解决</h2><p>初始化我的vue_shop项目的时候，出现了以下的错误：</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">error </span>in .src/components/mobile/SeniorDetail.vue</span><br><span class="line">Module build failed: Error:</span><br><span class="line">Vue packages version mismatch:</span><br><span class="line">vue@2.5.13</span><br><span class="line">vue-template-compiler@2.5.17</span><br></pre></td></tr></table></figure>
+<p>根据提示，是版本不匹配的问题，直接将我的本地全局的vue进行更新就好了，也就是直接在终端运行<code>npm i -g vue</code>就完成了vue的升级。</p>
+<h2 id="登录-退出功能"><a href="#登录-退出功能" class="headerlink" title="登录/退出功能"></a>登录/退出功能</h2><h3 id="登录业务流程"><a href="#登录业务流程" class="headerlink" title="登录业务流程"></a>登录业务流程</h3><ul>
+<li>在登录页面输入用户名和密码</li>
+<li>调用后台接口进行验证</li>
+<li>通过验证之后，根据后台的响应状态跳转到项目主页</li>
+</ul>
+<h3 id="登录业务的相关技术点"><a href="#登录业务的相关技术点" class="headerlink" title="登录业务的相关技术点"></a>登录业务的相关技术点</h3><ul>
+<li>http是无状态的</li>
+<li>通过cookie在客户端记录状态</li>
+<li>通过session在服务端记录状态</li>
+<li>通过token方式维持状态</li>
+</ul>
+<p>如果前端和后端不存在跨域问题，推荐只有cookie和session结合的方式，如果前端和服务器之间存在跨域问题推荐使用token方式。</p>
+<h4 id="登录–token原理分析"><a href="#登录–token原理分析" class="headerlink" title="登录–token原理分析"></a>登录–token原理分析</h4><ul>
+<li>客户端-&gt;服务器：登录页面输入用户名和密码进行登录</li>
+<li>服务器-&gt;客户端：服务器验证通过之后生成该用户的token并返回</li>
+<li>客户端：存储该token</li>
+<li>客户端-&gt;服务器：后续所有的请求都携带该token发送请求</li>
+<li>服务器会验证token是否通过</li>
+</ul>
+<h4 id="功能实现"><a href="#功能实现" class="headerlink" title="功能实现"></a>功能实现</h4><ul>
+<li>通过Element-UI组件实现布局<ul>
+<li>el-form</li>
+<li>el-form-item</li>
+<li>el-input</li>
+<li>el-button</li>
+<li>字体图标</li>
+</ul>
+</li>
+</ul>
+<h3 id="退出功能实现原理"><a href="#退出功能实现原理" class="headerlink" title="退出功能实现原理"></a>退出功能实现原理</h3><p>基于token的方式实现退出比较简单，只需要销毁本地的token即可，这样后续的请求就不会携带token，必须重新登录生成一个新的token之后才可以访问页面。</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//清空token </span></span><br><span class="line"><span class="keyword">window</span>.sessionStorage.<span class="keyword">clear</span>()</span><br><span class="line"><span class="comment">//跳转登录页</span></span><br><span class="line">this.$router.push(<span class="string">'/login'</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="报错"><a href="#报错" class="headerlink" title="报错"></a>报错</h2><h3 id="格式问题"><a href="#格式问题" class="headerlink" title="格式问题"></a>格式问题</h3><p>1、换行</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">error  </span>Newline required at end of file but not found</span><br></pre></td></tr></table></figure>
+<p>原因就是需要在子组件的末尾添加换行。<br>并且在子组件中有一些空行也是不允许的<br>2、出现错误如下：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Missing <span class="literal">space</span> <span class="keyword">before</span> <span class="function"><span class="keyword">function</span> <span class="title">parentheses</span></span></span><br></pre></td></tr></table></figure>
+<p>解决办法：修改项目根目录下.eslintrc.js文件，在rules节点下增加<code>&quot;space-before-function-paren&quot;: 0,</code>,再次运行即可</p>
+<h2 id="路由导航首位控制访问权限"><a href="#路由导航首位控制访问权限" class="headerlink" title="路由导航首位控制访问权限"></a>路由导航首位控制访问权限</h2><p>如果用户没有登录，但是直接通过url访问特定页面，需要重新导航到登录页面。</p>
+<figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//为路由对象，添加beforeEach导航守卫</span></span><br><span class="line">router.beforeEach((to,<span class="keyword">from</span>,<span class="keyword">next</span>) =&gt; &#123;</span><br><span class="line">	<span class="comment">//如果用户访问的登录页直接放行</span></span><br><span class="line">	<span class="keyword">if</span>(to.path === <span class="string">'/login'</span>) <span class="keyword">return</span> <span class="keyword">next</span>()</span><br><span class="line">	<span class="comment">//从sessionStorage中获取到保存的token值</span></span><br><span class="line">	const tokenStr = window.sessionStorage.getItem(<span class="string">'token'</span>)</span><br><span class="line">	<span class="comment">//没有token，强制跳转到登录页</span></span><br><span class="line">	<span class="keyword">if</span>(!tokenStr) <span class="keyword">return</span> <span class="keyword">next</span>(<span class="string">'/login'</span>)</span><br><span class="line">	<span class="keyword">next</span>()</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">router.beforeEach(<span class="function"><span class="params">(to, <span class="keyword">from</span>, <span class="built_in">next</span>)</span> =&gt;</span> &#123;</span><br><span class="line">  // to表示将要访问的路径</span><br><span class="line">  // <span class="keyword">from</span>代表从哪个路径跳转而来</span><br><span class="line">  // <span class="built_in">next</span>是一个函数，表示放行</span><br><span class="line">  // <span class="built_in">next</span>()放行   <span class="built_in">next</span>(<span class="string">'/login'</span>)强制放行</span><br><span class="line">  <span class="keyword">if</span> (to.path === <span class="string">'/login'</span>) <span class="keyword">return</span> <span class="built_in">next</span>()</span><br><span class="line">  // 获取token</span><br><span class="line">  const tokenStr = window.sessionStorage.getItem(<span class="string">'token'</span>)</span><br><span class="line">  <span class="keyword">if</span> (!tokenStr) <span class="keyword">return</span> <span class="built_in">next</span>(<span class="string">'/login'</span>)</span><br><span class="line">  <span class="built_in">next</span>()</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="通过接口获取菜单数据"><a href="#通过接口获取菜单数据" class="headerlink" title="通过接口获取菜单数据"></a>通过接口获取菜单数据</h2><p>通过axios请求拦截器添加token，博正拥有获取数据的权限</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//axios请求拦截，相当于是一个预处理器，预处理这次请求</span></span><br><span class="line">axios<span class="selector-class">.interceptors</span><span class="selector-class">.request</span>.use(config =&gt; &#123;</span><br><span class="line">	<span class="comment">//为请求头对象，添加token验证的authorization字段</span></span><br><span class="line">	config<span class="selector-class">.headers</span><span class="selector-class">.Authorization</span> = window<span class="selector-class">.sessionStorage</span>.getItem(<span class="string">'token'</span>)</span><br><span class="line">	return config</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>需要授权的 API ，必须在请求头中使用 <code>Authorization</code> 字段提供 <code>token</code> 令牌</li>
+<li>使用 HTTP Status Code 标识状态</li>
+<li>数据返回格式统一使用 JSON</li>
+</ul>
+<h2 id="权限管理"><a href="#权限管理" class="headerlink" title="权限管理"></a>权限管理</h2><h3 id="权限管理业务分析"><a href="#权限管理业务分析" class="headerlink" title="权限管理业务分析"></a>权限管理业务分析</h3><p>通过axios请求拦截器添加token，博正拥有获取数据的权限权限管理模块控制不同的用户可以进行哪些操作，具体可以通过角色的方式进行控制，即每个用户分配一个特定的角色，角色包括不同的功能权限。<br>就是给用户不同的角色，而不同的角色拥有不同的权限，只要一个用户拥有该角色，那么他就拥有该角色对应的权限。</p>
+<h3 id="使用elementUI中的cascader插件出现的问题"><a href="#使用elementUI中的cascader插件出现的问题" class="headerlink" title="使用elementUI中的cascader插件出现的问题"></a>使用elementUI中的cascader插件出现的问题</h3><p>步骤跟着视频中的走，但是最后出现的结果就是显示出来的级联选择框出现了空白和高度不够的情况，最后找到的解决办法 就是，在全局的css样式也就是global.css文件中给el-cascader-panel添加高度。最后添加的代码就是：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.el-cascader-panel</span> &#123;</span><br><span class="line">	<span class="attribute">height</span>: <span class="number">200px</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="参数管理"><a href="#参数管理" class="headerlink" title="参数管理"></a>参数管理</h2><p>商品参数用于显示商品的固定的特征信息，可以通过电商平台商品详情页面直观的看到。</p>
+<h2 id="安装配置vue-qill-editor"><a href="#安装配置vue-qill-editor" class="headerlink" title="安装配置vue-qill-editor"></a>安装配置vue-qill-editor</h2><p>这款插件是用来安装在项目中进行网页内富文本编辑</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2020/01/10/vue3-01/" title="vue_shop项目构建笔记">http://yoursite.com/2020/01/10/vue3-01/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+            <a href="/tags/vue-shop%E9%A1%B9%E7%9B%AE%E6%9E%84%E5%BB%BA%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> vue_shop项目构建笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/02/vue2-05/" rel="next" title="vue2--脚手架">
+                <i class="fa fa-chevron-left"></i> vue2--脚手架
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/24/vue3-02/" rel="prev" title="电商管理后台 API 接口文档">
+                电商管理后台 API 接口文档 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#插件和依赖的区别"><span class="nav-number">1.</span> <span class="nav-text">插件和依赖的区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#依赖"><span class="nav-number">1.1.</span> <span class="nav-text">依赖</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插件"><span class="nav-number">1.2.</span> <span class="nav-text">插件</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Vue-packages-version-mismatch版本问题的解决"><span class="nav-number">2.</span> <span class="nav-text">Vue packages version mismatch版本问题的解决</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#登录-退出功能"><span class="nav-number">3.</span> <span class="nav-text">登录&#x2F;退出功能</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#登录业务流程"><span class="nav-number">3.1.</span> <span class="nav-text">登录业务流程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#登录业务的相关技术点"><span class="nav-number">3.2.</span> <span class="nav-text">登录业务的相关技术点</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#登录–token原理分析"><span class="nav-number">3.2.1.</span> <span class="nav-text">登录–token原理分析</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#功能实现"><span class="nav-number">3.2.2.</span> <span class="nav-text">功能实现</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#退出功能实现原理"><span class="nav-number">3.3.</span> <span class="nav-text">退出功能实现原理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#报错"><span class="nav-number">4.</span> <span class="nav-text">报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#格式问题"><span class="nav-number">4.1.</span> <span class="nav-text">格式问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由导航首位控制访问权限"><span class="nav-number">5.</span> <span class="nav-text">路由导航首位控制访问权限</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过接口获取菜单数据"><span class="nav-number">6.</span> <span class="nav-text">通过接口获取菜单数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#权限管理"><span class="nav-number">7.</span> <span class="nav-text">权限管理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#权限管理业务分析"><span class="nav-number">7.1.</span> <span class="nav-text">权限管理业务分析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用elementUI中的cascader插件出现的问题"><span class="nav-number">7.2.</span> <span class="nav-text">使用elementUI中的cascader插件出现的问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数管理"><span class="nav-number">8.</span> <span class="nav-text">参数管理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装配置vue-qill-editor"><span class="nav-number">9.</span> <span class="nav-text">安装配置vue-qill-editor</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

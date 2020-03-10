@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端基础,巩固前端系列,框模型," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="巩固框模型今天继续巩固一些CSS知识点，我所记的都是我平时容易忽略或者记得不是非常熟悉的知识点，要想看全面的知识点的话可以去看我前面的CSS笔记博文，上面就是一系列比较详细的知识点，第二次所学的系列里面都是比较零散的知识点。 框模型文档的每个元素被构造成文档布局内的一个矩形框，框每层的大小都可以使用一些特定的CSS属性调整。相关属性如下: width 和 heightwidth和height设置内">
+<meta property="og:type" content="article">
+<meta property="og:title" content="巩固前端05--框模型">
+<meta property="og:url" content="http://yoursite.com/2019/02/26/%E5%B7%A9%E5%9B%BA5/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="巩固框模型今天继续巩固一些CSS知识点，我所记的都是我平时容易忽略或者记得不是非常熟悉的知识点，要想看全面的知识点的话可以去看我前面的CSS笔记博文，上面就是一系列比较详细的知识点，第二次所学的系列里面都是比较零散的知识点。 框模型文档的每个元素被构造成文档布局内的一个矩形框，框每层的大小都可以使用一些特定的CSS属性调整。相关属性如下: width 和 heightwidth和height设置内">
+<meta property="article:published_time" content="2019-02-26T14:07:09.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:47:26.946Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端基础">
+<meta property="article:tag" content="巩固前端系列">
+<meta property="article:tag" content="框模型">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/02/26/巩固5/"/>
+
+
+
+
+
+  <title>巩固前端05--框模型 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/02/26/%E5%B7%A9%E5%9B%BA5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">巩固前端05--框模型</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-26T22:07:09+08:00">
+                2019-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/%E5%B7%A9%E5%9B%BA%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">巩固前端系列笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/%E5%B7%A9%E5%9B%BA%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/%E6%A0%B7%E5%BC%8F/" itemprop="url" rel="index">
+                    <span itemprop="name">样式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3.5k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="巩固框模型"><a href="#巩固框模型" class="headerlink" title="巩固框模型"></a>巩固框模型</h1><p>今天继续巩固一些CSS知识点，我所记的都是我平时容易忽略或者记得不是非常熟悉的知识点，要想看全面的知识点的话可以去看我前面的CSS笔记博文，上面就是一系列比较详细的知识点，第二次所学的系列里面都是比较零散的知识点。</p>
+<h2 id="框模型"><a href="#框模型" class="headerlink" title="框模型"></a>框模型</h2><p>文档的每个元素被构造成文档布局内的一个矩形框，框每层的大小都可以使用一些特定的CSS属性调整。相关属性如下:</p>
+<h3 id="width-和-height"><a href="#width-和-height" class="headerlink" title="width 和 height"></a>width 和 height</h3><p>width和height设置内容框（content box）的宽度和高度。内容框是框内容显示的区域——包括框内的文本内容，以及表示嵌套子元素的其它框。</p>
+<a id="more"></a>
+<h3 id="padding"><a href="#padding" class="headerlink" title="padding"></a>padding</h3><p>padding表示一个 CSS 框的内边距 ——这一层位于内容框的外边缘与边界的内边缘之间。该层的大小可以通过简写属性padding 一次设置所有四个边，或用 <code>padding-top、padding-right、padding-bottom 和 padding-left</code> 属性一次设置一个边。</p>
+<h3 id="border"><a href="#border" class="headerlink" title="border"></a>border</h3><p>CSS 框的边界（border）是一个分隔层，位于内边距的外边缘以及外边距的内边缘之间。边界的默认大小为0——从而让它不可见——不过我们可以设置边界的厚度、风格和颜色让它出现。 border 简写属性可以让我们一次设置所有四个边，例如<code>border: 1px solid black;</code> 但这个简写可以被各种普通书写的更详细的属性所覆盖：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">border</span>-top, <span class="built_in">border</span>-right, <span class="built_in">border</span>-bottom, <span class="built_in">border</span>-left: 分别设置某一边的边界厚度／风格／颜色。</span><br><span class="line"><span class="built_in">border</span>-<span class="built_in">width</span>, <span class="built_in">border</span>-<span class="built_in">style</span>, <span class="built_in">border</span>-<span class="built_in">color</span>: 分别仅设置边界的厚度／风格／颜色，并应用到全部四边边界。</span><br></pre></td></tr></table></figure>
+<p>也可以单独设置某一个边的三个不同属性，如<code>border-top-width, border-top-style, border-top-color</code>等。</p>
+<h3 id="margin"><a href="#margin" class="headerlink" title="margin"></a>margin</h3><p>外边距（margin）代表 CSS 框周围的外部区域，称为外边距，它在布局中推开其它 CSS 框。其表现与 padding 很相似；简写属性为 margin，单个属性分别为 <code>margin-top、margin-right、margin-bottom 和 margin-left。</code><br><b>注意:</b> 外边距有一个特别的行为被称作外边距塌陷（<code>margin collapsing</code>）：当两个框彼此接触时，它们的间距将取两个相邻外边界的最大值，而非两者的总和。</p>
+<h3 id="完全改变盒模型"><a href="#完全改变盒模型" class="headerlink" title="完全改变盒模型"></a>完全改变盒模型</h3><p>一个盒子的总宽度是指它的<code>内容宽度（width）、边内距（padding）、边界（border</code>值之和，如果想要一个盒子的总宽度为某个值，并且包括所有的边距和边界值之和，那我们就可以用属性<code>box-sizing</code>调整盒模型。 用值<code>border-box</code>，它将盒模型更改为这样新的模型。该模型的特点是总宽度等于上面一种情况的内容宽度，这里的总宽度也是包括内容、内边距和边界值，不过是宽度值一定，把属于内容以外的其他值都加在了宽度里面，即这里的width不仅仅指内容，还指padding和border的值。</p>
+<h3 id="盒子的显示模型"><a href="#盒子的显示模型" class="headerlink" title="盒子的显示模型"></a>盒子的显示模型</h3><p><code>display</code>可以有很多种不同的值, 其中三种常见的值为<code>block, inline, 和 inline-block</code>。</p>
+<ul>
+    <li>
+块盒(block box)是被定义为堆放在其它盒子之上的盒子（即盒子之前以及之后的内容出现在不同的行上），并且可以给它设置高度和宽度。上面所述的整个盒模型都适用于块盒。</li>
+<li>行内盒（inline box）与块盒相反：它跟随文档的文本流堆放（即，它会与周围的文本和其它行内元素出现在同一行，并且其内容会像段落中的文本行一样，随着文本流换行）。宽度和高度设置对行内盒无效；在行内盒上的所有内边距、外边距和边界设置会改变周围文本的位置，但是不会影响周围块盒的位置。</li>
+<li>行内块盒（inline-block box）介于前两者之间： 它会像行内盒一样，跟随周围的文本流堆放，不会在其前后创建换行；不过，它可以像块盒一样，使用宽度和高度设置大小，并且维护其块完整性 — 它不会跨段落行换行（对于一行文本容纳不下的行内盒，会落到第二行上，因为第一行上没有足够的空间容纳它，并且不会跨两行换行）。
+块级元素默认设置为display: block; ，行内元素默认设置为 display: inline; 。
+</li>
+</ul>
+
+<p>不常见的值：<br>同时， display 属性也有一些不常用的值，在以后你将会遇到。其中一些已经出现了有一段时间，并且可以很好的被支持, 而另一些则比较新，不能够被很好的支持。这些值通常是为了使创建网页/网页应用更简单而被创造出来。最被关注的有这些:</p>
+<figure class="highlight sas"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">display</span>: <span class="meta">table</span> — 允许你像处理<span class="meta">table</span>布局那样处理非<span class="meta">table</span>元素，而不是滥用HTML的&lt; <span class="meta">table</span>&gt;标签来达到同样的目的。了解更多相关信息请查看。</span><br><span class="line"><span class="meta">display</span>: flex — 允许你处理一些困扰CSS已久的一些传统布局问题，例如布置一系列弹性等宽容器或者垂直居中内容。</span><br><span class="line"><span class="meta">display</span>: grid — 给出一种简单实现CSS网格系统的方式，而在传统上它依赖于一些棘手难以处理的CSS网格框架。</span><br></pre></td></tr></table></figure>
+<h4 id="溢流"><a href="#溢流" class="headerlink" title="溢流"></a>溢流</h4><p>当使用绝对的值设置了一个框的大小（如，固定像素的宽/高），允许的大小可能不适合放置内容，这种情况下内容会从盒子溢流。我们使用overflow属性来控制这种情况的发生。它有一些可能的值，但是最常用的是：</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="symbol">auto:</span> 当内容过多，溢流的内容被隐藏，然后出现滚动条来让我们滚动查看所有的内容。</span><br><span class="line"><span class="symbol">hidden:</span> 当内容过多，溢流的内容被隐藏。</span><br><span class="line"><span class="symbol">visible:</span> 当内容过多，溢流的内容被显示在盒子的外边（这个是默认的行为）</span><br></pre></td></tr></table></figure>
+<h3 id="背景裁剪（Background-clip）"><a href="#背景裁剪（Background-clip）" class="headerlink" title="背景裁剪（Background clip）"></a>背景裁剪（Background clip）</h3><p>框的背景是由颜色和图片组成的，它们堆叠在一起（<code>background-color</code>, <code>background-image</code>）。 它们被应用到一个盒子里，然后被画在盒子的下面。默认情况下，背景延伸到了边界外沿。这通常是OK的，但是在一些情况下比较讨厌（假使你有一个平铺的背景图，你只想要它延伸到内容的边沿会怎么做？），该行为可以通过设置盒子的background-clip属性来调整。</p>
+<h3 id="轮廓-Outline"><a href="#轮廓-Outline" class="headerlink" title="轮廓(Outline)"></a>轮廓(Outline)</h3><p>最后，还有重要的一点， 一个框的 outline 是一个看起来像是边界但又不属于框模型的东西。它的行为和边界差不多，但是并不改变框的尺寸（更准确的说，轮廓被勾画于在框边界之外，外边距区域之内）</p>
+<h2 id="浮动float"><a href="#浮动float" class="headerlink" title="浮动float"></a>浮动float</h2><p>float具有包裹性，如果定义一个普通的div块，它的宽度会随着页面布满，即它的宽度等于页面的宽度，但是在div块里面添加float属性以后，该块里面宽度会随着该块里面的内容而决定。所以float属性具有包裹性。同时float属性还具有清空格的特点，如</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">img&#123;</span><br><span class="line">  width：50px；</span><br><span class="line">  border：1px solid white：</span><br><span class="line">&#125;</span><br><span class="line">img&lt;<span class="attribute">src</span>=<span class="string">"..."</span>&gt;</span><br><span class="line">img&lt;<span class="attribute">src</span>=<span class="string">"..."</span>&gt;</span><br><span class="line">img&lt;<span class="attribute">src</span>=<span class="string">"..."</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>该代码中的三张图片排列的时候中间会有空格，但是如果加了float属性以后，图片排列之间没有空格，紧致排列：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">img&#123;</span><br><span class="line">  width：50px；</span><br><span class="line">  border：1px solid white；</span><br><span class="line">  float：left；</span><br><span class="line">&#125;</span><br><span class="line">img&lt;<span class="attribute">src</span>=<span class="string">"..."</span>&gt;</span><br><span class="line">img&lt;<span class="attribute">src</span>=<span class="string">"..."</span>&gt;</span><br><span class="line">img&lt;<span class="attribute">src</span>=<span class="string">"..."</span>&gt;</span><br></pre></td></tr></table></figure>
+<p><code>“清空格”</code>这一特性的根本原因是由于float会导致节点脱离文档流结构。它都不属于文档流结构了，那么它身边的什么换行、空格就都和它没关系的，它就尽量的往一边去靠拢，能靠多近就靠多近，这就是清空格的本质。</p>
+<h2 id="清除浮动"><a href="#清除浮动" class="headerlink" title="清除浮动"></a>清除浮动</h2><p>现在我们已经知道了关于 float 属性的一些有趣事实，不过很快就能够碰到一个问题——所有在浮动下面的自身不浮动的内容都将围绕浮动元素进行包装，如果没有处理这些元素，就会变得很糟糕。有一种简单的方法可以解决这个问题—— clear 属性。当我们把这个应用到一个元素上时，它主要意味着”此处停止浮动”——这个元素和源码中后面的元素将不浮动，除非稍后将一个新的float声明应用到此后的另一个元素。<br>clear 可以取三个值：</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">left</span>：停止任何活动的左浮动</span><br><span class="line"><span class="literal">right</span>：停止任何活动的右浮动</span><br><span class="line"><span class="literal">both</span>：停止任何活动的左右浮动</span><br></pre></td></tr></table></figure>
+<p>clear 属性被用于<code>控制浮动</code>。比较下面两个例子：</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="params">&lt;div class="box"&gt;</span>...<span class="params">&lt;/div&gt;</span></span><br><span class="line"><span class="params">&lt;section&gt;</span>...<span class="params">&lt;/section&gt;</span></span><br><span class="line">.<span class="class">box </span>&#123;</span><br><span class="line"><span class="symbol">  float:</span> left;</span><br><span class="line"><span class="symbol">  width:</span> <span class="number">200</span>px;</span><br><span class="line"><span class="symbol">  height:</span> <span class="number">100</span>px;</span><br><span class="line"><span class="symbol">  margin:</span> <span class="number">1</span>em;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这个例子中， <code>section</code> 元素实际上是在 div 之后的（译注：DOM结构上）。然而 div 元素是浮动到左边的，于是 section 中的文字就围绕了 div ，并且 section 元素包围了整个元素。如果我们想让 section 显示在浮动元素之后呢？</p>
+<figure class="highlight dts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">.<span class="class">box </span>&#123;</span><br><span class="line"><span class="symbol">  float:</span> left;</span><br><span class="line"><span class="symbol">  width:</span> <span class="number">200</span>px;</span><br><span class="line"><span class="symbol">  height:</span> <span class="number">100</span>px;</span><br><span class="line"><span class="symbol">  margin:</span> <span class="number">1</span>em;</span><br><span class="line">&#125;</span><br><span class="line">.after-<span class="class">box </span>&#123;</span><br><span class="line"><span class="symbol">  clear:</span> left;</span><br><span class="line">&#125;</span><br><span class="line"><span class="params">&lt;div class="box"&gt;</span>...<span class="params">&lt;/div&gt;</span></span><br><span class="line"><span class="params">&lt;section class=“.after-box”&gt;</span>...<span class="params">&lt;/section&gt;</span></span><br></pre></td></tr></table></figure>
+<p>使用 clear 我们就可以将这个段落移动到浮动元素 div 下面。</p>
+<p>对于清除浮动（<code>clearfix hack</code>），当图片比包含它的元素还高，</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>而且它是浮动的，于是它就会溢出到容器外面！有一种比较丑陋的方法可以解决这个问题，它叫做清除浮动（clearfix hack）.<br>让我们加入一些新的CSS样式：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.clearfix</span> &#123;</span><br><span class="line">  <span class="attribute">overflow</span>: auto;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="浮动问题"><a href="#浮动问题" class="headerlink" title="浮动问题"></a>浮动问题</h2><h3 id="1、整个宽度可能难以计算"><a href="#1、整个宽度可能难以计算" class="headerlink" title="1、整个宽度可能难以计算"></a>1、整个宽度可能难以计算</h3><p>如果给我们的这些浮动框加上样式时，比如添加背景、外边距、内边距等等，问题就来了。我们原来的布局已经损坏，由于内边距和边界引入的额外宽度，可能会使我们原有的布局损坏掉。<br>有两个方法可以解决问题，最好的方法是给html加上下面的css：</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123; <span class="built_in">box</span>-sizing: <span class="built_in">border</span>-<span class="built_in">box</span>;</span><br><span class="line">&#125; <span class="built_in">box</span>-sizing 通过更改盒模型来拯救我们，盒子的宽度取值为 <span class="built_in">content</span> + padding + <span class="built_in">border</span>，</span><br><span class="line">而不仅是之前的<span class="built_in">content</span>——所以当增加内边距或边界的宽度时，不会使盒子更宽——而是会使内容调整得更窄。</span><br></pre></td></tr></table></figure>
+<h3 id="2、浮动项目的背景高度"><a href="#2、浮动项目的背景高度" class="headerlink" title="2、浮动项目的背景高度"></a>2、浮动项目的背景高度</h3><p>如果我们给每一个浮动框都加一个固定的高度，我们可以通过给所有的框的列定义一个固定高度来实现。<br>然而在许多情况下这并不理想——它使设计呆板。如果能保证列中总是有相同数量的内容，这是可以的，但这并不总是如此——在很多类型的网站上，内容也会定期更改。</p>
+<p>这正是像flexbox这样的新布局技术所解决的问题。Flexbox可以自动地延长列，这样他们就会像最长的一列一样。</p>
+<p>也可以考虑：</p>
+<p>将这些列的背景颜色设置为父元素的背景颜色，这样您就不会看到高度是不同的。这是目前最好的选择。<br>将它们设置为固定的高度，并使内容滚动overflow (参见我们溢流部分的示例。)<br>使用一种叫做伪列（faux columns）的技术——这包括将背景(和边界)从实际的列中提取出来，并在列的父元素上画一个伪造的背景，看起来像列的背景一样。不幸的是，这将无法处理列边界。</p>
+<h3 id="3、清除浮动会很复杂"><a href="#3、清除浮动会很复杂" class="headerlink" title="3、清除浮动会很复杂"></a>3、清除浮动会很复杂</h3><p>布局变得更加复杂清理（clearing）也会变得更加复杂。需要确保所有的浮动都能尽快清除，以避免它们给下方的内容制造麻烦。如果没有一个方便的容器来进行清理，那么在必要的时候使用clearfix块。</p>
+<h3 id="4、注意"><a href="#4、注意" class="headerlink" title="4、注意"></a>4、注意</h3><p>如果是要调整两个浮动块的相对位置的话，不能用margin，只能用width：x%，且用百分数来表示的话更直观，因为每个屏幕的尺寸不一样，但是百分数都是表示在屏幕长度的百分之几，这样也比较直观。</p>
+<h2 id="心得体会"><a href="#心得体会" class="headerlink" title="心得体会"></a>心得体会</h2><p>今天按照网页上面给布置的作业题，写了三个非常简单的简历，主要是运用今天和前几天所学的浮动和表格的相关内容，整个给我最大的感触就是，虽然看着一个简历可能很简单，就是由几个行列组成而已，但是真正实施起来还是有一定的繁琐度的，比如尺寸的选择，颜色的确定，边界线的显示与否，等等等。第一个做的简历是非常基本的，什么也没用到，主要运用的是排版结构，第二个就是稍微复杂一点，用到了今天所复习的浮动，最后一个是最复杂的，看起来很简单，它只是一个表格，但是写起来却是最复杂的，需要考虑空元素，行列元素，还要考虑在表格元素里面再添加表格等等问题，但是通过自己亲手一点一点的写代码最后组建了一个跟网页上相似的简历的时候，成就感还是非常大的，今天学到了很多东西，对类选择器和id选择器的运用更加熟练了，对浮动的定义和运用也更加深入了，总之今天收获满满！</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/02/26/%E5%B7%A9%E5%9B%BA5/" title="巩固前端05--框模型">http://yoursite.com/2019/02/26/%E5%B7%A9%E5%9B%BA5/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 前端基础</a>
+          
+            <a href="/tags/%E5%B7%A9%E5%9B%BA%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97/" rel="tag"><i class="fa fa-tag"></i> 巩固前端系列</a>
+          
+            <a href="/tags/%E6%A1%86%E6%A8%A1%E5%9E%8B/" rel="tag"><i class="fa fa-tag"></i> 框模型</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/26/%E5%B7%A9%E5%9B%BA4/" rel="next" title="巩固前端04--背景+边框+列表+表格">
+                <i class="fa fa-chevron-left"></i> 巩固前端04--背景+边框+列表+表格
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/02/27/%E5%B7%A9%E5%9B%BA6/" rel="prev" title="巩固前端06--定位">
+                巩固前端06--定位 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#巩固框模型"><span class="nav-number">1.</span> <span class="nav-text">巩固框模型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#框模型"><span class="nav-number">1.1.</span> <span class="nav-text">框模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#width-和-height"><span class="nav-number">1.1.1.</span> <span class="nav-text">width 和 height</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#padding"><span class="nav-number">1.1.2.</span> <span class="nav-text">padding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#border"><span class="nav-number">1.1.3.</span> <span class="nav-text">border</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#margin"><span class="nav-number">1.1.4.</span> <span class="nav-text">margin</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#完全改变盒模型"><span class="nav-number">1.1.5.</span> <span class="nav-text">完全改变盒模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#盒子的显示模型"><span class="nav-number">1.1.6.</span> <span class="nav-text">盒子的显示模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#溢流"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">溢流</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景裁剪（Background-clip）"><span class="nav-number">1.1.7.</span> <span class="nav-text">背景裁剪（Background clip）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#轮廓-Outline"><span class="nav-number">1.1.8.</span> <span class="nav-text">轮廓(Outline)</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮动float"><span class="nav-number">1.2.</span> <span class="nav-text">浮动float</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#清除浮动"><span class="nav-number">1.3.</span> <span class="nav-text">清除浮动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浮动问题"><span class="nav-number">1.4.</span> <span class="nav-text">浮动问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1、整个宽度可能难以计算"><span class="nav-number">1.4.1.</span> <span class="nav-text">1、整个宽度可能难以计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2、浮动项目的背景高度"><span class="nav-number">1.4.2.</span> <span class="nav-text">2、浮动项目的背景高度</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3、清除浮动会很复杂"><span class="nav-number">1.4.3.</span> <span class="nav-text">3、清除浮动会很复杂</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4、注意"><span class="nav-number">1.4.4.</span> <span class="nav-text">4、注意</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心得体会"><span class="nav-number">1.5.</span> <span class="nav-text">心得体会</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

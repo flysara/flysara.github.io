@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端框架,vue," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="小球动画flag标识符的作用分析在半场小球动画案例中，的afterEnter钩子函数里面原先写的是this.flag&#x3D;！this.flag，如果改成el.style.opacity&#x3D;0.5，则会没有动画效果。Vue把一个完整的动画，使用钩子函数，拆分为了两部分：我们使用flag标识符，来表示动画的切换；刚一开始，flag&#x3D;false，然后变成true，然后便变成false。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue1-day4">
+<meta property="og:url" content="http://yoursite.com/2019/10/27/vue1-04/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="小球动画flag标识符的作用分析在半场小球动画案例中，的afterEnter钩子函数里面原先写的是this.flag&#x3D;！this.flag，如果改成el.style.opacity&#x3D;0.5，则会没有动画效果。Vue把一个完整的动画，使用钩子函数，拆分为了两部分：我们使用flag标识符，来表示动画的切换；刚一开始，flag&#x3D;false，然后变成true，然后便变成false。">
+<meta property="article:published_time" content="2019-10-27T02:51:22.000Z">
+<meta property="article:modified_time" content="2020-03-07T07:20:58.401Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端框架">
+<meta property="article:tag" content="vue">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/10/27/vue1-04/"/>
+
+
+
+
+
+  <title>vue1-day4 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/27/vue1-04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">vue1-day4</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-27T10:51:22+08:00">
+                2019-10-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端进阶</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" itemprop="url" rel="index">
+                    <span itemprop="name">前端框架</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E8%BF%9B%E9%98%B6/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/Vue/Vue1/" itemprop="url" rel="index">
+                    <span itemprop="name">Vue1</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  9
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="小球动画flag标识符的作用分析"><a href="#小球动画flag标识符的作用分析" class="headerlink" title="小球动画flag标识符的作用分析"></a>小球动画flag标识符的作用分析</h2><p>在半场小球动画案例中，的afterEnter钩子函数里面原先写的是<code>this.flag=！this.flag</code>，如果改成<code>el.style.opacity=0.5</code>，则会没有动画效果。<br>Vue把一个完整的动画，使用钩子函数，拆分为了两部分：我们使用flag标识符，来表示动画的切换；刚一开始，flag=false，然后变成true，然后便变成false。</p>
+<a id="more"></a>
+
+<h2 id="组件传值–父组件向子组件传值，data和props的区别"><a href="#组件传值–父组件向子组件传值，data和props的区别" class="headerlink" title="组件传值–父组件向子组件传值，data和props的区别"></a>组件传值–父组件向子组件传值，data和props的区别</h2><p>子组件中，默认无法访问到父组件中的data上的数据和methods中的方法。<br>父组件可以在引用子组件的时候，通过属性绑定（v-bind：）的形式，把需要传递给子组件的数据，以属性绑定的形式，传递到子组件内部，供子组件使用。</p>
+<p>把父组件传递过来的属性，先在props数组中，定义一下，这样我们才能在子组件中使用父组件的数据。</p>
+<p>注意：<br>     + 组件中的所有props中的数据，都是通过父组件传递给自组件的。<br>     + 子组件中的data数据，并不是通过父组件传递过来的，而是子组件自己私有的，比如：子组件通过AJAX，请求回来的数据，都可以放到data身上。<br>     + props中的数据都是只读的，无法重新赋值<br>     + data上的数据都是可读可写的。</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 属性绑定在子组件标签中添加‘v-bind：自定义属性名称="父组件属性名称"’就可以达到属性绑定的目的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">com1</span> <span class="attr">v-bind:parentmsg</span>=<span class="string">"msg"</span>&gt;</span><span class="tag">&lt;/<span class="name">com1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">com</span>：&#123;</span><br><span class="line">	<span class="selector-tag">data</span>()&#123;</span><br><span class="line">		<span class="selector-tag">return</span>&#123;</span><br><span class="line">			<span class="attribute">title</span>:<span class="string">'123'</span>,</span><br><span class="line">			<span class="attribute">content</span>:<span class="string">'qqq'</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	<span class="attribute">template</span>:<span class="string">'&lt;h1&gt;nnnnn---&#123;&#123; parentmsg &#125;&#125;&lt;/h1&gt;'</span>,</span><br><span class="line">	<span class="attribute">props</span>:[<span class="string">'parentmsg'</span>],</span><br><span class="line">	<span class="attribute">directives</span>:&#123;&#125;,</span><br><span class="line">	<span class="attribute">filters</span>:&#123;&#125;,</span><br><span class="line">	<span class="attribute">methods</span>:&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="组件传值–子组件通过事件调用向父组件传值（父组件把方法传递给子组件）"><a href="#组件传值–子组件通过事件调用向父组件传值（父组件把方法传递给子组件）" class="headerlink" title="组件传值–子组件通过事件调用向父组件传值（父组件把方法传递给子组件）"></a>组件传值–子组件通过事件调用向父组件传值（父组件把方法传递给子组件）</h2><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 父组件向子组件传递方法，使用的是事件绑定机制：v-on，当我们自定义了一个事件属性之后，那么子组件就能够通过某些方法来调用传递进去的这个方法了 --&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 事件绑定在子组件标签中添加‘v-on：自定义事件名称="父组件事件名称"’就可以达到事件绑定的目的 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">com1</span> <span class="attr">v-on:func</span>=<span class="string">"show"</span>&gt;</span><span class="tag">&lt;/<span class="name">com1</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- &lt;com1 @func="show"&gt;&lt;/com1&gt;  --&gt;</span></span><br><span class="line">//如果改成<span class="tag">&lt;<span class="name">com1</span> @<span class="attr">func</span>=<span class="string">"show（）"</span>&gt;</span><span class="tag">&lt;/<span class="name">com1</span>&gt;</span>，就说明是调用方法，把调用该方法的结果传递给这个事件 </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight lasso"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//父组件中的方法</span></span><br><span class="line">methods:&#123;</span><br><span class="line">		show(<span class="built_in">data</span>,data2)&#123;</span><br><span class="line">			console.<span class="keyword">log</span>(<span class="string">'aaaa'</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">com：&#123;</span><br><span class="line">	<span class="keyword">data</span>()&#123;</span><br><span class="line">		<span class="keyword">return</span>&#123;</span><br><span class="line">			title:<span class="string">'123'</span>,</span><br><span class="line">			content:<span class="string">'qqq'</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	template:<span class="string">'&lt;h1&gt;nnnnn---&#123;&#123; parentmsg &#125;&#125;&lt;/h1&gt;'</span>,</span><br><span class="line">	props:[<span class="string">'parentmsg'</span>],</span><br><span class="line">	directives:&#123;&#125;,</span><br><span class="line">	filters:&#123;&#125;,</span><br><span class="line">	methods:&#123;</span><br><span class="line">		<span class="comment">//当点击子组件的按钮的时候，如何拿到父组件传递过来的func方法，并调用这个方法</span></span><br><span class="line">        <span class="comment">//emit：英文原意是触发调用发射意思</span></span><br><span class="line">		<span class="keyword">this</span>.$emit(<span class="string">'func'</span>,<span class="number">123</span>,<span class="number">456</span>)<span class="comment">//调用的func是传递过来的事件绑定的自定义事件名称</span></span><br><span class="line">		<span class="comment">//从第二个位置以后都可以进行传参。跟父组件中的方法中需要的参数进行传递</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="使用ref获取DOM元素和组件"><a href="#使用ref获取DOM元素和组件" class="headerlink" title="使用ref获取DOM元素和组件"></a>使用ref获取DOM元素和组件</h2><p> ref是英文单词reference的简写。<br>通过ref可以拿到组件的引用和一些组件的数据。<br>ref也可以拿到一些DOM元素，并且可以在不直接操作DOM元素的情况下去操作DOM元素。引用的时候要加refs，但是绑定的时候不用加s，只用写ref就可以了。由于refs是挂载在实例上的一个对象属性，所以，需要在vm中使用，并且需要添加this来使用。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;<span class="keyword">div</span> <span class="built_in">id</span>=<span class="string">"app"</span>&gt;</span><br><span class="line">&lt;h3 <span class="built_in">id</span>=<span class="string">"myh3"</span> <span class="keyword">ref</span>=<span class="string">"myh3"</span>&gt;hhhhh&lt;/h3&gt;</span><br><span class="line">&lt;login <span class="keyword">ref</span>=<span class="string">"mylogin"</span>&gt;&lt;/login&gt;</span><br><span class="line">&lt;/<span class="keyword">div</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">var login = &#123;</span><br><span class="line">	template:<span class="string">'&lt;h1&gt;login&lt;/login&gt;'</span>,</span><br><span class="line">	data()&#123;</span><br><span class="line">		<span class="keyword">return</span> &#123;</span><br><span class="line">			ms<span class="variable">g:</span><span class="string">'son msg'</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	method<span class="variable">s:</span>&#123;</span><br><span class="line">		show()&#123;</span><br><span class="line">			console.<span class="built_in">log</span>(<span class="string">'调用了子组件的方法'</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var <span class="keyword">vm</span> = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	<span class="keyword">e</span><span class="variable">l:</span><span class="string">'app'</span>,</span><br><span class="line">	dat<span class="variable">a:</span>&#123;&#125;,</span><br><span class="line">	method<span class="variable">s:</span>&#123;</span><br><span class="line">		getelements()&#123;</span><br><span class="line">			//console.<span class="built_in">log</span>(this.$refs.myh3.innerText)</span><br><span class="line">			//console.<span class="built_in">log</span>(this.$refs.mylogin.msg),访问子组件中的数据</span><br><span class="line">			//this.$refs.mylogin.show()访问子组件中的方法</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line">	component<span class="variable">s:</span>&#123;</span><br><span class="line">		login</span><br><span class="line">	&#125;</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="路由"><a href="#路由" class="headerlink" title="路由"></a>路由</h2><h3 id="什么是路由"><a href="#什么是路由" class="headerlink" title="什么是路由"></a>什么是路由</h3><p>1、后端路由：对于普通的网站，所有的超链接都是URL地址，所有的URL地址都对应服务器上对应的资源。<br>2、前端路由：对于单页面应用程序来说，主要通过URL中的hash（#）来实现不同页面之间的切换，同时，hash有一个特点：HTTP请求中不会包含hash相关的内容，所以，单页面程序中的原页面跳转主要用hash实现<br>3、在单页面应用程序中，这种通过hash改变切换页面的方式，乘坐前端路由。（区别于后端路由）</p>
+<h3 id="在vue中使用vue-router"><a href="#在vue中使用vue-router" class="headerlink" title="在vue中使用vue-router"></a>在vue中使用vue-router</h3><h3 id="基础使用"><a href="#基础使用" class="headerlink" title="基础使用"></a>基础使用</h3><p>创建一个路由对象，当导入vue-router包之后，在window全局对象中，就有了一个路由的构造函数，叫做VueRouter，</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//组件模板对象</span><br><span class="line">var login = &#123;</span><br><span class="line">	template:'<span class="tag">&lt;<span class="name">h1</span>&gt;</span>login<span class="tag">&lt;/<span class="name">login</span>&gt;</span>'</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">var register = &#123;</span><br><span class="line">	template:'<span class="tag">&lt;<span class="name">h1</span>&gt;</span>register<span class="tag">&lt;/<span class="name">login</span>&gt;</span>'</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- var login = Vue.component('login', &#123;</span></span><br><span class="line"><span class="comment">	template:'&lt;h1&gt;login&lt;/login&gt;'</span></span><br><span class="line"><span class="comment">	&#125;) --&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//创建一个对象，在new路由对象的时候，可以为构造函数传递一个配置对象</span></span><br><span class="line">var router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">	<span class="comment">//route //这个配置对象中的route 表示【路由匹配规则】的意思</span></span><br><span class="line"><span class="symbol">	routes:</span>[</span><br><span class="line">	<span class="comment">//路由匹配规则，每个路由都是一个对象，这个规则对象，身上有两个必须的属性：</span></span><br><span class="line">	<span class="comment">//属性1：是path，表示监听哪个路由连接地址；</span></span><br><span class="line">	<span class="comment">//属性2：是component，表示如果路由时前面匹配到的path，则展示component属性对应的哪个组件</span></span><br><span class="line">	<span class="comment">//注意：component的属性值，必须是一个组件模板对象，不能是组件的引用名称；</span></span><br><span class="line">	&#123; <span class="string">path:</span><span class="string">'/login'</span>,<span class="string">component:</span> login &#125;,</span><br><span class="line">	&#123; <span class="string">path:</span><span class="string">'register'</span>,<span class="string">component:</span> register&#125;</span><br><span class="line">	]</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">	<span class="comment">//vm实例对象</span></span><br><span class="line">var vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line"><span class="symbol">        el:</span><span class="string">'#app'</span>,</span><br><span class="line"><span class="symbol">        data:</span>&#123;&#125;,</span><br><span class="line"><span class="symbol">        methods:</span>&#123;&#125;,</span><br><span class="line"><span class="symbol">        components:</span>&#123;&#125;,</span><br><span class="line"><span class="symbol">        router:</span> routerObj<span class="comment">//将路由规则对象，注册到vm实例上，用来监听URL地址的变化，然后展示对应的组件</span></span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+
+
+<p>.router-link-active是路由选中时候的样式设置，是默认的，如果想要修改该属性名称，需要在router构造函数添加一个<code>linkActiveClass：&#39;myclass&#39;</code>来对其进行属性名称修改，这样的话，在设置路由高亮时候的属性名称就要写成.myclass：{}<br>来对其进行路由高亮显示设置了。</p>
+<h3 id="为路由页面切换添加动画"><a href="#为路由页面切换添加动画" class="headerlink" title="为路由页面切换添加动画"></a>为路由页面切换添加动画</h3><p>只需要把router-view标签用transition标签包裹起来，然后再进行动画设计</p>
+<h3 id="路由传参"><a href="#路由传参" class="headerlink" title="路由传参"></a>路由传参</h3><h4 id="query传参"><a href="#query传参" class="headerlink" title="query传参"></a>query传参</h4><p>query传参是挂载到一个路由对象上，通过调用路由对象的属性来进行传参的。<br>query可以多个传参，传参方式如下</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/login?id=10&amp;name=zs"</span>&gt;</span><span class="tag">&lt;/<span class="name">login</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>如果再路由中，使用查询字符串，给路由传递参数，则不需要修改路由规则（就是router实例中的route对象挂载的几个对象的path）的path属性。<br>通过this.$route.query.id来获取id的值，this.$route是路由对象，里面有很多路由对象的属性挂载。可以省略this。<br>模板对象为：</p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var login = &#123;</span><br><span class="line">	<span class="attribute">template</span>: '&lt;h1&gt;login-----&#123;&#123; this.$route<span class="variable">.query</span><span class="variable">.id</span> &#125;&#125;-----&#123;&#123; $route<span class="variable">.query</span><span class="variable">.name</span> &#125;&#125;'//或者$route<span class="variable">.query</span><span class="variable">.id</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>所以query也可以在模板对象上获取多个数据</p>
+<p>优点：1、不需要修改path路径规则<br>      2、拿到参数直接通过this.$route.query.参数名或者$route.query.参数名拿到参数</p>
+<h4 id="params方式传递路由参数"><a href="#params方式传递路由参数" class="headerlink" title="params方式传递路由参数"></a>params方式传递路由参数</h4><p>这个方式说明的是，在/login后面放的就是id这个参数，会一一对应起来。传递参数的时候，直接就在router-link里面的to的路径后面添加要传递的id值过去就行了。具体如下：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">var router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line"><span class="symbol">	routers:</span> [</span><br><span class="line">	&#123; <span class="string">path:</span> <span class="string">'/login/:id/:name'</span>,<span class="string">component:</span> login &#125;,</span><br><span class="line">	&#123; <span class="string">path:</span> <span class="string">'/register/:id/:name'</span>,<span class="string">component:</span> register &#125;,</span><br><span class="line">	]</span><br><span class="line">	&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">router-link</span> <span class="attr">to</span>=<span class="string">"/login/12/zs"</span>&gt;</span><span class="tag">&lt;/<span class="name">login</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+
+<p>要输出到页面上的化，需要在模板对象上面添加变量显示出来</p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">var login = &#123;</span><br><span class="line">	<span class="attribute">template</span>: '&lt;h1&gt;login-----&#123;&#123; this.$route<span class="variable">.params</span><span class="variable">.id</span> &#125;&#125;-----&#123;&#123; $route<span class="variable">.params</span><span class="variable">.name</span> &#125;&#125;'//或者$route<span class="variable">.query</span><span class="variable">.id</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="路由嵌套"><a href="#路由嵌套" class="headerlink" title="路由嵌套"></a>路由嵌套</h3><p>通过children属性来进行路由嵌套，不过在route属性中的children属性中，添加的path对象的路径不能添加/。<br>子路由的path前面不要带/。否则永远以根路径开始请求，这样不方便我们用户去理解URL地址</p>
+<h3 id="使用命名视图实现经典视图"><a href="#使用命名视图实现经典视图" class="headerlink" title="使用命名视图实现经典视图"></a>使用命名视图实现经典视图</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 直接给每一个坑取一个name属性，然后显示相应属性名字的组件，没有的就显示default的组件 --&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">router-view</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"container"</span>&gt;</span></span><br><span class="line">            <span class="comment">&lt;!-- 命名视图 --&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">router-view</span> <span class="attr">name</span>=<span class="string">"left"</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">router-view</span> <span class="attr">name</span>=<span class="string">"main"</span>&gt;</span><span class="tag">&lt;/<span class="name">router-view</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>直接用三个占位符来分别展示不同组件，从而实现命名试图</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">var router = <span class="keyword">new</span> VueRouter(&#123;</span><br><span class="line">            route<span class="variable">s:</span> [</span><br><span class="line">                // &#123; path: <span class="string">'/'</span>, componen<span class="variable">t:</span> header &#125;,</span><br><span class="line">                // &#123; path: <span class="string">'/left'</span>, componen<span class="variable">t:</span> <span class="keyword">left</span> &#125;,</span><br><span class="line">                // &#123; path: <span class="string">'/main'</span>, componen<span class="variable">t:</span> main &#125;,</span><br><span class="line">                //这种方法是不可行的</span><br><span class="line"></span><br><span class="line">                &#123; </span><br><span class="line">                    path: <span class="string">'/'</span>, </span><br><span class="line">                    component<span class="variable">s:</span> &#123;</span><br><span class="line">                        <span class="string">'default'</span>: header,//默认放的组件</span><br><span class="line">                        <span class="string">'left'</span>:<span class="keyword">left</span>,</span><br><span class="line">                        <span class="string">'main'</span>:main</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            ]</span><br><span class="line">        &#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2>
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/10/27/vue1-04/" title="vue1-day4">http://yoursite.com/2019/10/27/vue1-04/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6/" rel="tag"><i class="fa fa-tag"></i> 前端框架</a>
+          
+            <a href="/tags/vue/" rel="tag"><i class="fa fa-tag"></i> vue</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/21/vue1-03/" rel="next" title="vue1-day3">
+                <i class="fa fa-chevron-left"></i> vue1-day3
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/28/vue1-05/" rel="prev" title="vue1-day5">
+                vue1-day5 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#小球动画flag标识符的作用分析"><span class="nav-number">1.</span> <span class="nav-text">小球动画flag标识符的作用分析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件传值–父组件向子组件传值，data和props的区别"><span class="nav-number">2.</span> <span class="nav-text">组件传值–父组件向子组件传值，data和props的区别</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件传值–子组件通过事件调用向父组件传值（父组件把方法传递给子组件）"><span class="nav-number">3.</span> <span class="nav-text">组件传值–子组件通过事件调用向父组件传值（父组件把方法传递给子组件）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用ref获取DOM元素和组件"><span class="nav-number">4.</span> <span class="nav-text">使用ref获取DOM元素和组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#路由"><span class="nav-number">5.</span> <span class="nav-text">路由</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是路由"><span class="nav-number">5.1.</span> <span class="nav-text">什么是路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在vue中使用vue-router"><span class="nav-number">5.2.</span> <span class="nav-text">在vue中使用vue-router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基础使用"><span class="nav-number">5.3.</span> <span class="nav-text">基础使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为路由页面切换添加动画"><span class="nav-number">5.4.</span> <span class="nav-text">为路由页面切换添加动画</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由传参"><span class="nav-number">5.5.</span> <span class="nav-text">路由传参</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#query传参"><span class="nav-number">5.5.1.</span> <span class="nav-text">query传参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#params方式传递路由参数"><span class="nav-number">5.5.2.</span> <span class="nav-text">params方式传递路由参数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#路由嵌套"><span class="nav-number">5.6.</span> <span class="nav-text">路由嵌套</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用命名视图实现经典视图"><span class="nav-number">5.7.</span> <span class="nav-text">使用命名视图实现经典视图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复习"><span class="nav-number">6.</span> <span class="nav-text">复习</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

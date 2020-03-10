@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端基础,jQuery基础," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="jQuery事件学习笔记jQuery事件jQuery事件概述语法结构为： 12$（selector）.action（function（）&amp;#123;	&#x2F;&#x2F;事件触发后需要执行的自定义脚本&amp;#125;）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery02--jQuery事件">
+<meta property="og:url" content="http://yoursite.com/2019/03/09/jQuery02/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="jQuery事件学习笔记jQuery事件jQuery事件概述语法结构为： 12$（selector）.action（function（）&amp;#123;	&#x2F;&#x2F;事件触发后需要执行的自定义脚本&amp;#125;）">
+<meta property="article:published_time" content="2019-03-09T08:08:03.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:40:34.891Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端基础">
+<meta property="article:tag" content="jQuery基础">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/09/jQuery02/"/>
+
+
+
+
+
+  <title>jQuery02--jQuery事件 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/09/jQuery02/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jQuery02--jQuery事件</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-09T16:08:03+08:00">
+                2019-03-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/jQuery%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="jQuery事件学习笔记"><a href="#jQuery事件学习笔记" class="headerlink" title="jQuery事件学习笔记"></a>jQuery事件学习笔记</h1><h2 id="jQuery事件"><a href="#jQuery事件" class="headerlink" title="jQuery事件"></a>jQuery事件</h2><h3 id="jQuery事件概述"><a href="#jQuery事件概述" class="headerlink" title="jQuery事件概述"></a>jQuery事件概述</h3><p>语法结构为：</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$（selector）.action（<span class="function"><span class="keyword">function</span>（）</span>&#123;</span><br><span class="line">	<span class="comment">//事件触发后需要执行的自定义脚本&#125;）</span></span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>例如为段落元素&lt;\p&gt;添加鼠标单击事件click</p>
+<figure class="highlight 1c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$（<span class="string">"p＂）.click（function（）&#123;</span></span><br><span class="line">alert（“单击成功”）；</span><br><span class="line">&#125;）；</span><br></pre></td></tr></table></figure>
+<h3 id="jQuery常用事件"><a href="#jQuery常用事件" class="headerlink" title="jQuery常用事件"></a>jQuery常用事件</h3><h4 id="文档-窗口事件"><a href="#文档-窗口事件" class="headerlink" title="文档/窗口事件"></a>文档/窗口事件</h4><ul>
+<li><p>1、ready（）事件<br>ready（）事件又称为准备就绪事件，该事件只在文档准备就绪时触发，因此其选择器只能$（document）。一般来说，为了避免文档在准备就绪之前执行了其他jQuery代码而导致错误，所有的jQuery函数都需要写在文档准备就绪函数中，语法结构为：$（document）.ready（function）。<br>在实际使用时，文档准备就绪函数function的内部代码可以更加丰富，可以是多个独立的jQuery语句或者jQuery函数的调用组合而成，浏览器会按照先后顺序执行其内部的全部代码。</p>
+</li>
+<li><p>2、load（）事件<br>当页面中指定的元素被加载完毕时会触发load（）事件，该事件通常用于监听具有可加载内容的元素，例如图像元素&lt;\img&gt;、内敛框架&lt;\iframe&gt;等。语法格式为：<code>$（selector）.load（function）</code>其中参数function为必填内容，表示元素加载完毕时需要执行的函数。</p>
+</li>
+<li><p>3、unload（）事件<br>当用户离开当前页面时会触发unload（）事件，该事件只适用于window对象，可能导致触发unload（）事件的行为如下：</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">关闭整个浏览器或当前页面；</span><br><span class="line">在当前页面的浏览器地址栏中输入新的<span class="built_in">URL</span>地址并进行访问；</span><br><span class="line">单击浏览器上的“前进”或“后退”按钮；</span><br><span class="line">单击浏览器上的“刷新”按钮或以当前浏览器支持的快捷方式刷新页面；</span><br><span class="line">单击当前页面中的某个超链接导致跳转新页面。</span><br></pre></td></tr></table></figure>
+<p>语法格式为：<code>$（window）.unload（function）</code>其中参数function为必填内容，表示离开页面时需要执行的函数。</p>
+</li>
+</ul>
+<h4 id="键盘事件"><a href="#键盘事件" class="headerlink" title="键盘事件"></a>键盘事件</h4><ul>
+<li>1、keydown（）事件<br>当键盘的按键处于按下状态时将触发keydown（）事件，语法格式为<code>$（selector）.keydown（function）</code></li>
+<li>2、keyup（）事件<br>当键盘上已经按下去的按键处于被释放状态时将触发keyup（）事件，语法格式为<code>$（selector）.keyup（function）</code></li>
+<li>3、keypress（）事件<br>当键盘上的按键处于按下状态并快速释放时将触发keypress（）事件，语法格式为```$（selector）.keypress（function）<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">#### 鼠标事件</span><br><span class="line">- 1、click（）事件</span><br><span class="line">当用户使用鼠标左键点击网页文档中的任意HTML元素时均可触发click（）事件，语法格式&#96;&#96;&#96;$（selector）.click（function）</span><br></pre></td></tr></table></figure></li>
+<li>2、dbclick（）事件<br>当用户使用鼠标左键双击网页文档中的任意HTML元素时均可触发dbclick（）事件，语法格式为<code>$（selector）.dbclick（function）</code></li>
+<li>3、hover（）事件<br>当用户将鼠标悬停在网页文档中的任意HTML元素上时将会触发hover（）事件，语法格式为<code>$（selector）.hover（function）</code></li>
+<li>4、mousexxx（）系列<br>以关键字mouse开头的一系列鼠标事件是根据鼠标移动方向或效果来区分的，语法结构为<code>$（selector）.mousexxx（function）</code><br>xxx替换成具体的动作效果，可替换的关键字如下：<figure class="highlight x86asm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">down</span>：鼠标按键按下。</span><br><span class="line"><span class="meta">up</span>：鼠标按键被释放时，与<span class="meta">down</span>相反。</span><br><span class="line">move：鼠标处于移动状态。</span><br><span class="line"><span class="keyword">enter</span>：鼠标进入指定元素。</span><br><span class="line"><span class="keyword">leave</span>：鼠标离开指定元素，与<span class="keyword">enter</span>相反。</span><br><span class="line"><span class="keyword">out</span>：鼠标离开指定元素或其子元素。</span><br><span class="line">over：鼠标穿过指定元素或其子元素，与<span class="keyword">out</span>相反。</span><br></pre></td></tr></table></figure></li>
+<li>5、toggle（）事件<br>toggle（）事件可以看作是一种特殊的鼠标单击事件，可以一次绑定两个或两个以上函数。当元素被单击时，会按照先后顺序每次只触发其中一个函数。语法格式为<code>（selector）.toggle（function1，function2，…，functionＮ）</code><br>其中function1～functionＮ可以替换成需要触发的若干个函数，函数之间用逗号隔开。每次单击鼠标按键都会触发一次toggle事件，按照单击顺序运行函数，当最后一个函数被执行时会下一次触发该事件会重新运行第一个函数。</li>
+</ul>
+<h4 id="表单事件"><a href="#表单事件" class="headerlink" title="表单事件"></a>表单事件</h4><ul>
+<li>1、blur（）事件<br>当某个处于选中状态的元素失去焦点时将触发blur事件，语法格式为<code>$（selector）.blur（function）</code></li>
+<li>2、focus（）事件<br>当某个处于未选中状态的元素获得焦点时将触发focus（）事件，语法格式为<code>$（selector）.focus（function）</code></li>
+<li>3、change（）事件<br>当输入框或下拉菜单中的内容发生变化时将触发change（）事件，语法格式为<code>$（selector）.change（function）</code><br>其选择器可以是表单中的输入框&lt;\input&gt;、多行文本框&lt;\textarea&gt;或者下拉菜单&lt;\select&gt;。触发效果不同为：<br>选择器为&lt;\input&gt;或&lt;\textarea&gt;：用户更改输入框中的内容，然后让输入框失去焦点才触发change（）事件。<br>选择器为&lt;\select&gt;：用户选择不同的选项时触发change（）事件。</li>
+<li>4、select（）事件<br>当文本输入框中有文字内容被选中时，将触发该元素的select（）事件，语法格式为<code>$（selector）.select（function）</code><br>其选择器只能是单行文本框&lt;\input type=“text”&gt;或多行文本框&lt;\textarea&gt;。</li>
+<li>5、submit（）事件<br>当用户尝试提交表单时，将触发表单元素&lt;\form&gt;的submit事件，语法格式为<code>$（selector）.submit（function）</code><br>该事件的选择器只能是表单元素&lt;\form&gt;。<br>用户有两种提交表单的方式—单击特定的“提交”按钮或者使用键盘上的Enter键，特定的“提交”按钮包括<code>&lt;\input type=“submit”&gt;、&lt;\input type=“image”&gt;</code>以及<code>&lt;\button type=“submit”&gt;</code>；使用Enter键的前提是表单中只有一个文本域，或者表单中包含了“提交”按钮。<br>由于submit（）事件会在表单正式提交给服务器之前触发，因此常用其进行有效性检测：当表单中填写的内容验证不通过时显示提示语句，并停止表单提交的动作；当内容验证通过时继续完成表单提交动作。</li>
+</ul>
+<h2 id="jQuery事件的绑定和接触"><a href="#jQuery事件的绑定和接触" class="headerlink" title="jQuery事件的绑定和接触"></a>jQuery事件的绑定和接触</h2><h3 id="jQuery事件的绑定"><a href="#jQuery事件的绑定" class="headerlink" title="jQuery事件的绑定"></a>jQuery事件的绑定</h3><h4 id="bind（）方法"><a href="#bind（）方法" class="headerlink" title="bind（）方法"></a>bind（）方法</h4><p>bind（）方法可以用于给指定的元素绑定一个或多个事件，语法结构为<code>$（selector）.bind（event，［data，］function）</code><br>参数解释：</p>
+<ul>
+<li>event：必填参数，用于指定事件名称，例如“click”</li>
+<li>data：可选参数，用于规定需要传递给函数的额外数据</li>
+<li>function：必填参数，用于规定事件触发时的执行函数<br>例如<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$（“button”）.<span class="keyword">bind</span>（“click”，<span class="function"><span class="keyword">function</span></span>（）&#123;</span><br><span class="line">alert（“触发”）；&#125;）</span><br></pre></td></tr></table></figure>
+如果指定元素绑定的多个事件需要调用同一个函数，可以将这些事件名称有空格隔开后并列添加在参数event中，例如<figure class="highlight fortran"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$（“button”）.<span class="keyword">bind</span>（“click dbclick mouseover”，<span class="function"><span class="keyword">function</span></span>（）&#123;</span><br><span class="line">alert（“触发”）；&#125;）</span><br></pre></td></tr></table></figure>
+如果需要为指定元素同时绑定多个事件并触发不同的函数，语法结构为<code>$（selector）.bind（event1:function1，event2:function2，…eventＮ，functionＮ）</code></li>
+</ul>
+<h4 id="delegate（）方法"><a href="#delegate（）方法" class="headerlink" title="delegate（）方法"></a>delegate（）方法</h4><p>delegate方法可以用于给指定元素的子元素绑定一个或多个事件，语法格式为<code>$（selector）.delegate（childSelector，event，［data，］function）</code><br>参数说明：</p>
+<ul>
+<li>childSelector：必填参数，用于规定需要绑定事件的一个或多个事件子元素。</li>
+<li>event：必填参数，用于指定需要绑定给子元素的一个或多个事件名称，用法后bind（）方法同。</li>
+<li>data：可选参数，用于规定需要传递给函数的额外数据</li>
+<li>function：必填参数，用于规定需要绑定的事件触发时的执行函数。<br>delegate（）方法的优势在于还可以为指定元素的未来子元素（当前未创建，后续通过代码动态添加的子元素）绑定事件。</li>
+</ul>
+<h4 id="on（）方法"><a href="#on（）方法" class="headerlink" title="on（）方法"></a>on（）方法</h4><p>on（）方法可以用于给指定元素的子元素绑定一个后多个事件，包含了bind（）和delegate（）方法全部功能。<br>语法结构为<code>$（selector）.on（event，［childSelector，］［data，］function）</code><br>参数解释和上述bind（）和delegate（）方法的参数相同，只是加了方括号的都是可选参数。</p>
+<h3 id="jQuery事件的解除"><a href="#jQuery事件的解除" class="headerlink" title="jQuery事件的解除"></a>jQuery事件的解除</h3><h4 id="unbind（）方法"><a href="#unbind（）方法" class="headerlink" title="unbind（）方法"></a>unbind（）方法</h4><p>语法格式为<code>$（selector）.unbind（［event］，［，function］）</code></p>
+<ul>
+<li>event：可选参数，用于指定需要解除的一个或多个事件名称，如果该参数不填写，则表示解除指定元素的全部事件</li>
+<li>function：可选参数，用于规定需要解除的事件触发时的执行函数。</li>
+</ul>
+<h4 id="undelegate（）"><a href="#undelegate（）" class="headerlink" title="undelegate（）"></a>undelegate（）</h4><p>语法格式为<code>$（selector）.undelegate（［childSelector，］［event］［，function］）</code><br>childSelector：可选参数，用于规定需要解除事件的一个或多个子元素<br>该方法主要是解除之前使用delegate（）方法绑定的事件，不能用于解除其他方法绑定的事件。</p>
+<h4 id="off（）方法"><a href="#off（）方法" class="headerlink" title="off（）方法"></a>off（）方法</h4><p>包含unbind（）方法和undelegate（）方法的全部功能。<br>语法格式为<code>$（selector）.off（［childSelector，］［event］［，function］）</code><br>参数解释同上。</p>
+<h3 id="jQuery临时事件"><a href="#jQuery临时事件" class="headerlink" title="jQuery临时事件"></a>jQuery临时事件</h3><p>在某些特殊情况下，为元素绑定的事件仅需要执行一次就必须解除绑定，此类情况称为元素的临时事件。<br>例如为按钮元素绑定临时的单击事件：</p>
+<figure class="highlight livescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$（“button”）.<span class="literal">on</span>（“click”，<span class="keyword">function</span>（）&#123;</span><br><span class="line">alert（“ok”）；</span><br><span class="line">$（<span class="keyword">this</span>）.<span class="literal">off</span>（“click”）；&#125;）</span><br></pre></td></tr></table></figure>
+<p>用on（）方法为按钮进行click事件绑定，当click事件首次触发时立刻调用off方法解绑事件。</p>
+<p>可以用专门的one（）方法来代替on（）和off（）方法。one（）方法在触发一次后就自动解绑，语法格式为<code>$（selector）.one（［childSelector，］［event］［，function］）</code><br>参数解释同上</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/09/jQuery02/" title="jQuery02--jQuery事件">http://yoursite.com/2019/03/09/jQuery02/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 前端基础</a>
+          
+            <a href="/tags/jQuery%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> jQuery基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/08/jQuery01/" rel="next" title="jQuery01">
+                <i class="fa fa-chevron-left"></i> jQuery01
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/10/jQuery03/" rel="prev" title="jQuery03--jQuery特效">
+                jQuery03--jQuery特效 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery事件学习笔记"><span class="nav-number">1.</span> <span class="nav-text">jQuery事件学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery事件"><span class="nav-number">1.1.</span> <span class="nav-text">jQuery事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery事件概述"><span class="nav-number">1.1.1.</span> <span class="nav-text">jQuery事件概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery常用事件"><span class="nav-number">1.1.2.</span> <span class="nav-text">jQuery常用事件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#文档-窗口事件"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">文档&#x2F;窗口事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#键盘事件"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">键盘事件</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#表单事件"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">表单事件</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery事件的绑定和接触"><span class="nav-number">1.2.</span> <span class="nav-text">jQuery事件的绑定和接触</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery事件的绑定"><span class="nav-number">1.2.1.</span> <span class="nav-text">jQuery事件的绑定</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#bind（）方法"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">bind（）方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#delegate（）方法"><span class="nav-number">1.2.1.2.</span> <span class="nav-text">delegate（）方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#on（）方法"><span class="nav-number">1.2.1.3.</span> <span class="nav-text">on（）方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery事件的解除"><span class="nav-number">1.2.2.</span> <span class="nav-text">jQuery事件的解除</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#unbind（）方法"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">unbind（）方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#undelegate（）"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">undelegate（）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#off（）方法"><span class="nav-number">1.2.2.3.</span> <span class="nav-text">off（）方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery临时事件"><span class="nav-number">1.2.3.</span> <span class="nav-text">jQuery临时事件</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

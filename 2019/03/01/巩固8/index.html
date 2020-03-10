@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端基础,巩固前端系列,css布局," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="CSS布局display属性display 是CSS中最重要的用于控制布局的属性。每个元素都有一个默认的display 值，这与元素的类型有关。对于大多数元素它们的默认值通常是block或inline。一个 block 元素通常被叫做块级元素。一个 inline 元素通常被叫做行内元素。 blockdiv 是一个标准的块级元素。一个块级元素会新开始一行并且尽可能撑满容器。其他常用的块级元素包括 p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="巩固前端08--css布局">
+<meta property="og:url" content="http://yoursite.com/2019/03/01/%E5%B7%A9%E5%9B%BA8/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="CSS布局display属性display 是CSS中最重要的用于控制布局的属性。每个元素都有一个默认的display 值，这与元素的类型有关。对于大多数元素它们的默认值通常是block或inline。一个 block 元素通常被叫做块级元素。一个 inline 元素通常被叫做行内元素。 blockdiv 是一个标准的块级元素。一个块级元素会新开始一行并且尽可能撑满容器。其他常用的块级元素包括 p">
+<meta property="article:published_time" content="2019-03-01T07:43:19.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:47:43.823Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端基础">
+<meta property="article:tag" content="巩固前端系列">
+<meta property="article:tag" content="css布局">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/01/巩固8/"/>
+
+
+
+
+
+  <title>巩固前端08--css布局 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/01/%E5%B7%A9%E5%9B%BA8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">巩固前端08--css布局</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-01T15:43:19+08:00">
+                2019-03-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/%E5%B7%A9%E5%9B%BA%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">巩固前端系列笔记</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/%E5%B7%A9%E5%9B%BA%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97%E7%AC%94%E8%AE%B0/%E5%B8%83%E5%B1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">布局</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  2.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="CSS布局"><a href="#CSS布局" class="headerlink" title="CSS布局"></a>CSS布局</h1><h2 id="display属性"><a href="#display属性" class="headerlink" title="display属性"></a>display属性</h2><p>display 是CSS中最重要的用于控制布局的属性。每个元素都有一个默认的display 值，这与元素的类型有关。对于大多数元素它们的默认值通常是<code>block</code>或<code>inline</code>。一个 block 元素通常被叫做块级元素。一个 inline 元素通常被叫做行内元素。</p>
+<h3 id="block"><a href="#block" class="headerlink" title="block"></a>block</h3><p>div 是一个标准的块级元素。一个块级元素会新开始一行并且尽可能撑满容器。其他常用的块级元素包括 p 、 form 和HTML5中的新元素：<code>header 、 footer 、 section</code>等等。</p>
+<a id="more"></a>
+<h3 id="inline"><a href="#inline" class="headerlink" title="inline"></a>inline</h3><p>span 是一个标准的行内元素。一个行内元素可以在段落中 &lt; span&gt; 像这样 &lt;/ span&gt; 包裹一些文字而不会打乱段落的布局。 a 元素是最常用的行内元素，它可以被用作链接。</p>
+<h3 id="none"><a href="#none" class="headerlink" title="none"></a>none</h3><p>另一个常用的display值是 none 。一些特殊元素的默认 display 值是它，例如<code>script</code>。<code>display:none</code>通常被 JavaScript 用来在不删除元素的情况下隐藏或显示元素。</p>
+<figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">它和 <span class="attribute">visibility</span> 属性不一样。把 <span class="attribute">display</span> 设置成 <span class="attribute">none</span> 元素不会占据它本来应该显示的空间，但是设置成 <span class="attribute">visibility</span>: hidden; 还会占据空间。</span><br></pre></td></tr></table></figure>
+<h3 id="其他-display-值"><a href="#其他-display-值" class="headerlink" title="其他 display 值"></a>其他 display 值</h3><p>还有很多的更有意思的 display 值，例如<code>list-item</code>和<code>table</code><br>就像之前讨论过的，每个元素都有一个默认的 display 类型。不过你可以随时随地的重写它！虽然“人为制造”一个行内元素可能看起来很难以理解，不过我们可以把有特定语义的元素改成行内元素。常见的例子是：把 li 元素修改成 inline，制作成水平菜单。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">margin</span>：<span class="selector-tag">auto</span></span><br><span class="line"></span><br><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>设置块级元素的<code>width</code>可以防止它从左到右撑满整个容器。然后就可以设置左右外边距为<code>auto</code> 来使其水平居中。元素会占据我们所指定的宽度，然后剩余的宽度会一分为二成为左右外边距。</p>
+<p>唯一的问题是，当浏览器窗口比元素的宽度还要窄时，浏览器会显示一个水平滚动条来容纳页面。让我们再来改进下这个方案：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">max-width</span></span><br><span class="line"><span class="selector-tag">main</span> &#123;</span><br><span class="line">  <span class="attribute">max-width</span>: <span class="number">600px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> auto; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这种情况下使用<code>max-width</code>替代<code>width</code> 可以使浏览器更好地处理小窗口的情况。这点在移动设备上显得尤为重要，调整下浏览器窗口大小检查下吧！<br>顺便提下， 所有的主流浏览器包括IE7+在内都支持 max-width ，所以放心大胆的用吧。</p>
+<h3 id="box-sizing"><a href="#box-sizing" class="headerlink" title="box-sizing"></a>box-sizing</h3><p>我们都知道css中是以盒模型来进行设计的，那么如果我们要设计网页应该怎么确定那些尺寸呢？以前的一些老办法是通过计算每一个边距的像素值，再把它们相加起来就是我们最后所得到的尺寸，现在有了新的办法可以更好的解决这个问题。<br>们慢慢的意识到传统的盒子模型不直接，所以他们新增了一个叫做 box-sizing 的CSS属性。当你设置一个元素为 <code>box-sizing: border-box;</code> 时，此元素的内边距和边框不再会增加它的宽度。这里有一个例子，两个元素都设置了 <code>box-sizing: border-box;</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.simple</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> auto;</span><br><span class="line">  <span class="attribute">-webkit-box-sizing</span>: border-box;</span><br><span class="line">     <span class="attribute">-moz-box-sizing</span>: border-box;</span><br><span class="line">          <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.fancy</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">500px</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">20px</span> auto;</span><br><span class="line">  <span class="attribute">padding</span>: <span class="number">50px</span>;</span><br><span class="line">  <span class="attribute">border</span>: solid blue <span class="number">10px</span>;</span><br><span class="line">  <span class="attribute">-webkit-box-sizing</span>: border-box;</span><br><span class="line">     <span class="attribute">-moz-box-sizing</span>: border-box;</span><br><span class="line">          <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>既然没有比这更好的方法，一些CSS开发者想要页面上所有的元素都有如此表现。所以开发者们把以下CSS代码放在他们页面上</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">* &#123;</span><br><span class="line">  <span class="attribute">-webkit-box-sizing</span>: border-box;</span><br><span class="line">     <span class="attribute">-moz-box-sizing</span>: border-box;</span><br><span class="line">          <span class="attribute">box-sizing</span>: border-box;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这样可以确保所有的元素都会用这种更直观的方式排版。</p>
+<p>不过<code>box-sizing</code>是个很新的属性，目前还应该像上面例子中那样使用 <code>-webkit-</code>和<code>-moz-</code>前缀。</p>
+<h2 id="position"><a href="#position" class="headerlink" title="position"></a>position</h2><p>position的属性值以及他们的含义我在第六天的博客里面有写到，如果想要继续了解<a href="../../../../../2019/02/27/巩固6/#more">可以点击这里</a></p>
+<h2 id="float"><a href="#float" class="headerlink" title="float"></a>float</h2><p>一个布局中常用的CSS属性是 float 。Float 可用于实现文字环绕图片，如下：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">1em</span> <span class="number">1em</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>具体的属性介绍在<a href="../../../../2019/02/26/巩固5/#more">我的这篇博文里面</a>。</p>
+<h2 id="百分比宽度"><a href="#百分比宽度" class="headerlink" title="百分比宽度"></a>百分比宽度</h2><p>百分比是一种相对于包含块的计量单位。它对图片很有用：如下我们实现了图片宽度始终是容器宽度的50%。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">article</span> <span class="selector-tag">img</span> &#123;</span><br><span class="line">  <span class="attribute">float</span>: right;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">50%</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>甚至还能同时使用<code>min-width</code>和<code>max-width</code>来限制图片的最大或最小宽度！</p>
+<h2 id="媒体查询"><a href="#媒体查询" class="headerlink" title="媒体查询"></a>媒体查询</h2><figure class="highlight plain"><figcaption><span>Design” ```是一种让网站针对不同的浏览器和设备“呈现”不同显示效果的策略，这样可以让网站在任何情况下显示的很棒！</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br></pre></td><td class="code"><pre><span class="line">媒体查询是做此事所需的最强大的工具。让我们使用百分比宽度来布局，然后在浏览器变窄到无法容纳侧边栏中的菜单时，把布局显示成一列：</span><br><span class="line">~~~</span><br><span class="line">@media screen and (min-width:600px) &#123;</span><br><span class="line">  nav &#123;</span><br><span class="line">    float: left;</span><br><span class="line">    width: 25%;</span><br><span class="line">  &#125;</span><br><span class="line">  section &#123;</span><br><span class="line">    margin-left: 25%;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">@media screen and (max-width:599px) &#123;</span><br><span class="line">  nav li &#123;</span><br><span class="line">    display: inline;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line">~~~</span><br><span class="line">使用 &#96;&#96;&#96;meta viewport&#96;&#96;&#96;之后可以让布局在移动浏览器上显示的更好。</span><br><span class="line"></span><br><span class="line">## inline-block</span><br><span class="line">以创建很多网格来铺满浏览器。在过去很长的一段时间内使用 float 是一种选择，但是使用 inline-block 会更简单。让我们看下使用这两种方法的例子：</span><br><span class="line">比较困难的方式，使用浮动：</span><br><span class="line">~~~</span><br><span class="line">.box &#123;</span><br><span class="line">  float: left;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  margin: 1em;</span><br><span class="line">&#125;</span><br><span class="line">.after-box &#123;</span><br><span class="line">  clear: left;</span><br><span class="line">&#125;</span><br><span class="line">~~~</span><br><span class="line">用容易的方式（使用 inline-block）来达到跟上述代码相同的效果：</span><br><span class="line">~~~</span><br><span class="line">.box2 &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  width: 200px;</span><br><span class="line">  height: 100px;</span><br><span class="line">  margin: 1em;</span><br><span class="line">&#125;</span><br><span class="line">~~~</span><br><span class="line">有一些事情需要牢记：</span><br><span class="line">&lt;b&gt;vertical-align 属性会影响到 inline-block 元素，可能会把它的值设置为 top 。</span><br><span class="line">需要设置每一列的宽度&lt;&#x2F;b&gt;</span><br><span class="line">如果HTML源代码中元素之间有空格，那么列与列之间会产生空隙</span><br><span class="line">~~~</span><br><span class="line">nav &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  vertical-align: top;</span><br><span class="line">  width: 25%;</span><br><span class="line">&#125;</span><br><span class="line">.column &#123;</span><br><span class="line">  display: inline-block;</span><br><span class="line">  vertical-align: top;</span><br><span class="line">  width: 75%;</span><br><span class="line">&#125;</span><br><span class="line">~~~</span><br><span class="line">## flexbox</span><br><span class="line">弹性盒子[在我的这边博文里有详细介绍](..&#x2F;..&#x2F;..&#x2F;..&#x2F;2019&#x2F;02&#x2F;28&#x2F;巩固7&#x2F;#more)如果想要了解，点击即可。</span><br><span class="line"></span><br><span class="line">## 对齐方式</span><br><span class="line">### 水平居中：</span><br><span class="line">#### 行内元素的水平居中</span><br><span class="line">如果被设置元素为文本、图片等行内元素时，在父元素中设置text-align:center实现行内元素水平居中，将子元素的display设置为inline-block，使子元素变成行内元素</span><br><span class="line"></span><br><span class="line">~~~</span><br><span class="line">&lt;div class&#x3D;&quot;parent&quot; style&#x3D;&quot;background-color: gray;&quot;&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;child&quot; style&#x3D;&quot;background-color: lightblue;&quot;&gt;DEMO&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">&lt;style&gt;</span><br><span class="line">.parent&#123;text-align: center;&#125;    </span><br><span class="line">.child&#123;display: inline-block;&#125;</span><br><span class="line">&lt;&#x2F;style&gt;</span><br><span class="line">~~~</span><br><span class="line">#### 块状元素的水平居中（定宽）</span><br><span class="line">当被设置元素为定宽块级元素时用 text-align：center 就不起作用了。可以通过设置“左右margin”值为“auto”来实现居中的</span><br><span class="line">~~~</span><br><span class="line">&lt;div class&#x3D;&quot;parent&quot; style&#x3D;&quot;background-color: gray;&quot;&gt;</span><br><span class="line">  &lt;div class&#x3D;&quot;child&quot; style&#x3D;&quot;background-color: lightblue;&quot;&gt;DEMO&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">.child&#123;</span><br><span class="line">           width: 200px;</span><br><span class="line">           margin: 0 auto;</span><br><span class="line">       &#125;</span><br><span class="line">~~~</span><br><span class="line">#### 块状元素的水平居中（不定定宽）</span><br><span class="line">在实际工作中我们会遇到需要为“不定宽度的块级元素”设置居中，比如网页上的分页导航，因为分页的数量是不确定的，所以我们不能通过设置宽度来限制它的弹性。</span><br><span class="line"></span><br><span class="line">可以直接给不定宽的块级元素设置&#96;&#96;&#96;text-align：center&#96;&#96;&#96;来实现，也可以给父元素加&#96;&#96;&#96;text-align:center&#96;&#96;&#96;来实现居中效果。</span><br><span class="line"></span><br><span class="line">当不定宽块级元素的宽度不要占一行时，可以设置display 为&#96;&#96;&#96;inline&#96;&#96;&#96;类型或&#96;&#96;&#96;inline-block&#96;&#96;&#96;（设置为 行内元素 显示或行内块元素）</span><br><span class="line">~~~</span><br><span class="line">&lt;div class&#x3D;&quot;container&quot;&gt;</span><br><span class="line">    &lt;ul&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;1&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;2&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;</span><br><span class="line">        &lt;li&gt;&lt;a href&#x3D;&quot;#&quot;&gt;3&lt;&#x2F;a&gt;&lt;&#x2F;li&gt;</span><br><span class="line">    &lt;&#x2F;ul&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line">.container&#123;text-align:center;background: beige&#125;</span><br><span class="line">.container ul&#123;list-style:none;margin:0;padding:0;display:inline-block;&#125;</span><br><span class="line">.container li&#123;margin-right:8px;display:inline-block;&#125;</span><br><span class="line">~~~</span><br><span class="line">### 垂直居中：</span><br><span class="line">和水平居中一样，这里要讲垂直居中，首先设定两个条件即父元素是盒子容器且高度已经设定</span><br><span class="line"></span><br><span class="line">#### 子元素是行内元素，高度是由其内容撑开的</span><br><span class="line">这种情况下，需要通过设定父元素的line-height为其高度来使得子元素垂直居中</span><br><span class="line">~~~</span><br><span class="line">&lt;div class&#x3D;&quot;wrap line-height&quot;&gt;</span><br><span class="line">    &lt;span class&#x3D;&quot;span&quot;&gt;111111&lt;&#x2F;span&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">.wrap&#123;</span><br><span class="line">            width:200px ;</span><br><span class="line">            height: 300px;</span><br><span class="line">            line-height: 300px;</span><br><span class="line">            border: 2px solid #ccc;</span><br><span class="line">        &#125;</span><br><span class="line">.span&#123;</span><br><span class="line">            background: red;</span><br><span class="line">        &#125;</span><br><span class="line">~~~</span><br><span class="line">#### 子元素是块级元素但是子元素高度没有设定</span><br><span class="line">在这种情况下实际上是不知道子元素的高度的，无法通过计算得到padding或margin来调整，但是还是存在一些解法。</span><br><span class="line">通过给父元素设定&#96;&#96;&#96;display:table-cell;vertical-align:middle&#96;&#96;&#96;来解决</span><br><span class="line">~~~</span><br><span class="line">&lt;div class&#x3D;&quot;wrap&quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;non-height &quot;&gt;11111&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">.wrap&#123;</span><br><span class="line">       width:200px ;</span><br><span class="line">       height: 300px;</span><br><span class="line">       border: 2px solid #ccc;</span><br><span class="line">　　　　display: table-cell;</span><br><span class="line">　　　　vertical-align: middle;</span><br><span class="line">&#125;</span><br><span class="line"> .non-height&#123;</span><br><span class="line">       background: green;</span><br><span class="line">        &#125;</span><br><span class="line">~~~</span><br><span class="line">子元素是块级元素且高度已经设定</span><br><span class="line">计算子元素的margin-top或margin-bottom，计算方法为父(元素高度-子元素高度)&#x2F;2</span><br><span class="line">~~~</span><br><span class="line"> &lt;div class&#x3D;&quot;wrap &quot;&gt;</span><br><span class="line">    &lt;div class&#x3D;&quot;div1&quot;&gt;111111&lt;&#x2F;div&gt;</span><br><span class="line">&lt;&#x2F;div&gt;</span><br><span class="line"></span><br><span class="line">.wrap&#123;</span><br><span class="line">            width:200px ;</span><br><span class="line">            height: 300px;</span><br><span class="line">            border: 2px solid #ccc;</span><br><span class="line">        &#125;</span><br><span class="line">.div1&#123;</span><br><span class="line">            width:100px ;</span><br><span class="line">            height: 100px;</span><br><span class="line">            margin-top: 100px;</span><br><span class="line">            background: darkblue;</span><br><span class="line">        &#125;</span><br><span class="line"> ~~~</span><br><span class="line">### 水平垂直居中：</span><br><span class="line">#### 水平对齐+行高</span><br><span class="line">+&#96;&#96;&#96;text-align + line-height&#96;&#96;&#96;实现单行文本水平垂直居中</span><br><span class="line">#### 水平+垂直对齐</span><br><span class="line">1、&#96;&#96;&#96;text-align + vertical-align&#96;&#96;&#96;在父元素设置&#96;&#96;&#96;text-align&#96;&#96;&#96;和&#96;&#96;&#96;vertical-align&#96;&#96;&#96;，并将父元素设置为&#96;&#96;&#96;table-cell&#96;&#96;&#96;元素，子元素设置为&#96;&#96;&#96;inline-block&#96;&#96;&#96;元素</span><br><span class="line">2、若子元素是图像，可不使用&#96;&#96;&#96;table-cell&#96;&#96;&#96;，而是其父元素用行高替代高度，且字体大小设为0。子元素本身设置&#96;&#96;&#96;vertical-align:middle</span><br></pre></td></tr></table></figure>
+<p>3.3相对+绝对定位<br>用<code>absolute</code>，利用绝对定位元素的盒模型特性，在偏移属性为确定值的基础上，设置<code>margin:auto</code>.</p>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/01/%E5%B7%A9%E5%9B%BA8/" title="巩固前端08--css布局">http://yoursite.com/2019/03/01/%E5%B7%A9%E5%9B%BA8/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 前端基础</a>
+          
+            <a href="/tags/%E5%B7%A9%E5%9B%BA%E5%89%8D%E7%AB%AF%E7%B3%BB%E5%88%97/" rel="tag"><i class="fa fa-tag"></i> 巩固前端系列</a>
+          
+            <a href="/tags/css%E5%B8%83%E5%B1%80/" rel="tag"><i class="fa fa-tag"></i> css布局</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/02/28/%E5%B7%A9%E5%9B%BA7/" rel="next" title="巩固前端07--弹性盒子">
+                <i class="fa fa-chevron-left"></i> 巩固前端07--弹性盒子
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/02/%E5%B7%A9%E5%9B%BA9/" rel="prev" title="巩固前端09--圣杯布局">
+                巩固前端09--圣杯布局 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS布局"><span class="nav-number">1.</span> <span class="nav-text">CSS布局</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#display属性"><span class="nav-number">1.1.</span> <span class="nav-text">display属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#block"><span class="nav-number">1.1.1.</span> <span class="nav-text">block</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#inline"><span class="nav-number">1.1.2.</span> <span class="nav-text">inline</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#none"><span class="nav-number">1.1.3.</span> <span class="nav-text">none</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他-display-值"><span class="nav-number">1.1.4.</span> <span class="nav-text">其他 display 值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#box-sizing"><span class="nav-number">1.1.5.</span> <span class="nav-text">box-sizing</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#position"><span class="nav-number">1.2.</span> <span class="nav-text">position</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#float"><span class="nav-number">1.3.</span> <span class="nav-text">float</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#百分比宽度"><span class="nav-number">1.4.</span> <span class="nav-text">百分比宽度</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#媒体查询"><span class="nav-number">1.5.</span> <span class="nav-text">媒体查询</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

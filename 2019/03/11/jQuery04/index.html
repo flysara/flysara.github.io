@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端基础,jQuery基础," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="jQuery HTML DOM学习笔记jQuery HTML DOM 获取和设置jQuery text（）该方法可用于获取或设置选定元素标签之间的文本内容，不包含元素标签本身。  获取文本内容使用不带任何参数的text（）方法可以获取选定元素标签之间的所有文本内容语法，格式为$（selector）.text（）；该方法的返回结果为字符串类型，包含了所有匹配元素内部的文本内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery04--jQuery HTML DOM">
+<meta property="og:url" content="http://yoursite.com/2019/03/11/jQuery04/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="jQuery HTML DOM学习笔记jQuery HTML DOM 获取和设置jQuery text（）该方法可用于获取或设置选定元素标签之间的文本内容，不包含元素标签本身。  获取文本内容使用不带任何参数的text（）方法可以获取选定元素标签之间的所有文本内容语法，格式为$（selector）.text（）；该方法的返回结果为字符串类型，包含了所有匹配元素内部的文本内容。">
+<meta property="article:published_time" content="2019-03-11T09:09:52.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:40:06.431Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端基础">
+<meta property="article:tag" content="jQuery基础">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/11/jQuery04/"/>
+
+
+
+
+
+  <title>jQuery04--jQuery HTML DOM | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/11/jQuery04/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jQuery04--jQuery HTML DOM</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-11T17:09:52+08:00">
+                2019-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/jQuery%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="jQuery-HTML-DOM学习笔记"><a href="#jQuery-HTML-DOM学习笔记" class="headerlink" title="jQuery HTML DOM学习笔记"></a>jQuery HTML DOM学习笔记</h1><h2 id="jQuery-HTML-DOM-获取和设置"><a href="#jQuery-HTML-DOM-获取和设置" class="headerlink" title="jQuery HTML DOM 获取和设置"></a>jQuery HTML DOM 获取和设置</h2><h3 id="jQuery-text（）"><a href="#jQuery-text（）" class="headerlink" title="jQuery text（）"></a>jQuery text（）</h3><p>该方法可用于获取或设置选定元素标签之间的文本内容，不包含元素标签本身。</p>
+<ul>
+<li>获取文本内容<br>使用不带任何参数的text（）方法可以获取选定元素标签之间的所有文本内容语法，格式为<code>$（selector）.text（）</code>；<br>该方法的返回结果为字符串类型，包含了所有匹配元素内部的文本内容。<a id="more"></a>
+返回，只只返回文本内容，不带前后HTML标签。<br>如果是元素内部的后代元素中包含有文本，则使用text（）也会获取其中的文本内容。<br>需要注意的是，text（）方法不能用于处理表单元素的文本内容，如果需要获取或设置表单中&lt;\textarea&gt;或&lt;\input&gt;元素的文本值需要使用val（）方法。</li>
+<li>设置文本内容<br>设置选定元素标签之间文本内容的方法如下<code>$（selector）.text（“新文本内容”）</code>；<br>该方法会用新文本内容替换就文本内容。</li>
+</ul>
+<h3 id="jQuery-html（）"><a href="#jQuery-html（）" class="headerlink" title="jQuery html（）"></a>jQuery html（）</h3><p>该方法用于获取或设置选定元素标签的全部内容，包括内部的文本以及其他HTML标签。该方法调用的是JavaScript原生属性inneHTML。</p>
+<ul>
+<li><p>获取HTML内容<br>获取选定元素标签之间HTML代码内容的方法如下<code>$（selector）.html（）</code>；<br>刚用来获取元素的HTML内容时，该方法无需带有参数。<br>需要注意的是，如果符合要求的元素不止一个，该方法只获取第一个符合选择器要求的元素内部的HTML代码。</p>
+</li>
+<li><p>设置HTML内容<br>设置选定元素标签之间HTML内容的方法如下<code>$（selector）.html（“新的HTML内容”）</code>；</p>
+</li>
+</ul>
+<h3 id="jQuery-val（）"><a href="#jQuery-val（）" class="headerlink" title="jQuery val（）"></a>jQuery val（）</h3><p>该方法用来获取或设置选定表单元素的value属性值。</p>
+<ul>
+<li>获取表单元素值<br>获取选定元素标签之间文本内容的方法如<code>$（selector）.val（）</code>；</li>
+<li>设置表单元素值<br>设置选定元素标签之间文本内容的方法如下<code>$（selector）.val（“新文本文件”）</code>；</li>
+</ul>
+<h3 id="jQuery-attr（）"><a href="#jQuery-attr（）" class="headerlink" title="jQuery attr（）"></a>jQuery attr（）</h3><p>该方法用于获取或设置选定元素的属性值。</p>
+<ul>
+<li>获取元素属性值<br>获取选定元素标签之间文本内容的方法如下<code>$（selector）.attr（attributeName）</code>；<br>该方法只能获取符合条件的第一个元素的值。</li>
+<li>设置元素属性值<br>设置选定元素标签之间文本内容的方法如下<code>$（selector）.attr（attributeName，value）</code>；<br>该方法可以将所有符合条件的元素属性值全部设置。</li>
+</ul>
+<h3 id="jQuery-css（）"><a href="#jQuery-css（）" class="headerlink" title="jQuery css（）"></a>jQuery css（）</h3><p>该方法用于获取或设置选定元素的CSS属性值。</p>
+<ul>
+<li>获取CSS属性值<br>获取选定元素标签CSS属性的方法如下<code>$（selector）.css（propertyName）</code>；<br>该方法可以获得符合条件的第一个元素的指定CSS属性值。</li>
+</ul>
+<p>新增数组类型的propertyName参数，用于批量获取元素的多个属性值，语法格式为<code>$（selector）.css（［propertyName1，propertyName2…propertyNameＮ］）</code>；<br>属性只名称需要像字符串一样带引号。</p>
+<ul>
+<li>设置CSS属性值<br>设置选的元素标签CSS属性值的方法如下<code>$（selector）.css（propertyName，value）</code>；<br>两个参数都要带引号。<br>如果有多个CSS属性需要同时设置，语法结构为<code>$（selector）.css（{propertyName1:value1，propertyName2:value2…}）</code>； </li>
+</ul>
+<h2 id="jQuery-添加"><a href="#jQuery-添加" class="headerlink" title="jQuery 添加"></a>jQuery 添加</h2><h3 id="jQuery-append（）和prepend（）"><a href="#jQuery-append（）和prepend（）" class="headerlink" title="jQuery append（）和prepend（）"></a>jQuery append（）和prepend（）</h3><p>append（）方法用于在所有符合条件的元素内部的结尾处追加内容。<br>语法结构为<code>append（content，［content］）</code>；<br>其中content参数的类型可以是文本、数组。、HTML代码或元素标签。<br>prepend（）参数方法和append（）方法的参数完全相同，只不过追加位置从指定元素内部的结尾处变更为开头处。<code>prepend（content，［content］）</code>；</p>
+<ul>
+<li>追加文本<br>使用这两种方法添加文本内容允许带有格式化标签。<br>例如<code>$（“div#text”）.append（“这段文本带有&lt;i&gt;格式化&lt;/i&gt;标签”）</code>；</li>
+<li>追加元素<br>用这两种方法添加新元素，可以直接在参数位置填入相关HTML代码。<br>例如<code>$（“div#text”）.append（“&lt;p&gt;这段文本&lt;/p&gt;”）</code>；</li>
+<li>追加混合内容<br>如果有不同类型的内容（例如文本和HTML元素）需要同时添加可以在参数位置添加若干个变量，其间用逗号隔开，例如<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### jQuery after（）和before（）</span><br><span class="line">after（）方法用于在选定元素之后加入新的内容，before（）方法用于在选定元素之前加入新的内容。</span><br><span class="line">~~~</span><br><span class="line">after（content，［content］）；</span><br><span class="line">before（content，［content］）；</span><br><span class="line">~~~</span><br><span class="line">- 追加文本</span><br><span class="line">使用这两种方法添加文本内容，允许带有格式化标签。</span><br><span class="line">规则和append（）同</span><br><span class="line"></span><br><span class="line">- 追加元素</span><br><span class="line">使用这两种方法添加新元素，可以直接在参数位置填入相关HTML代码。语法结构和append（）方法同。</span><br><span class="line">- 追加混合内容</span><br><span class="line">如果有不同类型的内容需要同时添加，可以在参数位置添加若干个变量，语法和append（）相同。</span><br><span class="line"></span><br><span class="line">## jQuery 删除</span><br><span class="line">### jQuery remove（）</span><br><span class="line">该方法用于删除指定元素及其子元素，语法格式如下</span><br></pre></td></tr></table></figure>
+$（selector）.remove（）；<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">例如</span><br></pre></td></tr></table></figure>
+$（“p”）.remove（）；<figure class="highlight autohotkey"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">表示删除页面上所有段落元素。</span><br><span class="line">该方法也可以在括号中填了一个参数，用于筛选出特定的元素进行删除。</span><br><span class="line">例如</span><br><span class="line">```$（“p”）.remove（“.style”）；</span><br></pre></td></tr></table></figure>
+<h3 id="jQuery-empty（）"><a href="#jQuery-empty（）" class="headerlink" title="jQuery empty（）"></a>jQuery empty（）</h3>该方法用于清空元素即从指定元素中删除其子元素和文本内容，语法格式为<br>例如<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">该方法仅用于清空元素内部的内容，但保留元素本身的结果。也就是说，当用该方法的时候标签里面的内容被清除了当标签本身还是存在的。</span><br><span class="line"></span><br><span class="line">### jQuery removeAttr（）</span><br><span class="line">该方法用于删除元素的指定属性，语法结构为&#96;&#96;&#96;$（selector）.removeAttr（property Name）</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="jQuery-类属性"><a href="#jQuery-类属性" class="headerlink" title="jQuery 类属性"></a>jQuery 类属性</h2><h3 id="jQuery-addClass（）"><a href="#jQuery-addClass（）" class="headerlink" title="jQuery addClass（）"></a>jQuery addClass（）</h3><p>当需要为元素设置多项CSS样式属性时，除了可以使用css（）方法逐行添加以外，还可以使用addClass（）方法直接为元素添加CSS要是表中的类名称。<br>如果有多个CSS类需要同时添加，可以都写在addClass（）方法的参数位置，之间用空格隔开。例如</p>
+<figure class="highlight plain"><figcaption><span>style2”）```；</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">### jQuery removeClass（）</span><br><span class="line">如果需要为元素取消某个CSS样式的类名称，只要使用removeClass（）方法即可，语法格式如下</span><br><span class="line">&#96;&#96;&#96;$（selector）.removeClass（className）</span><br></pre></td></tr></table></figure>
+<p>例如</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">表示删除class&#x3D;“style1”的属性。</span><br><span class="line"></span><br><span class="line">#### toggleClass（）</span><br><span class="line">如果需要为元素切换某个CSS样式的类名称，只要使用toggleClass（）方法即可，语法格式为</span><br><span class="line">&#96;&#96;&#96;$（selector）.toggleClass（className）</span><br></pre></td></tr></table></figure>
+<p>例如<br><code>$（“p”）.toggleClass（“style1”）</code><br>表示为段落元素添加或删除class=“style1”的属性</p>
+<h2 id="jQuery尺寸"><a href="#jQuery尺寸" class="headerlink" title="jQuery尺寸"></a>jQuery尺寸</h2><p>jQuery还提供了一系列方法用于获取和设置元素或浏览器窗口的尺寸。</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">width</span>（）：获取或设置元素的宽度（不包括内外边距和边框宽度）</span><br><span class="line"><span class="built_in">height</span>（）：获取或设置元素的高度（不包括内外边距和边框宽度）</span><br><span class="line">innerWidth（）：获取或设置元素的宽度（包括内边距）</span><br><span class="line">innerHeight（）：获取或设置元素的高度（包括内边距）</span><br><span class="line">outerWidth（）：获取或设置元素的宽度（包括内边距和边框宽度）</span><br><span class="line">outerHeight（）：获取或设置元素的高度（包括内边距和边框宽度）</span><br></pre></td></tr></table></figure>
+<p>当以上方法不带任何参数表示获取元素的尺寸。<br>例如</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">var</span> <span class="built_in">width</span>=$（“div”）.<span class="built_in">width</span>（）；</span><br></pre></td></tr></table></figure>
+<p>表示div块的宽度<br>如果需要获取带有外边距的尺寸，可以使用outerWidth（）方法加上参数值true表示。例如</p>
+<figure class="highlight cal"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> width=$（“<span class="keyword">div</span>”）.outerWidth（）；</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/11/jQuery04/" title="jQuery04--jQuery HTML DOM">http://yoursite.com/2019/03/11/jQuery04/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 前端基础</a>
+          
+            <a href="/tags/jQuery%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> jQuery基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/10/jQuery03/" rel="next" title="jQuery03--jQuery特效">
+                <i class="fa fa-chevron-left"></i> jQuery03--jQuery特效
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/12/jQuery05/" rel="prev" title="jQuery05--jQuery遍历">
+                jQuery05--jQuery遍历 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery-HTML-DOM学习笔记"><span class="nav-number">1.</span> <span class="nav-text">jQuery HTML DOM学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-HTML-DOM-获取和设置"><span class="nav-number">1.1.</span> <span class="nav-text">jQuery HTML DOM 获取和设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-text（）"><span class="nav-number">1.1.1.</span> <span class="nav-text">jQuery text（）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-html（）"><span class="nav-number">1.1.2.</span> <span class="nav-text">jQuery html（）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-val（）"><span class="nav-number">1.1.3.</span> <span class="nav-text">jQuery val（）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-attr（）"><span class="nav-number">1.1.4.</span> <span class="nav-text">jQuery attr（）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-css（）"><span class="nav-number">1.1.5.</span> <span class="nav-text">jQuery css（）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-添加"><span class="nav-number">1.2.</span> <span class="nav-text">jQuery 添加</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-append（）和prepend（）"><span class="nav-number">1.2.1.</span> <span class="nav-text">jQuery append（）和prepend（）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-empty（）"><span class="nav-number">1.2.2.</span> <span class="nav-text">jQuery empty（）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-类属性"><span class="nav-number">1.3.</span> <span class="nav-text">jQuery 类属性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery-addClass（）"><span class="nav-number">1.3.1.</span> <span class="nav-text">jQuery addClass（）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery尺寸"><span class="nav-number">1.4.</span> <span class="nav-text">jQuery尺寸</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

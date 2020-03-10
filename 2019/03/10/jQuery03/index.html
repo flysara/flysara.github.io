@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端基础,jQuery基础," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="jQuery特效学习笔记jQuery特效jQuery隐藏和显示jQuery hide（）该方法用于隐藏指定的HTML元素，语法结构为 1$（selector）.hide（［duration，］［，callback］）；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="jQuery03--jQuery特效">
+<meta property="og:url" content="http://yoursite.com/2019/03/10/jQuery03/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="jQuery特效学习笔记jQuery特效jQuery隐藏和显示jQuery hide（）该方法用于隐藏指定的HTML元素，语法结构为 1$（selector）.hide（［duration，］［，callback］）；">
+<meta property="article:published_time" content="2019-03-10T09:02:41.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:40:31.098Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端基础">
+<meta property="article:tag" content="jQuery基础">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/10/jQuery03/"/>
+
+
+
+
+
+  <title>jQuery03--jQuery特效 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/10/jQuery03/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">jQuery03--jQuery特效</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-10T17:02:41+08:00">
+                2019-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/jQuery%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">jQuery基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.4k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="jQuery特效学习笔记"><a href="#jQuery特效学习笔记" class="headerlink" title="jQuery特效学习笔记"></a>jQuery特效学习笔记</h1><h2 id="jQuery特效"><a href="#jQuery特效" class="headerlink" title="jQuery特效"></a>jQuery特效</h2><h3 id="jQuery隐藏和显示"><a href="#jQuery隐藏和显示" class="headerlink" title="jQuery隐藏和显示"></a>jQuery隐藏和显示</h3><p><b>jQuery hide（）</b><br>该方法用于隐藏指定的HTML元素，语法结构为</p>
+<figure class="highlight mel"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$（selector）.<span class="keyword">hide</span>（［duration，］［，callback］）；</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<ul>
+<li>duration：动画设置隐藏的持续时间，可以填入slow（600ms）、fast（200ms）或者具体的时间长度（毫秒单位）；</li>
+<li>callback：隐藏动作后下一步需要的执行函数，若无可以不填<br>使用不带任何参数的hide（）函数可以实现无动画效果的隐藏动作，相当于将选择器元素设置为display：none$（“p”）.hide（）。</li>
+</ul>
+<p><b>jQuery show（）</b><br>该方法用于显示指定元素，语法结构为</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$（selector）.<span class="keyword">show</span>（［duration，］［，callback］）；</span><br></pre></td></tr></table></figure>
+<p>参数的意义同hide（）方法的参数。</p>
+<p><b>jQuery toggle（）</b><br>该方法用于切换元素的隐藏和显示。该方法可以替代hide（）和show（）方法单独使用，用于显示已隐藏的元素，和隐藏正在显示的元素。<br>语法结构为<code>$（selector）.toggle（）；</code><br>可以点击一个按钮循环实现隐藏和显示，如果显示状态就代表隐藏，如果隐藏状态就表示显示状态。</p>
+<h3 id="jQuery淡入淡出"><a href="#jQuery淡入淡出" class="headerlink" title="jQuery淡入淡出"></a>jQuery淡入淡出</h3><h4 id="fadeIn（）淡入"><a href="#fadeIn（）淡入" class="headerlink" title="fadeIn（）淡入"></a>fadeIn（）淡入</h4><p>fadeIn（）实现元素的淡入效果，即将原先隐藏的元素显示出来，语法结构为</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$（</span>selector）.fadeIn（［duration，］［，callback］）；</span><br></pre></td></tr></table></figure>
+<h4 id="fadeOut（）"><a href="#fadeOut（）" class="headerlink" title="fadeOut（）"></a>fadeOut（）</h4><p>该方法用于实现元素的淡出效果，即将原先存在的元素逐渐隐藏起来，语法结构为</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$（</span>selector）.fadeOut（［duration，］［，callback］）；</span><br></pre></td></tr></table></figure>
+<p>fadeIn（）和fadeOut（）不添加任何参数就是没有动画效果，立刻就完成动画过程。</p>
+<h4 id="fadeToggle（）"><a href="#fadeToggle（）" class="headerlink" title="fadeToggle（）"></a>fadeToggle（）</h4><p>该方法用于切换元素的淡入和淡出效果，语法结构为</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$（</span>selector）.fadeToggle（［duration，］［，callback］）；</span><br></pre></td></tr></table></figure>
+<p>如果原先为淡出状态，按钮则代表淡入；如果原先为淡入状态，按钮就代表淡出，交替使用。</p>
+<h4 id="fadeTo（）"><a href="#fadeTo（）" class="headerlink" title="fadeTo（）"></a>fadeTo（）</h4><p>该方法用于指定渐变效果的透明度，透明度取值为0～1，语法结构如下：</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$（</span>selector）.fadeTo（duration，opacity［，callback］）；</span><br></pre></td></tr></table></figure>
+<p>其中opacity表示透明度，0为完全透明，1为非透明。</p>
+<h3 id="jQuery滑动"><a href="#jQuery滑动" class="headerlink" title="jQuery滑动"></a>jQuery滑动</h3><h4 id="jQuery-slideDown（）"><a href="#jQuery-slideDown（）" class="headerlink" title="jQuery slideDown（）"></a>jQuery slideDown（）</h4><p>该方法用于向下滑动元素，语法结构如下：<code>$（selector）.slideDown（［duration，］［，callback］）；</code><br>该方法中的两个参数均为可选。其他参数的意义同上。</p>
+<h4 id="jQueryslideUp（）"><a href="#jQueryslideUp（）" class="headerlink" title="jQueryslideUp（）"></a>jQueryslideUp（）</h4><p>该方法用于向上滑动元素，语法结构如下：<code>$（selector）.slideUp（［duration，］［，callback］）；</code><br>参数意义同上。</p>
+<h4 id="jQuery-slideToggle（）"><a href="#jQuery-slideToggle（）" class="headerlink" title="jQuery slideToggle（）"></a>jQuery slideToggle（）</h4><p>该方法用于切换滑动方向，语法结构如下：<code>$（selector）.slideToggle（［duration，］［，callback］）；</code><br>如果元素原先处于向上滑动，那么按下按钮代表向下滑动，如果元素原先是向下滑动状态，那么按下按钮代表向上滑动。</p>
+<h2 id="jQuery-动画"><a href="#jQuery-动画" class="headerlink" title="jQuery 动画"></a>jQuery 动画</h2><p>animate（）方法通过更改元素的CSS属性值实现动画效果。语法结构：<code>（selector）.animate（{params}，［duration，］［，callback］）；</code><br>参数意义如下：</p>
+<ul>
+<li>params：表示形成动画的C S S属性，允许同时实现多个属性的改变。</li>
+<li>duration：表示规定的效果时长，默认单位为毫秒。</li>
+<li>callback：表示动画完成后需要执行的函数名称，若无下一步需执行的函数，可省略不填。</li>
+</ul>
+<h3 id="改变元素的基本属性"><a href="#改变元素的基本属性" class="headerlink" title="改变元素的基本属性"></a>改变元素的基本属性</h3><p>animate（）方法可以用于实现绝大部分C S S属性的变化，例如元素的宽度、高度、透明度等的变化。但是jQuery和辛苦中并没有包含色彩变化效果，因此如果要实现颜色动画需要在jQuery官方网站上另外，下载色彩动画的相关插件。<br>当CSS属性名称中包含连字符“-”时，需要使用驼峰标记法。<br>animate（）方法可以用于各种HTML元素。<br>例如</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$（“#btn”）.click（function（）&#123;</span><br><span class="line">$（“div”）.animate（&#123;</span><br><span class="line">width：“<span class="number">400</span>px”，</span><br><span class="line">fontSize：“<span class="number">300</span>px”，</span><br><span class="line">opacity：<span class="number">0.23</span>&#125;，<span class="number">2000</span>）；</span><br><span class="line">&#125;）；</span><br></pre></td></tr></table></figure>
+<h3 id="改变元素的位置"><a href="#改变元素的位置" class="headerlink" title="改变元素的位置"></a>改变元素的位置</h3><p>animate（）方法也可以通过使用CSS属性的left、right、top、bottom改变元素位置实现移动效果。由于这些属性值均为相对值，而在HTML中所有元素的position属性值均默认为静态（static）无法移动的，因此需要事先设置指定元素的position为relative、absolute或者fixed才能生效。<br>例如</p>
+<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$（</span>“<span class="comment">#btn”）.click（function（）&#123;</span></span><br><span class="line"><span class="variable">$（</span>“div”）.animate（&#123;</span><br><span class="line">left：“+=<span class="number">200</span>”，</span><br><span class="line">top：“+=<span class="number">100</span>”&#125;，<span class="number">2000</span>）；</span><br><span class="line">&#125;）；</span><br></pre></td></tr></table></figure>
+<p>动画队列<br>可以为多个连续的animate（）方法创建动画队列，然后依次执行队列中的每一项动画，从而实现更加复杂的动画效果。在同一个animate（）方法中描述的多个动画效果会同时发生，但在不同的animate（）方法中描述的动画效果会按照动画队列冲的先后次序发生。</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$（“#btn”）.click（function（）&#123;</span><br><span class="line">$（“div”）.animate（&#123;left：“+=<span class="number">200</span>”，top：“+=<span class="number">100</span>”&#125;，<span class="number">2000</span>）；</span><br><span class="line">$（“div”）.animate（&#123;right：“+=<span class="number">200</span>”，bottom：“+=<span class="number">100</span>”&#125;，<span class="number">2000</span>）；</span><br><span class="line">$（“div”）.animate（&#123;left：“-=<span class="number">200</span>”，top：“-=<span class="number">100</span>”&#125;，<span class="number">2000</span>）；</span><br><span class="line">&#125;）；</span><br></pre></td></tr></table></figure>
+<p>单击按钮会依次发生动画效果。</p>
+<h4 id="方法链接"><a href="#方法链接" class="headerlink" title="方法链接"></a>方法链接</h4><p>jQuery允许在同一个元素上连续运行多条jQuery命令，这种技术称为jQuery方法链接对于同一个元素，如果有多个动作需要依次举行，只需将新的动作追加到上一个动作的后面，形成一个方法链，无需每次重复查找选择相同的元素。基本语法为：<code>$（selector）.action1（）.action 2（）.action3（）…actionＮ（）；</code><br>每个动作也可以另起一行</p>
+<figure class="highlight jboss-cli"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$（selector）<span class="string">.action1</span>（）</span><br><span class="line"><span class="string">.action</span> 2（）</span><br><span class="line"><span class="string">.action3</span>（）</span><br><span class="line">…</span><br><span class="line"><span class="string">.action</span>Ｎ（）；</span><br></pre></td></tr></table></figure>
+<h4 id="jQuery停止动画"><a href="#jQuery停止动画" class="headerlink" title="jQuery停止动画"></a>jQuery停止动画</h4><p>可用stop（）方法停止动画或效果，语法结构为<code>$（selector）.stop（［stopAll]，［gotoEnd］）；</code><br>参数意义如下：</p>
+<ul>
+<li>stopAll：用于规定是否清除后续的所有动画内容，可填入布尔值。其默认值为false，表示，仅停止当前动画，允许动画队列中的后续动画继续执行。</li>
+<li>gotoEnd：用于规定是否立即完成当前的动画内容，可填入布尔值，其默认值为false，表示直接终止当前的动画效果。</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/10/jQuery03/" title="jQuery03--jQuery特效">http://yoursite.com/2019/03/10/jQuery03/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 前端基础</a>
+          
+            <a href="/tags/jQuery%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> jQuery基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/09/jQuery02/" rel="next" title="jQuery02--jQuery事件">
+                <i class="fa fa-chevron-left"></i> jQuery02--jQuery事件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/11/jQuery04/" rel="prev" title="jQuery04--jQuery HTML DOM">
+                jQuery04--jQuery HTML DOM <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#jQuery特效学习笔记"><span class="nav-number">1.</span> <span class="nav-text">jQuery特效学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery特效"><span class="nav-number">1.1.</span> <span class="nav-text">jQuery特效</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery隐藏和显示"><span class="nav-number">1.1.1.</span> <span class="nav-text">jQuery隐藏和显示</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery淡入淡出"><span class="nav-number">1.1.2.</span> <span class="nav-text">jQuery淡入淡出</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#fadeIn（）淡入"><span class="nav-number">1.1.2.1.</span> <span class="nav-text">fadeIn（）淡入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fadeOut（）"><span class="nav-number">1.1.2.2.</span> <span class="nav-text">fadeOut（）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fadeToggle（）"><span class="nav-number">1.1.2.3.</span> <span class="nav-text">fadeToggle（）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#fadeTo（）"><span class="nav-number">1.1.2.4.</span> <span class="nav-text">fadeTo（）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#jQuery滑动"><span class="nav-number">1.1.3.</span> <span class="nav-text">jQuery滑动</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#jQuery-slideDown（）"><span class="nav-number">1.1.3.1.</span> <span class="nav-text">jQuery slideDown（）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jQueryslideUp（）"><span class="nav-number">1.1.3.2.</span> <span class="nav-text">jQueryslideUp（）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jQuery-slideToggle（）"><span class="nav-number">1.1.3.3.</span> <span class="nav-text">jQuery slideToggle（）</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#jQuery-动画"><span class="nav-number">1.2.</span> <span class="nav-text">jQuery 动画</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#改变元素的基本属性"><span class="nav-number">1.2.1.</span> <span class="nav-text">改变元素的基本属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#改变元素的位置"><span class="nav-number">1.2.2.</span> <span class="nav-text">改变元素的位置</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#方法链接"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">方法链接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jQuery停止动画"><span class="nav-number">1.2.2.2.</span> <span class="nav-text">jQuery停止动画</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

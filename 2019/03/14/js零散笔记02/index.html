@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="https://fonts.cat.net/css?family=Lato:300,300italic,400,400italic,700,700italic|Roboto Slab:300,300italic,400,400italic,700,700italic|PingFang SC:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|Roboto Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/watermelon32x32.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/watermelon16x16.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="前端基础,js零散笔记," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="JavaScript个人零散笔记（二）JavaScript 弹窗可以在 JavaScript 中创建三种消息框：警告框、确认框、提示框。 警告框警告框经常用于确保用户可以得到某些信息。当警告框出现后，用户需要点击确定按钮才能继续进行操作。语法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js零散笔记02">
+<meta property="og:url" content="http://yoursite.com/2019/03/14/js%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B002/index.html">
+<meta property="og:site_name" content="舒小喵的blog">
+<meta property="og:description" content="JavaScript个人零散笔记（二）JavaScript 弹窗可以在 JavaScript 中创建三种消息框：警告框、确认框、提示框。 警告框警告框经常用于确保用户可以得到某些信息。当警告框出现后，用户需要点击确定按钮才能继续进行操作。语法">
+<meta property="article:published_time" content="2019-03-14T09:42:17.000Z">
+<meta property="article:modified_time" content="2020-02-16T13:37:51.430Z">
+<meta property="article:author" content="Teresa">
+<meta property="article:tag" content="前端基础">
+<meta property="article:tag" content="js零散笔记">
+<meta name="twitter:card" content="summary">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"always","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/14/js零散笔记02/"/>
+
+
+
+
+
+  <title>js零散笔记02 | 舒小喵的blog</title>
+  
+
+
+
+
+
+
+
+
+<meta name="generator" content="Hexo 4.2.0"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">舒小喵的blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">never say never</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/14/js%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B002/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Teresa">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="舒小喵的blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js零散笔记02</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-03-14T17:42:17+08:00">
+                2019-03-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/" itemprop="url" rel="index">
+                    <span itemprop="name">Web 前端</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" itemprop="url" rel="index">
+                    <span itemprop="name">前端基础</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Web-%E5%89%8D%E7%AB%AF/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/js%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">js零散笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>次
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  1.3k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="JavaScript个人零散笔记（二）"><a href="#JavaScript个人零散笔记（二）" class="headerlink" title="JavaScript个人零散笔记（二）"></a>JavaScript个人零散笔记（二）</h1><h2 id="JavaScript-弹窗"><a href="#JavaScript-弹窗" class="headerlink" title="JavaScript 弹窗"></a>JavaScript 弹窗</h2><p>可以在 JavaScript 中创建三种消息框：<code>警告框、确认框、提示框</code>。</p>
+<h3 id="警告框"><a href="#警告框" class="headerlink" title="警告框"></a>警告框</h3><p>警告框经常用于确保用户可以得到某些信息。<br>当警告框出现后，用户需要点击确定按钮才能继续进行操作。<br>语法</p>
+<a id="more"></a>
+
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.alert(<span class="string">"sometext"</span>);</span><br><span class="line"><span class="built_in">window</span>.alert() 方法可以不带上<span class="built_in">window</span>对象，直接使用alert()方法。</span><br></pre></td></tr></table></figure>
+<h3 id="确认框"><a href="#确认框" class="headerlink" title="确认框"></a>确认框</h3><p>确认框通常用于验证是否接受用户操作。<br>当确认卡弹出时，用户可以点击 “确认” 或者 “取消” 来确定用户操作。<br>当你点击 “确认”, 确认框返回 true， 如果点击 “取消”, 确认框返回 false。<br>语法</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">window</span>.<span class="keyword">confirm</span>(<span class="string">"sometext"</span>);</span><br><span class="line"><span class="keyword">window</span>.<span class="keyword">confirm</span>() 方法可以不带上<span class="keyword">window</span>对象，直接使用<span class="keyword">confirm</span>()方法。</span><br></pre></td></tr></table></figure>
+<h3 id="提示框"><a href="#提示框" class="headerlink" title="提示框"></a>提示框</h3><p>提示框经常用于提示用户在进入页面前输入某个值。<br>当提示框出现后，用户需要输入某个值，然后点击确认或取消按钮才能继续操纵。<br>如果用户点击确认，那么返回值为输入的值。如果用户点击取消，那么返回值为 null。<br>语法</p>
+<figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.prompt(<span class="string">"sometext"</span>,<span class="string">"defaultvalue"</span>);</span><br><span class="line"><span class="built_in">window</span>.prompt() 方法可以不带上<span class="built_in">window</span>对象，直接使用prompt()方法。</span><br></pre></td></tr></table></figure>
+
+<h2 id="JavaScript-计时事件"><a href="#JavaScript-计时事件" class="headerlink" title="JavaScript 计时事件"></a>JavaScript 计时事件</h2><p>通过使用 JavaScript，我们有能力做到在一个设定的时间间隔之后来执行代码，而不是在函数被调用后立即执行。我们称之为计时事件。<br>在 JavaScritp 中使用计时事件是很容易的，两个关键方法是:</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="title">setInterval</span><span class="params">()</span></span> - 间隔指定的毫秒数不停地执行指定的代码。</span><br><span class="line"><span class="function"><span class="title">setTimeout</span><span class="params">()</span></span> - 暂停指定的毫秒数后执行指定的代码</span><br></pre></td></tr></table></figure>
+<p>Note: setInterval() 和 setTimeout() 是 HTML DOM Window对象的两个方法。</p>
+<h3 id="setInterval-方法"><a href="#setInterval-方法" class="headerlink" title="setInterval() 方法"></a>setInterval() 方法</h3><p>setInterval() 间隔指定的毫秒数不停地执行指定的代码<br>语法</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">window.set<span class="constructor">Interval(<span class="string">"javascript function"</span>,<span class="params">milliseconds</span>)</span>;</span><br><span class="line">window.set<span class="constructor">Interval()</span> 方法可以不使用window前缀，直接使用函数set<span class="constructor">Interval()</span>。</span><br><span class="line">set<span class="constructor">Interval()</span> 第一个参数是函数（<span class="keyword">function</span>）。</span><br></pre></td></tr></table></figure>
+<p>第二个参数间隔的毫秒数<br>注意: 1000 毫秒是一秒。<br>实例<br>每三秒弹出 “hello” ：</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setInterval(<span class="name">function</span>()&#123;alert(<span class="string">"Hello"</span>)&#125;,<span class="number">3000</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>以下实例将显示当前时间。 setInterval() 方法设置每秒钟执行一次代码，就是和手表一样。<br>实例<br>显示当前时间</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myVar=setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;myTimer()&#125;,<span class="number">1000</span>); </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myTimer</span>(<span class="params"></span>) </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line"><span class="keyword">var</span> d=<span class="keyword">new</span> <span class="built_in">Date</span>(); </span><br><span class="line"><span class="keyword">var</span> t=d.toLocaleTimeString(); </span><br><span class="line"><span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>).innerHTML=t; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>如何停止执行?<br>clearInterval() 方法用于停止 setInterval() 方法执行的函数代码。<br>语法</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">window.clear<span class="constructor">Interval(<span class="params">intervalVariable</span>)</span></span><br><span class="line">window.clear<span class="constructor">Interval()</span> 方法可以不使用window前缀，直接使用函数clear<span class="constructor">Interval()</span>。</span><br></pre></td></tr></table></figure>
+<p>要使用 clearInterval() 方法, 在创建计时方法时你必须使用全局变量：</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">myVar</span>=setInterval(<span class="string">"javascript function"</span>,milliseconds)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>然后你可以使用clearInterval() 方法来停止执行。<br>实例<br>以下例子,我们添加了 “Stop time” 按钮：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">id</span>=<span class="string">"demo"</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">onclick</span>=<span class="string">"myStopFunction()"</span>&gt;</span>Stop time<span class="tag">&lt;/<span class="name">button</span>&gt;</span> </span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> myVar=setInterval(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;myTimer()&#125;,<span class="number">1000</span>); </span></span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">myTimer</span><span class="params">()</span> </span></span></span><br><span class="line">&#123; </span><br><span class="line"><span class="javascript"><span class="keyword">var</span> d=<span class="keyword">new</span> <span class="built_in">Date</span>(); </span></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> t=d.toLocaleTimeString(); </span></span><br><span class="line"><span class="javascript"><span class="built_in">document</span>.getElementById(<span class="string">"demo"</span>).innerHTML=t; </span></span><br><span class="line">&#125; </span><br><span class="line"><span class="actionscript"><span class="function"><span class="keyword">function</span> <span class="title">myStopFunction</span><span class="params">()</span> </span></span></span><br><span class="line">&#123; </span><br><span class="line">clearInterval(myVar); </span><br><span class="line">&#125; </span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="setTimeout-方法"><a href="#setTimeout-方法" class="headerlink" title="setTimeout() 方法"></a>setTimeout() 方法</h3><p>语法</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.<span class="built_in">setTimeout</span>(<span class="string">"javascript 函数"</span>,毫秒数);</span><br></pre></td></tr></table></figure>
+<p>setTimeout() 方法会返回某个值。在上面的语句中，值被储存在名为 t 的变量中。假如你希望取消这个 setTimeout()，你可以使用这个变量名来指定它。<br>setTimeout() 的第一个参数是含有 JavaScript 语句的字符串。这个语句可能诸如 “alert(‘5 seconds!’)”，或者对函数的调用，诸如”alertMsg()”。<br>第二个参数指示从当前起多少毫秒后执行第一个参数。<br>提示：1000 毫秒等于一秒。<br>实例<br>等待3秒，然后弹出 “Hello”:</p>
+<figure class="highlight lisp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="name">function</span>()&#123;alert(<span class="string">"Hello"</span>)&#125;,<span class="number">3000</span>)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>如何停止执行?<br>clearTimeout() 方法用于停止执行setTimeout()方法的函数代码。<br>语法</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">window.clear<span class="constructor">Timeout(<span class="params">timeoutVariable</span>)</span></span><br></pre></td></tr></table></figure>
+<p>window.clearTimeout() 方法可以不使用window 前缀。<br>要使用clearTimeout() 方法, 你必须在创建超时方法中（setTimeout）使用全局变量:</p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">myVar</span>=setTimeout(<span class="string">"javascript function"</span>,milliseconds)<span class="comment">;</span></span><br></pre></td></tr></table></figure>
+<p>如果函数还未被执行，你可以使用 clearTimeout() 方法来停止执行函数代码。<br>实例<br>以下是同一个实例, 但是添加了 “Stop the alert” 按钮:</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myVar; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myFunction</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">myVar=setTimeout(<span class="function"><span class="keyword">function</span><span class="params">()</span></span>&#123;alert(<span class="string">"Hello"</span>)&#125;,<span class="number">3000</span>); </span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">myStopFunction</span><span class="params">()</span> </span></span><br><span class="line"><span class="function"></span>&#123; </span><br><span class="line">clearTimeout(myVar); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="什么是-Cookies？"><a href="#什么是-Cookies？" class="headerlink" title="什么是 Cookies？"></a>什么是 Cookies？</h2><p>Cookies 是一些数据, 存储于你电脑上的文本文件中。<br>当 web 服务器向浏览器发送 web 页面时，在连接关闭后，服务端不会记录用户的信息。<br>Cookies 的作用就是用于解决 “如何记录客户端的用户信息”:</p>
+<p>当用户访问 web 页面时，他的名字可以记录在 cookie 中。<br>在用户下一次访问该页面时，可以在 cookie 中读取用户访问记录。<br>Cookies 以名/值对形式存储，如下所示: username=John Doe 当浏览器从服务器上请求 web 页面时， 属于该页面的 cookies 会被添加到该请求中。服务端通过这种方式来获取用户的信息。<br>CSS3相同的地方<br>JavaScript中表单填写和css3相同的地方:</p>
+<figure class="highlight protobuf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">css3用placeholder：“默认样式显示文本”，用<span class="keyword">required</span>属性：<span class="keyword">required</span> aria-<span class="keyword">required</span>=“<span class="literal">true</span>”；来表明该表单为必填项。</span><br><span class="line">autofocus属性可以让表单在加载完成时就有一个表单域被默认聚焦，以便用户输入。</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+ 
+<div>
+  
+    <div>
+    
+        <div style="text-align:center;color: #555;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+  
+</div>
+
+
+
+
+      <div>
+        
+      </div>
+
+
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者：</strong>
+    Teresa
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://yoursite.com/2019/03/14/js%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B002/" title="js零散笔记02">http://yoursite.com/2019/03/14/js%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B002/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>
+    本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/%E5%89%8D%E7%AB%AF%E5%9F%BA%E7%A1%80/" rel="tag"><i class="fa fa-tag"></i> 前端基础</a>
+          
+            <a href="/tags/js%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B0/" rel="tag"><i class="fa fa-tag"></i> js零散笔记</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/13/js%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B001/" rel="next" title="js零散笔记01">
+                <i class="fa fa-chevron-left"></i> js零散笔记01
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/15/js%E9%9B%B6%E6%95%A3%E7%AC%94%E8%AE%B003/" rel="prev" title="js零散笔记03">
+                js零散笔记03 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+            <a href="/">
+              <img class="site-author-image" itemprop="image"
+                src="/images/1.jpg"
+                alt="Teresa" />
+                </a>
+            
+              <p class="site-author-name" itemprop="name">Teresa</p>
+              <p class="site-description motion-element" itemprop="description">学习前端路上的技术、笔记分享和记录</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">100</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">30</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/flysara" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:1395768483@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envolop"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/luckyTeresa" target="_blank" title="Gitee">
+                      
+                        <i class="fa fa-fw fa-globe"></i>Gitee</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#JavaScript个人零散笔记（二）"><span class="nav-number">1.</span> <span class="nav-text">JavaScript个人零散笔记（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-弹窗"><span class="nav-number">1.1.</span> <span class="nav-text">JavaScript 弹窗</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#警告框"><span class="nav-number">1.1.1.</span> <span class="nav-text">警告框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确认框"><span class="nav-number">1.1.2.</span> <span class="nav-text">确认框</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提示框"><span class="nav-number">1.1.3.</span> <span class="nav-text">提示框</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript-计时事件"><span class="nav-number">1.2.</span> <span class="nav-text">JavaScript 计时事件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#setInterval-方法"><span class="nav-number">1.2.1.</span> <span class="nav-text">setInterval() 方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#setTimeout-方法"><span class="nav-number">1.2.2.</span> <span class="nav-text">setTimeout() 方法</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是-Cookies？"><span class="nav-number">1.3.</span> <span class="nav-text">什么是 Cookies？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Teresa</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">225k</span>
+  
+</div>
+
+<!--
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+
+
+-->
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>你是第
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      位访客
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
