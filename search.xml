@@ -1,6 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>将本地仓库同时和gitee和GitHub关联起来</title>
+    <url>/2020/03/10/git02/</url>
+    <content><![CDATA[<p><a href="https://www.cnblogs.com/poloyy/p/12215199.html" target="_blank" rel="noopener">参考这篇文章</a></p>
+<h3 id="gitee拉取GitHub"><a href="#gitee拉取GitHub" class="headerlink" title="gitee拉取GitHub"></a>gitee拉取GitHub</h3><p>直接在Gitee中创建一个项目，然后在最后一行的“导入已有仓库”一栏中复制已有的GitHub仓库就可以了。<br>需要注意的是，<b>复制的仓库地址是https链接而不是SSH格式</b></p>
+<p>这样的话就已经创建好了仓库</p>
+<h3 id="本地配置推送方式"><a href="#本地配置推送方式" class="headerlink" title="本地配置推送方式"></a>本地配置推送方式</h3><ul>
+<li>方式一：定义不同的远程仓库名称，然后分别推送 多次推送，配了几个远程仓库就推送几次 </li>
+<li>方式二：在同一个远程仓库下添加另一个远程仓库的地址，然后推送 only一次推送 </li>
+</ul>
+<h4 id="本地只有单个ssh-key时的包"><a href="#本地只有单个ssh-key时的包" class="headerlink" title="本地只有单个ssh-key时的包"></a>本地只有单个ssh-key时的包</h4><h5 id="方式一：多次推送"><a href="#方式一：多次推送" class="headerlink" title="方式一：多次推送"></a>方式一：多次推送</h5><ul>
+<li>优点<ul>
+<li>想推哪个仓库就推哪个</li>
+<li>不想推就不推哪个</li>
+</ul>
+</li>
+<li>缺点<ul>
+<li>推送仓库数量多时，时间成本高</li>
+</ul>
+</li>
+</ul>
+<p><b>1.可以直接通过命令将本地项目和gitee项目关联</b></p>
+<figure class="highlight dockerfile"><table><tr><td class="code"><pre><span class="line">git remote <span class="keyword">add</span><span class="bash"> gitee 码云项目地址</span></span><br></pre></td></tr></table></figure>
+<p><b>2.也可以通过修改本地项目的配置文件</b><br>1、首先，进入项目的<code>.git</code>文件夹，打开<code>config</code>文件<br>2、然后找到<code>[remote &quot;origin&quot;]</code>，复制一份remote到下面，修改remote的名字和url即可</p>
+<figure class="highlight elixir"><table><tr><td class="code"><pre><span class="line">[remote <span class="string">"origin"</span>]</span><br><span class="line">   url = git<span class="variable">@github</span><span class="symbol">:jjjlk</span></span><br><span class="line">   fetch = jjlkjl</span><br></pre></td></tr></table></figure>
+<p>为了避免冲突，将原始的remote名字也改掉，注意：remote的名字任意，但是提交的时候要和对应config文件里的remote对应名字相同。</p>
+<figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">[remote <span class="string">"github"</span>]</span><br><span class="line">   <span class="attr">url</span> = github地址</span><br><span class="line">   <span class="attr">fetch</span> = jjlkjl</span><br><span class="line"></span><br><span class="line">[remote <span class="string">"gitee"</span>]</span><br><span class="line">   <span class="attr">url</span> = gitee地址</span><br><span class="line">   <span class="attr">fetch</span> = jjlkjl</span><br></pre></td></tr></table></figure>
+<p>3、执行以下命令，可以看到配置的两个仓库</p>
+<figure class="highlight ebnf"><table><tr><td class="code"><pre><span class="line"><span class="attribute">git remote</span></span><br></pre></td></tr></table></figure>
+<p>4、推送代码时，需要对<code>两个仓库分别执行一次push命令</code>，也就是多次推送</p>
+<figure class="highlight crmsh"><table><tr><td class="code"><pre><span class="line">git push github <span class="literal">master</span></span><br><span class="line">git push gitee <span class="literal">master</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="方式二：一次推送"><a href="#方式二：一次推送" class="headerlink" title="方式二：一次推送"></a>方式二：一次推送</h5><p><b>通过命令将码云项目地址添加到本地已有的remote下</b></p>
+<figure class="highlight dsconfig"><table><tr><td class="code"><pre><span class="line"><span class="string">git </span><span class="string">remote </span><span class="built_in">set-url</span> <span class="built_in">--add</span> <span class="string">origin </span>码云项目地址</span><br></pre></td></tr></table></figure>
+<p><b>2、也可以通过修改本地项目的配置文件</b><br>直接在项目的config文件下进行配置<br>在上述方式的</p>
+<figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">[remote <span class="string">"origin"</span>]</span><br><span class="line">   <span class="attr">url</span> = github地址</span><br><span class="line">   <span class="attr">url</span> = gitee地址</span><br><span class="line">   <span class="attr">fetch</span> = jaojisoajc</span><br></pre></td></tr></table></figure>
+<p><b>推送代码只需执行以下一条命令即可</b></p>
+<figure class="highlight avrasm"><table><tr><td class="code"><pre><span class="line">git <span class="keyword">push</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="可能会遇到的问题"><a href="#可能会遇到的问题" class="headerlink" title="可能会遇到的问题"></a>可能会遇到的问题</h5><p>git push的时候有时候会出现错误<code>[rejected] master -&gt; master(fetch first)</code>，<code>error: failed to push some refs to &#39;git@cinu&#39;</code></p>
+<p>此时可以输入：<code>git push -f</code>进行解决错误，然后再：<code>git push</code></p>
+<p>如果上述解决方式不管用也可以输入：<code>git pull --rebase origin master</code>之后再进行<code>git push</code>即可。</p>
+<h4 id="当本地有多个ssh-key时"><a href="#当本地有多个ssh-key时" class="headerlink" title="当本地有多个ssh-key时"></a>当本地有多个ssh-key时</h4><p>如果想要配置多个ssh-key的话，可以参考<a href="https://www.cnblogs.com/poloyy/p/12189140.html" target="_blank" rel="noopener">文章1</a><a href="https://www.cnblogs.com/lambdaRan/p/11022857.html" target="_blank" rel="noopener">文章2</a></p>
+<p>需要更改两个地方：<br><b>第一：公钥配置文件，目录是：<code>C:\User\.ssh</code>下的<code>config</code>文件</b><br>正常来说是一个ssh-key指向一个仓库即可，譬如第一个key的Host配成github的，第二个key的Host配成gitee</p>
+<p><b>第二：需要修改在上面配置过的config文件，它在项目目录下的.git文件夹下</b><br>原本只有一个ssh-key时，配置文件可能是这样的：</p>
+<figure class="highlight groovy"><table><tr><td class="code"><pre><span class="line">[remote <span class="string">"origin"</span>]</span><br><span class="line">   url = git<span class="meta">@github</span>.<span class="string">com:</span>用户名/项目名.git</span><br><span class="line">   url = git<span class="meta">@gitee</span>.<span class="string">com:</span>用户名/项目名.git</span><br><span class="line">   fetch = hiohohuihohioih</span><br></pre></td></tr></table></figure>
+
+<p>当有两个ssh-key时，配置文件需要改成</p>
+<figure class="highlight nix"><table><tr><td class="code"><pre><span class="line">[remote <span class="string">"origin"</span>]</span><br><span class="line">   <span class="attr">url</span> = git@&#123;GitHub_HOST&#125;:用户名/项目名.git</span><br><span class="line">   <span class="attr">url</span> = git@&#123;Gittee_HOST&#125;:用户名/项目名.git</span><br><span class="line">   <span class="attr">fetch</span> = khdsuifchsdlifh</span><br></pre></td></tr></table></figure>
+<p>最后将<code>Github_HOST</code>、<code>Gitee_HOST</code>替换成我们自己配置里面的Host地址</p>
+<p>其余步骤都是一样的，需要强调的是，如果有多个ssh-key时，还得修改下配置文件。</p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><p>如果只需要把博客同时推送到两个远程仓库中，只需要在_config文件中添加如下代码：</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  # <span class="attribute">repository</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:flysara/flysara.github.io.git</span><br><span class="line">  <span class="attribute">repository</span>: </span><br><span class="line">    <span class="attribute">gitee</span>: git<span class="variable">@gitee</span>.<span class="attribute">com</span>:luckyTeresa/luckyTeresa.git</span><br><span class="line">    <span class="attribute">github</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:flysara/flysara.github.io.git</span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure>
+
+<p>然后在项目下大概GUI Bash，输入<code>git remote add gitee 码云地址</code>和<code>git remote add github GitHub地址</code>即可。推送的时候直接<code>hexo d</code>。</p>
+]]></content>
+      <categories>
+        <category>git</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>本地仓库关联多个远程仓库</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>hexo d遇到的“Repository not found”问题</title>
+    <url>/2020/03/10/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A202/</url>
+    <content><![CDATA[<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>新建博文以后，更新上传，使用<code>hexo d</code>时，发现控制台报错，报错信息如下：</p>
+<figure class="highlight subunit"><table><tr><td class="code"><pre><span class="line"><span class="keyword">ERROR: </span>Repository not found. </span><br><span class="line">fatal: Could not read from remote repository</span><br></pre></td></tr></table></figure>
+
+<p>翻译过来就是不能找到远程仓库，我查看了其他的博文，都是重新配置生成公钥，可是我的公钥已经生成，并且也已经和远程仓库连接好了，所以就百思不得其解。最后终于找到了解决办法</p>
+<h3 id="解决办法"><a href="#解决办法" class="headerlink" title="解决办法"></a>解决办法</h3><p>首先来讲一些原理和规则吧：<br>git的两种上传方式：</p>
+<ul>
+<li>HTTPS</li>
+<li>SSH<br>这两种方式的URL是不同的<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="comment">// HTTPS方式</span></span><br><span class="line"><span class="attribute">https</span>:<span class="comment">//github.com/xxxx/StudyEveryDay.git</span></span><br><span class="line"><span class="comment">// SSH方式</span></span><br><span class="line">git<span class="variable">@github</span>.<span class="attribute">com</span>:xxxx/StudyEveryDay.git</span><br></pre></td></tr></table></figure>
+其中，我在该项目根目录下的_config文件中，对git的部署设置如下：<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  # <span class="attribute">repository</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:flysara/flysara.github.io.git</span><br><span class="line">  <span class="attribute">repository</span>: <span class="attribute">https</span>:<span class="comment">//gitee.com/luckyTeresa/luckyTeresa.git</span></span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p>需要注意：</p>
+<ul>
+<li>上面的repository地址并不是仓库的地址，而是你下克隆项目时弹出的那个地址</li>
+<li>如果使用git就选择SSH，如果选择HTTPS那么相应的type字段也要修改为https</li>
+</ul>
+<p>而我这次的错误和坑就是上面的第二点，我设置的type时git，但是我创建的仓库的链接地址确是使用的https的形式，所以没有办法跟远程仓库进行连接，从而出现了找不到远程仓库的错误。</p>
+<p>了解了问题的原因以后，我修改的代码如下：</p>
+<figure class="highlight less"><table><tr><td class="code"><pre><span class="line"><span class="attribute">deploy</span>:</span><br><span class="line">  <span class="attribute">type</span>: git</span><br><span class="line">  # <span class="attribute">repository</span>: git<span class="variable">@github</span>.<span class="attribute">com</span>:flysara/flysara.github.io.git</span><br><span class="line">  <span class="attribute">repository</span>:  git<span class="variable">@gitee</span>.<span class="attribute">com</span>:luckyTeresa/luckyTeresa.git</span><br><span class="line">  <span class="attribute">branch</span>: master</span><br></pre></td></tr></table></figure>
+
+<p>最后显示部署成功</p>
+]]></content>
+      <categories>
+        <category>博客相关问题解决</category>
+      </categories>
+      <tags>
+        <tag>博客遇到的问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>vue_shop项目构建笔记</title>
     <url>/2020/03/07/vue3-12/</url>
     <content><![CDATA[<h3 id="今日目标"><a href="#今日目标" class="headerlink" title="今日目标"></a>今日目标</h3><p>1.Vuex概述<br>2.Vuex基本使用<br>3.使用Vuex完成todo案例</p>
