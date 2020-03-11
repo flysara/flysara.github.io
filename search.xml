@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Gitee博客没有更新问题</title>
+    <url>/2020/03/11/%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A203/</url>
+    <content><![CDATA[<h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>我把GitHub和gitee两个博客关联起来以后，每次都是推送成功以后，打开我的GitHub博客网址，所有的博客都已经更新完毕了，但是我打开我的gitee博客以后，却发现博客还是没有更新。但是终端却显示的是都推送成功，无论怎么刷新都不能刷新博客文章。</p>
+<h3 id="问题解决"><a href="#问题解决" class="headerlink" title="问题解决"></a>问题解决</h3><p>上网查询了以后，才知道，原来gitee没有自动部署pages功能，所以每次更新完博客推送成功以后，必须要手动去部署paged，这就需要点击gitee仓库里面对应博客仓库里的“服务”一栏，然后点击“pages”，进去以后，手动点击更新，就完成了博客文章的更新，这样的话再点击博客地址进去看到的都是更新以后的文章。</p>
+]]></content>
+      <categories>
+        <category>博客相关问题解决</category>
+      </categories>
+      <tags>
+        <tag>博客遇到的问题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>将本地仓库同时和gitee和GitHub关联起来</title>
     <url>/2020/03/10/git02/</url>
     <content><![CDATA[<p><a href="https://www.cnblogs.com/poloyy/p/12215199.html" target="_blank" rel="noopener">参考这篇文章</a></p>
